@@ -12,8 +12,8 @@ CREATE TABLE POKEDEX (
     SPRITES_TRASEROS VARCHAR(50),
     SONIDO VARCHAR(100),
     NIVEL_EVOLUCION INT,
-    TIPO1 VARCHAR(20) NOT NULL CHECK (TIPO IN('AGUA','BICHO','DRAGON','ELECTRICO','FANTASMA','FUEGO','HIELO','LUCHA','NORMAL','PLANTA','PSIQUICO','ROCA','TIERRA','VENENO','VOLADOR')),,
-    TIPO2 VARCHAR(20) CHECK (TIPO IN('AGUA','BICHO','DRAGON','ELECTRICO','FANTASMA','FUEGO','HIELO','LUCHA','NORMAL','PLANTA','PSIQUICO','ROCA','TIERRA','VENENO','VOLADOR')),
+    TIPO1 VARCHAR(20) NOT NULL CHECK (TIPO1 IN('AGUA', 'BICHO','DRAGON','ELECTRICO','FANTASMA','FUEGO','HIELO','LUCHA','NORMAL','PLANTA','PSIQUICO','ROCA','TIERRA','VENENO','VOLADOR')),
+    TIPO2 VARCHAR(20)
 );
 
 -- Tabla POKEMON
@@ -32,15 +32,13 @@ CREATE TABLE POKEMON (
     NIVEL INT NOT NULL,
     FERTILIDAD INT NOT NULL DEFAULT 5,
     SEXO CHAR(1) NOT NULL CHECK (SEXO IN ('M', 'X')),
-    ESTADO VARCHAR(30) NOT NULL CHECK (ESTADO IN ('NORMAL', 'PARALIZADO', 'QUEMADO', 'ENVENENADO', 'GRAVEMENTE ENVENENADO', 'DORMIDO', 'CONGELADO', 'HELADO', 'SOMNOLIENTO', 'POKERUS', 'DEBILITADO', 'CONFUSO', 'ENAMORADO', 'ATRAPADO', 'MALDITO', 'DRENADORAS', 'CANTO MORTAL', 'CENTRO DE ATENCION', 'AMEDRENTADO' )),
+    ESTADO VARCHAR(30) NOT NULL CHECK (ESTADO IN ('NORMAL', 'PARALIZADO', 'QUEMADO', 'ENVENENADO', 'GRAVEMENTE ENVENENADO', 'DORMIDO', 'CONGELADO', 'HELADO', 'SOMNOLIENTO', 'POKERUS', 'DEBILITADO', 'CONFUSO', 'ENAMORADO', 'ATRAPADO', 'MALDITO', 'DRENADORAS', 'CANTO MORTAL', 'CENTRO DE ATENCION', 'AMEDRENTADO')),
     EQUIPO INT NOT NULL CHECK (EQUIPO IN (1, 2, 3)),
     FOREIGN KEY (ID_ENTRENADOR) REFERENCES ENTRENADOR(ID_ENTRENADOR),
     FOREIGN KEY (NUM_POKEDEX) REFERENCES POKEDEX(NUM_POKEDEX),
     FOREIGN KEY (ID_OBJETO) REFERENCES OBJETO(ID_OBJETO) ON DELETE SET NULL
 );
 
--- Metodo INSERT (Menos imagen trasera y sonido)
-INSERT INTO POKEDEX (NUM_POKEDEX, NOM_POKEMON, IMG_FRONTAL, IMG_TRASERA, SPRITES_FRONTAL, SPRITES_TRASEROS, SONIDO, NIVEL_EVOLUCION, TIPO1, TIPO2) VALUES
 -- Método INSERT con todas las rutas de imágenes, sprites y sonidos
 INSERT INTO POKEDEX (NUM_POKEDEX, NOM_POKEMON, IMG_FRONTAL, IMG_TRASERA, SPRITES_FRONTAL, SPRITES_TRASEROS, SONIDO, NIVEL_EVOLUCION, TIPO1, TIPO2) VALUES
 (1, 'BULBASAUR', 'multimedia/imagenes/delanteras/1.png', 'multimedia/imagenes/traseras/1.png', 'multimedia/sprites/delanteras/1.gif', 'multimedia/sprites/traseras/1.gif', 'multimedia/sonidos/cries_pokemon_legacy_1.ogg', 1, 'PLANTA', 'VENENO'),
@@ -77,12 +75,12 @@ INSERT INTO POKEDEX (NUM_POKEDEX, NOM_POKEMON, IMG_FRONTAL, IMG_TRASERA, SPRITES
 (32, 'NIDORAN♂', 'multimedia/imagenes/delanteras/32.png', 'multimedia/imagenes/traseras/32.png', 'multimedia/sprites/delanteras/32.gif', 'multimedia/sprites/traseras/32.gif', 'multimedia/sonidos/cries_pokemon_legacy_32.ogg', 1, 'VENENO', NULL),
 (33, 'NIDORINO', 'multimedia/imagenes/delanteras/33.png', 'multimedia/imagenes/traseras/33.png', 'multimedia/sprites/delanteras/33.gif', 'multimedia/sprites/traseras/33.gif', 'multimedia/sonidos/cries_pokemon_legacy_33.ogg', 2, 'VENENO', NULL),
 (34, 'NIDOKING', 'multimedia/imagenes/delanteras/34.png', 'multimedia/imagenes/traseras/34.png', 'multimedia/sprites/delanteras/34.gif', 'multimedia/sprites/traseras/34.gif', 'multimedia/sonidos/cries_pokemon_legacy_34.ogg', 3, 'VENENO', 'TIERRA'),
-(35, 'CLEFAIRY', 'multimedia/imagenes/delanteras/35.png', 'multimedia/imagenes/traseras/35.png', 'multimedia/sprites/delanteras/35.gif', 'multimedia/sprites/traseras/35.gif', 'multimedia/sonidos/cries_pokemon_legacy_35.ogg', 1, 'HADA', NULL),
-(36, 'CLEFABLE', 'multimedia/imagenes/delanteras/36.png', 'multimedia/imagenes/traseras/36.png', 'multimedia/sprites/delanteras/36.gif', 'multimedia/sprites/traseras/36.gif', 'multimedia/sonidos/cries_pokemon_legacy_36.ogg', 2, 'HADA', NULL),
+(35, 'CLEFAIRY', 'multimedia/imagenes/delanteras/35.png', 'multimedia/imagenes/traseras/35.png', 'multimedia/sprites/delanteras/35.gif', 'multimedia/sprites/traseras/35.gif', 'multimedia/sonidos/cries_pokemon_legacy_35.ogg', 1, 'NORMAL', NULL),
+(36, 'CLEFABLE', 'multimedia/imagenes/delanteras/36.png', 'multimedia/imagenes/traseras/36.png', 'multimedia/sprites/delanteras/36.gif', 'multimedia/sprites/traseras/36.gif', 'multimedia/sonidos/cries_pokemon_legacy_36.ogg', 2, 'NORMAL', NULL),
 (37, 'VULPIX', 'multimedia/imagenes/delanteras/37.png', 'multimedia/imagenes/traseras/37.png', 'multimedia/sprites/delanteras/37.gif', 'multimedia/sprites/traseras/37.gif', 'multimedia/sonidos/cries_pokemon_legacy_37.ogg', 1, 'FUEGO', NULL),
 (38, 'NINETALES', 'multimedia/imagenes/delanteras/38.png', 'multimedia/imagenes/traseras/38.png', 'multimedia/sprites/delanteras/38.gif', 'multimedia/sprites/traseras/38.gif', 'multimedia/sonidos/cries_pokemon_legacy_38.ogg', 2, 'FUEGO', NULL),
-(39, 'JIGGLYPUFF', 'multimedia/imagenes/delanteras/39.png', 'multimedia/imagenes/traseras/39.png', 'multimedia/sprites/delanteras/39.gif', 'multimedia/sprites/traseras/39.gif', 'multimedia/sonidos/cries_pokemon_legacy_39.ogg', 1, 'NORMAL', 'HADA'),
-(40, 'WIGGLYTUFF', 'multimedia/imagenes/delanteras/40.png', 'multimedia/imagenes/traseras/40.png', 'multimedia/sprites/delanteras/40.gif', 'multimedia/sprites/traseras/40.gif', 'multimedia/sonidos/cries_pokemon_legacy_40.ogg', 2, 'NORMAL', 'HADA'),
+(39, 'JIGGLYPUFF', 'multimedia/imagenes/delanteras/39.png', 'multimedia/imagenes/traseras/39.png', 'multimedia/sprites/delanteras/39.gif', 'multimedia/sprites/traseras/39.gif', 'multimedia/sonidos/cries_pokemon_legacy_39.ogg', 1, 'NORMAL', NULL),
+(40, 'WIGGLYTUFF', 'multimedia/imagenes/delanteras/40.png', 'multimedia/imagenes/traseras/40.png', 'multimedia/sprites/delanteras/40.gif', 'multimedia/sprites/traseras/40.gif', 'multimedia/sonidos/cries_pokemon_legacy_40.ogg', 2, 'NORMAL', NULL),
 (41, 'ZUBAT', 'multimedia/imagenes/delanteras/41.png', 'multimedia/imagenes/traseras/41.png', 'multimedia/sprites/delanteras/41.gif', 'multimedia/sprites/traseras/41.gif', 'multimedia/sonidos/cries_pokemon_legacy_41.ogg', 1, 'VENENO', 'VOLADOR'),
 (42, 'GOLBAT', 'multimedia/imagenes/delanteras/42.png', 'multimedia/imagenes/traseras/42.png', 'multimedia/sprites/delanteras/42.gif', 'multimedia/sprites/traseras/42.gif', 'multimedia/sonidos/cries_pokemon_legacy_42.ogg', 2, 'VENENO', 'VOLADOR'),
 (43, 'ODDISH', 'multimedia/imagenes/delanteras/43.png', 'multimedia/imagenes/traseras/43.png', 'multimedia/sprites/delanteras/43.gif', 'multimedia/sprites/traseras/43.gif', 'multimedia/sonidos/cries_pokemon_legacy_43.ogg', 1, 'PLANTA', 'VENENO'),
@@ -123,8 +121,8 @@ INSERT INTO POKEDEX (NUM_POKEDEX, NOM_POKEMON, IMG_FRONTAL, IMG_TRASERA, SPRITES
 (78, 'RAPIDASH', 'multimedia/imagenes/delanteras/78.png', 'multimedia/imagenes/traseras/78.png', 'multimedia/sprites/delanteras/78.gif', 'multimedia/sprites/traseras/78.gif', 'multimedia/sonidos/cries_pokemon_legacy_78.ogg', 2, 'FUEGO', NULL),
 (79, 'SLOWPOKE', 'multimedia/imagenes/delanteras/79.png', 'multimedia/imagenes/traseras/79.png', 'multimedia/sprites/delanteras/79.gif', 'multimedia/sprites/traseras/79.gif', 'multimedia/sonidos/cries_pokemon_legacy_79.ogg', 1, 'AGUA', 'PSÍQUICO'),
 (80, 'SLOWBRO', 'multimedia/imagenes/delanteras/80.png', 'multimedia/imagenes/traseras/80.png', 'multimedia/sprites/delanteras/80.gif', 'multimedia/sprites/traseras/80.gif', 'multimedia/sonidos/cries_pokemon_legacy_80.ogg', 2, 'AGUA', 'PSÍQUICO'),
-(81, 'MAGNEMITE', 'multimedia/imagenes/delanteras/81.png', 'multimedia/imagenes/traseras/81.png', 'multimedia/sprites/delanteras/81.gif', 'multimedia/sprites/traseras/81.gif', 'multimedia/sonidos/cries_pokemon_legacy_81.ogg', 1, 'ELÉCTRICO', 'ACERO'),
-(82, 'MAGNETON', 'multimedia/imagenes/delanteras/82.png', 'multimedia/imagenes/traseras/82.png', 'multimedia/sprites/delanteras/82.gif', 'multimedia/sprites/traseras/82.gif', 'multimedia/sonidos/cries_pokemon_legacy_82.ogg', 2, 'ELÉCTRICO', 'ACERO'),
+(81, 'MAGNEMITE', 'multimedia/imagenes/delanteras/81.png', 'multimedia/imagenes/traseras/81.png', 'multimedia/sprites/delanteras/81.gif', 'multimedia/sprites/traseras/81.gif', 'multimedia/sonidos/cries_pokemon_legacy_81.ogg', 1, 'ELÉCTRICO', NULL),
+(82, 'MAGNETON', 'multimedia/imagenes/delanteras/82.png', 'multimedia/imagenes/traseras/82.png', 'multimedia/sprites/delanteras/82.gif', 'multimedia/sprites/traseras/82.gif', 'multimedia/sonidos/cries_pokemon_legacy_82.ogg', 2, 'ELÉCTRICO', NULL),
 (83, 'FARFETCH’D', 'multimedia/imagenes/delanteras/83.png', 'multimedia/imagenes/traseras/83.png', 'multimedia/sprites/delanteras/83.gif', 'multimedia/sprites/traseras/83.gif', 'multimedia/sonidos/cries_pokemon_legacy_83.ogg', 1, 'NORMAL', 'VOLADOR'),
 (84, 'DODUO', 'multimedia/imagenes/delanteras/84.png', 'multimedia/imagenes/traseras/84.png', 'multimedia/sprites/delanteras/84.gif', 'multimedia/sprites/traseras/84.gif', 'multimedia/sonidos/cries_pokemon_legacy_84.ogg', 1, 'NORMAL', 'VOLADOR'),
 (85, 'DODRIO', 'multimedia/imagenes/delanteras/85.png', 'multimedia/imagenes/traseras/85.png', 'multimedia/sprites/delanteras/85.gif', 'multimedia/sprites/traseras/85.gif', 'multimedia/sonidos/cries_pokemon_legacy_85.ogg', 2, 'NORMAL', 'VOLADOR'),
