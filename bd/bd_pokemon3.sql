@@ -30,7 +30,7 @@ CREATE TABLE MOVIMIENTO(
     CANT_MEJORA INT(3)
 );
 
--- Insertar datos en la tabla MOVIMIENTO con PRECI y POTENCIA NULL cambiados a 0
+
 INSERT INTO MOVIMIENTO (ID_MOVIMIENTO, NOM_MOVIMIENTO, DESCRIPCION, PRECI, PP_MAX, TIPO, TIPO_MOV, POTENCIA, ESTADO, TURNOS, MEJORA, NUM_MOV, CANT_MEJORA) VALUES 
 (0001, 'Destructor', 'Golpea al objetivo con las extremidades, la cola o similares.', 100, 35, 'ATAQUE', 'NORMAL', 40, NULL, 1, NULL, 0, NULL),
 (0002, 'Golpe Karate', 'Da un golpe cortante. Suele ser crítico.', 100, 25, 'ATAQUE', 'LUCHA', 50, NULL, 1, NULL, 0, NULL),
