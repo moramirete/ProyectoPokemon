@@ -5,7 +5,7 @@
 
 Este proyecto es un trabajo para mi formación profesional superior (FP) de Desarrollo de Aplicaciones Multiplatafornma (DAM) en Cesur Murcia Audiovisual.
 
-## Authors - Autores
+## Autores - Authors
 
 - [@moramirete](https://www.github.com/moramirete)
 - [@monrealmartinez](https://github.com/monrealmartinez)
