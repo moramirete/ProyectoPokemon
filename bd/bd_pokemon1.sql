@@ -1,3 +1,7 @@
+-- Creacion de base de datos
+
+CREATE DATABASE pokemon;
+
 -- Tabla POKEDEX
 CREATE TABLE POKEDEX (
     NUM_POKEDEX INT PRIMARY KEY,
