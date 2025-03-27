@@ -52,7 +52,7 @@
             </ImageView>
             <ImageView id="logopokemon" fx:id="ImgLogo" fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Desktop/Proyecto%20Pokemon/Imagenes/pngwing.com.png" />
+                  <Image url="@../../multimedia/imagenes/fondos/pngwing.com.png" />
                </image>
             </ImageView>
             <PasswordField id="LabelContraseña" fx:id="labelPass" layoutX="398.0" layoutY="189.0" />
