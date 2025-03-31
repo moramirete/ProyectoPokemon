@@ -1,5 +1,9 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.JOptionPane;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class LoginController {
+	
+	
 	
 	public Stage stage;
 
@@ -45,4 +51,19 @@ public class LoginController {
     public void setStage(Stage primaryStage) {
     	stage = primaryStage;
 	}
+    
+    void comprobarLoguin(ActionEvent event) {
+    	if(TxtUsuario.getText().isEmpty()) {
+    		labelError.setText("Error: Insertar nombre de usuario");
+    		labelError.setVisible(true);
+    		JOptionPane.showMessageDialog(null, "Error: escribe el nombre de usuario"); //Panel de error
+    	}else if (TxtContraseña.getText().isEmpty()) {
+    		labelError.setText("Error: Insertar contraseña de usuario");
+    		labelError.setVisible(true);
+    	}else {
+    		String usuario = TxtUsuario.getText();
+    		String pass = TxtContraseña.getText();
+    	}
+    }
+  
 }
