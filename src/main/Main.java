@@ -13,6 +13,7 @@ public class Main extends Application {
 	    public void start(Stage primaryStage) throws Exception{
 	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/login.fxml"));
 	        Parent root = loader.load();
+	       // LoginController controller = loader.getController();
 	        Scene scene = new Scene(root);
 	        
 	        primaryStage.setTitle("Pokémon Super Nenes");

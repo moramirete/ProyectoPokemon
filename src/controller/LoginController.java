@@ -14,8 +14,6 @@ import javafx.stage.Stage;
 
 public class LoginController {
 	
-	
-	
 	public Stage stage;
 
     @FXML
@@ -25,13 +23,13 @@ public class LoginController {
     private ImageView Imgfondo;
 
     @FXML
-    private TextField LabelUsuario;
-
-    @FXML
     private Label TxtContraseña;
 
     @FXML
     private Label TxtUsuario;
+
+    @FXML
+    private TextField LabelUsuario;
 
     @FXML
     private Button btnAceptar;
@@ -40,29 +38,40 @@ public class LoginController {
     private Button btnRegistrar;
 
     @FXML
-    private Button btncancelar;
+    private Button btnCancelar;
 
     @FXML
     private Label labelError;
 
     @FXML
-    private PasswordField labelPass;
+    private PasswordField txtPassword;
+
+    @FXML
+    private TextField txtUsuario;
 
     public void setStage(Stage primaryStage) {
     	stage = primaryStage;
 	}
     
-    void comprobarLoguin(ActionEvent event) {
-    	if(TxtUsuario.getText().isEmpty()) {
+    @FXML
+	public void cerrarAplicacion(ActionEvent event) {
+		Stage stage = (Stage) btnCancelar.getScene().getWindow();
+		stage.close();
+	}
+    
+  
+    @FXML
+    public void comprobarLoguin(ActionEvent event) {
+    	if(txtUsuario.getText().isEmpty()) {
     		labelError.setText("Error: Insertar nombre de usuario");
     		labelError.setVisible(true);
     		JOptionPane.showMessageDialog(null, "Error: escribe el nombre de usuario"); //Panel de error
-    	}else if (TxtContraseña.getText().isEmpty()) {
+    	}else if (txtPassword.getText().isEmpty()) {
     		labelError.setText("Error: Insertar contraseña de usuario");
     		labelError.setVisible(true);
     	}else {
-    		String usuario = TxtUsuario.getText();
-    		String pass = TxtContraseña.getText();
+    		String usuario = txtUsuario.getText();
+    		String pass = txtPassword.getText();
     	}
     }
   
