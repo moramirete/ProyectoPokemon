@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Entrenador;
 
@@ -21,35 +22,37 @@ public class LoginController {
 	Entrenador entrenador = new Entrenador("admin", "123456", 1000);//Prueba de entrenador
 	
 	public Stage stage;
+	
+	@FXML
+    private ImageView ImgLogo;
 
-	 @FXML
-	 private ImageView ImgLogo;
+    @FXML
+    private ImageView Imgfondo;
 
-	 @FXML
-	 private ImageView Imgfondo;
+    @FXML
+    private Button btnAceptar;
 
-	 @FXML
-	 private Button btnAceptar;
+    @FXML
+    private Button btnCancelar;
 
-	 @FXML
-	 private Button btnCancelar;
+    @FXML
+    private Button btnRegistrar;
 
-	 @FXML
-	 private Button btnRegistrar;
+    @FXML
+    private ImageView btnSalir;
 
-	 @FXML
-	 private PasswordField txtPassword;
+    @FXML
+    private PasswordField txtPassword;
 
-	 @FXML
-	 private TextField txtUsuario;
-
+    @FXML
+    private TextField txtUsuario;
     public void setStage(Stage primaryStage) {
     	stage = primaryStage;
 	}
     
     @FXML
-	public void cerrarAplicacion(ActionEvent event) {
-		Stage stage = (Stage) btnCancelar.getScene().getWindow();
+	public void cerrarAplicacion(MouseEvent event) {
+		Stage stage = (Stage) btnSalir.getScene().getWindow();
 		stage.close();
 	}
     
@@ -87,6 +90,7 @@ public class LoginController {
     	
     }
     
+    //Metodo para abrir el menu
     private void abrirPantallaMenu(Entrenador entrenador) {
     	
     	try {
@@ -112,5 +116,13 @@ public class LoginController {
     	}
     	
     }
+    
+    //Vuelve a mostrar la ventana de inicio de sesión y limpia los campos de usuario y contraseña.
+	public void show() {
+		stage.show();
+		txtUsuario.setText("");
+		txtPassword.setText("");
+		
+	}
   
 }
