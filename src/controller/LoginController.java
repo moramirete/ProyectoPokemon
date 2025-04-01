@@ -1,18 +1,24 @@
 package controller;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.Entrenador;
 
 public class LoginController {
+	
+	Entrenador entrenador = new Entrenador("admin", "123456", 1000);//Prueba de entrenador
 	
 	public Stage stage;
 
@@ -56,10 +62,54 @@ public class LoginController {
     	}else {
     		String usuario = txtUsuario.getText();
     		String pass = txtPassword.getText();
+    	
+    		if(entrenador.getUsuario().equals(usuario)){
+    			
+    			if(entrenador.getPass().equals(pass)) {
+    				
+    				abrirPantallaMenu(entrenador);
+    				
+    			}else {
+    				
+    				JOptionPane.showMessageDialog(null, "Error: contraseña incorrecta"); 
+    				
+    			}
+    			
+    		}else{
+    			
+    			JOptionPane.showMessageDialog(null, "Error: nombre incorrecto"); 
+    			
+    		}
     	}
     }
     
     public void registrarUsuario(ActionEvent event) {
+    	
+    }
+    
+    private void abrirPantallaMenu(Entrenador entrenador) {
+    	
+    	try {
+    		
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/menu.fxml"));
+	        Parent root = loader.load();
+	        
+	        MenuController menuController = loader.getController();
+	        
+	        Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+    		
+	        stage.setTitle("Pokémon Super Nenes - Menu");
+	        stage.setScene(scene);
+	        menuController.init(entrenador, stage, this);
+	        
+	        stage.show();
+	        
+	        this.stage.close();
+    		
+    	}catch(IOException e) {
+    		e.printStackTrace();
+    	}
     	
     }
   

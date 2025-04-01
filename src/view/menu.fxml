@@ -39,7 +39,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="615.0" VBox.vgrow="ALWAYS">
          <children>
@@ -57,13 +57,13 @@
             <Button fx:id="btnSalir" layoutX="63.0" layoutY="323.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="339.0" text="Salir" />
             <Label fx:id="plantillaUsuario" layoutX="481.0" layoutY="76.0" prefHeight="38.0" prefWidth="67.0" text="Bienvenido" />
             <Label fx:id="plantillaPokeDolares" layoutX="481.0" layoutY="100.0" prefHeight="38.0" prefWidth="92.0" text="PokeDolares: " />
-            <Label fx:id="txtUsuario" layoutX="548.0" layoutY="87.0" prefHeight="17.0" prefWidth="160.0" text="Label" visible="false" />
-            <Label fx:id="txtPokeDolares" layoutX="556.0" layoutY="111.0" prefHeight="17.0" prefWidth="160.0" text="Label" visible="false" />
             <ImageView fx:id="imagenLogo" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/pngwing.com.png" />
                </image>
             </ImageView>
+            <Label fx:id="lblJugador" layoutX="559.0" layoutY="87.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
+            <Label fx:id="lblPokedollares" layoutX="559.0" layoutY="111.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
          </children>
     </AnchorPane>
   </children>
