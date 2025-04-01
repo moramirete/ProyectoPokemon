@@ -16,38 +16,26 @@ public class LoginController {
 	
 	public Stage stage;
 
-    @FXML
-    private ImageView ImgLogo;
+	 @FXML
+	 private ImageView ImgLogo;
 
-    @FXML
-    private ImageView Imgfondo;
+	 @FXML
+	 private ImageView Imgfondo;
 
-    @FXML
-    private Label TxtContraseña;
+	 @FXML
+	 private Button btnAceptar;
 
-    @FXML
-    private Label TxtUsuario;
+	 @FXML
+	 private Button btnCancelar;
 
-    @FXML
-    private TextField LabelUsuario;
+	 @FXML
+	 private Button btnRegistrar;
 
-    @FXML
-    private Button btnAceptar;
+	 @FXML
+	 private PasswordField txtPassword;
 
-    @FXML
-    private Button btnRegistrar;
-
-    @FXML
-    private Button btnCancelar;
-
-    @FXML
-    private Label labelError;
-
-    @FXML
-    private PasswordField txtPassword;
-
-    @FXML
-    private TextField txtUsuario;
+	 @FXML
+	 private TextField txtUsuario;
 
     public void setStage(Stage primaryStage) {
     	stage = primaryStage;
@@ -59,20 +47,20 @@ public class LoginController {
 		stage.close();
 	}
     
-  
     @FXML
     public void comprobarLoguin(ActionEvent event) {
     	if(txtUsuario.getText().isEmpty()) {
-    		labelError.setText("Error: Insertar nombre de usuario");
-    		labelError.setVisible(true);
-    		JOptionPane.showMessageDialog(null, "Error: escribe el nombre de usuario"); //Panel de error
+    		JOptionPane.showMessageDialog(null, "Error: escribe el nombre de usuario"); 
     	}else if (txtPassword.getText().isEmpty()) {
-    		labelError.setText("Error: Insertar contraseña de usuario");
-    		labelError.setVisible(true);
+    		JOptionPane.showMessageDialog(null, "Error: insertar contraseña del usuario"); 
     	}else {
     		String usuario = txtUsuario.getText();
     		String pass = txtPassword.getText();
     	}
+    }
+    
+    public void registrarUsuario(ActionEvent event) {
+    	
     }
   
 }
