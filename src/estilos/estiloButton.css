@@ -1,0 +1,17 @@
+Button {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0, 0, 0, 0.5);
+    -fx-border-width: 1px;
+	-fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-transition: all 0.2s ease-in-out;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+}
+
+Button:hover {
+    -fx-border-color: rgba(255, 255, 255, 1);
+	-fx-background-color: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 50%);
+}

@@ -63,7 +63,6 @@ public class MenuController {
 	private Label plantillaUsuario;
 	
 	//Metodos para abrir cada una de las vistas
-
 	@FXML
 	void abrirCaptura(ActionEvent event) {
 		
@@ -104,7 +103,7 @@ public class MenuController {
 	        Scene scene = new Scene(root);
     		Stage stage = new Stage();
     		
-	        stage.setTitle("Pokémon Super Nenes - Centro");
+	        stage.setTitle("Pokémon Super Nenes - Centro Pokemon");
 	        stage.setScene(scene);
 	        centroController.init(entrenador, stage, this);
 	        
@@ -130,7 +129,7 @@ public class MenuController {
 	        Scene scene = new Scene(root);
     		Stage stage = new Stage();
     		
-	        stage.setTitle("Pokémon Super Nenes - Captura");
+	        stage.setTitle("Pokémon Super Nenes - Combate");
 	        stage.setScene(scene);
 	        combateController.init(entrenador, stage, this);
 	        
@@ -180,7 +179,7 @@ public class MenuController {
 	        Scene scene = new Scene(root);
     		Stage stage = new Stage();
     		
-	        stage.setTitle("Pokémon Super Nenes - Captura");
+	        stage.setTitle("Pokémon Super Nenes - Entrenamiento");
 	        stage.setScene(scene);
 	        entrenamientoController.init(entrenador, stage, this);
 	        
@@ -205,7 +204,7 @@ public class MenuController {
 	        Scene scene = new Scene(root);
     		Stage stage = new Stage();
     		
-	        stage.setTitle("Pokémon Super Nenes - Captura");
+	        stage.setTitle("Pokémon Super Nenes - Equipo");
 	        stage.setScene(scene);
 	        equipoController.init(entrenador, stage, this);
 	        
@@ -218,7 +217,7 @@ public class MenuController {
     	}
 	}
 
-	//Para cerrar el menu / cerrar sesion
+	//Para cerrar el menu / cerrar sesion - btnSalir
 	@FXML
 	public void cerrarMenu(ActionEvent event) {
     	loginController.show();
@@ -236,7 +235,7 @@ public class MenuController {
 
 	}
 	
-	//Cerrar aplicacion
+	//Cerrar aplicacion - btnSalir1
     @FXML
 	public void cerrarAplicacion(MouseEvent event) {
 		Stage stage = (Stage) btnSalir1.getScene().getWindow();

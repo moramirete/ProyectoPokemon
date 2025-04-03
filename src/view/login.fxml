@@ -55,8 +55,8 @@
                   <Image url="@../../multimedia/imagenes/fondos/pngwing.com.png" />
                </image>
             </ImageView>
-            <Button id="botonAceptar" fx:id="btnAceptar" layoutX="409.0" layoutY="224.0" mnemonicParsing="false" onAction="#comprobarLoguin" prefHeight="37.0" prefWidth="206.0" text="INICIAR SESION" />
-            <Button id="botonRegistrar" fx:id="btnRegistrar" layoutX="446.0" layoutY="338.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="11.0" prefWidth="132.0" text="REGISTRAR" />
+            <Button id="botonAceptar" fx:id="btnAceptar" layoutX="409.0" layoutY="214.0" mnemonicParsing="false" onAction="#comprobarLoguin" prefHeight="37.0" prefWidth="206.0" stylesheets="@../estilos/estiloButton.css" text="INICIAR SESION" />
+            <Button id="botonRegistrar" fx:id="btnRegistrar" layoutX="446.0" layoutY="328.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="11.0" prefWidth="132.0" stylesheets="@../estilos/estiloButton.css" text="REGISTRAR" />
             <TextField fx:id="txtUsuario" layoutX="409.0" layoutY="111.0" prefHeight="37.0" prefWidth="206.0" />
             <PasswordField fx:id="txtPassword" layoutX="409.0" layoutY="162.0" prefHeight="37.0" prefWidth="206.0" />
             <ImageView fx:id="btnSalir" fitHeight="37.0" fitWidth="31.0" layoutX="773.0" layoutY="14.0" onMousePressed="#cerrarAplicacion" pickOnBounds="true" preserveRatio="true">
@@ -69,7 +69,7 @@
                   <Image url="@../../multimedia/imagenes/fondos/lossupernenes.png" />
                </image>
             </ImageView>
-            <Label fx:id="labelRegistro1" layoutX="461.0" layoutY="312.0" text="¿Es tu primera vez?" />
+            <Label fx:id="labelRegistro1" layoutX="461.0" layoutY="305.0" text="¿Es tu primera vez?" />
             <ImageView fx:id="logoUsuario" fitHeight="25.0" fitWidth="31.0" layoutX="376.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/usuario.png" />
