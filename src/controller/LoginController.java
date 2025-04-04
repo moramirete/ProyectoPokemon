@@ -50,6 +50,7 @@ public class LoginController {
     	stage = primaryStage;
 	}
     
+    
     @FXML
 	public void cerrarAplicacion(MouseEvent event) {
 		Stage stage = (Stage) btnSalir.getScene().getWindow();
