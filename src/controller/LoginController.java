@@ -25,8 +25,6 @@ import model.Entrenador;
 
 public class LoginController {
 	
-	//Entrenador entrenador = new Entrenador("admin", "123456", 1000, 1); //Prueba de entrenador
-	
 	public Stage stage;
 	
 	@FXML
@@ -62,36 +60,6 @@ public class LoginController {
 		Stage stage = (Stage) btnSalir.getScene().getWindow();
 		stage.close();
 	}
-    
-    /* @FXML
-    public void comprobarLoguin(ActionEvent event) {
-    	if(txtUsuario.getText().isEmpty()) {
-    		JOptionPane.showMessageDialog(null, "Error: escribe el nombre de usuario"); 
-    	}else if (txtPassword.getText().isEmpty()) {
-    		JOptionPane.showMessageDialog(null, "Error: insertar contraseña del usuario"); 
-    	}else {
-    		String usuario = txtUsuario.getText();
-    		String pass = txtPassword.getText();
-    	
-    		if(entrenador.getUsuario().equals(usuario)){
-    			
-    			if(entrenador.getPass().equals(pass)) {
-    				
-    				abrirPantallaMenu(entrenador);
-    				
-    			}else {
-    				
-    				JOptionPane.showMessageDialog(null, "Error: contraseña incorrecta"); 
-    				
-    			}
-    			
-    		}else{
-    			
-    			JOptionPane.showMessageDialog(null, "Error: nombre incorrecto"); 
-    			
-    		}
-    	}
-    }*/
     
     @FXML
 	public void comprobarLoguin(ActionEvent event) {
@@ -140,7 +108,6 @@ public class LoginController {
 					while (rs.next()) {
 						if (rs.getString(1).equals(pass)) {
 							System.out.println("Usuario encontrado");
-							//Cambiamos de ventana
 							EntrenadorBD.obtenerIDPokedolaresEntre(conexion, entrenador);
 							abrirPantallaMenu(entrenador);
 							
@@ -187,7 +154,7 @@ public class LoginController {
 				
 				Entrenador entrenador = new Entrenador(usuario, pass);
 				
-				if(rs.isBeforeFirst()) {
+				if(!rs.isBeforeFirst()) {
 					
 					int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere registrar este usuario?");
 					
@@ -202,8 +169,9 @@ public class LoginController {
 				}else {
 					while (rs.next()) {
 						if (rs.getString(1).equals(pass)) {
-							System.out.println("Usuario encontrado");
-							JOptionPane.showMessageDialog(null, "Error: este usuario ya esta creado, dele a iniciar sesión"); 
+							System.out.println("Usuario ya existente en la BD");
+							JOptionPane.showMessageDialog(null, "Error: este usuario ya esta creado");
+							txtPassword.setText("");
 						}
 					}
 				}
