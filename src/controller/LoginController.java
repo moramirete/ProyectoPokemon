@@ -57,8 +57,14 @@ public class LoginController {
     
     @FXML
 	public void cerrarAplicacion(MouseEvent event) {
-		Stage stage = (Stage) btnSalir.getScene().getWindow();
-		stage.close();
+		int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres cerrar el proyectoPokemon?");
+		
+		if(opcion == JOptionPane.YES_OPTION) {
+			
+			Stage stage = (Stage) btnSalir.getScene().getWindow();
+			stage.close();
+			
+		}
 	}
     
     @FXML
