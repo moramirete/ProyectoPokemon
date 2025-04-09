@@ -55,15 +55,20 @@
             <Button fx:id="btnCentroPokemon" layoutX="247.0" layoutY="138.0" mnemonicParsing="false" onAction="#abrirCentro" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Centro Pokemon" />
             <Button fx:id="btnEntrenamiento" layoutX="247.0" layoutY="200.0" mnemonicParsing="false" onAction="#abrirEntrenamiento" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Entrenamiento" />
             <Button fx:id="btnSalir" layoutX="63.0" layoutY="323.0" mnemonicParsing="false" onAction="#cerrarMenu" prefHeight="38.0" prefWidth="339.0" stylesheets="@../estilos/estiloButton.css" text="Salir" />
-            <Label fx:id="plantillaUsuario" layoutX="518.0" layoutY="101.0" prefHeight="38.0" prefWidth="67.0" text="Bienvenido" />
-            <Label fx:id="plantillaPokeDolares" layoutX="518.0" layoutY="129.0" prefHeight="38.0" prefWidth="92.0" text="PokeDolares: " />
+            <ImageView fx:id="imgBocadillo" fitHeight="141.0" fitWidth="267.0" layoutX="418.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/fondos/bocadillo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="plantillaUsuario" layoutX="461.0" layoutY="148.0" prefHeight="38.0" prefWidth="67.0" text="Bienvenido" />
+            <Label fx:id="plantillaPokeDolares" layoutX="461.0" layoutY="173.0" prefHeight="38.0" prefWidth="92.0" text="PokeDolares: " />
             <ImageView fx:id="imagenLogo" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/pngwing.com.png" />
                </image>
             </ImageView>
-            <Label fx:id="lblJugador" layoutX="579.0" layoutY="112.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
-            <Label fx:id="lblPokedollares" layoutX="590.0" layoutY="140.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
+            <Label fx:id="lblJugador" layoutX="528.0" layoutY="159.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
+            <Label fx:id="lblPokedollares" layoutX="537.0" layoutY="184.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
             <ImageView fx:id="btnSalir1" fitHeight="37.0" fitWidth="31.0" layoutX="779.0" layoutY="14.0" onMousePressed="#cerrarAplicacion" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/salir.png" />
