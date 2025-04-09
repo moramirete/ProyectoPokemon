@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -241,5 +242,9 @@ public class MenuController {
 	public void cerrarAplicacion(MouseEvent event) {
 		Stage stage = (Stage) btnSalir1.getScene().getWindow();
 		stage.close();
+	}
+
+	public void show() {
+		stage.show();
 	}
 }

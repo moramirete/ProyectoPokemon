@@ -50,7 +50,7 @@
                   <Image url="@../../multimedia/imagenes/fondos/fondoequipo.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="botonsalir" contentDisplay="CENTER" layoutX="530.0" layoutY="362.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="SALIR" textOverrun="CLIP">
+            <Button fx:id="btnSalir" contentDisplay="CENTER" layoutX="530.0" layoutY="362.0" mnemonicParsing="false" onAction="#cerrarEquipo" prefHeight="26.0" prefWidth="69.0" text="Salir">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
