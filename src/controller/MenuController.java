@@ -65,6 +65,7 @@ public class MenuController {
 	 * Abre la vista de Captura.
 	 *
 	 * @param event Evento de acción al presionar el botón de Captura.
+	 * @throws IOException Si ocurre un error al cargar el archivo FXML.
 	 */
 	@FXML
 	void abrirCaptura(ActionEvent event) {
@@ -84,6 +85,7 @@ public class MenuController {
 			this.stage.close();
 
 		} catch (IOException e) {
+			System.out.println("Falla en la carga del archivo FXML.");
 			e.printStackTrace();
 		}
 	}
@@ -92,6 +94,7 @@ public class MenuController {
 	 * Abre la vista del Centro Pokémon.
 	 *
 	 * @param event Evento de acción al presionar el botón del Centro Pokémon.
+	 * @throws IOException Si ocurre un error al cargar el archivo FXML.
 	 */
 	@FXML
 	void abrirCentro(ActionEvent event) {
@@ -111,6 +114,7 @@ public class MenuController {
 			this.stage.close();
 
 		} catch (IOException e) {
+			System.out.println("Falla en la carga del archivo FXML.");
 			e.printStackTrace();
 		}
 	}
@@ -119,6 +123,7 @@ public class MenuController {
 	 * Abre la vista de Combate.
 	 *
 	 * @param event Evento de acción al presionar el botón de Combate.
+	 * @throws IOException Si ocurre un error al cargar el archivo FXML.
 	 */
 	@FXML
 	void abrirCombate(ActionEvent event) {
@@ -138,6 +143,7 @@ public class MenuController {
 			this.stage.close();
 
 		} catch (IOException e) {
+			System.out.println("Falla en la carga del archivo FXML.");
 			e.printStackTrace();
 		}
 	}
@@ -146,6 +152,7 @@ public class MenuController {
 	 * Abre la vista de Crianza.
 	 *
 	 * @param event Evento de acción al presionar el botón de Crianza.
+	 * @throws IOException Si ocurre un error al cargar el archivo FXML.
 	 */
 	@FXML
 	void abrirCrianza(ActionEvent event) {
@@ -165,6 +172,7 @@ public class MenuController {
 			this.stage.close();
 
 		} catch (IOException e) {
+			System.out.println("Falla en la carga del archivo FXML.");
 			e.printStackTrace();
 		}
 	}
@@ -173,6 +181,7 @@ public class MenuController {
 	 * Abre la vista de Entrenamiento.
 	 *
 	 * @param event Evento de acción al presionar el botón de Entrenamiento.
+	 * @throws IOException Si ocurre un error al cargar el archivo FXML.
 	 */
 	@FXML
 	void abrirEntrenamiento(ActionEvent event) {
@@ -192,6 +201,7 @@ public class MenuController {
 			this.stage.close();
 
 		} catch (IOException e) {
+			System.out.println("Falla en la carga del archivo FXML.");
 			e.printStackTrace();
 		}
 	}
@@ -200,6 +210,7 @@ public class MenuController {
 	 * Abre la vista del Equipo Pokémon.
 	 *
 	 * @param event Evento de acción al presionar el botón de Equipo.
+	 * @throws IOException Si ocurre un error al cargar el archivo FXML.
 	 */
 	@FXML
 	void abrirEquipo(ActionEvent event) {
@@ -219,6 +230,7 @@ public class MenuController {
 			this.stage.close();
 
 		} catch (IOException e) {
+			System.out.println("Falla en la carga del archivo FXML.");
 			e.printStackTrace();
 		}
 	}
