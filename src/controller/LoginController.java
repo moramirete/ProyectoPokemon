@@ -22,6 +22,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Entrenador;
+	
+	/**
+	 * Controlador de la vista de inicio de sesión.
+	 * 
+	 * @param Gestiona la autenticación, registro de nuevos usuarios y navegación al menú principal.
+	 */
 
 public class LoginController {
 	
@@ -55,6 +61,16 @@ public class LoginController {
 	}
     
     
+    
+   /**
+    * 
+    * metodo para cerrar la aplicacion a traves de un boton
+    * 
+    * 
+    * @param event. Evento del mouse al hacer clic sobre el botón de salir.
+    */
+    
+    
     @FXML
 	public void cerrarAplicacion(MouseEvent event) {
 		int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres cerrar el proyectoPokemon?");
@@ -66,6 +82,17 @@ public class LoginController {
 			
 		}
 	}
+    
+    /**
+     * 
+     * Metodo para verificar los datos los datos del usuario y si no estan guardados, se pide crear el usuario directamente.
+     * 
+     * 
+     * @param event. Evento del mouse al hacer clic sobre el botón de btnAceptar.
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     */
+    
+    
     
     @FXML
 	public void comprobarLoguin(ActionEvent event) {
@@ -125,11 +152,26 @@ public class LoginController {
 				}
 
 			} catch (SQLException e) {
+				System.out.println("Error al conectar con la base de datos.");
 				e.printStackTrace();
 			}
 
 		}
 	}
+    
+  
+    
+    /**
+     * 
+     * Metodo para registrar el nombre y contraseña de usuario dentro de la base de datos.
+     * 
+     * 
+     * @param event. Evento del mouse al hacer clic sobre el btnRegistrar.
+     * @throws SQLException Si ocurre un error al interactuar con la base de datos.
+     */
+    
+    
+    
     
     @FXML
     public void registrarUsuario(ActionEvent event) {
@@ -183,11 +225,26 @@ public class LoginController {
 				}
 
 			} catch (SQLException e) {
+				System.out.println("Error al conectar con la base de datos.");
 				e.printStackTrace();
 			}
 
 		}
     }
+    
+    
+    /**
+     * 
+     * Metodo para abrir la pantalla del menu despues de iniciar sesion con el usuario.
+     * 
+     * 
+     * 
+     * @param event. Evento del mouse al hacer clic sobre el botón de iniciar sesion.
+     * 
+     * @throws IOException. Si ocurre un error al cargar el archivo FXML.
+     */
+    
+    
     
     //Metodo para abrir el menu
     private void abrirPantallaMenu(Entrenador entrenador) {
@@ -211,10 +268,18 @@ public class LoginController {
 	        this.stage.close();
     		
     	}catch(IOException e) {
+    		System.out.println("Fallo en el archivo FXML.");
     		e.printStackTrace();
     	}
     	
     }
+    
+    /**
+     * 
+     * Metodo para mostrar la ventana del login vaciando los bloques de texto en Usuario y Contraseña.
+     * 
+     * 
+     */
     
     //Vuelve a mostrar la ventana de inicio de sesión y limpia los campos de usuario y contraseña.
 	public void show() {
