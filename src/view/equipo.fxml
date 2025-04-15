@@ -40,30 +40,94 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="402.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EquipoController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <ImageView fx:id="imgfondo" fitHeight="403.0" fitWidth="640.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondoequipo.jpg" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnSalir" contentDisplay="CENTER" layoutX="530.0" layoutY="362.0" mnemonicParsing="false" onAction="#cerrarEquipo" prefHeight="26.0" prefWidth="69.0" text="Salir">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Button>
-            <TextArea layoutX="399.0" layoutY="22.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="399.0" layoutY="89.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="399.0" layoutY="298.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="399.0" layoutY="227.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="399.0" layoutY="159.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="106.0" layoutY="83.0" prefHeight="95.0" prefWidth="178.0" />
-            <TextArea layoutX="75.0" layoutY="342.0" prefHeight="39.0" prefWidth="239.0" />
-            <ProgressBar layoutX="485.0" layoutY="22.0" prefHeight="18.0" prefWidth="90.0" progress="0.0" />
-         </children>
-    </AnchorPane>
-  </children>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefWidth="480" prefHeight="320">
+    
+    <!-- CENTRO: Lista de Pokémon -->
+    <center>
+        <VBox spacing="8" padding="10">
+            <children>
+                <!-- Repite este bloque para cada Pokémon -->
+                <HBox spacing="10">
+                    <children>
+                        <VBox spacing="2">
+                            <Label text="TYRANITAR" style="-fx-font-weight: bold;" />
+                            <Label text="Nv. 62" />
+                        </VBox>
+                        <ProgressBar fx:id="hpBar1" prefWidth="150" progress="0.98" />
+                        <Label text="213/218 HP" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="10">
+                    <children>
+                        <VBox spacing="2">
+                            <Label text="SLAKING" style="-fx-font-weight: bold;" />
+                            <Label text="Nv. 61" />
+                        </VBox>
+                        <ProgressBar fx:id="hpBar2" prefWidth="150" progress="1.0" />
+                        <Label text="265/265 HP" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="10">
+                    <children>
+                        <VBox spacing="2">
+                            <Label text="KINGDRA" style="-fx-font-weight: bold;" />
+                            <Label text="Nv. 62" />
+                        </VBox>
+                        <ProgressBar fx:id="hpBar3" prefWidth="150" progress="0.85" />
+                        <Label text="186/218 HP" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="10">
+                    <children>
+                        <VBox spacing="2">
+                            <Label text="METAGROSS" style="-fx-font-weight: bold;" />
+                            <Label text="Nv. 62" />
+                        </VBox>
+                        <ProgressBar fx:id="hpBar4" prefWidth="150" progress="1.0" />
+                        <Label text="202/202 HP" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="10">
+                    <children>
+                        <VBox spacing="2">
+                            <Label text="DRAGONITE" style="-fx-font-weight: bold;" />
+                            <Label text="Nv. 60" />
+                        </VBox>
+                        <ProgressBar fx:id="hpBar5" prefWidth="150" progress="0.9" />
+                        <Label text="207/230 HP" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="10">
+                    <children>
+                        <VBox spacing="2">
+                            <Label text="SALAMENCE" style="-fx-font-weight: bold;" />
+                            <Label text="Nv. 62" />
+                        </VBox>
+                        <ProgressBar fx:id="hpBar6" prefWidth="150" progress="1.0" />
+                        <Label text="208/208 HP" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+
+    <!-- ABAJO: Texto y Botón Cancelar -->
+    <bottom>
+        <VBox spacing="5" padding="10">
+            <children>
+                <Label text="Elige un POKÉMON." style="-fx-font-size: 14px;" />
+                <Button text="Cancelar" fx:id="cancelButton" maxWidth="100" alignment="CENTER" />
+            </children>
+        </VBox>
+    </bottom>
+</BorderPane>
