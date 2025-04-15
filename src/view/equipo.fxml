@@ -32,9 +32,10 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -45,9 +46,24 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="imgfondo" fitHeight="403.0" fitWidth="640.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgfondo" fitHeight="404.0" fitWidth="640.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/fondoequipo.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="63.0" fitWidth="314.0" layoutX="296.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/fondos/azulequipo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="63.0" fitWidth="314.0" layoutX="296.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/fondos/azulequipo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="63.0" fitWidth="314.0" layoutX="296.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/fondos/azulequipo.png" />
                </image>
             </ImageView>
             <Button fx:id="btnSalir" contentDisplay="CENTER" layoutX="530.0" layoutY="362.0" mnemonicParsing="false" onAction="#cerrarEquipo" prefHeight="26.0" prefWidth="69.0" text="Salir">
@@ -55,14 +71,73 @@
                   <Font name="Consolas" size="12.0" />
                </font>
             </Button>
-            <TextArea layoutX="399.0" layoutY="22.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="399.0" layoutY="89.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="399.0" layoutY="298.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="399.0" layoutY="227.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="399.0" layoutY="159.0" prefHeight="50.0" prefWidth="178.0" />
-            <TextArea layoutX="106.0" layoutY="83.0" prefHeight="95.0" prefWidth="178.0" />
-            <TextArea layoutX="75.0" layoutY="342.0" prefHeight="39.0" prefWidth="239.0" />
-            <ProgressBar layoutX="485.0" layoutY="22.0" prefHeight="18.0" prefWidth="90.0" progress="0.0" />
+            <Label layoutX="363.0" layoutY="41.0" text="PIKACHU" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="370.0" layoutY="58.0" text="Nv. 62" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <ProgressBar layoutX="448.0" layoutY="39.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;">
+               <cursor>
+                  <Cursor fx:constant="NONE" />
+               </cursor>
+            </ProgressBar>
+            <Label layoutX="530.0" layoutY="58.0" text="213/218 HP" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/delanteras/25.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="357.0" layoutY="102.0" text="CHARMANDER" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="370.0" layoutY="126.0" text="Nv. 62" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <ProgressBar layoutX="448.0" layoutY="100.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
+            <Label layoutX="530.0" layoutY="126.0" text="213/218 HP" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/delanteras/4.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="367.0" layoutY="175.0" prefHeight="18.0" prefWidth="58.0" text="BULBASUR" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="370.0" layoutY="195.0" text="Nv. 62" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <ProgressBar layoutX="448.0" layoutY="175.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
+            <Label layoutX="530.0" layoutY="200.0" text="213/218 HP" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/delanteras/1.png" />
+               </image>
+            </ImageView>
          </children>
     </AnchorPane>
   </children>

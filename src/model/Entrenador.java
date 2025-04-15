@@ -1,18 +1,22 @@
 package model;
 
+import java.util.LinkedList;
+
 public class Entrenador {
 
 	private String usuario;
 	private String pass;
 	private int pokedolares;
 	private int idEntrenador;
+	private LinkedList<Objeto> mochila = new LinkedList<Objeto>();
 	
-	public Entrenador(String usuario, String pass, int pokedolares, int idEntrenador) {
+	public Entrenador(String usuario, String pass, int pokedolares, int idEntrenador, LinkedList<Objeto> mochila) {
 		super();
 		this.idEntrenador = idEntrenador;
 		this.usuario = usuario;
 		this.pass = pass;
 		this.pokedolares = pokedolares;
+		this.mochila = mochila;
 	}
 	
 	public Entrenador(String usuario, String pass) {
@@ -21,9 +25,9 @@ public class Entrenador {
 		this.usuario = usuario;
 		this.pass = pass;
 		this.pokedolares = 1000;
+		this.mochila = mochila;
 	}
-	
-	
+
 	public int getIdEntrenador() {
 		return idEntrenador;
 	}
