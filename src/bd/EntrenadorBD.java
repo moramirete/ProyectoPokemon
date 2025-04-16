@@ -13,6 +13,8 @@ public class EntrenadorBD {
 		
 		entrenador.setIdEntrenador(obtenerIdEntrenador(con));
 		
+		Statement statement = null;
+		
 		String sql = "INSERT INTO ENTRENADOR (ID_ENTRENADOR, USUARIO, CONTRASENA, POKEDOLARES) \r\n"
 					+ "VALUES(?,?,?,?)";
 		PreparedStatement st = con.prepareStatement(sql);
