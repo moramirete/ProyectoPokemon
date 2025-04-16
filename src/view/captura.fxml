@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -43,9 +44,9 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <ImageView fitHeight="429.0" fitWidth="676.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btnSalir" fitHeight="429.0" fitWidth="676.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../multimedia/imagenes/fondos/imagenCaptura.jpg" />
+                  <Image url="@../../multimedia/imagenes/fondos/imagen%20pantalla%20captura.png" />
                </image>
             </ImageView>
         <Label alignment="CENTER" layoutX="232.0" layoutY="126.0" prefHeight="170.0" prefWidth="212.0" style="&#10;" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
@@ -53,6 +54,12 @@
             <Font size="18.0" />
           </font>
         </Label>
+            <Button fx:id="btnCapturar" layoutX="490.0" layoutY="340.0" mnemonicParsing="false" text="CAPTURAR" visible="false" />
+            <Button layoutX="5.0" layoutY="3.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="97.0" text="SALIR" textFill="#3e00da">
+               <font>
+                  <Font name="Gentium Book Basic" size="12.0" />
+               </font>
+            </Button>
       </children>
     </AnchorPane>
   </children>
