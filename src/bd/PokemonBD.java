@@ -37,9 +37,13 @@ public class PokemonBD {
             int fertilidad = 1 + rd.nextInt(5);   
             char sexo = rd.nextBoolean() ? 'M' : 'F';
             
+            if (sexo != 'M' && sexo != 'F') {
+                throw new IllegalArgumentException("Valor inválido para SEXO: " + sexo);
+            }
+            
             String estado = "NORMAL";
             
-            System.out.println(sexo);
+            System.out.println("Sexo que se ha generado:" + sexo);
             
             nuevoPokemon = new Pokemon(
             		nuevoIdPokemon,
@@ -86,7 +90,7 @@ public class PokemonBD {
             st.executeUpdate();
             st.close();
 
-            System.out.println("Se ha generado un Pokemon principal" + resultadoPokedex.getString("NOM_POKEMON") + "para el entrenador con ID: " + idEntrenador);
+            System.out.println("Se ha generado un Pokemon principal " + resultadoPokedex.getString("NOM_POKEMON") + " para el entrenador con ID: " + idEntrenador);
 
         } catch (SQLException e) {
             System.err.println("Error al generar el Pokemon principal: " + e.getMessage());

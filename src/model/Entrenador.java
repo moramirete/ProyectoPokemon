@@ -44,8 +44,7 @@ public class Entrenador {
 	    Connection conexion = BDConecction.getConnection();
 	    
 	    // Generar mochila y asignar Pokémon aleatorio
-	    this.pokPrincipal =  PokemonBD.generarPokemonPrincipal(idEntrenador, conexion); // Se asigna directamente al atributo pokPrincipal
-	    this.equipo.add(pokPrincipal); // Añadir al equipo principal
+	    
 	}
 
 

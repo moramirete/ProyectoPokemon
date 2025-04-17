@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import bd.BDConecction;
 import bd.EntrenadorBD;
+import bd.PokemonBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -194,7 +195,7 @@ public class LoginController {
 				ResultSet rs = ps.executeQuery();
 
 				Entrenador entrenador = new Entrenador(usuario, pass);
-
+				
 				if (!rs.isBeforeFirst()) {
 
 					int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere registrar este usuario?");
@@ -202,6 +203,10 @@ public class LoginController {
 					if (opcion == JOptionPane.YES_OPTION) {
 
 						EntrenadorBD.crearEntrenador(conexion, entrenador);
+						
+						entrenador.setPokPrincipal(PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion)); 
+						entrenador.getEquipo().add(entrenador.getPokPrincipal()); 
+						
 						abrirPantallaMenu(entrenador);
 						System.out.println("Entrando a menu");
 
