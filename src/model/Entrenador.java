@@ -40,11 +40,6 @@ public class Entrenador {
 	    this.mochila = new LinkedList<Objeto>();
 	    this.equipo = new LinkedList<Pokemon>();
 	    this.caja = new LinkedList<Pokemon>();
-
-	    Connection conexion = BDConecction.getConnection();
-	    
-	    // Generar mochila y asignar Pokémon aleatorio
-	    
 	}
 
 
