@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public class Pokemon {
 
 	
@@ -17,10 +19,54 @@ public class Pokemon {
 	private int nivel;
 	private int fertilidad;
 	private int equipo;
-	
 	private String nombre_pokemon;
 	private String estado;
 	private char sexo;
+	
+	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, int vitalidad, int ataque,
+			int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, int fertilidad,
+			int equipo, String nombre_pokemon, String estado, char sexo) {
+		
+		super();
+		this.id_pokemon = id_pokemon;
+		this.id_entrenador = id_entrenador;
+		this.num_pokedex = num_pokedex;
+		this.id_objeto = id_objeto;
+		this.vitalidad = vitalidad;
+		this.ataque = ataque;
+		this.defensa = defensa;
+		this.ataque_especial = ataque_especial;
+		this.defensa_especial = defensa_especial;
+		this.velocidad = velocidad;
+		this.nivel = nivel;
+		this.fertilidad = fertilidad;
+		this.equipo = equipo;
+		this.nombre_pokemon = nombre_pokemon;
+		this.estado = estado;
+		this.sexo = sexo;
+	}
+	
+	//Constructor sin parametros
+	public Pokemon() {
+		
+		super();
+		this.id_pokemon = 0;
+		this.id_entrenador = 0;
+		this.num_pokedex = 0;
+		this.id_objeto = 0;
+		this.vitalidad = 0;
+		this.ataque = 0;
+		this.defensa = 0;
+		this.ataque_especial = 0;
+		this.defensa_especial = 0;
+		this.velocidad = 0;
+		this.nivel = 0;
+		this.fertilidad = 0;
+		this.equipo = 0;
+		this.nombre_pokemon = "";
+		this.estado = "";
+		this.sexo = 0;
+	}
 	
 	//Getters and Setters
 	public int getId_pokemon() {
@@ -119,53 +165,6 @@ public class Pokemon {
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-	
-	
-	//Constructores
-	
-	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, int vitalidad, int ataque,
-			int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, int fertilidad,
-			int equipo, String nombre_pokemon, String estado, char sexo) {
-		
-		super();
-		this.id_pokemon = id_pokemon;
-		this.id_entrenador = id_entrenador;
-		this.num_pokedex = num_pokedex;
-		this.id_objeto = id_objeto;
-		this.vitalidad = vitalidad;
-		this.ataque = ataque;
-		this.defensa = defensa;
-		this.ataque_especial = ataque_especial;
-		this.defensa_especial = defensa_especial;
-		this.velocidad = velocidad;
-		this.nivel = nivel;
-		this.fertilidad = fertilidad;
-		this.equipo = equipo;
-		this.nombre_pokemon = nombre_pokemon;
-		this.estado = estado;
-		this.sexo = sexo;
-	}
-	
-	//Constructor sin parametros
-	public Pokemon() {
-		
-		super();
-		this.id_pokemon = 0;
-		this.id_entrenador = 0;
-		this.num_pokedex = 0;
-		this.id_objeto = 0;
-		this.vitalidad = 0;
-		this.ataque = 0;
-		this.defensa = 0;
-		this.ataque_especial = 0;
-		this.defensa_especial = 0;
-		this.velocidad = 0;
-		this.nivel = 0;
-		this.fertilidad = 0;
-		this.equipo = 0;
-		this.nombre_pokemon = "";
-		this.estado = "";
-		this.sexo = 0;
-	}
+
 	
 }
