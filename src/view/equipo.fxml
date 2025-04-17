@@ -96,12 +96,12 @@
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar layoutX="448.0" layoutY="32.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;">
+            <ProgressBar fx:id="barraVida2" layoutX="448.0" layoutY="32.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;">
                <cursor>
                   <Cursor fx:constant="NONE" />
                </cursor>
             </ProgressBar>
-            <Label layoutX="530.0" layoutY="65.0" text="213/218 HP" textFill="WHITE">
+            <Label fx:id="lblVida2" layoutX="530.0" layoutY="65.0" text="213/218 HP" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
@@ -121,8 +121,8 @@
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar layoutX="448.0" layoutY="100.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label layoutX="530.0" layoutY="133.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida3" layoutX="448.0" layoutY="100.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida3" layoutX="530.0" layoutY="133.0" text="213/218 HP" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
@@ -142,8 +142,8 @@
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar layoutX="448.0" layoutY="166.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label layoutX="530.0" layoutY="200.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida4" layoutX="448.0" layoutY="166.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida4" layoutX="530.0" layoutY="200.0" text="213/218 HP" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
@@ -168,8 +168,8 @@
                   <Image url="@../../multimedia/imagenes/delanteras/145.png" />
                </image>
             </ImageView>
-            <ProgressBar layoutX="448.0" layoutY="239.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label layoutX="530.0" layoutY="271.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida5" layoutX="448.0" layoutY="239.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida5" layoutX="530.0" layoutY="271.0" text="213/218 HP" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
@@ -189,8 +189,8 @@
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar layoutX="448.0" layoutY="305.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label layoutX="530.0" layoutY="341.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida6" layoutX="448.0" layoutY="305.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida6" layoutX="530.0" layoutY="341.0" text="213/218 HP" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
@@ -210,8 +210,8 @@
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar layoutX="81.0" layoutY="149.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label layoutX="157.0" layoutY="177.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida1" layoutX="81.0" layoutY="149.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida1" layoutX="157.0" layoutY="177.0" text="213/218 HP" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
