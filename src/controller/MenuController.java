@@ -83,6 +83,8 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
+			
+			System.out.println("Entrando a captura");
 
 		} catch (IOException e) {
 			System.out.println("Falla en la carga del archivo FXML.");
@@ -112,6 +114,8 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
+			
+			System.out.println("Entrando a centro");
 
 		} catch (IOException e) {
 			System.out.println("Falla en la carga del archivo FXML.");
@@ -141,6 +145,8 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
+			
+			System.out.println("Entrando a combate");
 
 		} catch (IOException e) {
 			System.out.println("Falla en la carga del archivo FXML.");
@@ -170,6 +176,8 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
+			
+			System.out.println("Entrando a crianza");
 
 		} catch (IOException e) {
 			System.out.println("Falla en la carga del archivo FXML.");
@@ -199,6 +207,8 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
+			
+			System.out.println("Entrando a entrenamiento");
 
 		} catch (IOException e) {
 			System.out.println("Falla en la carga del archivo FXML.");
@@ -228,6 +238,8 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
+			
+			System.out.println("Entrando a equipo");
 
 		} catch (IOException e) {
 			System.out.println("Falla en la carga del archivo FXML.");
@@ -244,6 +256,8 @@ public class MenuController {
 	public void cerrarMenu(ActionEvent event) {
 		loginController.show();
 		this.stage.close();
+		System.out.println("Cerrando sesion");
+		System.out.println("Abriendo login");
 	}
 
 	/**
@@ -272,8 +286,12 @@ public class MenuController {
 		int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres cerrar el proyectoPokemon?");
 		
 		if(opcion == JOptionPane.YES_OPTION) {
+			System.out.println("Se ha elegido la opcion de si");
 			Stage stage = (Stage) btnSalir.getScene().getWindow();
 			stage.close();
+			System.out.println("Se ha cerrado la aplicacion correctamente");
+		}else {
+			System.out.println("Se ha elegido la opcion de no");
 		}
 	}
 

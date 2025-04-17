@@ -99,8 +99,10 @@ public class LoginController {
 
 		if (txtUsuario.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Error: escribe el nombre de usuario");
+			System.out.println("Se ha detectado que no se ha puesto el nombre de usuario");
 		} else if (txtPassword.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Error: insertar contraseña del usuario");
+			System.out.println("Se ha detectado que no se ha puesto la contraseña de usuario");
 		} else {
 			String usuario = txtUsuario.getText();
 			String pass = txtPassword.getText();
@@ -129,29 +131,46 @@ public class LoginController {
 					int opcion = JOptionPane.showConfirmDialog(null, "Usuario no registrado, ¿desea registrarlo?");
 
 					if (opcion == JOptionPane.YES_OPTION) {
+						
+						System.out.println("Se ha elegido la opcion de si");
 
 						EntrenadorBD.crearEntrenador(conexion, entrenador);
+						
+						entrenador.setPokPrincipal(PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion)); 
+						entrenador.getEquipo().add(entrenador.getPokPrincipal()); 
+						
 						abrirPantallaMenu(entrenador);
+						
+						System.out.println("Se ha creado el nuevo usuario");
 
 					} else {
+						System.out.println("Se ha elegido la opcion de no");
 						txtPassword.setText("");
+						System.out.println("Se ha cancelado el registro de usuario");
 					}
 				} else {
 					while (rs.next()) {
 						if (rs.getString(1).equals(pass)) {
+							
 							System.out.println("Usuario encontrado");
 							EntrenadorBD.obtenerIDPokedolaresEntre(conexion, entrenador);
 							abrirPantallaMenu(entrenador);
+							
+							System.out.println("Abriendo menu");
 
 						} else {
+							
 							JOptionPane.showMessageDialog(null, "Error: Contraseña incorrecta");
+							
 						}
 					}
 				}
 
 			} catch (SQLException e) {
+				
 				System.out.println("Error al conectar con la base de datos.");
 				e.printStackTrace();
+				
 			}
 
 		}
@@ -171,8 +190,10 @@ public class LoginController {
 	public void registrarUsuario(ActionEvent event) {
 		if (txtUsuario.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Error: escribe el nombre de usuario");
+			System.out.println("Se ha detectado que no se ha puesto el nombre de usuario");
 		} else if (txtPassword.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Error: insertar contraseña del usuario");
+			System.out.println("Se ha detectado que no se ha puesto la contraseña del usuario");
 		} else {
 			String usuario = txtUsuario.getText();
 			String pass = txtPassword.getText();
@@ -211,14 +232,16 @@ public class LoginController {
 						System.out.println("Entrando a menu");
 
 					} else {
-						System.out.println("Cancelandose la opcion de registrar");
+						System.out.println("Se ha elegido la opcion de no");
 						txtPassword.setText("");
+						System.out.println("Cancelada la opcion de registrar");
 					}
 				} else {
 
 					System.out.println("Usuario ya existente en la BD");
 					JOptionPane.showMessageDialog(null, "Error: nombre de usuario ya existente en la BD");
 					txtPassword.setText("");
+					System.out.println("Cancelada la opcion de registrar");
 
 				}
 
