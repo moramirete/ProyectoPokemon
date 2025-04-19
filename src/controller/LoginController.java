@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import bd.BDConecction;
 import bd.EntrenadorBD;
+import bd.MochilaBD;
 import bd.PokemonBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -132,16 +133,7 @@ public class LoginController {
 
 					if (opcion == JOptionPane.YES_OPTION) {
 						
-						System.out.println("Se ha elegido la opcion de si");
-
-						EntrenadorBD.crearEntrenador(conexion, entrenador);
-						
-						entrenador.setPokPrincipal(PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion)); 
-						entrenador.getEquipo().add(entrenador.getPokPrincipal()); 
-						
-						abrirPantallaMenu(entrenador);
-						
-						System.out.println("Se ha creado el nuevo usuario");
+						this.registrarUsuario(event);
 
 					} else {
 						System.out.println("Se ha elegido la opcion de no");
@@ -226,7 +218,8 @@ public class LoginController {
 						EntrenadorBD.crearEntrenador(conexion, entrenador);
 						
 						entrenador.setPokPrincipal(PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion)); 
-						entrenador.getEquipo().add(entrenador.getPokPrincipal()); 
+						entrenador.getEquipo().add(entrenador.getPokPrincipal());
+						entrenador.setMochila(MochilaBD.crearMochilaInicial(entrenador.getIdEntrenador()));
 						
 						abrirPantallaMenu(entrenador);
 						System.out.println("Entrando a menu");

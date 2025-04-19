@@ -61,6 +61,7 @@
                </font>
             </Button>
             <Button fx:id="btnGenerar" layoutX="5.0" layoutY="349.0" mnemonicParsing="false" onAction="#generarPokemon" prefHeight="56.0" prefWidth="229.0" text="GENERAR POKEMON" />
+            <Label layoutX="575.0" layoutY="333.0" prefHeight="40.0" prefWidth="89.0" text="Label" />
       </children>
     </AnchorPane>
   </children>
