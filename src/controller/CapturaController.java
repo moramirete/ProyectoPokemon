@@ -3,6 +3,7 @@ package controller;
 import javafx.stage.Stage;
 import model.Entrenador;
 import model.Pokemon;
+import bd.BDConecction;
 import bd.PokemonBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,8 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Random;
 
 public class CapturaController {
@@ -57,32 +60,19 @@ public class CapturaController {
 		System.out.println("Se ha salido de captura correctamente");
 	}
 	
-    @FXML
-    void capturarPokemon(ActionEvent event) {
-    	System.out.println("Se ha accionado el boton de capturar");
-    	
-    	if (pokemonCreado != null) {
-    		lblPokemon.setText("Has capturado un : " + pokemonCreado.getNombre_pokemon());
-    		lblPokemon.setGraphic(null);
-    		pokemonCreado = null;
-    	} else {
-    		lblPokemon.setText("Primero tienes que generar un Pokemon.");
-    	}
-    	
-    	lblPokemon.setGraphic(null);
-    	lblPokemon.setText("");
-    	
-    }
+
     
     @FXML
     void generarPokemon(ActionEvent event) {
     	System.out.println("Se ha accionado el boton de generar");
+    	
+    	BDConecction con = new BDConecction();
+
+		Connection conexion = con.getConnection();
     
     	try {
-    		
-    		Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/pokemon", "root", "");
     	
-    		pokemonCreado = PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion);
+    		pokemonCreado = PokemonBD.generarPokemonCaptura(entrenador.getIdEntrenador(), conexion);
     		
     		if(pokemonCreado != null) {
     			String archivo = pokemonCreado.getNum_pokedex() + ".png";
@@ -117,6 +107,8 @@ public class CapturaController {
     	}
     	
     	
+    	
+    	
     	/*final String[] pokemon = new String[151];
     	for(int i = 0; i < 151; i++) {
    			pokemon[i] = (i + 1) + ".png";
@@ -146,6 +138,38 @@ public class CapturaController {
     	String nombre = archivo.replace(".png","");
     	lblPokemon.setText("");
     	lblPokemon.setGraphic(imageView);*/
+    	
+    }
+    
+    @FXML
+    void capturarPokemon(ActionEvent event) {
+    	System.out.println("Se ha accionado el boton de capturar");
+    	
+    	BDConecction con = new BDConecction();
+
+		Connection conexion = con.getConnection();
+    	
+    	if (pokemonCreado != null) {
+
+    		Random rd = new Random();
+    		
+            int prob = rd.nextInt(3);
+            
+            if(prob == 0){
+            	System.out.println("Has fallado");
+            }else {
+            	PokemonBD.guardarPokemonCaptura(pokemonCreado, conexion);;
+        		System.out.println("Pokemon guardado en la BBDD");
+        		lblPokemon.setText("Has capturado un : " + pokemonCreado.getNombre_pokemon());
+        		lblPokemon.setGraphic(null);
+        		pokemonCreado = null;
+            }
+    	} else {
+    		lblPokemon.setText("Primero tienes que generar un Pokemon.");
+    	}
+    	
+    	lblPokemon.setGraphic(null);
+    	lblPokemon.setText("");
     	
     }
 
