@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.InputStream;
+import java.io.File;
 import java.util.Random;
 
 public class CapturaController {
@@ -61,35 +61,35 @@ public class CapturaController {
     void generarPokemon(ActionEvent event) {
     	System.out.println("Se ha accionado el boton de generar");
     
-    	final String[] pokemon = {
-   			 "1.png",
-   			 "2.png",
-   			 "3.png",
-   			 "4.png"
+    	final String[] pokemon = new String[151];
+    	for(int i = 0; i < 151; i++) {
+   			pokemon[i] = (i + 1) + ".png";
    			
-   	 };
-    	int index = (int)(Math.random() * pokemon.length);
+    	}
+    	
+    	int index = new Random().nextInt(pokemon.length);
     	String archivo = pokemon[index];
     	
-    	InputStream is = getClass().getResourceAsStream("/multimedia/imagenes/delanteras/" + archivo);
+    	String ruta = "multimedia/imagenes/delanteras/" +archivo;
     	
-    	if (is == null) {
+    	File file = new File(ruta);
+    	
+    	if (!file.exists()) {
     		System.out.println(" No se a encontrado la imagen: " + archivo);
     		lblPokemon.setText("No se pudo cargar " + archivo);
     		lblPokemon.setGraphic(null);
     		return;
     	}
     	
-    	Image imagen = new Image(is);
+    	Image imagen = new Image(file.toURI().toString());
     	ImageView imageView = new ImageView(imagen);
     	imageView.setFitWidth(120);
     	imageView.setFitHeight(120);
     	imageView.setPreserveRatio(true);
     	
-    	String nombre = archivo.replace(".png", "");
-    	lblPokemon.setText(nombre.substring(0, 1).toUpperCase() + nombre.substring(1));
+    	String nombre = archivo.replace(".png","");
+    	lblPokemon.setText("");
     	lblPokemon.setGraphic(imageView);
-    	
     }
 
 }
