@@ -85,6 +85,26 @@ public class LoginController {
 
 		}
 	}
+	
+	private void registrarUsuarioSinConfirmar(Connection conexion, Entrenador entrenador) {
+		try {
+			EntrenadorBD.crearEntrenador(conexion, entrenador);
+			
+			entrenador.setPokPrincipal(PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion));
+			entrenador.getEquipo().add(entrenador.getPokPrincipal());
+
+			Pokemon pokemon = new Pokemon(entrenador.getPokPrincipal());
+			pokemon.getMovPrincipales().add(MovimientoBD.otorgarPrimerMovimiento(conexion, entrenador, pokemon));
+
+			entrenador.setMochila(MochilaBD.crearMochilaInicial(entrenador.getIdEntrenador()));
+
+			abrirPantallaMenu(entrenador);
+			System.out.println("Usuario registrado automáticamente y accediendo al menú");
+		} catch (SQLException e) {
+			System.out.println("Error al registrar usuario automáticamente.");
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 
@@ -134,13 +154,11 @@ public class LoginController {
 					int opcion = JOptionPane.showConfirmDialog(null, "Usuario no registrado, ¿desea registrarlo?");
 
 					if (opcion == JOptionPane.YES_OPTION) {
-						
-						this.registrarUsuario(event);
-
+						// ya se confirmó, registra sin volver a preguntar
+						registrarUsuarioSinConfirmar(conexion, entrenador);
 					} else {
 						System.out.println("Se ha elegido la opcion de no");
 						txtPassword.setText("");
-						System.out.println("Se ha cancelado el registro de usuario");
 					}
 				} else {
 					while (rs.next()) {
