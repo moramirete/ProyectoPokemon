@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import bd.BDConecction;
 import bd.EntrenadorBD;
 import bd.MochilaBD;
+import bd.MovimientoBD;
 import bd.PokemonBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Entrenador;
+import model.Pokemon;
 
 /**
  * Controlador de la vista de inicio de sesión.
@@ -219,6 +221,10 @@ public class LoginController {
 						
 						entrenador.setPokPrincipal(PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion)); 
 						entrenador.getEquipo().add(entrenador.getPokPrincipal());
+						
+						Pokemon pokemon = new Pokemon(entrenador.getPokPrincipal());
+						pokemon.getMovPrincipales().add(MovimientoBD.otorgarPrimerMovimiento(conexion, entrenador, pokemon));						
+						
 						entrenador.setMochila(MochilaBD.crearMochilaInicial(entrenador.getIdEntrenador()));
 						
 						abrirPantallaMenu(entrenador);

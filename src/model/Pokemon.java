@@ -1,5 +1,6 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Pokemon {
@@ -22,6 +23,37 @@ public class Pokemon {
 	private String nombre_pokemon;
 	private String estado;
 	private char sexo;
+	private LinkedList<Movimiento> movPrincipales = new LinkedList<Movimiento>();
+	private LinkedList<Movimiento> movSecundarios = new LinkedList<Movimiento>();
+	
+	
+	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, int vitalidad, int ataque,
+			int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, int fertilidad,
+			int equipo, String nombre_pokemon, String estado, char sexo, LinkedList<Movimiento> movPrincipales, 
+			LinkedList<Movimiento> movSecundarios) {
+		
+		super();
+		this.id_pokemon = id_pokemon;
+		this.id_entrenador = id_entrenador;
+		this.num_pokedex = num_pokedex;
+		this.id_objeto = id_objeto;
+		this.vitalidad = vitalidad;
+		this.ataque = ataque;
+		this.defensa = defensa;
+		this.ataque_especial = ataque_especial;
+		this.defensa_especial = defensa_especial;
+		this.velocidad = velocidad;
+		this.nivel = nivel;
+		this.fertilidad = fertilidad;
+		this.equipo = equipo;
+		this.nombre_pokemon = nombre_pokemon;
+		this.estado = estado;
+		this.sexo = sexo;
+		this.movPrincipales = movPrincipales;
+		this.movSecundarios = movSecundarios;
+	}
+	
+	//Constructor sin las linkedList
 	
 	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, int vitalidad, int ataque,
 			int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, int fertilidad,
@@ -44,8 +76,51 @@ public class Pokemon {
 		this.nombre_pokemon = nombre_pokemon;
 		this.estado = estado;
 		this.sexo = sexo;
+		this.movPrincipales = new LinkedList<Movimiento>();
+		this.movSecundarios = new LinkedList<Movimiento>();
 	}
 	
+	public Pokemon(Pokemon c) {
+		
+		super();
+		this.id_pokemon = c.id_pokemon;
+		this.id_entrenador = c.id_entrenador;
+		this.num_pokedex = c.num_pokedex;
+		this.id_objeto = c.id_objeto;
+		this.vitalidad = c.vitalidad;
+		this.ataque = c.ataque;
+		this.defensa = c.defensa;
+		this.ataque_especial = c.ataque_especial;
+		this.defensa_especial = c.defensa_especial;
+		this.velocidad = c.velocidad;
+		this.nivel = c.nivel;
+		this.fertilidad = c.fertilidad;
+		this.equipo = c.equipo;
+		this.nombre_pokemon = c.nombre_pokemon;
+		this.estado = c.estado;
+		this.sexo = c.sexo;
+		this.movPrincipales = c.movPrincipales;
+		this.movSecundarios = c.movSecundarios;
+	}
+	
+	//Copia
+	
+	public LinkedList<Movimiento> getMovPrincipales() {
+		return movPrincipales;
+	}
+
+	public void setMovPrincipales(LinkedList<Movimiento> movPrincipales) {
+		this.movPrincipales = movPrincipales;
+	}
+
+	public LinkedList<Movimiento> getMovSecundarios() {
+		return movSecundarios;
+	}
+
+	public void setMovSecundarios(LinkedList<Movimiento> movSecundarios) {
+		this.movSecundarios = movSecundarios;
+	}
+
 	//Constructor sin parametros
 	public Pokemon() {
 		
@@ -66,6 +141,8 @@ public class Pokemon {
 		this.nombre_pokemon = "";
 		this.estado = "";
 		this.sexo = 0;
+		this.movPrincipales = new LinkedList<Movimiento>();
+		this.movSecundarios = new LinkedList<Movimiento>();
 	}
 	
 	//Getters and Setters

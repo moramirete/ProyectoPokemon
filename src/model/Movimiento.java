@@ -9,6 +9,7 @@ public class Movimiento {
 	private String descripcion;
 	private int precision;
 	private int pp_max;
+	private int pp_actual;
 	private String tipo;
 	private String tipo_mov;
 	private int potencia;
@@ -21,7 +22,7 @@ public class Movimiento {
 	
 	
 	//CONTRUCTOR CON TODOS LOS PARAMETROS
-	public Movimiento(int id_movimiento, String nom_movimiento, String descripcion, int precision, int pp_max,
+	public Movimiento(int id_movimiento, String nom_movimiento, String descripcion, int precision, int pp_max, int pp_actual,
 			String tipo, String tipo_mov, int potencia, String estado, int turnos, int mejora, int num_mov,
 			int cant_mejora) {
 		super();
@@ -30,6 +31,7 @@ public class Movimiento {
 		this.descripcion = descripcion;
 		this.precision = precision;
 		this.pp_max = pp_max;
+		this.pp_actual = pp_actual;
 		this.tipo = tipo;
 		this.tipo_mov = tipo_mov;
 		this.potencia = potencia;
@@ -49,6 +51,7 @@ public class Movimiento {
 		this.descripcion = "";
 		this.precision = 0;
 		this.pp_max = 0;
+		this.pp_actual = 0;
 		this.tipo = "";
 		this.tipo_mov = "";
 		this.potencia = 0;
@@ -117,6 +120,18 @@ public class Movimiento {
 
 	public void setPp_max(int pp_max) {
 		this.pp_max = pp_max;
+	}
+	
+	
+	
+	public int getPp_actual() {
+		return pp_actual;
+	}
+
+
+
+	public void setPp_actual(int pp_actual) {
+		this.pp_actual = pp_actual;
 	}
 
 
