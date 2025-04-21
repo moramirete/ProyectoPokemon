@@ -44,7 +44,8 @@ public class MochilaBD {
 	                    rsObjetos.getInt("VELOCIDAD"),
 	                    rsObjetos.getInt("VITALIDAD"),
 	                    rsObjetos.getInt("PP"),
-	                    rsObjetos.getInt("PRECIO")
+	                    rsObjetos.getInt("PRECIO"),
+	                    rsObjetos.getString("RUTA_IMAGEN")
 	                );
 	                mochilaInicial.add(objeto);
 	            }

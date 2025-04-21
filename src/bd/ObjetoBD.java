@@ -12,7 +12,8 @@ public class ObjetoBD {
     public static ArrayList<Objeto> obtenerTodosLosObjetos() {
         ArrayList<Objeto> objetos = new ArrayList<>();
         try (Connection con = BDConecction.getConnection()) {
-            String sql = "SELECT * FROM OBJETO";
+            String sql = "SELECT * FROM OBJETO\r\n"
+            		+ "WHERE ID_OBJETO <> 0;";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -27,8 +28,12 @@ public class ObjetoBD {
                     rs.getInt("VELOCIDAD"),
                     rs.getInt("VITALIDAD"),
                     rs.getInt("PP"),
-                    rs.getInt("PRECIO")
+                    rs.getInt("PRECIO"),
+                    rs.getString("RUTA_IMAGEN")
                 );
+                
+                
+                
                 objetos.add(objeto);
             }
         } catch (Exception e) {
