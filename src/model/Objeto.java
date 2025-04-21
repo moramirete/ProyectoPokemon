@@ -12,10 +12,24 @@ public class Objeto {
 	private int vitalidad;
 	private int pp;
 	private int precio;
+	private String rutaImagen;
 	
+	public Objeto(String rutaImagen) {
+	   
+	    this.rutaImagen = rutaImagen;
+	    
+	}
+
+	public String getRutaImagen() {
+	    return "/imagenes/" + rutaImagen;
+	}
+
+	public void setRutaImagen(String rutaImagen) {
+	    this.rutaImagen = rutaImagen;
+	}
 	
 	public Objeto(int idObjeto, String nombreObjeto, int ataque, int defensa, int ataqueEspecial, int defensaEspecial,
-			int velocidad, int vitalidad, int pp, int precio) {
+			int velocidad, int vitalidad, int pp, int precio, String rutaImagen) {
 		super();
 		this.idObjeto = idObjeto;
 		this.nombreObjeto = nombreObjeto;
@@ -27,6 +41,7 @@ public class Objeto {
 		this.vitalidad = vitalidad;
 		this.pp = pp;
 		this.precio = precio;
+		this.rutaImagen = rutaImagen;
 	}
 	
 	public Objeto(String nombreObjeto, int precio) {
