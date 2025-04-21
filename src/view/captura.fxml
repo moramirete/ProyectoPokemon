@@ -51,7 +51,7 @@
                </image>
             </ImageView>
             
-        <Label fx:id="lblPokemon" alignment="CENTER" layoutX="266.0" layoutY="187.0" prefHeight="170.0" prefWidth="212.0" style="&#10;" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+        <Label fx:id="lblPokemon" alignment="CENTER" layoutX="232.0" layoutY="187.0" prefHeight="170.0" prefWidth="212.0" style="&#10;" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
           <font>
             <Font size="18.0" />
           </font>
