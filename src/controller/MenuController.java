@@ -17,9 +17,9 @@ import javafx.stage.Stage;
 import model.Entrenador;
 
 /**
- * Controlador del menú principal de la aplicación Pokémon Super Nenes.
- * Gestiona la navegación hacia las distintas secciones del juego como Captura,
- * Combate, Crianza, etc., así como el cierre de sesión y salida del programa.
+ * Controlador del menú principal de la aplicación Pokémon Super Nenes. Gestiona
+ * la navegación hacia las distintas secciones del juego como Captura, Combate,
+ * Crianza, etc., así como el cierre de sesión y salida del programa.
  */
 public class MenuController {
 
@@ -40,6 +40,10 @@ public class MenuController {
 	@FXML
 	private Button btnEquipo;
 	@FXML
+	private Button btnMochila;
+	@FXML
+	private Button btnTienda;
+	@FXML
 	private Button btnSalir;
 
 	@FXML
@@ -48,9 +52,9 @@ public class MenuController {
 	private ImageView imagenFondo;
 	@FXML
 	private ImageView imagenLogo;
-	
-    @FXML
-    private ImageView imgBocadillo;
+
+	@FXML
+	private ImageView imgBocadillo;
 
 	@FXML
 	private Label lblJugador;
@@ -83,7 +87,7 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
-			
+
 			System.out.println("Entrando a captura");
 
 		} catch (IOException e) {
@@ -114,7 +118,7 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
-			
+
 			System.out.println("Entrando a centro");
 
 		} catch (IOException e) {
@@ -145,7 +149,7 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
-			
+
 			System.out.println("Entrando a combate");
 
 		} catch (IOException e) {
@@ -176,7 +180,7 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
-			
+
 			System.out.println("Entrando a crianza");
 
 		} catch (IOException e) {
@@ -207,7 +211,7 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
-			
+
 			System.out.println("Entrando a entrenamiento");
 
 		} catch (IOException e) {
@@ -238,8 +242,58 @@ public class MenuController {
 
 			stage.show();
 			this.stage.close();
-			
+
 			System.out.println("Entrando a equipo");
+
+		} catch (IOException e) {
+			System.out.println("Falla en la carga del archivo FXML.");
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	void abrirMochila(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/mochila.fxml"));
+			Parent root = loader.load();
+
+			MochilaController mochilaController = loader.getController();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+
+			stage.setTitle("Pokémon Super Nenes - Equipo");
+			stage.setScene(scene);
+			mochilaController.init(entrenador, stage, this);
+
+			stage.show();
+			this.stage.close();
+
+			System.out.println("Entrando a mochila");
+
+		} catch (IOException e) {
+			System.out.println("Falla en la carga del archivo FXML.");
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	void abrirTienda(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/tienda.fxml"));
+			Parent root = loader.load();
+
+			TiendaController tiendaController = loader.getController();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+
+			stage.setTitle("Pokémon Super Nenes - Equipo");
+			stage.setScene(scene);
+			tiendaController.init(entrenador, stage, this);
+
+			stage.show();
+			this.stage.close();
+
+			System.out.println("Entrando a mochila");
 
 		} catch (IOException e) {
 			System.out.println("Falla en la carga del archivo FXML.");
@@ -261,7 +315,8 @@ public class MenuController {
 	}
 
 	/**
-	 * Inicializa el controlador con el entrenador, el escenario actual y el controlador del login.
+	 * Inicializa el controlador con el entrenador, el escenario actual y el
+	 * controlador del login.
 	 *
 	 * @param ent             Entrenador actual.
 	 * @param stage           Ventana principal del menú.
@@ -277,20 +332,21 @@ public class MenuController {
 	}
 
 	/**
-	 * Cierra completamente la aplicación. Pero antes te pregunta si deseas de verdad cerrar la aplicación
+	 * Cierra completamente la aplicación. Pero antes te pregunta si deseas de
+	 * verdad cerrar la aplicación
 	 *
 	 * @param event Evento del mouse al hacer clic sobre el botón de cerrar (ícono).
 	 */
 	@FXML
 	public void cerrarAplicacion(MouseEvent event) {
 		int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres cerrar el proyectoPokemon?");
-		
-		if(opcion == JOptionPane.YES_OPTION) {
+
+		if (opcion == JOptionPane.YES_OPTION) {
 			System.out.println("Se ha elegido la opcion de si");
 			Stage stage = (Stage) btnSalir.getScene().getWindow();
 			stage.close();
 			System.out.println("Se ha cerrado la aplicacion correctamente");
-		}else {
+		} else {
 			System.out.println("Se ha elegido la opcion de no");
 		}
 	}

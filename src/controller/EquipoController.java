@@ -29,57 +29,57 @@ public class EquipoController {
 		inicializarVidas();
 	}
 
-	 @FXML
-	    private ProgressBar barraVida1;
+	@FXML
+	private ProgressBar barraVida1;
 
-	    @FXML
-	    private ProgressBar barraVida2;
+	@FXML
+	private ProgressBar barraVida2;
 
-	    @FXML
-	    private ProgressBar barraVida3;
+	@FXML
+	private ProgressBar barraVida3;
 
-	    @FXML
-	    private ProgressBar barraVida4;
+	@FXML
+	private ProgressBar barraVida4;
 
-	    @FXML
-	    private ProgressBar barraVida5;
+	@FXML
+	private ProgressBar barraVida5;
 
-	    @FXML
-	    private ProgressBar barraVida6;
+	@FXML
+	private ProgressBar barraVida6;
 
-	    @FXML
-	    private Button btnCambiar;
+	@FXML
+	private Button btnCambiar;
 
-	    @FXML
-	    private Button btnSalir;
+	@FXML
+	private Button btnSalir;
 
-	    @FXML
-	    private ImageView imgfondo;
+	@FXML
+	private ImageView imgfondo;
 
-	    @FXML
-	    private Label lblVida1;
+	@FXML
+	private Label lblVida1;
 
-	    @FXML
-	    private Label lblVida2;
+	@FXML
+	private Label lblVida2;
 
-	    @FXML
-	    private Label lblVida3;
+	@FXML
+	private Label lblVida3;
 
-	    @FXML
-	    private Label lblVida4;
+	@FXML
+	private Label lblVida4;
 
-	    @FXML
-	    private Label lblVida5;
+	@FXML
+	private Label lblVida5;
 
-	    @FXML
-	    private Label lblVida6;
+	@FXML
+	private Label lblVida6;
 
 	@FXML
 	void cerrarEquipo(ActionEvent event) {
 		menuController.show();
 		this.stage.close();
 	}
-	
+
 	public void inicializarVidas() {
 		actualizarBarraVida(barraVida1, lblVida1, 213, 218);
 		actualizarBarraVida(barraVida2, lblVida2, 150, 218);
@@ -90,20 +90,20 @@ public class EquipoController {
 	}
 
 	public void actualizarBarraVida(ProgressBar barra, Label label, double vidaActual, double vidaMaxima) {
-	    double porcentaje = vidaActual / vidaMaxima;
-	    barra.setProgress(porcentaje);
+		double porcentaje = vidaActual / vidaMaxima;
+		barra.setProgress(porcentaje);
 
-	    String color;
-	    if (porcentaje > 0.5) {
-	        color = "#228B22"; // Verde
-	    } else if (porcentaje > 0.2) {
-	        color = "yellow"; // Amarillo
-	    } else {
-	        color = "red"; // Rojo
-	    }
+		String color;
+		if (porcentaje > 0.5) {
+			color = "#228B22"; // Verde
+		} else if (porcentaje > 0.2) {
+			color = "yellow"; // Amarillo
+		} else {
+			color = "red"; // Rojo
+		}
 
-	    barra.setStyle("-fx-accent: " + color + ";");
-	    label.setText((int)vidaActual + "/" + (int)vidaMaxima);
+		barra.setStyle("-fx-accent: " + color + ";");
+		label.setText((int) vidaActual + "/" + (int) vidaMaxima);
 	}
 
 	@FXML
