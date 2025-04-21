@@ -293,7 +293,7 @@ public class MenuController {
 			stage.show();
 			this.stage.close();
 
-			System.out.println("Entrando a mochila");
+			System.out.println("Entrando a tienda");
 
 		} catch (IOException e) {
 			System.out.println("Falla en la carga del archivo FXML.");
