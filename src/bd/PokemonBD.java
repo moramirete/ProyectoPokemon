@@ -28,13 +28,13 @@ public class PokemonBD {
 
             int nuevoIdPokemon = generarIdUnico(conexion);
    
-            int vitalidad = 50 + rd.nextInt(51);
-            int ataque = 20 + rd.nextInt(81);   
-            int defensa = 20 + rd.nextInt(81);  
-            int ataqueEspecial = 20 + rd.nextInt(81); 
-            int defensaEspecial = 20 + rd.nextInt(81); 
-            int velocidad = 20 + rd.nextInt(81);  
-            int fertilidad = 1 + rd.nextInt(5);   
+            int vitalidad = 15 + rd.nextInt(16);
+            int ataque = 5 + rd.nextInt(6);
+            int defensa = 5 + rd.nextInt(6);
+            int ataqueEspecial = 5 + rd.nextInt(6); 
+            int defensaEspecial = 5 + rd.nextInt(6); 
+            int velocidad = 5 + rd.nextInt(11);
+            int fertilidad = 1 + rd.nextInt(5);
             char sexo = rd.nextBoolean() ? 'M' : 'F';
             
             if (sexo != 'M' && sexo != 'F') {
