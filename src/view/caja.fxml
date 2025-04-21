@@ -87,8 +87,9 @@
       <TableView fx:id="tabPokemon" layoutX="21.0" layoutY="175.0" prefHeight="200.0" prefWidth="560.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="160.0" text="Nombre" />
-          <TableColumn fx:id="colTelefono" prefWidth="75.0" text="Nivel" />
+          <TableColumn fx:id="colNivel" prefWidth="75.0" text="Nivel" />
             <TableColumn fx:id="colTipo" prefWidth="160.0" text="Tipo" />
+            <TableColumn fx:id="colTipo2" prefWidth="160.0" text="Tipo 2" />
         </columns>
       </TableView>
       <Button fx:id="btnVolver" layoutX="90.0" layoutY="118.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />

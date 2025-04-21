@@ -11,6 +11,8 @@ public class Pokemon {
 	private int id_entrenador;
 	private int num_pokedex;
 	private int id_objeto;
+	private String tipo1;
+	private String tipo2;
 	private int vitalidad;
 	private int ataque;
 	private int defensa;
@@ -27,16 +29,18 @@ public class Pokemon {
 	private LinkedList<Movimiento> movSecundarios = new LinkedList<Movimiento>();
 	
 	
-	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, int vitalidad, int ataque,
-			int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, int fertilidad,
-			int equipo, String nombre_pokemon, String estado, char sexo, LinkedList<Movimiento> movPrincipales, 
-			LinkedList<Movimiento> movSecundarios) {
+	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2, 
+			int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad, 
+			int nivel, int fertilidad,int equipo, String nombre_pokemon, String estado, char sexo, 
+			LinkedList<Movimiento> movPrincipales, LinkedList<Movimiento> movSecundarios) {
 		
 		super();
 		this.id_pokemon = id_pokemon;
 		this.id_entrenador = id_entrenador;
 		this.num_pokedex = num_pokedex;
 		this.id_objeto = id_objeto;
+		this.tipo1 = tipo1;
+		this.tipo2 = tipo2;
 		this.vitalidad = vitalidad;
 		this.ataque = ataque;
 		this.defensa = defensa;
@@ -55,15 +59,17 @@ public class Pokemon {
 	
 	//Constructor sin las linkedList
 	
-	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, int vitalidad, int ataque,
-			int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, int fertilidad,
-			int equipo, String nombre_pokemon, String estado, char sexo) {
+	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2, 
+			int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, 
+			int fertilidad, int equipo, String nombre_pokemon, String estado, char sexo) {
 		
 		super();
 		this.id_pokemon = id_pokemon;
 		this.id_entrenador = id_entrenador;
 		this.num_pokedex = num_pokedex;
 		this.id_objeto = id_objeto;
+		this.tipo1 = tipo1;
+		this.tipo2 = tipo2;
 		this.vitalidad = vitalidad;
 		this.ataque = ataque;
 		this.defensa = defensa;
@@ -241,6 +247,18 @@ public class Pokemon {
 	}
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
+	}
+	public String getTipo1() {
+		return tipo1;
+	}
+	public void setTipo1(String tipo1) {
+		this.tipo1 = tipo1;
+	}
+	public String getTipo2() {
+		return tipo2;
+	}
+	public void setTipo2(String tipo2) {
+		this.tipo2 = tipo2;
 	}
 
 	
