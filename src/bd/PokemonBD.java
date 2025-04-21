@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.Random;
 
 import model.Entrenador;
@@ -24,7 +25,7 @@ public class PokemonBD {
 
             if (!resultadoPokedex.next()) {
                 throw new SQLException("No se encontró ningún Pokémon en la tabla POKEDEX.");
-            }
+            }        
 
             int nuevoIdPokemon = generarIdUnico(conexion);
    
@@ -50,6 +51,8 @@ public class PokemonBD {
             		idEntrenador,
             		resultadoPokedex.getInt("NUM_POKEDEX"),
             		0,
+            		resultadoPokedex.getString("TIPO1"),
+            		resultadoPokedex.getString("TIPO2"),
             		vitalidad,
             		ataque,
             		defensa,
@@ -66,8 +69,8 @@ public class PokemonBD {
             	
             
 
-            String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO) " +
-                                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2) " +
+                                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = conexion.prepareStatement(queryInsertPokemon);
 
             st.setInt(1, nuevoIdPokemon);
@@ -85,7 +88,9 @@ public class PokemonBD {
             st.setInt(13, fertilidad);
             st.setString(14, String.valueOf(sexo));
             st.setString(15, "NORMAL"); 
-            st.setInt(16, 1); 
+            st.setInt(16, 1);
+            st.setString(17, resultadoPokedex.getString("TIPO1"));
+            st.setString(18, resultadoPokedex.getString("TIPO2"));
             
             st.executeUpdate();
             st.close();
@@ -113,4 +118,6 @@ public class PokemonBD {
             return 1; 
         }
     }
+    
+   
 }
