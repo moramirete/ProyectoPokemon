@@ -55,6 +55,12 @@ public class CapturaController {
     @FXML
     void capturarPokemon(ActionEvent event) {
     	System.out.println("Se ha accionado el boton de capturar");
+    	
+    	lblPokemon.setGraphic(null);
+    	lblPokemon.setText("");
+    	
+    	
+    	
     }
     
     @FXML
