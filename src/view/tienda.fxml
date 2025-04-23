@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -15,22 +16,28 @@
             <Image url="@../../multimedia/imagenes/fondos/tiendaFondo.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id="tblTienda" layoutX="34.0" layoutY="26.0" prefHeight="277.0" prefWidth="298.0">
+      <TableView fx:id="tblTienda" layoutX="34.0" layoutY="19.0" prefHeight="294.0" prefWidth="298.0">
         <columns>
           <TableColumn fx:id="nombre" prefWidth="131.20001220703125" text="Nombre" />
-          <TableColumn fx:id="precio" prefWidth="165.60001220703123" text="Precio" />
+          <TableColumn fx:id="precio" prefWidth="137.0" text="Precio" />
         </columns>
       </TableView>
       <Button fx:id="btnComprar" layoutX="34.0" layoutY="323.0" mnemonicParsing="false" onAction="#comprar" prefHeight="39.0" prefWidth="107.0" text="Comprar" />
       <Button fx:id="btnVender" layoutX="173.0" layoutY="323.0" mnemonicParsing="false" onAction="#vender" prefHeight="39.0" prefWidth="107.0" text="Vender" />
       <Button fx:id="btnMochila" layoutX="312.0" layoutY="323.0" mnemonicParsing="false" onAction="#abrirMochila" prefHeight="39.0" prefWidth="107.0" text="Mochila" />
       <Button fx:id="btnSalir" layoutX="445.0" layoutY="323.0" mnemonicParsing="false" onAction="#salir" prefHeight="39.0" prefWidth="107.0" text="Salir" />
-      <TextField fx:id="txtPokedolares" layoutX="446.0" layoutY="26.0" prefHeight="26.0" prefWidth="107.0" />
+      <TextField fx:id="txtPokedolares" editable="false" layoutX="429.0" layoutY="21.0" prefHeight="26.0" prefWidth="78.0" />
       <ImageView fx:id="imgObjeto" fitHeight="104.0" fitWidth="107.0" layoutX="394.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="57.0" fitWidth="55.0" layoutX="507.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../multimedia/imagenes/fondos/moneda.png" />
+         </image>
+      </ImageView>
       <TableView layoutX="353.0" layoutY="61.0" prefHeight="133.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="colDescripcion" prefWidth="199.0" text="Descripcion" />
         </columns>
       </TableView>
+      <Label fx:id="lblPokedollares" layoutX="432.0" layoutY="26.0" prefHeight="17.0" prefWidth="69.0" />
    </children>
 </AnchorPane>
