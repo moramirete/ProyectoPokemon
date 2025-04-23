@@ -21,6 +21,10 @@ public class Objeto {
 	}
 
 	public String getRutaImagen() {
+		if (rutaImagen == null || rutaImagen.isEmpty()) {
+	        
+	        return "/imagenes/default.png";
+	    }
 	    return "/imagenes/" + rutaImagen;
 	}
 
