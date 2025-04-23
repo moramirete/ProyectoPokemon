@@ -33,12 +33,6 @@ public class TiendaController {
 
 	private ObservableList<Objeto> listaObjetos;
 
-	public void init(Entrenador ent, Stage stage, MenuController menuController) {
-		this.menuController = menuController;
-		this.stage = stage;
-		this.entrenador = ent;
-	}
-
 	@FXML
 	private Button btnComprar;
 
@@ -50,9 +44,6 @@ public class TiendaController {
 
 	@FXML
 	private Button btnVender;
-
-	@FXML
-	private TableColumn<Objeto, String> colDescripcion;
 
 	@FXML
 	private TableColumn<Objeto, String> nombre;
@@ -68,24 +59,45 @@ public class TiendaController {
 
 	@FXML
 	private ImageView imgObjeto;
+	
+    @FXML
+    private Label lblPokedollares;
+    
+    @FXML
+    private Label lblDescripcion;
+   
+    @FXML
+    private TextField txtDescripcion;
+    
+	public void init(Entrenador ent, Stage stage, MenuController menuController) {
+		this.menuController = menuController;
+		this.stage = stage;
+		this.entrenador = ent;
+		
+		lblPokedollares.setText(Integer.toString(entrenador.getPokedolares()));
+	}
 
 	@FXML
 	public void initialize() {
 		// Configurar las columnas
 		nombre.setCellValueFactory(new PropertyValueFactory<>("nombreObjeto"));
 		precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-		colDescripcion.setCellValueFactory(obj -> new SimpleStringProperty(
-				"Ataque: " + obj.getValue().getAtaque() + ", Defensa: " + obj.getValue().getDefensa()));
 
 		//Cambiar imagen al seleccionar
 		tblTienda.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 		    if (newSelection != null) {
 		        actualizarImagen(newSelection);
+		        actualizarDescripcion(newSelection);
 		    }
 		});
 		
 		// Cargar los objetos desde la base de datos
 		cargarObjetos();
+	}
+	
+	private void actualizarDescripcion(Objeto objeto) {
+	    // Cambiar el texto del lblDescripcion con la descripción del objeto seleccionado
+	    lblDescripcion.setText(objeto.getDescripcion());
 	}
 
 	private void cargarObjetos() {

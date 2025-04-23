@@ -29,7 +29,8 @@ public class ObjetoBD {
                     rs.getInt("VITALIDAD"),
                     rs.getInt("PP"),
                     rs.getInt("PRECIO"),
-                    rs.getString("RUTA_IMAGEN")
+                    rs.getString("RUTA_IMAGEN"),
+                    rs.getString("DESCRIPCION")
                 );
                 
                 

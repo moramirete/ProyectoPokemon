@@ -26,18 +26,15 @@
       <Button fx:id="btnVender" layoutX="173.0" layoutY="323.0" mnemonicParsing="false" onAction="#vender" prefHeight="39.0" prefWidth="107.0" text="Vender" />
       <Button fx:id="btnMochila" layoutX="312.0" layoutY="323.0" mnemonicParsing="false" onAction="#abrirMochila" prefHeight="39.0" prefWidth="107.0" text="Mochila" />
       <Button fx:id="btnSalir" layoutX="445.0" layoutY="323.0" mnemonicParsing="false" onAction="#salir" prefHeight="39.0" prefWidth="107.0" text="Salir" />
-      <TextField fx:id="txtPokedolares" editable="false" layoutX="429.0" layoutY="21.0" prefHeight="26.0" prefWidth="78.0" />
+      <TextField fx:id="txtPokedolares" editable="false" layoutX="412.0" layoutY="22.0" prefHeight="26.0" prefWidth="115.0" />
       <ImageView fx:id="imgObjeto" fitHeight="104.0" fitWidth="107.0" layoutX="394.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="57.0" fitWidth="55.0" layoutX="507.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="57.0" fitWidth="55.0" layoutX="525.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../multimedia/imagenes/fondos/moneda.png" />
          </image>
       </ImageView>
-      <TableView layoutX="353.0" layoutY="61.0" prefHeight="133.0" prefWidth="200.0">
-        <columns>
-          <TableColumn fx:id="colDescripcion" prefWidth="199.0" text="Descripcion" />
-        </columns>
-      </TableView>
-      <Label fx:id="lblPokedollares" layoutX="432.0" layoutY="26.0" prefHeight="17.0" prefWidth="69.0" />
+      <Label fx:id="lblPokedollares" layoutX="415.0" layoutY="24.0" prefHeight="20.0" prefWidth="107.0" />
+      <TextField fx:id="txtDescripcion" editable="false" layoutX="345.0" layoutY="61.0" prefHeight="251.0" prefWidth="235.0" />
+      <Label fx:id="lblDescripcion" layoutX="350.0" layoutY="68.0" prefHeight="240.0" prefWidth="224.0" />
    </children>
 </AnchorPane>
