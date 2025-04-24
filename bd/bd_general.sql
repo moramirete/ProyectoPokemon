@@ -467,3 +467,82 @@ UPDATE OBJETO SET RUTA_IMAGEN = 'pokeball.png' WHERE ID_OBJETO = 8;
 UPDATE OBJETO SET RUTA_IMAGEN = 'pocion.png' WHERE ID_OBJETO = 9;
 UPDATE OBJETO SET RUTA_IMAGEN = 'superpocion.png' WHERE ID_OBJETO = 10;
 UPDATE OBJETO SET RUTA_IMAGEN = 'hiperpocion.png' WHERE ID_OBJETO = 11;
+
+-- Cambio en la tabla objeto para insertar descripcion para cada uno de ellos (Cambios realizados dia 23/04/2025)
+ALTER TABLE OBJETO MODIFY DESCRIPCION VARCHAR(1000);
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Un objeto de entrenamiento extremo. Al equiparlo, el Pokémon se vuelve más fuerte y resistente, pero su velocidad se ve comprometida por el peso adicional. Ideal para luchadores que no necesitan moverse rápido.', 
+  CHAR(10), CHAR(10),
+  'Ataque +20%', CHAR(10),
+  'Defensa +20%', CHAR(10),
+  'Velocidad -20%'
+) WHERE ID_OBJETO = 1;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Ligera como el viento, esta pluma mística permite que el Pokémon se mueva con increíble rapidez, aunque sacrifica parte de su resistencia al impacto.', 
+  CHAR(10), CHAR(10),
+  'Velocidad +30%', CHAR(10),
+  'Defensa -20%', CHAR(10),
+  'Defensa Especial -20%'
+) WHERE ID_OBJETO = 2;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Un chaleco reforzado que protege al portador de ataques físicos y especiales. Sin embargo, su peso afecta tanto el movimiento como la fuerza bruta del Pokémon.', 
+  CHAR(10), CHAR(10),
+  'Defensa +20%', CHAR(10),
+  'Defensa Especial +20%', CHAR(10),
+  'Velocidad -15%', CHAR(10),
+  'Ataque -15%'
+) WHERE ID_OBJETO = 3;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Un bastón mágico que canaliza energía vital hacia el cuerpo del Pokémon, aumentando su resistencia general. A cambio, su movilidad se ve afectada.', 
+  CHAR(10), CHAR(10),
+  'Estamina +20%', CHAR(10),
+  'Velocidad -15%'
+) WHERE ID_OBJETO = 4;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Unas pilas de alta energía diseñadas para restaurar rápidamente la estamina. Perfectas para combates prolongados, aunque pueden dejar expuesta la defensa especial del Pokémon.', 
+  CHAR(10), CHAR(10),
+  'Recuperación de Estamina +50%', CHAR(10),
+  'Defensa Especial -30%'
+) WHERE ID_OBJETO = 5;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Un frasco con un líquido brillante que reenergiza los movimientos de un Pokémon. Solo se puede usar una vez por combate.', 
+  CHAR(10), CHAR(10),
+  'Restaura los PP de un movimiento'
+) WHERE ID_OBJETO = 6;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Un anillo legendario que otorga poder absoluto durante un corto periodo. El Pokémon se vuelve invulnerable y su poder de ataque se multiplica exponencialmente. Su uso es extremadamente raro.', 
+  CHAR(10), CHAR(10),
+  'Invulnerable durante 3 turnos', CHAR(10),
+  'Ataque ×10 durante esos turnos'
+) WHERE ID_OBJETO = 7;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'La herramienta clásica de todo entrenador. Usada para capturar Pokémon salvajes. Un básico imprescindible para cualquier aventura.', 
+  CHAR(10), CHAR(10),
+  'Precio: 50 Pokédólares'
+) WHERE ID_OBJETO = 8;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Una poción básica que restaura un poco la salud de tu Pokémon. Ideal para combates tempranos o entrenamientos rápidos.', 
+  CHAR(10), CHAR(10),
+  'Cura 30 PS'
+) WHERE ID_OBJETO = 9;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Una versión mejorada de la poción estándar. Restablece una cantidad moderada de salud, útil para momentos más tensos del combate.', 
+  CHAR(10), CHAR(10),
+  'Cura 60 PS'
+) WHERE ID_OBJETO = 10;
+
+UPDATE OBJETO SET DESCRIPCION = CONCAT(
+  'Una potente medicina que devuelve una gran cantidad de salud al instante. Esencial para enfrentamientos difíciles o Pokémon con muchos PS.', 
+  CHAR(10), CHAR(10),
+  'Cura 90 PS'
+) WHERE ID_OBJETO = 11;

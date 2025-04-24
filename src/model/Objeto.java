@@ -13,6 +13,7 @@ public class Objeto {
 	private int pp;
 	private int precio;
 	private String rutaImagen;
+	private String descripcion;
 	
 	public Objeto(String rutaImagen) {
 	   
@@ -33,7 +34,7 @@ public class Objeto {
 	}
 	
 	public Objeto(int idObjeto, String nombreObjeto, int ataque, int defensa, int ataqueEspecial, int defensaEspecial,
-			int velocidad, int vitalidad, int pp, int precio, String rutaImagen) {
+			int velocidad, int vitalidad, int pp, int precio, String rutaImagen, String descripcion) {
 		super();
 		this.idObjeto = idObjeto;
 		this.nombreObjeto = nombreObjeto;
@@ -46,8 +47,17 @@ public class Objeto {
 		this.pp = pp;
 		this.precio = precio;
 		this.rutaImagen = rutaImagen;
+		this.descripcion = descripcion;
 	}
 	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public Objeto(String nombreObjeto, int precio) {
 		super();
 		this.nombreObjeto = nombreObjeto;
