@@ -53,8 +53,6 @@ public class TiendaController {
 	@FXML
 	private Button btnVender;
 
-	@FXML
-	private TableColumn<Objeto, String> colDescripcion;
 
 	@FXML
 	private TableColumn<Objeto, String> nombre;
@@ -64,9 +62,18 @@ public class TiendaController {
 
 	@FXML
 	private TableView<Objeto> tblTienda;
+	
+	@FXML
+	private TextField txtDescripcion;
 
 	@FXML
 	private TextField txtPokedolares;
+	
+	@FXML
+	private Label lblPokedollares;
+
+	@FXML
+	private Label lblDescripcion;
 
 	@FXML
 	private ImageView imgObjeto;
@@ -76,8 +83,6 @@ public class TiendaController {
 		// Configurar las columnas
 		nombre.setCellValueFactory(new PropertyValueFactory<>("nombreObjeto"));
 		precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-		colDescripcion.setCellValueFactory(obj -> new SimpleStringProperty(
-				"Ataque: " + obj.getValue().getAtaque() + ", Defensa: " + obj.getValue().getDefensa()));
 
 		// Cambiar imagen al seleccionar
 		tblTienda.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -141,7 +146,7 @@ public class TiendaController {
 			Scene scene = new Scene(root);
 
 			mochilaController.init(entrenador, nuevaStage, menuController);
-			mochilaController.actualicarContentMochila();
+			mochilaController.actualizarContentMochila();
 			this.setMochilaController(mochilaController);
 
 			nuevaStage.setTitle("Pokémon Super Nenes - Mochila");
@@ -208,7 +213,7 @@ public class TiendaController {
 
 		// Actualizar la mochila en la interfaz
 		if (mochilaController != null) {
-			mochilaController.actualicarContentMochila();
+			mochilaController.actualizarContentMochila();
 		}
 	}
 
@@ -217,10 +222,6 @@ public class TiendaController {
 
 	public void setMochilaController(MochilaController mochilaController) {
 		this.mochilaController = mochilaController;
-	}
-
-	private void actualizarMochila() {
-		cargarObjetos();
 	}
 
 	@FXML

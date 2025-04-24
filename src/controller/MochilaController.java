@@ -84,7 +84,7 @@ public class MochilaController {
 		}
 	}
 	
-	public void actualicarContentMochila() {
+	public void actualizarContentMochila() {
 		ArrayList<Mochila> objetos = MochilaBD.obtenerMochila(entrenador.getIdEntrenador());
 		ObservableList<Mochila> lista = FXCollections.observableArrayList(objetos);
 		tblListaMochila.setItems(lista);
