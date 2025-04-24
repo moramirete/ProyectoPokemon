@@ -8,6 +8,7 @@ import java.util.LinkedList;
 
 import model.Mochila;
 import model.Objeto;
+import model.ObjetoEnMochila;
 
 public class MochilaBD {
 
@@ -58,6 +59,10 @@ public class MochilaBD {
 	    }
 	
     public static boolean agregarObjeto(Mochila mochila) {
+    	
+    	if (mochila.getCantidad() <= 0) {
+			return false;
+		}
         try (Connection con = BDConecction.getConnection()) {
             String sql = "INSERT INTO MOCHILA (ID_ENTRENADOR, ID_OBJETO, CANTIDAD) VALUES (?, ?, ?) ";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -88,6 +93,12 @@ public class MochilaBD {
     
     public static boolean actualizarCantidad(int idEntrenador, int idObjeto, int nuevaCantidad) {
         try (Connection con = BDConecction.getConnection()) {
+        	//Si es cerro no aparece
+        	if (nuevaCantidad <= 0) {
+                
+                return eliminarObjeto(idEntrenador, idObjeto);
+            }
+        	
             String sql = "UPDATE MOCHILA SET CANTIDAD = ? WHERE ID_ENTRENADOR = ? AND ID_OBJETO = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, nuevaCantidad);
@@ -122,5 +133,29 @@ public class MochilaBD {
         return mochila;
     }
 
-    
+    public static ArrayList<ObjetoEnMochila> obtenerContenidoMochila(int idEntrenador) {
+        ArrayList<ObjetoEnMochila> lista = new ArrayList<>();
+        try (Connection con = BDConecction.getConnection()) {
+            String sql = """
+                SELECT o.NOM_OBJETO, o.DESCRIPCION, m.CANTIDAD 
+                FROM MOCHILA m 
+                JOIN OBJETO o ON m.ID_OBJETO = o.ID_OBJETO 
+                WHERE m.ID_ENTRENADOR = ? AND m.CANTIDAD > 0
+            """;
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEntrenador);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                lista.add(new ObjetoEnMochila(
+                    rs.getString("NOM_OBJETO"),
+                    rs.getString("DESCRIPCION"),
+                    rs.getInt("CANTIDAD")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
 }

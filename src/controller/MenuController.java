@@ -328,7 +328,7 @@ public class MenuController {
 		this.entrenador = ent;
 
 		lblJugador.setText(entrenador.getUsuario());
-		lblPokedollares.setText(Integer.toString(entrenador.getPokedolares()));
+		lblPokedollares.textProperty().bind(entrenador.pokedolaresProperty().asString());
 	}
 
 	/**

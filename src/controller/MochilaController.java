@@ -18,8 +18,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Entrenador;
 import model.Mochila;
+import model.ObjetoEnMochila;
 
 public class MochilaController {
 
@@ -32,6 +34,17 @@ public class MochilaController {
 		this.stage = stage;
 		this.entrenador = ent;
 		
+		actualizarContentMochila();
+	}
+	
+	public void initialize() {
+	    clmObjeto.setCellValueFactory(new PropertyValueFactory<>("nombreObjeto"));
+	    clmDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+	    clmCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+	    
+	    if (entrenador != null) {
+	        actualizarContentMochila();
+	    }
 	}
 
 	@FXML
@@ -47,16 +60,16 @@ public class MochilaController {
 	private Button btnTienda;
 
 	@FXML
-	private TableColumn<Mochila, Integer> clmCantidad;
+	private TableColumn<ObjetoEnMochila, Integer> clmCantidad;
 
 	@FXML
-	private TableColumn<Mochila, String> clmDescripcion;
+	private TableColumn<ObjetoEnMochila, String> clmDescripcion;
 
 	@FXML
-	private TableColumn<Mochila, String> clmObjeto;
+	private TableColumn<ObjetoEnMochila, String> clmObjeto;
 	
 	@FXML
-	private TableView<Mochila> tblListaMochila;
+	private TableView<ObjetoEnMochila> tblListaMochila;
 
 	@FXML
 	void accederTienda(ActionEvent event) {
@@ -71,7 +84,7 @@ public class MochilaController {
 			nuevaStage.setTitle("Pokémon Super Nenes - Tienda");
 			nuevaStage.setScene(scene);
 
-			tiendaController.init(entrenador, nuevaStage, menuController); // ✅ Usar el controlador correcto
+			tiendaController.init(entrenador, nuevaStage, menuController); //Usar el controlador correcto
 
 			nuevaStage.show();
 			this.stage.close();
@@ -85,9 +98,9 @@ public class MochilaController {
 	}
 	
 	public void actualizarContentMochila() {
-		ArrayList<Mochila> objetos = MochilaBD.obtenerMochila(entrenador.getIdEntrenador());
-		ObservableList<Mochila> lista = FXCollections.observableArrayList(objetos);
-		tblListaMochila.setItems(lista);
+	    ArrayList<ObjetoEnMochila> objetos = MochilaBD.obtenerContenidoMochila(entrenador.getIdEntrenador());
+	    ObservableList<ObjetoEnMochila> lista = FXCollections.observableArrayList(objetos);
+	    tblListaMochila.setItems(lista);
 	}
 
 	@FXML

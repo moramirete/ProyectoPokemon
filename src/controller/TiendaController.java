@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Entrenador;
@@ -39,6 +40,8 @@ public class TiendaController {
 		this.menuController = menuController;
 		this.stage = stage;
 		this.entrenador = ent;
+		
+		lblPokedollares.textProperty().bind(entrenador.pokedolaresProperty().asString());//vincula el label de los pokedolares y asi se actualizan todos a la vez
 	}
 
 	@FXML
@@ -64,7 +67,7 @@ public class TiendaController {
 	private TableView<Objeto> tblTienda;
 	
 	@FXML
-	private TextField txtDescripcion;
+	private TextArea txtDescripcion;
 
 	@FXML
 	private TextField txtPokedolares;
@@ -88,6 +91,8 @@ public class TiendaController {
 		tblTienda.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 			if (newSelection != null) {
 				actualizarImagen(newSelection);
+				
+				txtDescripcion.setText(newSelection.getDescripcion());
 			}
 		});
 
@@ -209,7 +214,7 @@ public class TiendaController {
 
 		// Descontar el dinero del entrenador y actualizar el display
 		entrenador.setPokedolares(entrenador.getPokedolares() - precio);
-		txtPokedolares.setText(String.valueOf(entrenador.getPokedolares()));
+		
 
 		// Actualizar la mochila en la interfaz
 		if (mochilaController != null) {

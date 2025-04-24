@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.util.LinkedList;
 
 import bd.PokemonBD;
+import javafx.beans.property.SimpleIntegerProperty;
 import bd.BDConecction;
 
 public class Entrenador {
 
 	private String usuario;
 	private String pass;
-	private int pokedolares;
+	private SimpleIntegerProperty pokedolares;
 	private int idEntrenador;
 	private Pokemon pokPrincipal;
 	private LinkedList<Objeto> mochila = new LinkedList<Objeto>();
@@ -23,7 +24,7 @@ public class Entrenador {
 		super();
 		this.usuario = usuario;
 		this.pass = pass;
-		this.pokedolares = pokedolares;
+		this.pokedolares = new SimpleIntegerProperty (pokedolares);
 		this.idEntrenador = idEntrenador;
 		this.pokPrincipal = pokPrincipal;
 		this.mochila = mochila;
@@ -36,7 +37,7 @@ public class Entrenador {
 	    this.idEntrenador = 0;
 	    this.usuario = usuario;
 	    this.pass = pass;
-	    this.pokedolares = 1000;
+	    this.pokedolares = new SimpleIntegerProperty (1000);
 	    this.mochila = new LinkedList<Objeto>();
 	    this.equipo = new LinkedList<Pokemon>();
 	    this.caja = new LinkedList<Pokemon>();
@@ -64,12 +65,12 @@ public class Entrenador {
 
 
 	public int getPokedolares() {
-		return pokedolares;
+		return pokedolares.get();
 	}
 
 
 	public void setPokedolares(int pokedolares) {
-		this.pokedolares = pokedolares;
+		this.pokedolares.set(pokedolares);
 	}
 
 
@@ -122,6 +123,8 @@ public class Entrenador {
 		this.caja = caja;
 	}
 	
-	
+	public SimpleIntegerProperty pokedolaresProperty() {
+	    return pokedolares;
+	}
 	
 }

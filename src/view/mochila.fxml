@@ -14,11 +14,11 @@
             <Image url="@../../multimedia/imagenes/fondos/fondoMochila2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblListaMochila" layoutX="50.0" layoutY="24.0" prefHeight="294.0" prefWidth="500.0">
+      <TableView fx:id="tblListaMochila" layoutX="28.0" layoutY="25.0" prefHeight="294.0" prefWidth="543.0">
         <columns>
-          <TableColumn fx:id="clmCantidad" prefWidth="75.0" text="Cantidad" />
-          <TableColumn fx:id="clmObjeto" prefWidth="75.0" text="Objeto" />
-            <TableColumn fx:id="clmDescripcion" prefWidth="348.0" text="Descripción" />
+          <TableColumn fx:id="clmCantidad" prefWidth="58.400020599365234" text="Cantidad" />
+          <TableColumn fx:id="clmObjeto" prefWidth="81.60003662109375" text="Objeto" />
+            <TableColumn fx:id="clmDescripcion" prefWidth="403.2000274658203" text="Descripción" />
         </columns>
       </TableView>
       <Button fx:id="btnEquipar" layoutX="51.0" layoutY="335.0" mnemonicParsing="false" onAction="#equipar" prefHeight="41.0" prefWidth="98.0" text="Equipar" />

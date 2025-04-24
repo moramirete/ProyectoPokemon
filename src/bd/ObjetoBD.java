@@ -33,8 +33,7 @@ public class ObjetoBD {
                     rs.getString("DESCRIPCION")
                 );
                 
-                
-                
+                System.out.println("Objeto: " + objeto.getNombreObjeto() + ", Descripción: " + objeto.getDescripcion());
                 objetos.add(objeto);
             }
         } catch (Exception e) {
