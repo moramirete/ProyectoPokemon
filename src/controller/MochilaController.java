@@ -6,13 +6,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Label;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import bd.MochilaBD;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import model.Entrenador;
+import model.Mochila;
 
 public class MochilaController {
 
@@ -24,6 +31,7 @@ public class MochilaController {
 		this.menuController = menuController;
 		this.stage = stage;
 		this.entrenador = ent;
+		
 	}
 
 	@FXML
@@ -39,13 +47,16 @@ public class MochilaController {
 	private Button btnTienda;
 
 	@FXML
-	private TableColumn<?, ?> clmCantidad;
+	private TableColumn<Mochila, Integer> clmCantidad;
 
 	@FXML
-	private TableColumn<?, ?> clmDescripcion;
+	private TableColumn<Mochila, String> clmDescripcion;
 
 	@FXML
-	private TableColumn<?, ?> clmObjeto;
+	private TableColumn<Mochila, String> clmObjeto;
+	
+	@FXML
+	private TableView<Mochila> tblListaMochila;
 
 	@FXML
 	void accederTienda(ActionEvent event) {
@@ -71,6 +82,12 @@ public class MochilaController {
 			System.out.println("Falla en la carga del archivo FXML.");
 			e.printStackTrace();
 		}
+	}
+	
+	public void actualicarContentMochila() {
+		ArrayList<Mochila> objetos = MochilaBD.obtenerMochila(entrenador.getIdEntrenador());
+		ObservableList<Mochila> lista = FXCollections.observableArrayList(objetos);
+		tblListaMochila.setItems(lista);
 	}
 
 	@FXML

@@ -7,7 +7,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MochilaController">
    <children>
       <ImageView fitHeight="386.0" fitWidth="715.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true">
@@ -15,7 +14,7 @@
             <Image url="@../../multimedia/imagenes/fondos/fondoMochila2.png" />
          </image>
       </ImageView>
-      <TableView layoutX="50.0" layoutY="23.0" prefHeight="294.0" prefWidth="500.0">
+      <TableView fx:id="tblListaMochila" layoutX="50.0" layoutY="24.0" prefHeight="294.0" prefWidth="500.0">
         <columns>
           <TableColumn fx:id="clmCantidad" prefWidth="75.0" text="Cantidad" />
           <TableColumn fx:id="clmObjeto" prefWidth="75.0" text="Objeto" />
