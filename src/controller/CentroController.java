@@ -105,15 +105,16 @@ public class CentroController {
 	    barra.setPrefWidth(200);  // Establece el ancho de la barra
 
 	    String color;
+	    
 	    if (porcentaje > 0.5) {
-	        color = "#228B22"; // Verde
+	        color = "#228B22";
 	    } else if (porcentaje > 0.2) {
-	        color = "yellow"; // Amarillo
+	        color = "yellow";
 	    } else {
-	        color = "red"; // Rojo
+	        color = "red";
 	    }
 
-	    barra.setStyle("-fx-accent: " + color + ";");
+	    barra.setStyle("-fx-accent: " + color + ";"); // Establece el color de la barra
 	    label.setText((int) vidaActual + "/" + (int) vidaMaxima);  // Muestra la vida actual y máxima
 	}
 
