@@ -2,6 +2,7 @@ package controller;
 
 import javafx.stage.Stage;
 import model.Entrenador;
+import model.Mochila;
 import model.Objeto;
 import model.ObjetoEnMochila;
 import model.Pokemon;
@@ -9,6 +10,7 @@ import javafx.scene.control.ProgressBar;
 
 import java.util.ArrayList;
 
+import bd.MochilaBD;
 import bd.ObjetoBD;
 import bd.PokemonBD;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -67,66 +69,98 @@ public class CentroController {
 	}
 
 	public void initialize() {
-	    colPokemon.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
-	    colVida.setCellValueFactory(new PropertyValueFactory<>("vitalidad"));
+		colPokemon.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
+		colVida.setCellValueFactory(new PropertyValueFactory<>("vitalidad"));
 
-	    colVida.setCellFactory(tc -> new TableCell<Pokemon, Integer>() {
-	        private final ProgressBar progressBar = new ProgressBar();
-	        private final Label label = new Label();
+		colVida.setCellFactory(tc -> new TableCell<Pokemon, Integer>() {
+			private final ProgressBar progressBar = new ProgressBar();
+			private final Label label = new Label();
 
-	        @Override
-	        protected void updateItem(Integer vidaActual, boolean empty) {
-	            super.updateItem(vidaActual, empty);
-	            if (empty || vidaActual == null) {
-	                setGraphic(null);
-	            } else {
-	                Pokemon pokemon = getTableView().getItems().get(getIndex());
-	                int vidaMaxima = Math.max(pokemon.getVitalidadMax(), 1); // Para evitar dividir por 0
+			@Override
+			protected void updateItem(Integer s, boolean empty) {
+				super.updateItem(s, empty);
+				if (empty || s == null) {
+					setGraphic(null);
+				} else {
+					Pokemon pokemon = getTableView().getItems().get(getIndex());
+					int vidaActual = pokemon.getVitalidad();
+					int vidaMaxima = Math.max(pokemon.getVitalidadMax(), 1); // Evitar división por 0
+			
+					System.out.println("Vida actual: " + vidaActual + ", Vida máxima: " + vidaMaxima);
+			
+					actualizarColorBarraVida(progressBar, label, vidaActual, vidaMaxima);
+			
+					HBox hbox = new HBox(10, progressBar, label);
+					hbox.setSpacing(10);
+					setGraphic(hbox);
+				}
+			}
+		});
 
-	                // Actualizamos la barra y el color directamente
-	                actualizarColorBarraVida(progressBar, label, vidaActual, vidaMaxima);
-
-	                // Establecemos la celda con el ProgressBar y el Label
-	                HBox hbox = new HBox(10, progressBar, label);
-	                hbox.setSpacing(10);  // Espaciado entre la barra de progreso y el texto
-	                setGraphic(hbox);
-	            }
-	        }
-	    });
-
-	    if (entrenador != null) {
-	        cargarEquipo();
-	    }
+		if (entrenador != null) {
+			cargarEquipo();
+		}
 	}
-	
+
 	private void actualizarColorBarraVida(ProgressBar barra, Label label, double vidaActual, double vidaMaxima) {
-	    double porcentaje = vidaActual / vidaMaxima;
-	    barra.setProgress(porcentaje);
-	    barra.setPrefWidth(200);  // Establece el ancho de la barra
+		double porcentaje = vidaActual / vidaMaxima;
+		barra.setProgress(porcentaje);
+		barra.setPrefWidth(200); // Establece el ancho de la barra
 
-	    String color;
-	    
-	    if (porcentaje > 0.5) {
-	        color = "#228B22";
-	    } else if (porcentaje > 0.2) {
-	        color = "yellow";
-	    } else {
-	        color = "red";
-	    }
+		String color;
 
-	    barra.setStyle("-fx-accent: " + color + ";"); // Establece el color de la barra
-	    label.setText((int) vidaActual + "/" + (int) vidaMaxima);  // Muestra la vida actual y máxima
+		if (porcentaje > 0.5) {
+			color = "#228B22";
+		} else if (porcentaje > 0.2) {
+			color = "yellow";
+		} else {
+			color = "red";
+		}
+
+		barra.setStyle("-fx-accent: " + color + ";"); // Establece el color de la barra
+		label.setText((int) vidaActual + "/" + (int) vidaMaxima); // Muestra la vida actual y máxima
 	}
 
 	private void cargarEquipo() {
 		ArrayList<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
 		ObservableList<Pokemon> lista = FXCollections.observableArrayList(equipo);
+
+		for (Pokemon pokemon : lista) {
+			System.out.println("Pokemon: " + pokemon.getNombre_pokemon() +
+							   ", Vitalidad: " + pokemon.getVitalidad() +
+							   ", Vitalidad Max: " + pokemon.getVitalidadMax());
+		}
+
 		tableCentro.setItems(lista);
 	}
 
 	@FXML
 	void recuperarPokemon(ActionEvent event) {
+		// Obtener el objeto seleccionado en la tienda
+		Pokemon pokSeleccionado = tableCentro.getSelectionModel().getSelectedItem();
 
+		if (pokSeleccionado == null) {
+			System.out.println("No se ha seleccionado ningún objeto.");
+			return;
+		}
+
+		if (pokSeleccionado.getVitalidad() == pokSeleccionado.getVitalidadMax()) {
+			System.out.println("Este pokemon ya esta curado");
+			return;
+		}
+
+		 // Intentar curar el Pokémon en la base de datos
+		 if (PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon())) {
+			System.out.println("Se ha curado el Pokémon " + pokSeleccionado.getNombre_pokemon());
+	
+			// Actualizar la vitalidad del Pokémon en la lista observable
+			pokSeleccionado.setVitalidad(pokSeleccionado.getVitalidadMax());
+	
+			// Refrescar la tabla para reflejar los cambios
+			tableCentro.refresh();
+		} else {
+			System.out.println("No se pudo curar el Pokémon.");
+		}
 	}
 
 	@FXML

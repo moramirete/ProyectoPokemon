@@ -32,7 +32,7 @@ public class Pokemon {
 	
 	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2, 
 			int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad, 
-			int nivel, int fertilidad,int equipo, String nombre_pokemon, String estado, char sexo, 
+			int nivel, int fertilidad,int equipo, String nombre_pokemon, String estado, char sexo, int vitalidadMax, 
 			LinkedList<Movimiento> movPrincipales, LinkedList<Movimiento> movSecundarios) {
 		
 		super();
@@ -43,7 +43,7 @@ public class Pokemon {
 		this.tipo1 = tipo1;
 		this.tipo2 = tipo2;
 		this.vitalidad = vitalidad;
-		this.vitalidadMax = vitalidad;
+		this.vitalidadMax = vitalidadMax;
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.ataque_especial = ataque_especial;
@@ -63,7 +63,7 @@ public class Pokemon {
 	
 	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2, 
 			int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, 
-			int fertilidad, int equipo, String nombre_pokemon, String estado, char sexo) {
+			int fertilidad, int equipo, String nombre_pokemon, String estado, char sexo, int vitalidadMax) {
 		
 		super();
 		this.id_pokemon = id_pokemon;
@@ -73,7 +73,7 @@ public class Pokemon {
 		this.tipo1 = tipo1;
 		this.tipo2 = tipo2;
 		this.vitalidad = vitalidad;
-		this.vitalidadMax = vitalidad;
+		this.vitalidadMax = vitalidadMax;
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.ataque_especial = ataque_especial;

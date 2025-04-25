@@ -67,7 +67,8 @@ public class PokemonBD {
             		1,
             		resultadoPokedex.getString("NOM_POKEMON"),
             		estado,
-            		sexo
+            		sexo,
+            		vitalidad
             );
             	
             
@@ -162,7 +163,8 @@ public class PokemonBD {
             		3,
             		resultadoPokedex.getString("NOM_POKEMON"),
             		estado,
-            		sexo
+            		sexo,
+            		vitalidad
             );
             
         } catch (SQLException e) {
@@ -177,7 +179,7 @@ public class PokemonBD {
     public static void guardarPokemonCaptura(Pokemon pok, Connection conexion) {
     	try {
 
-            	String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2) " +
+            	String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2, VITALIDADMAX) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             	PreparedStatement st = conexion.prepareStatement(queryInsertPokemon);
 
@@ -199,6 +201,8 @@ public class PokemonBD {
             	st.setInt(16, pok.getEquipo());
             	st.setString(17, pok.getTipo1());
             	st.setString(18, pok.getTipo2());
+            	st.setInt(16, pok.getVitalidad());
+            	
 
             	st.executeUpdate();
             	st.close();
@@ -252,9 +256,10 @@ public class PokemonBD {
                     rs.getInt("EQUIPO"),             
                     rs.getString("NOM_POKEMON"),     
                     rs.getString("ESTADO"),          
-                    rs.getString("SEXO").charAt(0)
+                    rs.getString("SEXO").charAt(0),
+                    rs.getInt("VITALIDADMAX")
                 ));
-            }
+            };
                 
                 System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
             
@@ -264,5 +269,21 @@ public class PokemonBD {
     	
     	return equipo;
     }
+    
+    public static boolean curarPokemon(int idEntrenador, int idPokemon) {
+        try (Connection con = BDConecction.getConnection()) {
+        	
+            String sql = "UPDATE POKEMON SET VITALIDAD = VITALIDADMAX WHERE ID_ENTRENADOR = ? AND ID_POKEMON = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEntrenador);
+            stmt.setInt(2, idPokemon);
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
    
 }
