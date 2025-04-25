@@ -5,10 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
 import model.Entrenador;
+import model.Objeto;
+import model.ObjetoEnMochila;
 import model.Pokemon;
 
 public class PokemonBD {
@@ -69,8 +72,8 @@ public class PokemonBD {
             	
             
 
-            String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2) " +
-                                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2, VITALIDADMAX) " +
+                                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = conexion.prepareStatement(queryInsertPokemon);
 
             st.setInt(1, nuevoIdPokemon);
@@ -91,6 +94,7 @@ public class PokemonBD {
             st.setInt(16, 1);
             st.setString(17, resultadoPokedex.getString("TIPO1"));
             st.setString(18, resultadoPokedex.getString("TIPO2"));
+            st.setInt(19, vitalidad);
             
             st.executeUpdate();
             st.close();
@@ -217,5 +221,48 @@ public class PokemonBD {
         }
     }
     
+    public static ArrayList<Pokemon> obtenerEquipo(int idEntrenador){
+    	ArrayList<Pokemon> equipo = new ArrayList<>();
+    	
+    	try (Connection con = BDConecction.getConnection()) {
+            String sql = "SELECT * \r\n"
+            		+ "FROM POKEMON p \r\n"
+            		+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
+            		+ "WHERE e.ID_ENTRENADOR = ? AND p.EQUIPO > 0 AND p.EQUIPO < 3 ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEntrenador);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                equipo.add(new Pokemon(
+                    rs.getInt("ID_POKEMON"),       
+                    rs.getInt("ID_ENTRENADOR"),     
+                    rs.getInt("NUM_POKEDEX"),       
+                    rs.getInt("ID_OBJETO"),         
+                    rs.getString("TIPO1"),       
+                    rs.getString("TIPO2"),           
+                    rs.getInt("VITALIDAD"),       
+                    rs.getInt("ATAQUE"),           
+                    rs.getInt("DEFENSA"),            
+                    rs.getInt("AT_ESPECIAL"),        
+                    rs.getInt("DEF_ESPECIAL"),      
+                    rs.getInt("VELOCIDAD"),          
+                    rs.getInt("NIVEL"),             
+                    rs.getInt("FERTILIDAD"),         
+                    rs.getInt("EQUIPO"),             
+                    rs.getString("NOM_POKEMON"),     
+                    rs.getString("ESTADO"),          
+                    rs.getString("SEXO").charAt(0)
+                ));
+            }
+                
+                System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    	
+    	return equipo;
+    }
    
 }

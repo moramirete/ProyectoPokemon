@@ -14,6 +14,7 @@ public class Pokemon {
 	private String tipo1;
 	private String tipo2;
 	private int vitalidad;
+	private int vitalidadMax;
 	private int ataque;
 	private int defensa;
 	private int ataque_especial;
@@ -42,6 +43,7 @@ public class Pokemon {
 		this.tipo1 = tipo1;
 		this.tipo2 = tipo2;
 		this.vitalidad = vitalidad;
+		this.vitalidadMax = vitalidad;
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.ataque_especial = ataque_especial;
@@ -71,6 +73,7 @@ public class Pokemon {
 		this.tipo1 = tipo1;
 		this.tipo2 = tipo2;
 		this.vitalidad = vitalidad;
+		this.vitalidadMax = vitalidad;
 		this.ataque = ataque;
 		this.defensa = defensa;
 		this.ataque_especial = ataque_especial;
@@ -86,6 +89,8 @@ public class Pokemon {
 		this.movSecundarios = new LinkedList<Movimiento>();
 	}
 	
+	//Copia
+	
 	public Pokemon(Pokemon c) {
 		
 		super();
@@ -94,6 +99,7 @@ public class Pokemon {
 		this.num_pokedex = c.num_pokedex;
 		this.id_objeto = c.id_objeto;
 		this.vitalidad = c.vitalidad;
+		this.vitalidadMax = c.vitalidadMax;
 		this.ataque = c.ataque;
 		this.defensa = c.defensa;
 		this.ataque_especial = c.ataque_especial;
@@ -108,8 +114,6 @@ public class Pokemon {
 		this.movPrincipales = c.movPrincipales;
 		this.movSecundarios = c.movSecundarios;
 	}
-	
-	//Copia
 	
 	public LinkedList<Movimiento> getMovPrincipales() {
 		return movPrincipales;
@@ -136,6 +140,7 @@ public class Pokemon {
 		this.num_pokedex = 0;
 		this.id_objeto = 0;
 		this.vitalidad = 0;
+		this.vitalidadMax = 0;
 		this.ataque = 0;
 		this.defensa = 0;
 		this.ataque_especial = 0;
@@ -260,6 +265,15 @@ public class Pokemon {
 	public void setTipo2(String tipo2) {
 		this.tipo2 = tipo2;
 	}
+
+	public int getVitalidadMax() {
+		return vitalidadMax;
+	}
+
+	public void setVitalidadMax(int vitalidadMax) {
+		this.vitalidadMax = vitalidadMax;
+	}
+	
 
 	
 }
