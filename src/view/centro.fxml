@@ -33,15 +33,12 @@
 -->
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CentroController">
   <children>
@@ -52,25 +49,14 @@
                   <Image url="@../../multimedia/imagenes/fondos/fondoCentro.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="btnSalir" layoutX="490.0" layoutY="182.0" mnemonicParsing="false" onAction="#volverMenu" prefHeight="64.0" prefWidth="137.0" text="Volver a Menu" />
+            <Button fx:id="btnSalir" layoutX="490.0" layoutY="224.0" mnemonicParsing="false" onAction="#volverMenu" prefHeight="64.0" prefWidth="137.0" text="Volver a Menu" />
             <TableView fx:id="tableCentro" layoutX="14.0" layoutY="13.0" prefHeight="370.0" prefWidth="429.0">
               <columns>
                 <TableColumn fx:id="colPokemon" minWidth="0.0" prefWidth="171.0" text="Pokemon" />
                   <TableColumn fx:id="colVida" prefWidth="255.0" text="Vida" />
               </columns>
             </TableView>
-            <Button fx:id="btnRecuperar" layoutX="490.0" layoutY="88.0" mnemonicParsing="false" onAction="#recuperarPokemon" prefHeight="64.0" prefWidth="137.0" text="Recuperar" />
-            <TextField fx:id="txtPokedolares" alignment="CENTER" editable="false" layoutX="489.0" layoutY="23.0" prefHeight="26.0" prefWidth="93.0" />
-            <Label fx:id="lblPokedollares" alignment="CENTER" layoutX="493.0" layoutY="26.0" prefHeight="20.0" prefWidth="86.0" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="582.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/moneda.png" />
-               </image>
-            </ImageView>
+            <Button fx:id="btnRecuperar" layoutX="490.0" layoutY="117.0" mnemonicParsing="false" onAction="#recuperarPokemon" prefHeight="64.0" prefWidth="137.0" text="Recuperar" />
          </children>
     </AnchorPane>
   </children>
