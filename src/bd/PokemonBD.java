@@ -179,8 +179,10 @@ public class PokemonBD {
     public static void guardarPokemonCaptura(Pokemon pok, Connection conexion) {
     	try {
 
-            	String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2, VITALIDADMAX) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            	String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, "
+            			+ "VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, "
+            			+ "EQUIPO, TIPO1, TIPO2, VITALIDADMAX) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             	PreparedStatement st = conexion.prepareStatement(queryInsertPokemon);
 
             	st.setInt(1, pok.getId_pokemon());
@@ -201,14 +203,14 @@ public class PokemonBD {
             	st.setInt(16, pok.getEquipo());
             	st.setString(17, pok.getTipo1());
             	st.setString(18, pok.getTipo2());
-            	st.setInt(16, pok.getVitalidad());
+            	st.setInt(19, pok.getVitalidad());
             	
 
             	st.executeUpdate();
             	st.close();
 
     	}catch (SQLException e) {
-            System.err.println("Error al generar el Pokemon principal: " + e.getMessage());
+            System.err.println("Error al generar el Pokemon: " + e.getMessage());
             e.printStackTrace(); 
         }
     }

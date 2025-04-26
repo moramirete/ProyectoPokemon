@@ -19,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class CapturaController {
 
 	private Entrenador entrenador;
@@ -38,7 +40,6 @@ public class CapturaController {
 	 @FXML
 	 private ImageView imgFondo;
 	 
-
 	 @FXML
 	 private Label lblPokemon;
 
@@ -156,11 +157,13 @@ public class CapturaController {
             int prob = rd.nextInt(3);
             
             if(prob == 0){
-            	System.out.println("Has fallado");
+            	JOptionPane.showMessageDialog(null, "El pokemon se ha salido de la bola", "Fallaste", 1);
             }else {
             	PokemonBD.guardarPokemonCaptura(pokemonCreado, conexion);;
         		System.out.println("Pokemon guardado en la BBDD");
+        		
         		lblPokemon.setText("Has capturado un : " + pokemonCreado.getNombre_pokemon());
+        		JOptionPane.showMessageDialog(null, "El pokemon ha sido capturado correctamente, esta situado en la caja", "Capturado", 1);
         		lblPokemon.setGraphic(null);
         		pokemonCreado = null;
             }
