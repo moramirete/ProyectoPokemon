@@ -52,20 +52,13 @@ public class CentroController {
 	private ImageView imagenFondo;
 
 	@FXML
-	private Label lblPokedollares;
-
-	@FXML
 	private TableView<Pokemon> tableCentro;
 
-	@FXML
-	private TextField txtPokedolares;
 
 	public void init(Entrenador ent, Stage stage, MenuController menuController) {
 		this.menuController = menuController;
 		this.stage = stage;
 		this.entrenador = ent;
-
-		lblPokedollares.textProperty().bind(entrenador.pokedolaresProperty().asString());
 
 		cargarEquipo();
 	}
@@ -87,9 +80,9 @@ public class CentroController {
 					Pokemon pokemon = getTableView().getItems().get(getIndex());
 					int vidaActual = pokemon.getVitalidad();
 					int vidaMaxima = pokemon.getVitalidadMax();
-			
+
 					actualizarColorBarraVida(progressBar, label, vidaActual, vidaMaxima);
-			
+
 					HBox hbox = new HBox(10, progressBar, label);
 					hbox.setSpacing(10);
 					setGraphic(hbox);
@@ -126,9 +119,8 @@ public class CentroController {
 		ObservableList<Pokemon> lista = FXCollections.observableArrayList(equipo);
 
 		for (Pokemon pokemon : lista) {
-			System.out.println("Pokemon: " + pokemon.getNombre_pokemon() +
-							   ", Vitalidad: " + pokemon.getVitalidad() +
-							   ", Vitalidad Max: " + pokemon.getVitalidadMax());
+			System.out.println("Pokemon: " + pokemon.getNombre_pokemon() + ", Vitalidad: " + pokemon.getVitalidad()
+					+ ", Vitalidad Max: " + pokemon.getVitalidadMax());
 		}
 
 		tableCentro.setItems(lista);
@@ -149,17 +141,17 @@ public class CentroController {
 			return;
 		}
 
-		 // Intentar curar el Pokémon en la base de datos
-		 if (PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon())) {
-			 
+		// Intentar curar el Pokémon en la base de datos
+		if (PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon())) {
+
 			// Actualizar la vitalidad del Pokémon en la lista observable
 			pokSeleccionado.setVitalidad(pokSeleccionado.getVitalidadMax());
-	
+
 			// Refrescar la tabla para reflejar los cambios y lanzar el mensaje
 			tableCentro.refresh();
-			JOptionPane.showMessageDialog(null, "El pokemon " + pokSeleccionado.getNombre_pokemon() + " se ha curado correctamente", 
-					 "Curación", 1);
-			
+			JOptionPane.showMessageDialog(null,
+					"El pokemon " + pokSeleccionado.getNombre_pokemon() + " se ha curado correctamente", "Curación", 1);
+
 		} else {
 			JOptionPane.showMessageDialog(null, "No se pudo curar al pokemon", "Error", 0);
 		}

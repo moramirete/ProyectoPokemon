@@ -1,7 +1,8 @@
 -- Creacion de base de datos
 CREATE DATABASE pokemon;
 
--- Ahora debe de seleccionar la base de datos de Pokemon para agregar las listas y los datos
+-- Seleccionar la base de datos
+USE pokemon;
 
 -- Tabla ENTRENADOR
 CREATE TABLE ENTRENADOR (
