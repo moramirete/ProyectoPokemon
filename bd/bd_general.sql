@@ -469,7 +469,7 @@ UPDATE OBJETO SET RUTA_IMAGEN = 'superpocion.png' WHERE ID_OBJETO = 10;
 UPDATE OBJETO SET RUTA_IMAGEN = 'hiperpocion.png' WHERE ID_OBJETO = 11;
 
 -- Cambio en la tabla objeto para insertar descripcion para cada uno de ellos (Cambios realizados dia 23/04/2025)
-ALTER TABLE OBJETO MODIFY DESCRIPCION VARCHAR(1000);
+ALTER TABLE OBJETO ADD COLUMN DESCRIPCION VARCHAR(1000);
 
 UPDATE OBJETO SET DESCRIPCION = CONCAT(
   'Un objeto de entrenamiento extremo. Al equiparlo, el Pokémon se vuelve más fuerte y resistente, pero su velocidad se ve comprometida por el peso adicional. Ideal para luchadores que no necesitan moverse rápido.', 
