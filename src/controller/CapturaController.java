@@ -27,6 +27,7 @@ public class CapturaController {
 	private Stage stage;
 	private MenuController menuController;
 	private Pokemon pokemonCreado;
+	private int pokebolasDisponibles = 20;
 
 	@FXML
 	private Button btnCapturar;
@@ -50,6 +51,8 @@ public class CapturaController {
 		this.menuController = menuController;
 		this.stage = stage;
 		this.entrenador = ent;
+		pokebolasDisponibles = 20;
+		lblPokebolas.setText(String.valueOf(pokebolasDisponibles));
 	}
 
 	@FXML
@@ -133,10 +136,22 @@ public class CapturaController {
 	@FXML
 	void capturarPokemon(ActionEvent event) {
 		System.out.println("Se ha accionado el boton de capturar");
-
+		
+		pokebolasDisponibles--;
+		lblPokebolas.setText(String.valueOf(pokebolasDisponibles));
+		
+		if (pokebolasDisponibles <= 0) {
+			JOptionPane.showMessageDialog(null,"Te has quedado sin Pokeballs", "Sin Pokeballs", 1);
+			btnCapturar.setDisable(true);
+			return;
+		}
+		
 		BDConecction con = new BDConecction();
 
 		Connection conexion = con.getConnection();
+		
+		
+		
 
 		if (pokemonCreado != null) {
 
