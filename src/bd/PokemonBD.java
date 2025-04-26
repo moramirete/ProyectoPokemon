@@ -62,7 +62,7 @@ public class PokemonBD {
             		ataqueEspecial,
             		defensaEspecial,
             		velocidad,
-            		5,
+            		1,
             		fertilidad,
             		1,
             		resultadoPokedex.getString("NOM_POKEMON"),
@@ -88,7 +88,7 @@ public class PokemonBD {
             st.setInt(9, ataqueEspecial);
             st.setInt(10, defensaEspecial);
             st.setInt(11, velocidad);
-            st.setInt(12, 5); 
+            st.setInt(12, 1); 
             st.setInt(13, fertilidad);
             st.setString(14, String.valueOf(sexo));
             st.setString(15, "NORMAL"); 
@@ -158,7 +158,7 @@ public class PokemonBD {
             		ataqueEspecial,
             		defensaEspecial,
             		velocidad,
-            		5,
+            		1,
             		fertilidad,
             		3,
             		resultadoPokedex.getString("NOM_POKEMON"),
