@@ -137,7 +137,7 @@ public class LoginController {
 			Connection conexion = con.getConnection();
 
 			if (conexion == null) {
-				System.out.println("Error: conexión a la base de datos fallida.");
+				JOptionPane.showMessageDialog(null, "Conexion con la base de datos fallida", "Error", 0);
 				return;
 			}
 
@@ -201,10 +201,10 @@ public class LoginController {
 	@FXML
 	public void registrarUsuario(ActionEvent event) {
 		if (txtUsuario.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Error: escribe el nombre de usuario");
+			JOptionPane.showMessageDialog(null, "Inserte el nombre de usuario", "Error", 0);
 			System.out.println("Se ha detectado que no se ha puesto el nombre de usuario");
 		} else if (txtPassword.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Error: insertar contraseña del usuario");
+			JOptionPane.showMessageDialog(null, "Inserte la contraseña para el usuario", "Error", 0);
 			System.out.println("Se ha detectado que no se ha puesto la contraseña del usuario");
 		} else {
 			String usuario = txtUsuario.getText();
@@ -217,7 +217,7 @@ public class LoginController {
 			Connection conexion = con.getConnection();
 
 			if (conexion == null) {
-				System.out.println("Error: conexión a la base de datos fallida.");
+				JOptionPane.showMessageDialog(null, "Conexion con la base de datos fallida", "Error", 0);
 				return;
 			}
 
@@ -256,7 +256,7 @@ public class LoginController {
 				} else {
 
 					System.out.println("Usuario ya existente en la BD");
-					JOptionPane.showMessageDialog(null, "Error: nombre de usuario ya existente en la BD");
+					JOptionPane.showMessageDialog(null, "El usuario ya existe en la base de datos, es necesario el cambio de nombre", "Error", 0);
 					txtPassword.setText("");
 					System.out.println("Cancelada la opcion de registrar");
 

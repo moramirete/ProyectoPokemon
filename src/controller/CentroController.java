@@ -10,6 +10,8 @@ import javafx.scene.control.ProgressBar;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import bd.MochilaBD;
 import bd.ObjetoBD;
 import bd.PokemonBD;
@@ -84,9 +86,7 @@ public class CentroController {
 				} else {
 					Pokemon pokemon = getTableView().getItems().get(getIndex());
 					int vidaActual = pokemon.getVitalidad();
-					int vidaMaxima = Math.max(pokemon.getVitalidadMax(), 1); // Evitar división por 0
-			
-					System.out.println("Vida actual: " + vidaActual + ", Vida máxima: " + vidaMaxima);
+					int vidaMaxima = pokemon.getVitalidadMax();
 			
 					actualizarColorBarraVida(progressBar, label, vidaActual, vidaMaxima);
 			
@@ -140,26 +140,28 @@ public class CentroController {
 		Pokemon pokSeleccionado = tableCentro.getSelectionModel().getSelectedItem();
 
 		if (pokSeleccionado == null) {
-			System.out.println("No se ha seleccionado ningún objeto.");
+			JOptionPane.showMessageDialog(null, "Selecciona primero un pokemon", "Error", 0);
 			return;
 		}
 
 		if (pokSeleccionado.getVitalidad() == pokSeleccionado.getVitalidadMax()) {
-			System.out.println("Este pokemon ya esta curado");
+			JOptionPane.showMessageDialog(null, "El pokemon ya tiene la vida maxima", "Error", 0);
 			return;
 		}
 
 		 // Intentar curar el Pokémon en la base de datos
 		 if (PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon())) {
-			System.out.println("Se ha curado el Pokémon " + pokSeleccionado.getNombre_pokemon());
-	
+			 
 			// Actualizar la vitalidad del Pokémon en la lista observable
 			pokSeleccionado.setVitalidad(pokSeleccionado.getVitalidadMax());
 	
-			// Refrescar la tabla para reflejar los cambios
+			// Refrescar la tabla para reflejar los cambios y lanzar el mensaje
 			tableCentro.refresh();
+			JOptionPane.showMessageDialog(null, "El pokemon " + pokSeleccionado.getNombre_pokemon() + " se ha curado correctamente", 
+					 "Curación", 1);
+			
 		} else {
-			System.out.println("No se pudo curar el Pokémon.");
+			JOptionPane.showMessageDialog(null, "No se pudo curar al pokemon", "Error", 0);
 		}
 	}
 
