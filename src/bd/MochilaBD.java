@@ -137,7 +137,7 @@ public class MochilaBD {
         ArrayList<ObjetoEnMochila> lista = new ArrayList<>();
         try (Connection con = BDConecction.getConnection()) {
             String sql = """
-                SELECT o.NOM_OBJETO, o.DESCRIPCION, m.CANTIDAD 
+                SELECT o.NOM_OBJETO, o.DESCRIPCION, m.CANTIDAD, o.RUTA_IMAGEN
                 FROM MOCHILA m 
                 JOIN OBJETO o ON m.ID_OBJETO = o.ID_OBJETO 
                 WHERE m.ID_ENTRENADOR = ? AND m.CANTIDAD > 0
@@ -150,7 +150,8 @@ public class MochilaBD {
                 lista.add(new ObjetoEnMochila(
                     rs.getString("NOM_OBJETO"),
                     rs.getString("DESCRIPCION"),
-                    rs.getInt("CANTIDAD")
+                    rs.getInt("CANTIDAD"),
+                    rs.getString("RUTA_IMAGEN")
                 ));
             }
         } catch (Exception e) {

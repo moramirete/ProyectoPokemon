@@ -48,8 +48,7 @@
             <Image url="@../../multimedia/imagenes/fondos/moneda.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblPokedollares1" layoutX="345.0" layoutY="52.0" prefHeight="20.0" prefWidth="107.0" />
-      <TextField fx:id="txtPokedolares1" editable="false" layoutX="345.0" layoutY="55.0" prefHeight="26.0" prefWidth="86.0" text="Descripción">
+      <TextField fx:id="txtTituloDescripcion" editable="false" layoutX="345.0" layoutY="55.0" prefHeight="26.0" prefWidth="86.0" text="Descripción">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

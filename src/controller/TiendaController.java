@@ -40,8 +40,10 @@ public class TiendaController {
 		this.menuController = menuController;
 		this.stage = stage;
 		this.entrenador = ent;
-		
-		lblPokedollares.textProperty().bind(entrenador.pokedolaresProperty().asString());//vincula el label de los pokedolares y asi se actualizan todos a la vez
+
+		lblPokedollares.textProperty().bind(entrenador.pokedolaresProperty().asString());// vincula el label de los
+																							// pokedolares y asi se
+																							// actualizan todos a la vez
 	}
 
 	@FXML
@@ -56,7 +58,6 @@ public class TiendaController {
 	@FXML
 	private Button btnVender;
 
-
 	@FXML
 	private TableColumn<Objeto, String> nombre;
 
@@ -65,15 +66,18 @@ public class TiendaController {
 
 	@FXML
 	private TableView<Objeto> tblTienda;
-	
+
 	@FXML
 	private TextArea txtDescripcion;
 
 	@FXML
 	private TextField txtPokedolares;
-	
+
 	@FXML
 	private Label lblPokedollares;
+	
+	@FXML
+	private TextField txtTituloDescripcion;
 
 	@FXML
 	private Label lblDescripcion;
@@ -91,7 +95,7 @@ public class TiendaController {
 		tblTienda.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 			if (newSelection != null) {
 				actualizarImagen(newSelection);
-				
+
 				txtDescripcion.setText(newSelection.getDescripcion());
 			}
 		});
@@ -214,7 +218,6 @@ public class TiendaController {
 
 		// Descontar el dinero del entrenador y actualizar el display
 		entrenador.setPokedolares(entrenador.getPokedolares() - precio);
-		
 
 		// Actualizar la mochila en la interfaz
 		if (mochilaController != null) {
