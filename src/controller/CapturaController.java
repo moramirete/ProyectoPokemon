@@ -5,6 +5,8 @@ import model.Entrenador;
 import model.Pokemon;
 import bd.BDConecction;
 import bd.PokemonBD;
+import bd.MochilaBD;
+import model.Mochila;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,8 +19,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.JOptionPane;
 
 public class CapturaController {
@@ -27,7 +29,9 @@ public class CapturaController {
 	private Stage stage;
 	private MenuController menuController;
 	private Pokemon pokemonCreado;
-	private int pokebolasDisponibles = 20;
+	
+	private int pokebolas = 0;
+	private final int ID_POKEBOLA = 8;
 
 	@FXML
 	private Button btnCapturar;
@@ -51,10 +55,40 @@ public class CapturaController {
 		this.menuController = menuController;
 		this.stage = stage;
 		this.entrenador = ent;
-		pokebolasDisponibles = 20;
-		lblPokebolas.setText(String.valueOf(pokebolasDisponibles));
+		
+		cargarPokebolas();
 	}
 
+	private void cargarPokebolas() {
+		try (Connection conexion = BDConecction.getConnection()) {
+			ArrayList<Mochila> mochila = MochilaBD.obtenerMochila(entrenador.getIdEntrenador());
+			for (Mochila objeto : mochila) {
+				if(objeto.getIdObjeto() == ID_POKEBOLA) {
+					pokebolas = objeto.getCantidad();
+					break;
+				}
+			}
+			actualizarLblPokebolas();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void actualizarLblPokebolas() {
+		lblPokebolas.setText(String.valueOf(pokebolas));
+		lblPokebolas.setStyle("-fx-font-size: 32px; -fx-text-fill: #ff0000;");
+	}
+	
+	private void actualizarPokebolasBD() {
+		try (Connection conexion = BDConecction.getConnection()){
+			MochilaBD.actualizarCantidad(entrenador.getIdEntrenador(), ID_POKEBOLA, pokebolas);
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@FXML
 	void cerrarCaptura(ActionEvent event) {
 		System.out.println("Se ha accionado el boton de salir");
@@ -137,12 +171,12 @@ public class CapturaController {
 	void capturarPokemon(ActionEvent event) {
 		System.out.println("Se ha accionado el boton de capturar");
 		
-		pokebolasDisponibles--;
-		lblPokebolas.setText(String.valueOf(pokebolasDisponibles));
 		
-		if (pokebolasDisponibles <= 0) {
-			JOptionPane.showMessageDialog(null,"Te has quedado sin Pokeballs", "Sin Pokeballs", 1);
-			btnCapturar.setDisable(true);
+		
+		
+		if (pokebolas <= 0) {
+			JOptionPane.showMessageDialog(null,"Te has quedado sin Pokeballs", "Sin Pokeballs", JOptionPane.WARNING_MESSAGE);
+			
 			return;
 		}
 		
@@ -156,21 +190,31 @@ public class CapturaController {
 		if (pokemonCreado != null) {
 
 			Random rd = new Random();
-
 			int prob = rd.nextInt(3);
 
 			if (prob == 0) {
 				JOptionPane.showMessageDialog(null, "El pokemon se ha salido de la bola", "Fallaste", 1);
 			} else {
-				PokemonBD.guardarPokemonCaptura(pokemonCreado, conexion);
-				;
-				System.out.println("Pokemon guardado en la BBDD");
-
-				lblPokemon.setText("Has capturado un : " + pokemonCreado.getNombre_pokemon());
-				JOptionPane.showMessageDialog(null,"El pokemon ha sido capturado correctamente, esta situado en la caja", "Capturado", 1);
-				lblPokemon.setGraphic(null);
-				pokemonCreado = null;
+				try (Connection conexion1 = BDConecction.getConnection()){
+					PokemonBD.guardarPokemonCaptura(pokemonCreado, conexion1);
+					System.out.println("Pokemon guardado en la BBDD");
+					lblPokemon.setText("Has capturado un : " + pokemonCreado.getNombre_pokemon());
+					JOptionPane.showMessageDialog(null,"El pokemon ha sido capturado correctamente, esta situado en la caja", "Capturado", 1);
+					lblPokemon.setGraphic(null);
+					pokemonCreado = null;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+			
+			pokebolas--;
+			actualizarPokebolasBD();
+			actualizarLblPokebolas();
+			
+			if (pokebolas == 0) {
+				JOptionPane.showMessageDialog(null,"Te has quedado sin pokebolas", "Sin pokebolas",JOptionPane.WARNING_MESSAGE);
+			}
+			
 		} else {
 			lblPokemon.setText("Primero tienes que generar un Pokemon.");
 		}
