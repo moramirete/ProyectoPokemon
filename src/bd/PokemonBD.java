@@ -272,6 +272,51 @@ public class PokemonBD {
     	return equipo;
     }
     
+    public static ArrayList<Pokemon> obtenerCaja(int idEntrenador){
+    	ArrayList<Pokemon> equipo = new ArrayList<>();
+    	
+    	try (Connection con = BDConecction.getConnection()) {
+            String sql = "SELECT * \r\n"
+            		+ "FROM POKEMON p \r\n"
+            		+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
+            		+ "WHERE e.ID_ENTRENADOR = ? AND p.EQUIPO = 3 ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEntrenador);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                equipo.add(new Pokemon(
+                    rs.getInt("ID_POKEMON"),       
+                    rs.getInt("ID_ENTRENADOR"),     
+                    rs.getInt("NUM_POKEDEX"),       
+                    rs.getInt("ID_OBJETO"),         
+                    rs.getString("TIPO1"),       
+                    rs.getString("TIPO2"),           
+                    rs.getInt("VITALIDAD"),       
+                    rs.getInt("ATAQUE"),           
+                    rs.getInt("DEFENSA"),            
+                    rs.getInt("AT_ESPECIAL"),        
+                    rs.getInt("DEF_ESPECIAL"),      
+                    rs.getInt("VELOCIDAD"),          
+                    rs.getInt("NIVEL"),             
+                    rs.getInt("FERTILIDAD"),         
+                    rs.getInt("EQUIPO"),             
+                    rs.getString("NOM_POKEMON"),     
+                    rs.getString("ESTADO"),          
+                    rs.getString("SEXO").charAt(0),
+                    rs.getInt("VITALIDADMAX")
+                ));
+            };
+                
+                System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    	
+    	return equipo;
+    }
+    
     public static boolean curarPokemon(int idEntrenador, int idPokemon) {
         try (Connection con = BDConecction.getConnection()) {
         	
