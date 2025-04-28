@@ -160,7 +160,7 @@ public class MochilaBD {
         return lista;
     }
     
-    public static int obtenerIdObjetoPorNombre(String nombreObjeto) {
+    public static int obtenerIdObjetoNombre(String nombreObjeto) {
         try (Connection con = BDConecction.getConnection()) {
             String sql = "SELECT ID_OBJETO FROM OBJETO WHERE NOM_OBJETO = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -176,7 +176,7 @@ public class MochilaBD {
         return -1;
     }
 
-    public static int obtenerPrecioObjetoPorId(int idObjeto) {
+    public static int obtenerPrecioObjetoId(int idObjeto) {
         try (Connection con = BDConecction.getConnection()) {
             String sql = "SELECT PRECIO FROM OBJETO WHERE ID_OBJETO = ?";
             PreparedStatement stmt = con.prepareStatement(sql);

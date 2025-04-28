@@ -199,7 +199,7 @@ public class MochilaController {
 	        }
 
 	        // Obtener el ID del objeto
-	        int idObjeto = MochilaBD.obtenerIdObjetoPorNombre(objetoSeleccionado.getNombreObjeto());
+	        int idObjeto = MochilaBD.obtenerIdObjetoNombre(objetoSeleccionado.getNombreObjeto());
 
 	        if (idObjeto == -1) {
 	            System.out.println("No se pudo encontrar el ID del objeto.");
@@ -207,7 +207,7 @@ public class MochilaController {
 	        }
 
 	        // Obtener el precio del objeto
-	        int precioObjeto = MochilaBD.obtenerPrecioObjetoPorId(idObjeto);
+	        int precioObjeto = MochilaBD.obtenerPrecioObjetoId(idObjeto);
 
 	        // Sumar dinero al entrenador
 	        int dineroActual = entrenador.getPokedolares();
