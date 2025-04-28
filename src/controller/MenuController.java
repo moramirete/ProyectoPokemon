@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -83,7 +84,9 @@ public class MenuController {
 
 			stage.setTitle("Pokémon Super Nenes - Captura");
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			capturaController.init(entrenador, stage, this);
+			
 
 			stage.show();
 			this.stage.close();
@@ -114,6 +117,7 @@ public class MenuController {
 
 			stage.setTitle("Pokémon Super Nenes - Centro Pokemon");
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			centroController.init(entrenador, stage, this);
 
 			stage.show();
@@ -145,6 +149,7 @@ public class MenuController {
 
 			stage.setTitle("Pokémon Super Nenes - Combate");
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			combateController.init(entrenador, stage, this);
 
 			stage.show();
@@ -176,6 +181,7 @@ public class MenuController {
 
 			stage.setTitle("Pokémon Super Nenes - Captura");
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			crianzaController.init(entrenador, stage, this);
 
 			stage.show();
@@ -207,6 +213,7 @@ public class MenuController {
 
 			stage.setTitle("Pokémon Super Nenes - Entrenamiento");
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			entrenamientoController.init(entrenador, stage, this);
 
 			stage.show();
@@ -238,6 +245,7 @@ public class MenuController {
 
 			stage.setTitle("Pokémon Super Nenes - Equipo");
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			equipoController.init(entrenador, stage, this);
 
 			stage.show();
@@ -263,6 +271,7 @@ public class MenuController {
 
 			stage.setTitle("Pokémon Super Nenes - Equipo");
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			mochilaController.init(entrenador, stage, this);
 
 			stage.show();
@@ -288,6 +297,7 @@ public class MenuController {
 
 			stage.setTitle("Pokémon Super Nenes - Equipo");
 			stage.setScene(scene);
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			tiendaController.init(entrenador, stage, this);
 
 			stage.show();

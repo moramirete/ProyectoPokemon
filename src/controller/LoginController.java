@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -297,6 +298,7 @@ public class LoginController {
 			Stage stage = new Stage();
 
 			stage.setTitle("Pokémon Super Nenes - Menu");
+			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			stage.setScene(scene);
 			menuController.init(entrenador, stage, this);
 
