@@ -25,9 +25,8 @@
         </columns>
       </TableView>
       <Button fx:id="btnComprar" layoutX="34.0" layoutY="323.0" mnemonicParsing="false" onAction="#comprar" prefHeight="39.0" prefWidth="107.0" text="Comprar" />
-      <Button fx:id="btnVender" layoutX="173.0" layoutY="323.0" mnemonicParsing="false" onAction="#vender" prefHeight="39.0" prefWidth="107.0" text="Vender" />
-      <Button fx:id="btnMochila" layoutX="312.0" layoutY="323.0" mnemonicParsing="false" onAction="#abrirMochila" prefHeight="39.0" prefWidth="107.0" text="Mochila" />
-      <Button fx:id="btnSalir" layoutX="445.0" layoutY="323.0" mnemonicParsing="false" onAction="#salir" prefHeight="39.0" prefWidth="107.0" text="Salir" />
+      <Button fx:id="btnMochila" layoutX="237.0" layoutY="323.0" mnemonicParsing="false" onAction="#abrirMochila" prefHeight="39.0" prefWidth="107.0" text="Mochila" />
+      <Button fx:id="btnSalir" layoutX="426.0" layoutY="323.0" mnemonicParsing="false" onAction="#salir" prefHeight="39.0" prefWidth="107.0" text="Salir" />
       <TextField fx:id="txtPokedolares" alignment="CENTER" editable="false" layoutX="434.0" layoutY="11.0" prefHeight="26.0" prefWidth="93.0" />
       <Label fx:id="lblPokedollares" alignment="CENTER" layoutX="437.0" layoutY="14.0" prefHeight="20.0" prefWidth="86.0" textAlignment="CENTER">
          <font>

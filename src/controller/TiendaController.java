@@ -56,9 +56,6 @@ public class TiendaController {
 	private Button btnSalir;
 
 	@FXML
-	private Button btnVender;
-
-	@FXML
 	private TableColumn<Objeto, String> nombre;
 
 	@FXML
@@ -236,11 +233,6 @@ public class TiendaController {
 	void salir(ActionEvent event) {
 		menuController.show();
 		this.stage.close();
-	}
-
-	@FXML
-	void vender(ActionEvent event) {
-
 	}
 
 }
