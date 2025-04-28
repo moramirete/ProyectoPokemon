@@ -160,6 +160,7 @@ public class TiendaController {
 			this.setMochilaController(mochilaController);
 
 			nuevaStage.setTitle("Pokémon Super Nenes - Mochila");
+			nuevaStage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			nuevaStage.setScene(scene);
 			nuevaStage.show();
 
