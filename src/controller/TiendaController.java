@@ -6,8 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import bd.BDConecction;
+import bd.EntrenadorBD;
 import bd.MochilaBD;
 import bd.ObjetoBD;
 import javafx.beans.property.SimpleStringProperty;
@@ -168,7 +172,7 @@ public class TiendaController {
 	}
 
 	@FXML
-	void comprar(ActionEvent event) {
+	void comprar(ActionEvent event) throws SQLException {
 		// Obtener el objeto seleccionado en la tienda
 		Objeto objetoSeleccionado = tblTienda.getSelectionModel().getSelectedItem();
 
@@ -214,7 +218,12 @@ public class TiendaController {
 		}
 
 		// Descontar el dinero del entrenador y actualizar el display
-		entrenador.setPokedolares(entrenador.getPokedolares() - precio);
+		int precioActualizado = entrenador.getPokedolares() - precio;
+        entrenador.setPokedolares(precioActualizado);
+
+        Connection con = BDConecction.getConnection();
+
+        EntrenadorBD.actualizarPokedolares(con, entrenador);
 
 		// Actualizar la mochila en la interfaz
 		if (mochilaController != null) {

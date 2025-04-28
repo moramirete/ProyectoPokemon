@@ -57,5 +57,13 @@ public class EntrenadorBD {
 		}
 		
 	}
+	
+	public static void actualizarPokedolares(Connection con, Entrenador entrenador) throws SQLException {
+        String sql = "UPDATE ENTRENADOR SET POKEDOLARES = ? WHERE ID_ENTRENADOR = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, entrenador.getPokedolares());
+        ps.setInt(2, entrenador.getIdEntrenador());
+        ps.executeUpdate();
+    }
 
 }
