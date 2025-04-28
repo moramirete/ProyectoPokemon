@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -18,6 +19,7 @@ public class Main extends Application {
 	        
 	        primaryStage.setTitle("Pokémon Super Nenes - Login");
 	        primaryStage.setScene(scene);
+	        primaryStage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 	        
 	        LoginController controller = loader.getController();
 	        controller.setStage(primaryStage);
