@@ -43,48 +43,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CajaController">
    <children>
-      <HBox layoutX="14.0" layoutY="28.0" prefHeight="25.0" prefWidth="300.0" spacing="5.0">
+      <HBox layoutX="14.0" layoutY="28.0" prefHeight="25.0" prefWidth="560.0" spacing="5.0">
          <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="70.0" text="Nombre:">
+            <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="70.0" text="Buscador:">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="200.0" />
+            <TextField fx:id="txtBuscador" onKeyReleased="#buscarPokemon" prefHeight="25.0" prefWidth="179.0" />
          </children>
       </HBox>
-      <HBox layoutX="14.0" layoutY="70.0" prefHeight="25.0" prefWidth="300.0" spacing="5.0">
-         <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="70.0" text="Nivel:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtNivel" prefHeight="25.0" prefWidth="200.0" />
-         </children>
-      </HBox>
-      <HBox layoutX="300.0" layoutY="28.0" prefHeight="25.0" prefWidth="300.0" spacing="5.0">
-         <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="70.0" text="Tipo:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtTipo" prefHeight="25.0" prefWidth="200.0" />
-         </children>
-      </HBox>
-      <HBox layoutX="300.0" layoutY="70.0" prefHeight="25.0" prefWidth="300.0" spacing="5.0">
-         <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="70.0" text="Vitalidad">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtVitalidad" prefHeight="25.0" prefWidth="200.0" />
-         </children>
-      </HBox>
-      <Button fx:id="btnBuscar" layoutX="441.0" layoutY="118.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="139.0" text="Buscar" />
-      <TableView fx:id="tabPokemon" layoutX="21.0" layoutY="175.0" prefHeight="200.0" prefWidth="560.0">
+      <HBox layoutX="441.0" layoutY="28.0" prefHeight="25.0" prefWidth="122.0" spacing="5.0" />
+      <TableView fx:id="tabPokemon" layoutX="21.0" layoutY="113.0" prefHeight="262.0" prefWidth="560.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="160.0" text="Nombre" />
           <TableColumn fx:id="colNivel" prefWidth="75.0" text="Nivel" />
@@ -92,6 +62,6 @@
             <TableColumn fx:id="colTipo2" prefWidth="160.0" text="Tipo 2" />
         </columns>
       </TableView>
-      <Button fx:id="btnVolver" layoutX="90.0" layoutY="118.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
+      <Button fx:id="btnVolver" layoutX="239.0" layoutY="70.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
    </children>
 </AnchorPane>
