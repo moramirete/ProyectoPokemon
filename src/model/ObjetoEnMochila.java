@@ -13,6 +13,7 @@ public class ObjetoEnMochila {
 		this.cantidad = cantidad;
 		this.rutaImagen = rutaImgane;
 	}
+	
 
 	public String getNombreObjeto() {
 		return nombreObjeto;

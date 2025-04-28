@@ -10,6 +10,7 @@ public class Mochila {
         this.idObjeto = idObjeto;
         this.cantidad = cantidad;
     }
+    
 
     public int getIdEntrenador() {
         return idEntrenador;

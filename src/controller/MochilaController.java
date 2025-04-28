@@ -20,10 +20,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import bd.BDConecction;
+import bd.EntrenadorBD;
 import bd.MochilaBD;
 import model.Entrenador;
+import model.Objeto;
 import model.ObjetoEnMochila;
 
 public class MochilaController {
@@ -136,7 +141,7 @@ public class MochilaController {
 		ArrayList<ObjetoEnMochila> objetos = MochilaBD.obtenerContenidoMochila(entrenador.getIdEntrenador());
 		ObservableList<ObjetoEnMochila> lista = FXCollections.observableArrayList(objetos);
 		tblListaMochila.setItems(lista);
-		
+
 		lblPokedolares.setText(String.valueOf(entrenador.getPokedolares()));
 	}
 
@@ -173,9 +178,61 @@ public class MochilaController {
 
 	@FXML
 	void vender(ActionEvent event) {
+	    // Obtener el objeto seleccionado de la tabla
+	    ObjetoEnMochila objetoSeleccionado = tblListaMochila.getSelectionModel().getSelectedItem();
 
+	    if (objetoSeleccionado == null) {
+	        System.out.println("No has seleccionado ningún objeto para vender.");
+	        return;
+	    }
+
+	    // Confirmar venta
+	    System.out.println("Vas a vender: " + objetoSeleccionado.getNombreObjeto());
+
+	    try {
+	        // Obtener la cantidad actual
+	        int cantidadActual = objetoSeleccionado.getCantidad();
+
+	        if (cantidadActual <= 0) {
+	            System.out.println("No tienes unidades de este objeto para vender.");
+	            return;
+	        }
+
+	        // Obtener el ID del objeto
+	        int idObjeto = MochilaBD.obtenerIdObjetoPorNombre(objetoSeleccionado.getNombreObjeto());
+
+	        if (idObjeto == -1) {
+	            System.out.println("No se pudo encontrar el ID del objeto.");
+	            return;
+	        }
+
+	        // Obtener el precio del objeto
+	        int precioObjeto = MochilaBD.obtenerPrecioObjetoPorId(idObjeto);
+
+	        // Sumar dinero al entrenador
+	        int dineroActual = entrenador.getPokedolares();
+	        int dineroGanado = precioObjeto; // Por cada venta ganas el precio unitario
+	        entrenador.setPokedolares(dineroActual + dineroGanado);
+
+	        // Actualizar en base de datos
+	        Connection con = BDConecction.getConnection();
+	        EntrenadorBD.actualizarPokedolares(con, entrenador);
+
+	        // Disminuir la cantidad de objeto o eliminarlo si ya no queda
+	        MochilaBD.actualizarCantidad(entrenador.getIdEntrenador(), idObjeto, cantidadActual - 1);
+
+	        // Actualizar la tabla
+	        actualizarContentMochila();
+
+	        System.out.println("Has vendido " + objetoSeleccionado.getNombreObjeto() + " por " + dineroGanado + " pokedólares.");
+
+	    } catch (Exception e) {
+	        System.out.println("Error al vender el objeto.");
+	        e.printStackTrace();
+	    }
 	}
 
+	
 	@FXML
 	void salir(ActionEvent event) {
 		menuController.show();

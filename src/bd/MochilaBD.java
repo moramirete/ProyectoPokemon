@@ -159,4 +159,36 @@ public class MochilaBD {
         }
         return lista;
     }
+    
+    public static int obtenerIdObjetoPorNombre(String nombreObjeto) {
+        try (Connection con = BDConecction.getConnection()) {
+            String sql = "SELECT ID_OBJETO FROM OBJETO WHERE NOM_OBJETO = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nombreObjeto);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("ID_OBJETO");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public static int obtenerPrecioObjetoPorId(int idObjeto) {
+        try (Connection con = BDConecction.getConnection()) {
+            String sql = "SELECT PRECIO FROM OBJETO WHERE ID_OBJETO = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idObjeto);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("PRECIO");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
