@@ -316,7 +316,7 @@ public class PokemonBD {
     	
     	return equipo;
     }
-    
+
     public static boolean curarPokemon(int idEntrenador, int idPokemon) {
         try (Connection con = BDConecction.getConnection()) {
         	
@@ -330,7 +330,4 @@ public class PokemonBD {
             return false;
         }
     }
-    
-    
-   
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.ProgressBar;
 
 import javafx.scene.control.Label;
 import java.io.IOException;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Entrenador;
+import model.Pokemon;
 
 public class EquipoController {
 
@@ -26,8 +28,62 @@ public class EquipoController {
 		this.stage = stage;
 		this.entrenador = ent;
 
-		inicializarVidas();
+		inicializarEquipo();
 	}
+
+	@FXML
+	private ImageView Imgpoke1;
+
+	@FXML
+	private ImageView Imgpoke2;
+
+	@FXML
+	private ImageView Imgpoke3;
+
+	@FXML
+	private ImageView Imgpoke4;
+
+	@FXML
+	private ImageView Imgpoke5;
+
+	@FXML
+	private ImageView Imgpoke6;
+
+	@FXML
+	private Label NivelPoke1;
+
+	@FXML
+	private Label NivelPoke2;
+
+	@FXML
+	private Label NivelPoke3;
+
+	@FXML
+	private Label NivelPoke4;
+
+	@FXML
+	private Label NivelPoke5;
+
+	@FXML
+	private Label NivelPoke6;
+
+	@FXML
+	private Label NombrePoke1;
+
+	@FXML
+	private Label NombrePoke2;
+
+	@FXML
+	private Label NombrePoke3;
+
+	@FXML
+	private Label NombrePoke4;
+
+	@FXML
+	private Label NombrePoke5;
+
+	@FXML
+	private Label NombrePoke6;
 
 	@FXML
 	private ProgressBar barraVida1;
@@ -80,14 +136,23 @@ public class EquipoController {
 		this.stage.close();
 	}
 
-	public void inicializarVidas() {
-		actualizarBarraVida(barraVida1, lblVida1, 213, 218);
-		actualizarBarraVida(barraVida2, lblVida2, 150, 218);
-		actualizarBarraVida(barraVida3, lblVida3, 90, 218);
-		actualizarBarraVida(barraVida4, lblVida4, 40, 218);
-		actualizarBarraVida(barraVida5, lblVida5, 10, 218);
-		actualizarBarraVida(barraVida6, lblVida6, 5, 218);
-	}
+	public void inicializarEquipo() {
+		List<Pokemon> equipo = entrenador.getEquipoVisible();
+
+		ImageView[] imagenes = { Imgpoke1, Imgpoke2, Imgpoke3, Imgpoke4, Imgpoke5, Imgpoke6 };
+		Label[] nombres = { NombrePoke1, NombrePoke2, NombrePoke3, NombrePoke4, NombrePoke5, NombrePoke6 };
+		Label[] niveles = { NivelPoke1, NivelPoke2, NivelPoke3, NivelPoke4, NivelPoke5, NivelPoke6 };
+		ProgressBar[] barras = { barraVida1, barraVida2, barraVida3, barraVida4, barraVida5, barraVida6 };
+		Label[] etiquetasVida = { lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6 };
+
+		for (int i = 0; i < equipo.size(); i++) {
+			Pokemon p = equipo.get(i);
+			nombres[i].setText(p.getNombre_pokemon());
+			niveles[i].setText("Nivel: " + p.getNivel());
+			actualizarBarraVida(barras[i], etiquetasVida[i], p.getVitalidad(), p.getVitalidadMax());
+
+			}
+		}
 
 	public void actualizarBarraVida(ProgressBar barra, Label label, double vidaActual, double vidaMaxima) {
 		double porcentaje = vidaActual / vidaMaxima;

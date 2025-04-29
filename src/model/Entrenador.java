@@ -2,6 +2,8 @@ package model;
 
 import java.sql.Connection;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import bd.PokemonBD;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -126,5 +128,14 @@ public class Entrenador {
 	public SimpleIntegerProperty pokedolaresProperty() {
 	    return pokedolares;
 	}
+	
+	public List<Pokemon> getEquipoVisible() {
+	    return equipo.stream()
+	        .filter(p -> p.getEquipo() == 1)
+	        .limit(6)
+	        .collect(Collectors.toList());
+	}
+	
+	
 	
 }
