@@ -25,6 +25,12 @@ public class CrianzaController {
     @FXML
     private Button btnSeleccionarPokemon2;
 
+    public void init(Entrenador ent, Stage stage, MenuController menuController) {
+    	this.menuController = menuController;
+    	this.stage = stage;
+    	this.entrenador = ent;
+    	}
+    
     @FXML
     void abrirHuevo(ActionEvent event) {
 
@@ -53,10 +59,5 @@ public class CrianzaController {
 		System.out.println("Se ha salido de captura correctamente");
     }
     
-    public void init(Entrenador ent, Stage stage, MenuController menuController) {
-    	this.menuController = menuController;
-    	this.stage = stage;
-    	this.entrenador = ent;
-    	}
     
 }
