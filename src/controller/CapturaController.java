@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -20,6 +21,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
@@ -176,7 +178,6 @@ public class CapturaController {
 		
 		if (pokebolas <= 0) {
 			JOptionPane.showMessageDialog(null,"Te has quedado sin Pokeballs", "Sin Pokeballs", JOptionPane.WARNING_MESSAGE);
-			
 			return;
 		}
 		
@@ -186,15 +187,27 @@ public class CapturaController {
 		
 		
 		
+		
 
 		if (pokemonCreado != null) {
 
 			Random rd = new Random();
 			int prob = rd.nextInt(3);
 
+			
+			
 			if (prob == 0) {
 				JOptionPane.showMessageDialog(null, "El pokemon se ha salido de la bola", "Fallaste", 1);
 			} else {
+				
+				TextInputDialog dialogo = new TextInputDialog(pokemonCreado.getNombre_pokemon());
+				dialogo.setTitle("Captura Exitosa");
+				dialogo.setHeaderText("Has capturado un " + pokemonCreado.getNombre_pokemon());
+				dialogo.setTitle("¿Deseas cambiarle el nombre a tu pokemon?");
+				Optional<String> nuevoNombre = dialogo.showAndWait();
+				
+				nuevoNombre.ifPresent(nombre -> pokemonCreado.setNombre_pokemon(nombre));
+				
 				try (Connection conexion1 = BDConecction.getConnection()){
 					PokemonBD.guardarPokemonCaptura(pokemonCreado, conexion1);
 					System.out.println("Pokemon guardado en la BBDD");
