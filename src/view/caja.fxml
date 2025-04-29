@@ -50,7 +50,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtBuscador" onKeyReleased="#buscarPokemon" prefHeight="25.0" prefWidth="179.0" />
+            <TextField fx:id="txtBuscador" onKeyReleased="#buscarPokemon" prefHeight="25.0" prefWidth="488.0" />
          </children>
       </HBox>
       <HBox layoutX="441.0" layoutY="28.0" prefHeight="25.0" prefWidth="122.0" spacing="5.0" />
@@ -62,6 +62,8 @@
             <TableColumn fx:id="colTipo2" prefWidth="160.0" text="Tipo 2" />
         </columns>
       </TableView>
-      <Button fx:id="btnVolver" layoutX="239.0" layoutY="70.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
+      <Button fx:id="btnVolver" layoutX="452.0" layoutY="65.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
+      <Button fx:id="btnCambiarPor" layoutX="239.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarPor" prefHeight="26.0" prefWidth="122.0" text="Cambiar por..." />
+      <Button fx:id="btnCambiarNombre" layoutX="21.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarNombre" prefHeight="26.0" prefWidth="122.0" text="Cambiar nombre" />
    </children>
 </AnchorPane>

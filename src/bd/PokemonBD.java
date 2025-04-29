@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import model.Entrenador;
@@ -349,6 +350,20 @@ public class PokemonBD {
         } catch (Exception e) {
             e.printStackTrace();
             return "Error: no se ha encontrado bien la ruta del pokemon";
+        }
+    }
+    
+    public static boolean cambiarNombre(Pokemon p, Optional<String> nombre) {
+    	try (Connection con = BDConecction.getConnection()) {
+        	
+            String sql = "UPDATE POKEMON SET NOM_POKEMON = ? WHERE ID_POKEMON = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nombre.get());
+            stmt.setInt(2, p.getId_pokemon());
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
     

@@ -200,6 +200,7 @@ public class EquipoController {
 
 			nuevaStage.setTitle("Pokémon Super Nenes - Caja");
 			nuevaStage.setScene(scene);
+			nuevaStage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
 			nuevaStage.show();
 
 			stage.show();
