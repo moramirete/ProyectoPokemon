@@ -200,13 +200,22 @@ public class CapturaController {
 				JOptionPane.showMessageDialog(null, "El pokemon se ha salido de la bola", "Fallaste", 1);
 			} else {
 				
+				int respuesta = JOptionPane.showConfirmDialog(null, 
+						"¿Deseas ponerle un mote a tu pokemon?", 
+						"Cambio de nombre", JOptionPane.YES_NO_OPTION);
+				
+				if(respuesta == JOptionPane.YES_OPTION) {
+				
 				TextInputDialog dialogo = new TextInputDialog(pokemonCreado.getNombre_pokemon());
 				dialogo.setTitle("Captura Exitosa");
 				dialogo.setHeaderText("Has capturado un " + pokemonCreado.getNombre_pokemon());
 				dialogo.setTitle("¿Deseas cambiarle el nombre a tu pokemon?");
 				Optional<String> nuevoNombre = dialogo.showAndWait();
 				
+				
 				nuevoNombre.ifPresent(nombre -> pokemonCreado.setNombre_pokemon(nombre));
+				}
+				
 				
 				try (Connection conexion1 = BDConecction.getConnection()){
 					PokemonBD.guardarPokemonCaptura(pokemonCreado, conexion1);
