@@ -33,20 +33,27 @@
 -->
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
+<VBox prefHeight="393.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="291.0" layoutY="174.0" style="&#10;" text="Crianza" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-      </children>
+         <children>
+            <ImageView fitHeight="480.0" fitWidth="868.0" layoutX="-51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/fondos/fondo%20crianza.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="254.0" layoutY="335.0" prefHeight="17.0" prefWidth="376.0" text=" Incubar pokemon" textFill="#f80505">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
     </AnchorPane>
   </children>
 </VBox>
