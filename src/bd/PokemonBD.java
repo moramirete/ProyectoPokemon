@@ -367,4 +367,84 @@ public class PokemonBD {
         }
     }
     
+    public static boolean cambiarPokemonEquipo(int idEntrenador, Pokemon deCaja, Pokemon deEquipo) {
+        try (Connection con = BDConecction.getConnection()) {
+            String sqlCaja = "UPDATE POKEMON SET EQUIPO = 2 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtCaja = con.prepareStatement(sqlCaja);
+            stmtCaja.setInt(1, deCaja.getId_pokemon());
+            stmtCaja.setInt(2, idEntrenador);
+            stmtCaja.executeUpdate();
+
+            String sqlEquipo = "UPDATE POKEMON SET EQUIPO = 3 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtEquipo = con.prepareStatement(sqlEquipo);
+            stmtEquipo.setInt(1, deEquipo.getId_pokemon());
+            stmtEquipo.setInt(2, idEntrenador);
+            stmtEquipo.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static boolean añadirPokemonAlEquipo(int idEntrenador, Pokemon deCaja) {
+        try (Connection con = BDConecction.getConnection()) {
+            String sql = "UPDATE POKEMON SET EQUIPO = 2 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, deCaja.getId_pokemon());
+            stmt.setInt(2, idEntrenador);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static boolean cambiarPokemonPrincipal(int idEntrenador, Pokemon deCaja, Pokemon principalActual) {
+        try (Connection con = BDConecction.getConnection()) {
+            // Cambiar el Pokémon de la caja a principal
+            String sqlCaja = "UPDATE POKEMON SET EQUIPO = 1 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtCaja = con.prepareStatement(sqlCaja);
+            stmtCaja.setInt(1, deCaja.getId_pokemon());
+            stmtCaja.setInt(2, idEntrenador);
+            stmtCaja.executeUpdate();
+
+            // Cambiar el Pokémon principal actual a la caja
+            String sqlPrincipal = "UPDATE POKEMON SET EQUIPO = 3 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtPrincipal = con.prepareStatement(sqlPrincipal);
+            stmtPrincipal.setInt(1, principalActual.getId_pokemon());
+            stmtPrincipal.setInt(2, idEntrenador);
+            stmtPrincipal.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static boolean cambiarPrincipalConEquipo(int idEntrenador, Pokemon delEquipo, Pokemon principalActual) {
+        try (Connection con = BDConecction.getConnection()) {
+            // Cambiar el Pokémon del equipo a principal
+            String sqlEquipo = "UPDATE POKEMON SET EQUIPO = 1 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtEquipo = con.prepareStatement(sqlEquipo);
+            stmtEquipo.setInt(1, delEquipo.getId_pokemon());
+            stmtEquipo.setInt(2, idEntrenador);
+            stmtEquipo.executeUpdate();
+
+            // Cambiar el Pokémon principal actual al equipo
+            String sqlPrincipal = "UPDATE POKEMON SET EQUIPO = 2 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtPrincipal = con.prepareStatement(sqlPrincipal);
+            stmtPrincipal.setInt(1, principalActual.getId_pokemon());
+            stmtPrincipal.setInt(2, idEntrenador);
+            stmtPrincipal.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
 }

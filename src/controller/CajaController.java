@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 import model.Entrenador;
 import model.Pokemon;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -16,6 +17,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -174,7 +178,36 @@ public class CajaController {
 
 	@FXML
 	void cambiarPor(ActionEvent event) {
-		
+	    try {
+	        // Verificar que se haya seleccionado un Pokémon en la tabla
+	        Pokemon pokemonSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+	        if (pokemonSeleccionado == null) {
+	            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún Pokémon de la caja.", "Error", JOptionPane.ERROR_MESSAGE);
+	            return;
+	        }
+
+	        // Cargar el archivo FXML de la ventana emergente
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPor.fxml"));
+	        Parent root = loader.load();
+
+	        // Obtener el controlador de la ventana emergente
+	        CambiarPorController cambiarPorController = loader.getController();
+
+	        // Inicializar el controlador con los datos necesarios
+	        Stage nuevaStage = new Stage();
+	        cambiarPorController.init(entrenador, nuevaStage, equipoController, this, pokemonSeleccionado);
+
+	        // Configurar la ventana emergente
+	        Scene scene = new Scene(root);
+	        nuevaStage.setTitle("Cambiar Pokémon");
+	        nuevaStage.setScene(scene);
+	        nuevaStage.initOwner(stage);
+	        nuevaStage.show();
+
+	    } catch (IOException e) {
+	        System.err.println("Error al cargar la ventana emergente para cambiar Pokémon.");
+	        e.printStackTrace();
+	    }
 	}
 
 }

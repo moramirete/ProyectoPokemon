@@ -86,132 +86,108 @@
                   <Font name="Consolas" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="NombrePoke2" layoutX="363.0" layoutY="34.0" text="PIKACHU" textFill="WHITE">
+            <Label fx:id="NombrePoke2" layoutX="363.0" layoutY="34.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="NivelPoke2" layoutX="370.0" layoutY="65.0" text="Nv. 62" textFill="WHITE">
+            <Label fx:id="NivelPoke2" layoutX="370.0" layoutY="65.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="barraVida2" layoutX="448.0" layoutY="32.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;">
+            <ProgressBar fx:id="barraVida2" layoutX="448.0" layoutY="32.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;">
                <cursor>
                   <Cursor fx:constant="NONE" />
                </cursor>
             </ProgressBar>
-            <Label fx:id="lblVida2" layoutX="530.0" layoutY="65.0" text="213/218 HP" textFill="WHITE">
+            <Label fx:id="lblVida2" layoutX="530.0" layoutY="65.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="Imgpoke2" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/delanteras/25.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="NombrePoke3" layoutX="363.0" layoutY="102.0" text="CHARMANDER" textFill="WHITE">
+            <ImageView fx:id="Imgpoke2" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="NombrePoke3" layoutX="363.0" layoutY="102.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="NivelPoke3" layoutX="370.0" layoutY="133.0" text="Nv. 62" textFill="WHITE">
+            <Label fx:id="NivelPoke3" layoutX="370.0" layoutY="133.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="barraVida3" layoutX="448.0" layoutY="100.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida3" layoutX="530.0" layoutY="133.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida3" layoutX="448.0" layoutY="100.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida3" layoutX="530.0" layoutY="133.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="Imgpoke3" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/delanteras/4.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="NombrePoke4" layoutX="361.0" layoutY="166.0" prefHeight="18.0" prefWidth="58.0" text="BULBASUR" textFill="WHITE">
+            <ImageView fx:id="Imgpoke3" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="NombrePoke4" layoutX="361.0" layoutY="166.0" prefHeight="18.0" prefWidth="58.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="NivelPoke4" layoutX="370.0" layoutY="200.0" text="Nv. 62" textFill="WHITE">
+            <Label fx:id="NivelPoke4" layoutX="370.0" layoutY="200.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="barraVida4" layoutX="448.0" layoutY="166.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida4" layoutX="530.0" layoutY="200.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida4" layoutX="448.0" layoutY="166.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida4" layoutX="530.0" layoutY="200.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="Imgpoke4" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/delanteras/1.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="NombrePoke5" layoutX="367.0" layoutY="239.0" prefHeight="18.0" prefWidth="58.0" text="ZAPDOS" textFill="WHITE">
+            <ImageView fx:id="Imgpoke4" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="NombrePoke5" layoutX="367.0" layoutY="239.0" prefHeight="18.0" prefWidth="58.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="NivelPoke5" layoutX="370.0" layoutY="278.0" text="Nv. 62" textFill="WHITE">
+            <Label fx:id="NivelPoke5" layoutX="370.0" layoutY="278.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="Imgpoke5" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/delanteras/145.png" />
-               </image>
-            </ImageView>
-            <ProgressBar fx:id="barraVida5" layoutX="448.0" layoutY="239.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida5" layoutX="530.0" layoutY="271.0" text="213/218 HP" textFill="WHITE">
+            <ImageView fx:id="Imgpoke5" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+            <ProgressBar fx:id="barraVida5" layoutX="448.0" layoutY="239.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida5" layoutX="530.0" layoutY="271.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="Imgpoke6" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/delanteras/131.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="NivelPoke6" layoutX="376.0" layoutY="341.0" text="Nv. 62" textFill="WHITE">
+            <ImageView fx:id="Imgpoke6" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="NivelPoke6" layoutX="376.0" layoutY="341.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="NombrePoke6" layoutX="361.0" layoutY="305.0" prefHeight="18.0" prefWidth="58.0" text="LAPRAS" textFill="WHITE">
+            <Label fx:id="NombrePoke6" layoutX="361.0" layoutY="305.0" prefHeight="18.0" prefWidth="58.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="barraVida6" layoutX="448.0" layoutY="305.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida6" layoutX="530.0" layoutY="341.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida6" layoutX="448.0" layoutY="305.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida6" layoutX="530.0" layoutY="341.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="Imgpoke1" fitHeight="78.0" fitWidth="96.0" layoutX="29.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/delanteras/25.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="NombrePoke1" layoutX="107.0" layoutY="119.0" text="PIKACHU" textFill="WHITE">
+            <ImageView fx:id="Imgpoke1" fitHeight="78.0" fitWidth="96.0" layoutX="29.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="NombrePoke1" layoutX="107.0" layoutY="119.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="NivelPoke1" layoutX="110.0" layoutY="133.0" text="Nv. 62" textFill="WHITE">
+            <Label fx:id="NivelPoke1" layoutX="110.0" layoutY="133.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="barraVida1" layoutX="81.0" layoutY="149.0" prefHeight="18.0" prefWidth="143.0" progress="0.93" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida1" layoutX="157.0" layoutY="177.0" text="213/218 HP" textFill="WHITE">
+            <ProgressBar fx:id="barraVida1" layoutX="81.0" layoutY="149.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
+            <Label fx:id="lblVida1" layoutX="157.0" layoutY="177.0" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
