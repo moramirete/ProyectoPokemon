@@ -32,27 +32,38 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="393.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="480.0" fitWidth="868.0" layoutX="-51.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="489.0" fitWidth="867.0" layoutX="-51.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/fondo%20crianza.png" />
                </image>
             </ImageView>
-            <Label layoutX="254.0" layoutY="335.0" prefHeight="17.0" prefWidth="376.0" text=" Incubar pokemon" textFill="#f80505">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+            <ImageView fitHeight="105.0" fitWidth="115.0" layoutX="330.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/fondos/imagen%20incubadora.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="98.0" fitWidth="96.0" layoutX="584.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/fondos/img%20huevo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnIncubar" layoutX="288.0" layoutY="375.0" mnemonicParsing="false" onAction="#botonIncubar" prefHeight="25.0" prefWidth="187.0" text="INCUBAR" />
+            <Label layoutX="693.0" layoutY="388.0" prefHeight="60.0" prefWidth="90.0" text="Numero de huevoos" textFill="WHITE" />
+            <Button fx:id="btnAbrirHuevo" layoutX="523.0" layoutY="406.0" mnemonicParsing="false" onAction="#abrirHuevo" text="ABRIR" />
+            <Button fx:id="btnSeleccionarPokemon2" layoutX="581.0" layoutY="270.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" text="SELECCIONA UN SEGUNDO POKEMON" />
+            <Button fx:id="btnSeleccionarPokemon1" layoutX="14.0" layoutY="270.0" mnemonicParsing="false" onAction="#seleccionarPokemon1" text="SELECCIONA UN PRIMER POKEMON" />
+            <Button fx:id="btnSalir" layoutX="37.0" layoutY="25.0" mnemonicParsing="false" onAction="#cerrarCrianza" text="SALIR" />
          </children>
     </AnchorPane>
   </children>
