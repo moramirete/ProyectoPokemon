@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 public class BDConecction {
 	public static Connection con;
-	//LinkedList<Pokemon> p = PokemonBD.selectPokemon();
 	
 	private static String url = "jdbc:mysql://localhost:3306/pokemon";
 	private static String login = "root";
