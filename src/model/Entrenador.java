@@ -128,14 +128,4 @@ public class Entrenador {
 	public SimpleIntegerProperty pokedolaresProperty() {
 	    return pokedolares;
 	}
-	
-	public List<Pokemon> getEquipoVisible() {
-	    return equipo.stream()
-	        .filter(p -> p.getEquipo() == 1)
-	        .limit(6)
-	        .collect(Collectors.toList());
-	}
-	
-	
-	
 }

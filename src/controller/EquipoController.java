@@ -7,14 +7,18 @@ import javafx.scene.control.ProgressBar;
 
 import javafx.scene.control.Label;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import bd.PokemonBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Entrenador;
+import model.Objeto;
 import model.Pokemon;
 
 public class EquipoController {
@@ -137,22 +141,31 @@ public class EquipoController {
 	}
 
 	public void inicializarEquipo() {
-		List<Pokemon> equipo = entrenador.getEquipoVisible();
+	    List<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
 
-		ImageView[] imagenes = { Imgpoke1, Imgpoke2, Imgpoke3, Imgpoke4, Imgpoke5, Imgpoke6 };
-		Label[] nombres = { NombrePoke1, NombrePoke2, NombrePoke3, NombrePoke4, NombrePoke5, NombrePoke6 };
-		Label[] niveles = { NivelPoke1, NivelPoke2, NivelPoke3, NivelPoke4, NivelPoke5, NivelPoke6 };
-		ProgressBar[] barras = { barraVida1, barraVida2, barraVida3, barraVida4, barraVida5, barraVida6 };
-		Label[] etiquetasVida = { lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6 };
+	    ImageView[] imagenes = { Imgpoke1, Imgpoke2, Imgpoke3, Imgpoke4, Imgpoke5, Imgpoke6 };
+	    Label[] nombres = { NombrePoke1, NombrePoke2, NombrePoke3, NombrePoke4, NombrePoke5, NombrePoke6 };
+	    Label[] niveles = { NivelPoke1, NivelPoke2, NivelPoke3, NivelPoke4, NivelPoke5, NivelPoke6 };
+	    ProgressBar[] barras = { barraVida1, barraVida2, barraVida3, barraVida4, barraVida5, barraVida6 };
+	    Label[] etiquetasVida = { lblVida1, lblVida2, lblVida3, lblVida4, lblVida5, lblVida6 };
 
-		for (int i = 0; i < equipo.size(); i++) {
-			Pokemon p = equipo.get(i);
-			nombres[i].setText(p.getNombre_pokemon());
-			niveles[i].setText("Nivel: " + p.getNivel());
-			actualizarBarraVida(barras[i], etiquetasVida[i], p.getVitalidad(), p.getVitalidadMax());
+	    for (int i = 0; i < equipo.size(); i++) {
+	        Pokemon p = equipo.get(i);
+	        String rutaImagen = PokemonBD.obtenerRutaImagen(p);
 
-			}
-		}
+	        try {
+	            Image imagen = new Image(rutaImagen);
+	            imagenes[i].setImage(imagen);
+	        } catch (IllegalArgumentException e) {
+	            System.err.println("Invalid image URL: " + rutaImagen);
+	            imagenes[i].setImage(new Image("file:/imagenes/placeholder.png"));
+	        }
+
+	        nombres[i].setText(p.getNombre_pokemon());
+	        niveles[i].setText("Nivel: " + p.getNivel());
+	        actualizarBarraVida(barras[i], etiquetasVida[i], p.getVitalidad(), p.getVitalidadMax());
+	    }
+	}
 
 	public void actualizarBarraVida(ProgressBar barra, Label label, double vidaActual, double vidaMaxima) {
 		double porcentaje = vidaActual / vidaMaxima;
