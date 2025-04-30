@@ -142,6 +142,13 @@ public class EquipoController {
 
 	public void inicializarEquipo() {
 	    List<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
+	    
+	    //Metodo para que el primero sea el pok principal
+	    equipo.sort((p1, p2) -> {
+	        if (p1.getEquipo() == 1) return -1; 
+	        if (p2.getEquipo() == 1) return 1;
+	        return 0; 
+	    });
 
 	    ImageView[] imagenes = { Imgpoke1, Imgpoke2, Imgpoke3, Imgpoke4, Imgpoke5, Imgpoke6 };
 	    Label[] nombres = { NombrePoke1, NombrePoke2, NombrePoke3, NombrePoke4, NombrePoke5, NombrePoke6 };

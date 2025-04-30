@@ -49,6 +49,9 @@ public class CambiarPorController {
 
     @FXML
     private TableColumn<Pokemon, Integer> colTipo2;
+    
+    @FXML
+    private TableColumn<Pokemon, Integer> colPosicion;
 
     @FXML
     private TableView<Pokemon> tabPokemon;
@@ -76,6 +79,9 @@ public class CambiarPorController {
         
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
         colNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
+        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
+        colTipo2.setCellValueFactory(new PropertyValueFactory<>("tipo2"));
+        colPosicion.setCellValueFactory(new PropertyValueFactory<>("equipo"));
 
        
         tabPokemon.setItems(listaEquipo);

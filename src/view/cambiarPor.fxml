@@ -43,10 +43,11 @@
    <children>
       <TableView fx:id="tabPokemon" layoutX="-3.0" layoutY="-4.0" prefHeight="276.0" prefWidth="430.0">
         <columns>
-          <TableColumn fx:id="colNombre" prefWidth="184.0" text="Nombre" />
-          <TableColumn fx:id="colNivel" prefWidth="51.0" text="Nivel" />
-            <TableColumn fx:id="colTipo" prefWidth="111.0" text="Tipo" />
-            <TableColumn fx:id="colTipo2" prefWidth="79.0" text="Tipo 2" />
+          <TableColumn fx:id="colNombre" prefWidth="133.0" text="Nombre" />
+          <TableColumn fx:id="colNivel" prefWidth="41.0" text="Nivel" />
+            <TableColumn fx:id="colTipo" prefWidth="92.0" text="Tipo" />
+            <TableColumn fx:id="colTipo2" prefWidth="98.0" text="Tipo 2" />
+            <TableColumn fx:id="colPosicion" prefWidth="65.0" text="Posicion" />
         </columns>
       </TableView>
       <Button fx:id="btnVolver" layoutX="291.0" layoutY="321.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
