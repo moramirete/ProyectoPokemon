@@ -59,7 +59,7 @@
                </image>
             </ImageView>
             <Button fx:id="btnIncubar" layoutX="315.0" layoutY="296.0" mnemonicParsing="false" onAction="#botonIncubar" prefHeight="25.0" prefWidth="187.0" text="INCUBAR" />
-            <Label layoutX="693.0" layoutY="388.0" prefHeight="60.0" prefWidth="90.0" text="Numero de huevoos" textFill="WHITE" />
+            <Label fx:id="lblHuevos" layoutX="693.0" layoutY="388.0" prefHeight="60.0" prefWidth="90.0" text="Numero de huevoos" textFill="WHITE" />
             <Button fx:id="btnAbrirHuevo" layoutX="535.0" layoutY="406.0" mnemonicParsing="false" onAction="#abrirHuevo" text="ABRIR" />
             <Button fx:id="btnSeleccionarPokemon2" layoutX="523.0" layoutY="283.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" prefHeight="50.0" prefWidth="238.0" text="SELECCIONA UN SEGUNDO POKEMON" />
             <Button fx:id="btnSeleccionarPokemon1" layoutX="50.0" layoutY="283.0" mnemonicParsing="false" onAction="#seleccionarPokemon1" prefHeight="50.0" prefWidth="238.0" text="SELECCIONA UN PRIMER POKEMON" />
