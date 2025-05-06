@@ -32,21 +32,23 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EntrenamientoController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="262.0" layoutY="161.0" style="&#10;" text="Entrenamiento" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-      </children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="429.0" prefWidth="662.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ImageView fx:id="imgFondo" fitHeight="443.0" fitWidth="692.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/imagenes/fondos/entrenamiento_fondo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnSalir" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#salir" text="SALIR" />
+         </children>
     </AnchorPane>
   </children>
 </VBox>
