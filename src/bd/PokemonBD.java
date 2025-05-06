@@ -515,6 +515,29 @@ public class PokemonBD {
         }
     }
     
+    public static boolean cambiarPokemonPrincipalAEquipo(int idEntrenador, Pokemon deCaja, Pokemon principalActual) {
+        try (Connection con = BDConecction.getConnection()) {
+            // Cambiar el Pokémon de la caja a principal
+            String sqlCaja = "UPDATE POKEMON SET EQUIPO = 1 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtCaja = con.prepareStatement(sqlCaja);
+            stmtCaja.setInt(1, deCaja.getId_pokemon());
+            stmtCaja.setInt(2, idEntrenador);
+            stmtCaja.executeUpdate();
+
+            // Cambiar el Pokémon principal actual a la caja
+            String sqlPrincipal = "UPDATE POKEMON SET EQUIPO = 2 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtPrincipal = con.prepareStatement(sqlPrincipal);
+            stmtPrincipal.setInt(1, principalActual.getId_pokemon());
+            stmtPrincipal.setInt(2, idEntrenador);
+            stmtPrincipal.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     public static boolean cambiarPrincipalConEquipo(int idEntrenador, Pokemon delEquipo, Pokemon principalActual) {
         try (Connection con = BDConecction.getConnection()) {
             // Cambiar el Pokémon del equipo a principal
