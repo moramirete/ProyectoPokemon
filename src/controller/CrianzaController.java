@@ -17,7 +17,6 @@ public class CrianzaController {
 	private Stage stage;
 	private MenuController menuController;
 	
-	private int huevo = 0;
 	
     @FXML
     private Button btnAbrirHuevo;
@@ -51,19 +50,6 @@ public class CrianzaController {
     	
     }
 
-    private void actualizarLblHuevos() {
-		lblHuevos.setText(String.valueOf(huevo));
-		lblHuevos.setStyle("-fx-font-size: 32px; -fx-text-fill: #ff0000;");
-	}
-	
-	private void actualizarHuevosBD() {
-		try (Connection conexion = BDConecction.getConnection()){
-			MochilaBD.actualizarCantidad(entrenador.getIdEntrenador(), huevo);
-		
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
     
     @FXML
     void botonIncubar(ActionEvent event) {
