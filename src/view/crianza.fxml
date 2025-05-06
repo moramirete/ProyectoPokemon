@@ -48,22 +48,22 @@
                   <Image url="@../../multimedia/imagenes/fondos/fondo%20crianza.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="105.0" fitWidth="115.0" layoutX="356.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgIncubadora" fitHeight="105.0" fitWidth="115.0" layoutX="356.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/imagen%20incubadora.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="98.0" fitWidth="96.0" layoutX="584.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgHuevo" fitHeight="98.0" fitWidth="96.0" layoutX="584.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/img%20huevo.png" />
                </image>
             </ImageView>
             <Button fx:id="btnIncubar" layoutX="315.0" layoutY="296.0" mnemonicParsing="false" onAction="#botonIncubar" prefHeight="25.0" prefWidth="187.0" text="INCUBAR" />
             <Label fx:id="lblHuevos" layoutX="693.0" layoutY="388.0" prefHeight="60.0" prefWidth="90.0" text="Numero de huevoos" textFill="WHITE" />
-            <Button fx:id="btnAbrirHuevo" layoutX="535.0" layoutY="406.0" mnemonicParsing="false" onAction="#abrirHuevo" text="ABRIR" />
+            <Button fx:id="btnAbrirHuevo" layoutX="502.0" layoutY="406.0" mnemonicParsing="false" onAction="#abrirHuevo" text="ABRIR HUEVO" />
             <Button fx:id="btnSeleccionarPokemon2" layoutX="523.0" layoutY="283.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" prefHeight="50.0" prefWidth="238.0" text="SELECCIONA UN SEGUNDO POKEMON" />
             <Button fx:id="btnSeleccionarPokemon1" layoutX="50.0" layoutY="283.0" mnemonicParsing="false" onAction="#seleccionarPokemon1" prefHeight="50.0" prefWidth="238.0" text="SELECCIONA UN PRIMER POKEMON" />
-            <Button fx:id="btnSalir" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="50.0" prefWidth="105.0" text="SALIR" />
+            <Button fx:id="btnSalir" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="50.0" prefWidth="105.0" text="SALIR" />
             <Label fx:id="lblPokemon" layoutX="614.0" layoutY="165.0" prefHeight="60.0" prefWidth="90.0" text="Numero de huevoos" textFill="WHITE" />
             <Label fx:id="lblPokemon" layoutX="118.0" layoutY="165.0" prefHeight="60.0" prefWidth="90.0" text="Numero de huevoos" textFill="WHITE" />
          </children>
