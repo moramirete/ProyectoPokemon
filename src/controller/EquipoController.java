@@ -113,6 +113,9 @@ public class EquipoController {
 	@FXML
 	private Button btnSalir;
 
+    @FXML
+    private Button btnPokemonPrincipal;
+
 	@FXML
 	private ImageView imgfondo;
 
@@ -219,6 +222,28 @@ public class EquipoController {
 			e.printStackTrace();
 		}
 
+	}
+	
+
+	@FXML
+	void abrirEdicion(ActionEvent event) {
+	    try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPokemonPrincipal.fxml"));
+	        Parent root = loader.load();
+
+	        CambiarPokemonPrincipalController cambiarPok = loader.getController();
+	        Stage nuevaStage = new Stage();
+	        Scene scene = new Scene(root);
+
+	        cambiarPok.init(entrenador, nuevaStage, this); // Pasar el EquipoController actual
+
+	        nuevaStage.setTitle("Pokémon Super Nenes - Cambio Pokémon Principal");
+	        nuevaStage.setScene(scene);
+	        nuevaStage.show();
+	    } catch (IOException e) {
+	        System.out.println("Fallo en el archivo FXML.");
+	        e.printStackTrace();
+	    }
 	}
 
 	public void show() {

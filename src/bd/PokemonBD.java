@@ -274,6 +274,51 @@ public class PokemonBD {
     	return equipo;
     }
     
+    public static ArrayList<Pokemon> obtenerEquipoSinPrincipal(int idEntrenador){
+    	ArrayList<Pokemon> equipo = new ArrayList<>();
+    	
+    	try (Connection con = BDConecction.getConnection()) {
+            String sql = "SELECT * \r\n"
+            		+ "FROM POKEMON p \r\n"
+            		+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
+            		+ "WHERE e.ID_ENTRENADOR = ? AND p.EQUIPO = 2 ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEntrenador);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                equipo.add(new Pokemon(
+                    rs.getInt("ID_POKEMON"),       
+                    rs.getInt("ID_ENTRENADOR"),     
+                    rs.getInt("NUM_POKEDEX"),       
+                    rs.getInt("ID_OBJETO"),         
+                    rs.getString("TIPO1"),       
+                    rs.getString("TIPO2"),           
+                    rs.getInt("VITALIDAD"),       
+                    rs.getInt("ATAQUE"),           
+                    rs.getInt("DEFENSA"),            
+                    rs.getInt("AT_ESPECIAL"),        
+                    rs.getInt("DEF_ESPECIAL"),      
+                    rs.getInt("VELOCIDAD"),          
+                    rs.getInt("NIVEL"),             
+                    rs.getInt("FERTILIDAD"),         
+                    rs.getInt("EQUIPO"),             
+                    rs.getString("NOM_POKEMON"),     
+                    rs.getString("ESTADO"),          
+                    rs.getString("SEXO").charAt(0),
+                    rs.getInt("VITALIDADMAX")
+                ));
+            };
+                
+                System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    	
+    	return equipo;
+    }
+    
     public static ArrayList<Pokemon> obtenerCaja(int idEntrenador){
     	ArrayList<Pokemon> equipo = new ArrayList<>();
     	
@@ -335,14 +380,14 @@ public class PokemonBD {
     
     public static String obtenerRutaImagen(Pokemon p) {
         try (Connection con = BDConecction.getConnection()) {
-            String queryPokedex = "SELECT IMG_FRONTAL FROM POKEDEX WHERE NUM_POKEDEX = ?";
+            String queryPokedex = "SELECT SPRITES_FRONTAL FROM POKEDEX WHERE NUM_POKEDEX = ?";
             PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
             statementPokedex.setInt(1, p.getNum_pokedex());
             ResultSet resultadoPokedex = statementPokedex.executeQuery();
 
             if (resultadoPokedex.next()) {
                 // Construct the full path with the file protocol
-                String ruta = "/imagenes/" + resultadoPokedex.getString("IMG_FRONTAL");
+                String ruta = "/imagenes/" + resultadoPokedex.getString("SPRITES_FRONTAL");
                 return ruta;
             } else {
                 throw new SQLException("No image found for NUM_POKEDEX: " + p.getNum_pokedex());
@@ -401,6 +446,52 @@ public class PokemonBD {
         }
     }
     
+    public static Pokemon obtenerPokemonPrincipal(int idEntrenador){
+    	
+    	Pokemon p = new Pokemon();
+    	
+    	try (Connection con = BDConecction.getConnection()) {
+            String sql = "SELECT * \r\n"
+            		+ "FROM POKEMON p \r\n"
+            		+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
+            		+ "WHERE e.ID_ENTRENADOR = ? AND p.EQUIPO = 1 ";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEntrenador);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                p = new Pokemon(
+                    rs.getInt("ID_POKEMON"),       
+                    rs.getInt("ID_ENTRENADOR"),     
+                    rs.getInt("NUM_POKEDEX"),       
+                    rs.getInt("ID_OBJETO"),         
+                    rs.getString("TIPO1"),       
+                    rs.getString("TIPO2"),           
+                    rs.getInt("VITALIDAD"),       
+                    rs.getInt("ATAQUE"),           
+                    rs.getInt("DEFENSA"),            
+                    rs.getInt("AT_ESPECIAL"),        
+                    rs.getInt("DEF_ESPECIAL"),      
+                    rs.getInt("VELOCIDAD"),          
+                    rs.getInt("NIVEL"),             
+                    rs.getInt("FERTILIDAD"),         
+                    rs.getInt("EQUIPO"),             
+                    rs.getString("NOM_POKEMON"),     
+                    rs.getString("ESTADO"),          
+                    rs.getString("SEXO").charAt(0),
+                    rs.getInt("VITALIDADMAX")
+                );
+            };
+                
+                System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    	
+    	return p;
+    }
+    
     public static boolean cambiarPokemonPrincipal(int idEntrenador, Pokemon deCaja, Pokemon principalActual) {
         try (Connection con = BDConecction.getConnection()) {
             // Cambiar el Pokémon de la caja a principal
@@ -412,6 +503,29 @@ public class PokemonBD {
 
             // Cambiar el Pokémon principal actual a la caja
             String sqlPrincipal = "UPDATE POKEMON SET EQUIPO = 3 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtPrincipal = con.prepareStatement(sqlPrincipal);
+            stmtPrincipal.setInt(1, principalActual.getId_pokemon());
+            stmtPrincipal.setInt(2, idEntrenador);
+            stmtPrincipal.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static boolean cambiarPokemonPrincipalAEquipo(int idEntrenador, Pokemon deCaja, Pokemon principalActual) {
+        try (Connection con = BDConecction.getConnection()) {
+            // Cambiar el Pokémon de la caja a principal
+            String sqlCaja = "UPDATE POKEMON SET EQUIPO = 1 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+            PreparedStatement stmtCaja = con.prepareStatement(sqlCaja);
+            stmtCaja.setInt(1, deCaja.getId_pokemon());
+            stmtCaja.setInt(2, idEntrenador);
+            stmtCaja.executeUpdate();
+
+            // Cambiar el Pokémon principal actual a la caja
+            String sqlPrincipal = "UPDATE POKEMON SET EQUIPO = 2 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
             PreparedStatement stmtPrincipal = con.prepareStatement(sqlPrincipal);
             stmtPrincipal.setInt(1, principalActual.getId_pokemon());
             stmtPrincipal.setInt(2, idEntrenador);

@@ -46,7 +46,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="imgfondo" fitHeight="404.0" fitWidth="640.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgfondo" fitHeight="404.0" fitWidth="640.0" layoutX="-1.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/fondoequipo.jpg" />
                </image>
@@ -197,16 +197,21 @@
                   <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnCambiar" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="432.0" layoutY="370.0" mnemonicParsing="false" onAction="#abrirCaja" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: purple;" text="Cambiar" textFill="WHITE">
+            <Button fx:id="btnCambiar" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="445.0" layoutY="370.0" mnemonicParsing="false" onAction="#abrirCaja" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: purple;" text="Cambiar" textFill="WHITE">
                <font>
                   <Font name="Consolas" size="12.0" />
                </font>
             </Button>
-            <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="406.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="419.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnPokemonPrincipal" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="224.0" layoutY="79.0" mnemonicParsing="false" onAction="#abrirEdicion" prefHeight="18.0" prefWidth="24.0" style="-fx-background-color: purple;" text="↑↓" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="11.0" />
+               </font>
+            </Button>
          </children>
     </AnchorPane>
   </children>
