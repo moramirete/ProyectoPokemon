@@ -335,14 +335,14 @@ public class PokemonBD {
     
     public static String obtenerRutaImagen(Pokemon p) {
         try (Connection con = BDConecction.getConnection()) {
-            String queryPokedex = "SELECT IMG_FRONTAL FROM POKEDEX WHERE NUM_POKEDEX = ?";
+            String queryPokedex = "SELECT SPRITES_FRONTAL FROM POKEDEX WHERE NUM_POKEDEX = ?";
             PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
             statementPokedex.setInt(1, p.getNum_pokedex());
             ResultSet resultadoPokedex = statementPokedex.executeQuery();
 
             if (resultadoPokedex.next()) {
                 // Construct the full path with the file protocol
-                String ruta = "/imagenes/" + resultadoPokedex.getString("IMG_FRONTAL");
+                String ruta = "/imagenes/" + resultadoPokedex.getString("SPRITES_FRONTAL");
                 return ruta;
             } else {
                 throw new SQLException("No image found for NUM_POKEDEX: " + p.getNum_pokedex());
