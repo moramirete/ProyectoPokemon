@@ -64,8 +64,8 @@
             <Button fx:id="btnSeleccionarPokemon2" layoutX="523.0" layoutY="283.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" prefHeight="50.0" prefWidth="238.0" text="SELECCIONA UN SEGUNDO POKEMON" />
             <Button fx:id="btnSeleccionarPokemon1" layoutX="50.0" layoutY="283.0" mnemonicParsing="false" onAction="#seleccionarPokemon1" prefHeight="50.0" prefWidth="238.0" text="SELECCIONA UN PRIMER POKEMON" />
             <Button fx:id="btnSalir" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="50.0" prefWidth="105.0" text="SALIR" />
-            <Label fx:id="lblPokemon" layoutX="614.0" layoutY="165.0" prefHeight="60.0" prefWidth="90.0" text="Numero de huevoos" textFill="WHITE" />
-            <Label fx:id="lblPokemon" layoutX="118.0" layoutY="165.0" prefHeight="60.0" prefWidth="90.0" text="Numero de huevoos" textFill="WHITE" />
+            <Label fx:id="lblPokemon" layoutX="614.0" layoutY="165.0" prefHeight="60.0" prefWidth="90.0" text="PokemonMacho" textFill="WHITE" />
+            <Label fx:id="lblPokemon" layoutX="118.0" layoutY="165.0" prefHeight="60.0" prefWidth="90.0" text="PokemonHembra" textFill="WHITE" />
          </children>
     </AnchorPane>
   </children>
