@@ -49,6 +49,9 @@ public class CajaController {
 
 	@FXML
 	private Button btnVolver;
+	
+    @FXML
+    private Button btnEstadisticas;
 
 	@FXML
 	private TableColumn<Pokemon, String> colNombre;
