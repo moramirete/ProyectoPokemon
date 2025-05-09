@@ -6,6 +6,7 @@ public class Movimiento {
 	
 	private int id_movimiento;
 	private String nom_movimiento;
+	private int id_pokemon;
 	private String descripcion;
 	private int precision;
 	private int pp_max;
@@ -22,12 +23,13 @@ public class Movimiento {
 	
 	
 	//CONTRUCTOR CON TODOS LOS PARAMETROS
-	public Movimiento(int id_movimiento, String nom_movimiento, String descripcion, int precision, int pp_max, int pp_actual,
+	public Movimiento(int id_movimiento, String nom_movimiento, int id_pokemon, String descripcion, int precision, int pp_max, int pp_actual,
 			String tipo, String tipo_mov, int potencia, String estado, int turnos, int mejora, int num_mov,
 			int cant_mejora) {
 		super();
 		this.id_movimiento = id_movimiento;
 		this.nom_movimiento = nom_movimiento;
+		this.id_pokemon = id_pokemon;
 		this.descripcion = descripcion;
 		this.precision = precision;
 		this.pp_max = pp_max;
@@ -48,6 +50,7 @@ public class Movimiento {
 		super();
 		this.id_movimiento = 0;
 		this.nom_movimiento = "";
+		this.id_pokemon = 0;
 		this.descripcion = "";
 		this.precision = 0;
 		this.pp_max = 0;
