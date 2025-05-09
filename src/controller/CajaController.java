@@ -49,9 +49,9 @@ public class CajaController {
 
 	@FXML
 	private Button btnVolver;
-	
-    @FXML
-    private Button btnEstadisticas;
+
+	@FXML
+	private Button btnEstadisticas;
 
 	@FXML
 	private TableColumn<Pokemon, String> colNombre;
@@ -150,67 +150,102 @@ public class CajaController {
 
 	@FXML
 	void cambiarNombre(ActionEvent event) {
-	    Pokemon pokSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+		Pokemon pokSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
 
-	    if (pokSeleccionado == null) {
-	        JOptionPane.showMessageDialog(null, "Error: Primero selecciona el Pokémon de la caja");
-	        return;
-	    }
+		if (pokSeleccionado == null) {
+			JOptionPane.showMessageDialog(null, "Error: Primero selecciona el Pokémon de la caja");
+			return;
+		}
 
-	    String nombreAntiguo = pokSeleccionado.getNombre_pokemon();
+		String nombreAntiguo = pokSeleccionado.getNombre_pokemon();
 
-	    TextInputDialog dialogo = new TextInputDialog(nombreAntiguo);
-	    dialogo.setTitle("Cambio de nombre");
-	    dialogo.setHeaderText("Introduce el nuevo nombre:");
-	    dialogo.setContentText("Nombre: ");
+		TextInputDialog dialogo = new TextInputDialog(nombreAntiguo);
+		dialogo.setTitle("Cambio de nombre");
+		dialogo.setHeaderText("Introduce el nuevo nombre:");
+		dialogo.setContentText("Nombre: ");
 
-	    Optional<String> nombreNuevo = dialogo.showAndWait();
+		Optional<String> nombreNuevo = dialogo.showAndWait();
 
-	    if (nombreNuevo.isPresent()) {
-	        boolean actualizado = PokemonBD.cambiarNombre(pokSeleccionado, nombreNuevo);
+		if (nombreNuevo.isPresent()) {
+			boolean actualizado = PokemonBD.cambiarNombre(pokSeleccionado, nombreNuevo);
 
-	        if (actualizado) {
-	            pokSeleccionado.setNombre_pokemon(nombreNuevo.get());
-	            JOptionPane.showMessageDialog(null, "Cambio realizado correctamente al Pokémon " + nombreAntiguo, "Cambio Realizado", JOptionPane.INFORMATION_MESSAGE);
-	            tabPokemon.refresh();
-	        } else {
-	            JOptionPane.showMessageDialog(null, "Error al actualizar el nombre en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
-	        }
-	    }
+			if (actualizado) {
+				pokSeleccionado.setNombre_pokemon(nombreNuevo.get());
+				JOptionPane.showMessageDialog(null, "Cambio realizado correctamente al Pokémon " + nombreAntiguo,
+						"Cambio Realizado", JOptionPane.INFORMATION_MESSAGE);
+				tabPokemon.refresh();
+			} else {
+				JOptionPane.showMessageDialog(null, "Error al actualizar el nombre en la base de datos.", "Error",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
 	}
 
 	@FXML
 	void cambiarPor(ActionEvent event) {
-	    try {
-	        // Verificar que se haya seleccionado un Pokémon en la tabla
-	        Pokemon pokemonSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
-	        if (pokemonSeleccionado == null) {
-	            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún Pokémon de la caja.", "Error", JOptionPane.ERROR_MESSAGE);
-	            return;
-	        }
+		try {
+			// Verificar que se haya seleccionado un Pokémon en la tabla
+			Pokemon pokemonSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+			if (pokemonSeleccionado == null) {
+				JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún Pokémon de la caja.", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 
-	        // Cargar el archivo FXML de la ventana emergente
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPor.fxml"));
-	        Parent root = loader.load();
+			// Cargar el archivo FXML de la ventana emergente
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPor.fxml"));
+			Parent root = loader.load();
 
-	        // Obtener el controlador de la ventana emergente
-	        CambiarPorController cambiarPorController = loader.getController();
+			// Obtener el controlador de la ventana emergente
+			CambiarPorController cambiarPorController = loader.getController();
 
-	        // Inicializar el controlador con los datos necesarios
-	        Stage nuevaStage = new Stage();
-	        cambiarPorController.init(entrenador, nuevaStage, equipoController, this, pokemonSeleccionado);
+			// Inicializar el controlador con los datos necesarios
+			Stage nuevaStage = new Stage();
+			cambiarPorController.init(entrenador, nuevaStage, equipoController, this, pokemonSeleccionado);
 
-	        // Configurar la ventana emergente
-	        Scene scene = new Scene(root);
-	        nuevaStage.setTitle("Cambiar Pokémon");
-	        nuevaStage.setScene(scene);
-	        nuevaStage.initOwner(stage);
-	        nuevaStage.show();
+			// Configurar la ventana emergente
+			Scene scene = new Scene(root);
+			nuevaStage.setTitle("Cambiar Pokémon");
+			nuevaStage.setScene(scene);
+			nuevaStage.initOwner(stage);
+			nuevaStage.show();
 
-	    } catch (IOException e) {
-	        System.err.println("Error al cargar la ventana emergente para cambiar Pokémon.");
-	        e.printStackTrace();
-	    }
+		} catch (IOException e) {
+			System.err.println("Error al cargar la ventana emergente para cambiar Pokémon.");
+			e.printStackTrace();
+		}
 	}
 
+	@FXML
+	void verEstadisticas(ActionEvent event) {
+		Pokemon pokSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+
+		if (pokSeleccionado == null) {
+			JOptionPane.showMessageDialog(null, "Error: Primero selecciona el Pokémon de la caja");
+			return;
+		}
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/estadisticas.fxml"));
+			Parent root = loader.load();
+
+			EstadisticasController estadisticasController = loader.getController();
+
+			Stage nuevaStage = new Stage();
+
+			estadisticasController.init(entrenador, nuevaStage, null);
+
+			// Mostrar la nueva escena
+			Scene scene = new Scene(root);
+			nuevaStage.setScene(scene);
+			nuevaStage.setTitle("Estadísticas de" + pokSeleccionado.getNombre_pokemon());
+			nuevaStage.show();
+
+		} catch (IOException e) {
+			System.err.println("Error al cargar la ventana de estadísticas.");
+			e.printStackTrace();
+		}
+
+	}
 }

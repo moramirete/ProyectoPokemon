@@ -8,12 +8,26 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import model.Entrenador;
 import model.Movimiento;
 import model.Objeto;
 
 public class EstadisticasController {
+	
+	private Entrenador entrenador;
+	private Stage stage;
+	private MenuController menuController;
 
-    @FXML
+	public void init(Entrenador ent, Stage stage, MenuController menuController) {
+		this.menuController = menuController;
+		this.stage = stage;
+		this.entrenador = ent;
+
+
+	}
+
+	@FXML
     private Button btnCambiarMov1;
 
     @FXML
@@ -213,5 +227,9 @@ public class EstadisticasController {
     void reproducirGrito(ActionEvent event) {
 
     }
+    
+    public void show() {
+		stage.show();
+	}
 
 }
