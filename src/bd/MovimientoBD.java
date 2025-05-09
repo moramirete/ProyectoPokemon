@@ -31,6 +31,7 @@ public class MovimientoBD {
             		
             		resultadoPlacaje.getInt("ID_MOVIMIENTO"),
                 	resultadoPlacaje.getString("NOM_MOVIMIENTO"),
+                	pokemon.getId_pokemon(),
                 	resultadoPlacaje.getString("DESCRIPCION"),
                 	resultadoPlacaje.getInt("PRECI"),
                 	resultadoPlacaje.getInt("PP_MAX"),
@@ -46,8 +47,8 @@ public class MovimientoBD {
             		
             		);
             
-            String queryInsertMov = "INSERT INTO movimiento_pokemon (ID_ENTRENADOR , ID_MOVIMIENTO, PP_ACTUALES, POSICION)" + 
-            						"VALUES (?, ?, ?, ?)";
+            String queryInsertMov = "INSERT INTO movimiento_pokemon (ID_ENTRENADOR , ID_MOVIMIENTO, PP_ACTUALES, POSICION, ID_POKEMON)" + 
+            						"VALUES (?, ?, ?, ?, ?)";
             
             PreparedStatement st = con.prepareStatement(queryInsertMov);
             
@@ -55,6 +56,7 @@ public class MovimientoBD {
             st.setInt(2, mov.getId_movimiento());
             st.setInt(3, mov.getPp_actual());
             st.setInt(4, 1); //Al ser el primer movimiento, 100x100 al principio esta en la 1 posicion
+            st.setInt(4, pokemon.getId_pokemon());
             
             st.executeUpdate();
             st.close();

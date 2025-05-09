@@ -6,6 +6,7 @@ import model.Pokemon;
 import bd.BDConecction;
 import bd.PokemonBD;
 import bd.MochilaBD;
+import bd.MovimientoBD;
 import model.Mochila;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -173,9 +174,7 @@ public class CapturaController {
 	void capturarPokemon(ActionEvent event) {
 		System.out.println("Se ha accionado el boton de capturar");
 		
-		
-		
-		
+
 		if (pokebolas <= 0) {
 			JOptionPane.showMessageDialog(null,"Te has quedado sin Pokeballs", "Sin Pokeballs", JOptionPane.WARNING_MESSAGE);
 			return;
@@ -186,15 +185,10 @@ public class CapturaController {
 		Connection conexion = con.getConnection();
 		
 		
-		
-		
-
 		if (pokemonCreado != null) {
 
 			Random rd = new Random();
-			int prob = rd.nextInt(3);
-
-			
+			int prob = rd.nextInt(3);	
 			
 			if (prob == 0) {
 				JOptionPane.showMessageDialog(null, "El pokemon se ha salido de la bola", "Fallaste", 1);
@@ -219,6 +213,7 @@ public class CapturaController {
 				
 				try (Connection conexion1 = BDConecction.getConnection()){
 					PokemonBD.guardarPokemonCaptura(pokemonCreado, conexion1);
+					MovimientoBD.otorgarPrimerMovimiento(conexion, entrenador, pokemonCreado);
 					System.out.println("Pokemon guardado en la BBDD");
 					lblPokemon.setText("Has capturado un : " + pokemonCreado.getNombre_pokemon());
 					JOptionPane.showMessageDialog(null,"El pokemon ha sido capturado correctamente, esta situado en la caja", "Capturado", 1);
