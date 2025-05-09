@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EstadisticasController">
+   <children>
+      <TabPane prefHeight="470.0" prefWidth="468.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Informacion">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="439.0">
+                     <children>
+                        <ImageView fx:id="imgFondo" fitHeight="506.0" fitWidth="468.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField disable="true" layoutX="21.0" layoutY="8.0" prefHeight="176.0" prefWidth="142.0" />
+                        <ImageView fx:id="imgPokemon" fitHeight="123.0" fitWidth="150.0" layoutX="20.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField disable="true" layoutX="170.0" layoutY="26.0" prefHeight="25.0" prefWidth="161.0" />
+                        <TextField disable="true" layoutX="384.0" layoutY="27.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label layoutX="346.0" layoutY="26.0" text="Nv.">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txtNombre" alignment="CENTER" layoutX="176.0" layoutY="25.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txtNivel" layoutX="389.0" layoutY="27.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="pbVitalidad" layoutX="170.0" layoutY="68.0" prefHeight="19.0" prefWidth="208.0" progress="0.0" />
+                        <Label fx:id="txtVitalidad" alignment="CENTER" layoutX="385.0" layoutY="64.0" prefHeight="26.0" prefWidth="41.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="117.0" layoutY="224.0" prefHeight="26.0" prefWidth="58.0" text="Ataque">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="112.0" layoutY="297.0" prefHeight="26.0" prefWidth="68.0" text="Defensa">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="262.0" layoutY="224.0" prefHeight="26.0" prefWidth="95.0" text="Ataque Esp.">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="262.0" layoutY="297.0" prefHeight="26.0" prefWidth="95.0" text="Defensa Esp.">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imgTipo1" fitHeight="25.0" fitWidth="122.0" layoutX="169.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTipo2" fitHeight="25.0" fitWidth="122.0" layoutX="310.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="365.0" prefHeight="26.0" prefWidth="95.0" text="Velocidad">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="365.0" prefHeight="26.0" prefWidth="103.0" text="Fertilidad">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="42.0" layoutY="150.0" prefHeight="26.0" prefWidth="41.0" text="N.º ">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="80.0" layoutY="150.0" prefHeight="25.0" prefWidth="55.0" />
+                        <Label fx:id="txtNumPokedex" layoutX="85.0" layoutY="150.0" prefHeight="26.0" prefWidth="45.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imgSexo" fitHeight="39.0" fitWidth="31.0" layoutX="132.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="btnReproducirGrito" layoutX="204.0" layoutY="151.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reprooducir grito" />
+                        <TextField disable="true" layoutX="60.0" layoutY="224.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label fx:id="txtAtaque" layoutX="65.0" layoutY="224.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="60.0" layoutY="297.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label fx:id="txtDefensa" layoutX="65.0" layoutY="297.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="60.0" layoutY="365.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label fx:id="txtVelocidad" layoutX="65.0" layoutY="365.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="364.0" layoutY="224.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label fx:id="txtAtaqueEspecial" layoutX="369.0" layoutY="224.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="364.0" layoutY="297.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label fx:id="txtDefensaEspecial" layoutX="369.0" layoutY="297.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="364.0" layoutY="365.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label fx:id="txtFertilidad" layoutX="369.0" layoutY="365.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Movimientos">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imgFondo2" fitHeight="443.0" fitWidth="468.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField disable="true" layoutX="21.0" layoutY="14.0" prefHeight="176.0" prefWidth="142.0" />
+                        <ImageView fx:id="imgPokemon1" fitHeight="123.0" fitWidth="150.0" layoutX="20.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField disable="true" layoutX="170.0" layoutY="32.0" prefHeight="25.0" prefWidth="161.0" />
+                        <TextField disable="true" layoutX="384.0" layoutY="33.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label layoutX="346.0" layoutY="32.0" text="Nv.">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txtNombre1" alignment="CENTER" layoutX="176.0" layoutY="31.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txtNivel1" layoutX="389.0" layoutY="33.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="pbVitalidad1" layoutX="170.0" layoutY="74.0" prefHeight="19.0" prefWidth="208.0" progress="0.0" />
+                        <Label fx:id="txtVitalidad1" alignment="CENTER" layoutX="385.0" layoutY="70.0" prefHeight="26.0" prefWidth="41.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imgTipo11" fitHeight="25.0" fitWidth="122.0" layoutX="169.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTipo21" fitHeight="25.0" fitWidth="122.0" layoutX="310.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" layoutX="42.0" layoutY="156.0" prefHeight="26.0" prefWidth="41.0" text="N.º ">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="80.0" layoutY="156.0" prefHeight="25.0" prefWidth="55.0" />
+                        <Label fx:id="txtNumPokedex1" layoutX="85.0" layoutY="156.0" prefHeight="26.0" prefWidth="45.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnReproducirGrito2" layoutX="204.0" layoutY="157.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reprooducir grito" />
+                        <TextField disable="true" layoutX="52.0" layoutY="214.0" prefHeight="25.0" prefWidth="161.0" />
+                        <Label fx:id="txtMovimiento1" alignment="CENTER" layoutX="58.0" layoutY="213.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="248.0" layoutY="215.0" prefHeight="25.0" prefWidth="161.0" />
+                        <Label fx:id="txtMovimiento2" alignment="CENTER" layoutX="254.0" layoutY="214.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="53.0" layoutY="253.0" prefHeight="25.0" prefWidth="161.0" />
+                        <Label fx:id="txtMovimiento3" alignment="CENTER" layoutX="59.0" layoutY="252.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="248.0" layoutY="253.0" prefHeight="25.0" prefWidth="161.0" />
+                        <Label fx:id="txtMovimiento4" alignment="CENTER" layoutX="254.0" layoutY="252.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tablaMovimiento" layoutX="20.0" layoutY="297.0" prefHeight="126.0" prefWidth="425.0">
+                          <columns>
+                            <TableColumn fx:id="colNombreMov" prefWidth="154.0" text="NOMBRE" />
+                            <TableColumn fx:id="colTipoMov" prefWidth="99.0" text="TIPO" />
+                              <TableColumn fx:id="colTipoMovMov" prefWidth="171.0" text="TIPO_MOV" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnCambiarMov1" layoutX="20.0" layoutY="214.0" mnemonicParsing="false" onAction="#cambiarMov1" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
+                        <Button fx:id="btnCambiarMov3" layoutX="20.0" layoutY="253.0" mnemonicParsing="false" onAction="#cambiarMov3" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
+                        <Button fx:id="btnCambiarMov2" layoutX="409.0" layoutY="215.0" mnemonicParsing="false" onAction="#cambiarMov2" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
+                        <Button fx:id="btnCambiarMov4" layoutX="409.0" layoutY="253.0" mnemonicParsing="false" onAction="#cambiarMov4" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Objetos">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imgFondo1" fitHeight="443.0" fitWidth="468.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField disable="true" layoutX="22.0" layoutY="14.0" prefHeight="176.0" prefWidth="142.0" />
+                        <ImageView fx:id="imgPokemon11" fitHeight="123.0" fitWidth="150.0" layoutX="21.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField disable="true" layoutX="171.0" layoutY="32.0" prefHeight="25.0" prefWidth="161.0" />
+                        <TextField disable="true" layoutX="385.0" layoutY="33.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Label layoutX="347.0" layoutY="32.0" text="Nv.">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txtNombre11" alignment="CENTER" layoutX="177.0" layoutY="31.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txtNivel11" layoutX="390.0" layoutY="33.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="pbVitalidad11" layoutX="171.0" layoutY="74.0" prefHeight="19.0" prefWidth="208.0" progress="0.0" />
+                        <Label fx:id="txtVitalidad11" alignment="CENTER" layoutX="386.0" layoutY="70.0" prefHeight="26.0" prefWidth="41.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imgTipo111" fitHeight="25.0" fitWidth="122.0" layoutX="170.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgTipo211" fitHeight="25.0" fitWidth="122.0" layoutX="311.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" layoutX="43.0" layoutY="156.0" prefHeight="26.0" prefWidth="41.0" text="N.º ">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="81.0" layoutY="156.0" prefHeight="25.0" prefWidth="55.0" />
+                        <Label fx:id="txtNumPokedex11" layoutX="86.0" layoutY="156.0" prefHeight="26.0" prefWidth="45.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnReproducirGrito21" layoutX="205.0" layoutY="157.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reprooducir grito" />
+                        <TextField disable="true" layoutX="177.0" layoutY="224.0" prefHeight="25.0" prefWidth="161.0" />
+                        <Label fx:id="txtObjetoEquipado" alignment="CENTER" layoutX="183.0" layoutY="223.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="43.0" layoutY="222.0" prefHeight="26.0" prefWidth="147.0" text="Objeto equipado:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnCambiarObj" layoutX="343.0" layoutY="224.0" mnemonicParsing="false" onAction="#cambiarObj" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
+                        <TableView fx:id="tablaObjeto" layoutX="22.0" layoutY="274.0" prefHeight="156.0" prefWidth="409.0">
+                          <columns>
+                            <TableColumn fx:id="colNombreObj" prefWidth="328.0" text="NOMBRE" />
+                            <TableColumn fx:id="colCantidadObj" text="CANTIDAD" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnQuitarObjeto" layoutX="379.0" layoutY="224.0" mnemonicParsing="false" onAction="#quitarObjeto" prefHeight="25.0" prefWidth="34.0" text="X" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

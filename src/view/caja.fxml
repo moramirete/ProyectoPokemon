@@ -63,7 +63,8 @@
         </columns>
       </TableView>
       <Button fx:id="btnVolver" layoutX="452.0" layoutY="65.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
-      <Button fx:id="btnCambiarPor" layoutX="239.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarPor" prefHeight="26.0" prefWidth="122.0" text="Cambiar por..." />
+      <Button fx:id="btnCambiarPor" layoutX="172.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarPor" prefHeight="26.0" prefWidth="122.0" text="Cambiar por..." />
       <Button fx:id="btnCambiarNombre" layoutX="21.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarNombre" prefHeight="26.0" prefWidth="122.0" text="Cambiar nombre" />
+      <Button fx:id="btnEstadisticas" layoutX="319.0" layoutY="65.0" mnemonicParsing="false" onAction="#verEstadisticas" prefHeight="26.0" prefWidth="122.0" text="Estadisticas" />
    </children>
 </AnchorPane>

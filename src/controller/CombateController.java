@@ -71,7 +71,7 @@ public class CombateController {
 	private Label lblRival;
 
 	@FXML
-	void cambiarPoke(ActionEvent event) {
+	void cambiarPokemon(ActionEvent event) {
 
 	}
 
