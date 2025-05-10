@@ -40,6 +40,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -52,8 +53,17 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="439.0">
                      <children>
-                        <ImageView fx:id="imgFondo" fitHeight="506.0" fitWidth="468.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
-                        <TextField disable="true" layoutX="21.0" layoutY="8.0" prefHeight="176.0" prefWidth="142.0" />
+                        <ImageView fx:id="imgFondo" fitHeight="581.0" fitWidth="966.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/fondos/PLANTA.png" />
+                           </image></ImageView>
+                        <Label fx:id="txtFertilidad" layoutX="369.0" layoutY="365.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField disable="true" layoutX="37.0" layoutY="208.0" prefHeight="207.0" prefWidth="391.0" />
+                        <TextField disable="true" layoutX="21.0" layoutY="8.0" prefHeight="178.0" prefWidth="142.0" />
                         <ImageView fx:id="imgPokemon" fitHeight="123.0" fitWidth="150.0" layoutX="20.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="170.0" layoutY="26.0" prefHeight="25.0" prefWidth="161.0" />
                         <TextField disable="true" layoutX="384.0" layoutY="27.0" prefHeight="25.0" prefWidth="41.0" />
@@ -154,11 +164,7 @@
                            </font>
                         </Label>
                         <TextField disable="true" layoutX="364.0" layoutY="365.0" prefHeight="25.0" prefWidth="41.0" />
-                        <Label fx:id="txtFertilidad" layoutX="369.0" layoutY="365.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
+                        <TextField disable="true" layoutX="165.0" layoutY="57.0" prefHeight="89.0" prefWidth="265.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -167,8 +173,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="imgFondo2" fitHeight="443.0" fitWidth="468.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgFondo2" fitHeight="569.0" fitWidth="1087.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/fondos/DRAGON.png" />
+                           </image></ImageView>
+                        <TextField disable="true" layoutX="15.0" layoutY="203.0" prefHeight="87.0" prefWidth="436.0" />
                         <TextField disable="true" layoutX="21.0" layoutY="14.0" prefHeight="176.0" prefWidth="142.0" />
+                        <TextField disable="true" layoutX="168.0" layoutY="67.0" prefHeight="82.0" prefWidth="282.0" />
                         <ImageView fx:id="imgPokemon1" fitHeight="123.0" fitWidth="150.0" layoutX="20.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="170.0" layoutY="32.0" prefHeight="25.0" prefWidth="161.0" />
                         <TextField disable="true" layoutX="384.0" layoutY="33.0" prefHeight="25.0" prefWidth="41.0" />
@@ -250,7 +261,12 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="imgFondo1" fitHeight="443.0" fitWidth="468.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgFondo1" fitHeight="700.0" fitWidth="1153.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/fondos/DRAGON.png" />
+                           </image></ImageView>
+                        <TextField disable="true" layoutX="167.0" layoutY="66.0" prefHeight="88.0" prefWidth="276.0" />
+                        <TextField disable="true" layoutX="36.0" layoutY="212.0" prefHeight="50.0" prefWidth="386.0" />
                         <TextField disable="true" layoutX="22.0" layoutY="14.0" prefHeight="176.0" prefWidth="142.0" />
                         <ImageView fx:id="imgPokemon11" fitHeight="123.0" fitWidth="150.0" layoutX="21.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="171.0" layoutY="32.0" prefHeight="25.0" prefWidth="161.0" />

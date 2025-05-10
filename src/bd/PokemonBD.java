@@ -17,101 +17,98 @@ import model.ObjetoEnMochila;
 import model.Pokemon;
 
 public class PokemonBD {
-    public static Pokemon generarPokemonPrincipal(int idEntrenador, Connection conexion) {
-        
-    	Pokemon nuevoPokemon = null;
-    	
-    	try {
-            Random rd = new Random();
+	public static Pokemon generarPokemonPrincipal(int idEntrenador, Connection conexion) {
+	    Pokemon nuevoPokemon = null;
 
-            String queryPokedex = "SELECT * FROM POKEDEX ORDER BY RAND() LIMIT 1";
-            PreparedStatement statementPokedex = conexion.prepareStatement(queryPokedex);
-            ResultSet resultadoPokedex = statementPokedex.executeQuery();
+	    try {
+	        Random rd = new Random();
 
-            if (!resultadoPokedex.next()) {
-                throw new SQLException("No se encontró ningún Pokémon en la tabla POKEDEX.");
-            }        
+	        String queryPokedex = "SELECT * FROM POKEDEX ORDER BY RAND() LIMIT 1";
+	        PreparedStatement statementPokedex = conexion.prepareStatement(queryPokedex);
+	        ResultSet resultadoPokedex = statementPokedex.executeQuery();
 
-            int nuevoIdPokemon = generarIdUnico(conexion);
-   
-            int vitalidad = 15 + rd.nextInt(16);
-            int ataque = 5 + rd.nextInt(6);
-            int defensa = 5 + rd.nextInt(6);
-            int ataqueEspecial = 5 + rd.nextInt(6); 
-            int defensaEspecial = 5 + rd.nextInt(6); 
-            int velocidad = 5 + rd.nextInt(11);
-            int fertilidad = 1 + rd.nextInt(5);
-            char sexo = rd.nextBoolean() ? 'M' : 'F';
-            
-            if (sexo != 'M' && sexo != 'F') {
-                throw new IllegalArgumentException("Valor inválido para SEXO: " + sexo);
-            }
-            
-            String estado = "NORMAL";
-            
-            System.out.println("Sexo que se ha generado:" + sexo);
-            
-            nuevoPokemon = new Pokemon(
-            		nuevoIdPokemon,
-            		idEntrenador,
-            		resultadoPokedex.getInt("NUM_POKEDEX"),
-            		0,
-            		resultadoPokedex.getString("TIPO1"),
-            		resultadoPokedex.getString("TIPO2"),
-            		vitalidad,
-            		ataque,
-            		defensa,
-            		ataqueEspecial,
-            		defensaEspecial,
-            		velocidad,
-            		1,
-            		fertilidad,
-            		1,
-            		resultadoPokedex.getString("NOM_POKEMON"),
-            		estado,
-            		sexo,
-            		vitalidad
-            );
-            	
-            
+	        if (!resultadoPokedex.next()) {
+	            throw new SQLException("No se encontró ningún Pokémon en la tabla POKEDEX.");
+	        }
 
-            String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2, VITALIDADMAX) " +
-                                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement st = conexion.prepareStatement(queryInsertPokemon);
+	        int nuevoIdPokemon = generarIdUnico(conexion);
 
-            st.setInt(1, nuevoIdPokemon);
-            st.setInt(2, idEntrenador);
-            st.setInt(3, resultadoPokedex.getInt("NUM_POKEDEX"));
-            st.setInt(4, 0);
-            st.setString(5, resultadoPokedex.getString("NOM_POKEMON"));
-            st.setInt(6, vitalidad);
-            st.setInt(7, ataque);
-            st.setInt(8, defensa);
-            st.setInt(9, ataqueEspecial);
-            st.setInt(10, defensaEspecial);
-            st.setInt(11, velocidad);
-            st.setInt(12, 1); 
-            st.setInt(13, fertilidad);
-            st.setString(14, String.valueOf(sexo));
-            st.setString(15, "NORMAL"); 
-            st.setInt(16, 1);
-            st.setString(17, resultadoPokedex.getString("TIPO1"));
-            st.setString(18, resultadoPokedex.getString("TIPO2"));
-            st.setInt(19, vitalidad);
-            
-            st.executeUpdate();
-            st.close();
+	        int vitalidad = 15 + rd.nextInt(16);
+	        int ataque = 5 + rd.nextInt(6);
+	        int defensa = 5 + rd.nextInt(6);
+	        int ataqueEspecial = 5 + rd.nextInt(6);
+	        int defensaEspecial = 5 + rd.nextInt(6);
+	        int velocidad = 5 + rd.nextInt(11);
+	        int fertilidad = 1 + rd.nextInt(5);
+	        char sexo = rd.nextBoolean() ? 'M' : 'F';
 
-            System.out.println("Se ha generado un Pokemon principal " + resultadoPokedex.getString("NOM_POKEMON") + " para el entrenador con ID: " + idEntrenador);
+	        if (sexo != 'M' && sexo != 'F') {
+	            throw new IllegalArgumentException("Valor inválido para SEXO: " + sexo);
+	        }
 
-        } catch (SQLException e) {
-            System.err.println("Error al generar el Pokemon principal: " + e.getMessage());
-            e.printStackTrace(); 
-        }
-        
-        return nuevoPokemon;
-        
-    }
+	        String estado = "NORMAL";
+	        String nombrePokemon = resultadoPokedex.getString("NOM_POKEMON");
+
+	        System.out.println("Sexo que se ha generado: " + sexo);
+
+	        nuevoPokemon = new Pokemon(
+	            nuevoIdPokemon,
+	            idEntrenador,
+	            resultadoPokedex.getInt("NUM_POKEDEX"),
+	            0,
+	            resultadoPokedex.getString("TIPO1"),
+	            resultadoPokedex.getString("TIPO2"),
+	            vitalidad,
+	            ataque,
+	            defensa,
+	            ataqueEspecial,
+	            defensaEspecial,
+	            velocidad,
+	            1,
+	            fertilidad,
+	            1,
+	            nombrePokemon,
+	            estado,
+	            sexo,
+	            vitalidad
+	        );
+
+	        String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2, VITALIDADMAX) " +
+	                                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	        PreparedStatement st = conexion.prepareStatement(queryInsertPokemon);
+
+	        st.setInt(1, nuevoIdPokemon);
+	        st.setInt(2, idEntrenador);
+	        st.setInt(3, resultadoPokedex.getInt("NUM_POKEDEX"));
+	        st.setInt(4, 0);
+	        st.setString(5, nombrePokemon);
+	        st.setInt(6, vitalidad);
+	        st.setInt(7, ataque);
+	        st.setInt(8, defensa);
+	        st.setInt(9, ataqueEspecial);
+	        st.setInt(10, defensaEspecial);
+	        st.setInt(11, velocidad);
+	        st.setInt(12, 1);
+	        st.setInt(13, fertilidad);
+	        st.setString(14, String.valueOf(sexo));
+	        st.setString(15, estado);
+	        st.setInt(16, 1);
+	        st.setString(17, resultadoPokedex.getString("TIPO1"));
+	        st.setString(18, resultadoPokedex.getString("TIPO2"));
+	        st.setInt(19, vitalidad);
+
+	        st.executeUpdate();
+	        st.close();
+
+	        System.out.println("Se ha generado un Pokemon principal " + nombrePokemon + " para el entrenador con ID: " + idEntrenador);
+
+	    } catch (SQLException e) {
+	        System.err.println("Error al generar el Pokemon principal: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+
+	    return nuevoPokemon;
+	}
     
     public static Pokemon generarPokemonCaptura(int idEntrenador, Connection conexion) {
         
