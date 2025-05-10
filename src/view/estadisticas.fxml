@@ -57,14 +57,10 @@
                            <image>
                               <Image url="@../resources/fondos/PLANTA.png" />
                            </image></ImageView>
-                        <Label fx:id="txtFertilidad" layoutX="369.0" layoutY="365.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
+                        <TextField disable="true" layoutX="165.0" layoutY="57.0" prefHeight="89.0" prefWidth="265.0" />
                         <TextField disable="true" layoutX="37.0" layoutY="208.0" prefHeight="207.0" prefWidth="391.0" />
                         <TextField disable="true" layoutX="21.0" layoutY="8.0" prefHeight="178.0" prefWidth="142.0" />
-                        <ImageView fx:id="imgPokemon" fitHeight="123.0" fitWidth="150.0" layoutX="20.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgPokemon" fitHeight="123.0" fitWidth="131.0" layoutX="27.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="170.0" layoutY="26.0" prefHeight="25.0" prefWidth="161.0" />
                         <TextField disable="true" layoutX="384.0" layoutY="27.0" prefHeight="25.0" prefWidth="41.0" />
                         <Label layoutX="346.0" layoutY="26.0" text="Nv.">
@@ -82,8 +78,8 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ProgressBar fx:id="pbVitalidad" layoutX="170.0" layoutY="68.0" prefHeight="19.0" prefWidth="208.0" progress="0.0" />
-                        <Label fx:id="txtVitalidad" alignment="CENTER" layoutX="385.0" layoutY="64.0" prefHeight="26.0" prefWidth="41.0">
+                        <ProgressBar fx:id="pbVitalidad" layoutX="170.0" layoutY="68.0" prefHeight="19.0" prefWidth="181.0" progress="0.0" />
+                        <Label fx:id="txtVitalidad" alignment="CENTER" layoutX="363.0" layoutY="64.0" prefHeight="26.0" prefWidth="63.0">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -164,7 +160,11 @@
                            </font>
                         </Label>
                         <TextField disable="true" layoutX="364.0" layoutY="365.0" prefHeight="25.0" prefWidth="41.0" />
-                        <TextField disable="true" layoutX="165.0" layoutY="57.0" prefHeight="89.0" prefWidth="265.0" />
+                        <Label fx:id="txtFertilidad" layoutX="369.0" layoutY="365.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>
@@ -180,7 +180,7 @@
                         <TextField disable="true" layoutX="15.0" layoutY="203.0" prefHeight="87.0" prefWidth="436.0" />
                         <TextField disable="true" layoutX="21.0" layoutY="14.0" prefHeight="176.0" prefWidth="142.0" />
                         <TextField disable="true" layoutX="168.0" layoutY="67.0" prefHeight="82.0" prefWidth="282.0" />
-                        <ImageView fx:id="imgPokemon1" fitHeight="123.0" fitWidth="150.0" layoutX="20.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgPokemon1" fitHeight="123.0" fitWidth="131.0" layoutX="28.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="170.0" layoutY="32.0" prefHeight="25.0" prefWidth="161.0" />
                         <TextField disable="true" layoutX="384.0" layoutY="33.0" prefHeight="25.0" prefWidth="41.0" />
                         <Label layoutX="346.0" layoutY="32.0" text="Nv.">
@@ -198,8 +198,8 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ProgressBar fx:id="pbVitalidad1" layoutX="170.0" layoutY="74.0" prefHeight="19.0" prefWidth="208.0" progress="0.0" />
-                        <Label fx:id="txtVitalidad1" alignment="CENTER" layoutX="385.0" layoutY="70.0" prefHeight="26.0" prefWidth="41.0">
+                        <ProgressBar fx:id="pbVitalidad1" layoutX="170.0" layoutY="74.0" prefHeight="19.0" prefWidth="178.0" progress="0.0" />
+                        <Label fx:id="txtVitalidad1" alignment="CENTER" layoutX="360.0" layoutY="70.0" prefHeight="26.0" prefWidth="66.0">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -268,7 +268,7 @@
                         <TextField disable="true" layoutX="167.0" layoutY="66.0" prefHeight="88.0" prefWidth="276.0" />
                         <TextField disable="true" layoutX="36.0" layoutY="212.0" prefHeight="50.0" prefWidth="386.0" />
                         <TextField disable="true" layoutX="22.0" layoutY="14.0" prefHeight="176.0" prefWidth="142.0" />
-                        <ImageView fx:id="imgPokemon11" fitHeight="123.0" fitWidth="150.0" layoutX="21.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgPokemon11" fitHeight="123.0" fitWidth="129.0" layoutX="29.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="171.0" layoutY="32.0" prefHeight="25.0" prefWidth="161.0" />
                         <TextField disable="true" layoutX="385.0" layoutY="33.0" prefHeight="25.0" prefWidth="41.0" />
                         <Label layoutX="347.0" layoutY="32.0" text="Nv.">
@@ -286,8 +286,8 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <ProgressBar fx:id="pbVitalidad11" layoutX="171.0" layoutY="74.0" prefHeight="19.0" prefWidth="208.0" progress="0.0" />
-                        <Label fx:id="txtVitalidad11" alignment="CENTER" layoutX="386.0" layoutY="70.0" prefHeight="26.0" prefWidth="41.0">
+                        <ProgressBar fx:id="pbVitalidad11" layoutX="171.0" layoutY="74.0" prefHeight="19.0" prefWidth="170.0" progress="0.0" />
+                        <Label fx:id="txtVitalidad11" alignment="CENTER" layoutX="353.0" layoutY="70.0" prefHeight="26.0" prefWidth="74.0">
                            <font>
                               <Font size="17.0" />
                            </font>
