@@ -24,10 +24,9 @@
           <TableColumn fx:id="clmObjeto" minWidth="0.79998779296875" prefWidth="161.60011291503906" text="Objeto" />
         </columns>
       </TableView>
-      <Button fx:id="btnEquipar" layoutX="51.0" layoutY="335.0" mnemonicParsing="false" onAction="#equipar" prefHeight="41.0" prefWidth="98.0" text="Equipar" />
-      <Button fx:id="btnVender" layoutX="182.0" layoutY="335.0" mnemonicParsing="false" onAction="#vender" prefHeight="41.0" prefWidth="98.0" text="Vender" />
-      <Button fx:id="btnTienda" layoutX="316.0" layoutY="335.0" mnemonicParsing="false" onAction="#accederTienda" prefHeight="41.0" prefWidth="98.0" text="Tienda" />
-      <Button fx:id="btnSalir" layoutX="451.0" layoutY="335.0" mnemonicParsing="false" onAction="#salir" prefHeight="41.0" prefWidth="98.0" text="Salir" />
+      <Button fx:id="btnVender" layoutX="202.0" layoutY="335.0" mnemonicParsing="false" onAction="#vender" prefHeight="41.0" prefWidth="98.0" text="Vender" />
+      <Button fx:id="btnTienda" layoutX="315.0" layoutY="335.0" mnemonicParsing="false" onAction="#accederTienda" prefHeight="41.0" prefWidth="98.0" text="Tienda" />
+      <Button fx:id="btnSalir" layoutX="432.0" layoutY="335.0" mnemonicParsing="false" onAction="#salir" prefHeight="41.0" prefWidth="98.0" text="Salir" />
       <TextArea fx:id="txtDescripcion" editable="false" layoutX="323.0" layoutY="73.0" prefHeight="235.0" prefWidth="213.0" wrapText="true">
          <font>
             <Font name="Consolas" size="10.0" />

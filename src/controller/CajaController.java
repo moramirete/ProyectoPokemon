@@ -234,12 +234,12 @@ public class CajaController {
 
 			Stage nuevaStage = new Stage();
 
-			estadisticasController.init(entrenador, nuevaStage, null);
+			estadisticasController.init(entrenador, nuevaStage, null, pokSeleccionado);
 
 			// Mostrar la nueva escena
 			Scene scene = new Scene(root);
 			nuevaStage.setScene(scene);
-			nuevaStage.setTitle("Estadísticas de" + pokSeleccionado.getNombre_pokemon());
+			nuevaStage.setTitle("Estadísticas de " + pokSeleccionado.getNombre_pokemon());
 			nuevaStage.show();
 
 		} catch (IOException e) {

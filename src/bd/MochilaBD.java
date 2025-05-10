@@ -160,6 +160,34 @@ public class MochilaBD {
         return lista;
     }
     
+    public static ArrayList<ObjetoEnMochila> obtenerContenidoTablaObjetos(int idEntrenador) {
+        ArrayList<ObjetoEnMochila> lista = new ArrayList<>();
+        try (Connection con = BDConecction.getConnection()) {
+            String sql = """
+                SELECT o.NOM_OBJETO, o.DESCRIPCION, m.CANTIDAD, o.RUTA_IMAGEN
+                FROM MOCHILA m 
+                JOIN OBJETO o ON m.ID_OBJETO = o.ID_OBJETO 
+                WHERE m.ID_ENTRENADOR = ? AND m.CANTIDAD > 0
+                AND o.ID_OBJETO NOT IN (8, 9, 10, 11)
+            """;
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEntrenador);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                lista.add(new ObjetoEnMochila(
+                    rs.getString("NOM_OBJETO"),
+                    rs.getString("DESCRIPCION"),
+                    rs.getInt("CANTIDAD"),
+                    rs.getString("RUTA_IMAGEN")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+    
     public static int obtenerIdObjetoNombre(String nombreObjeto) {
         try (Connection con = BDConecction.getConnection()) {
             String sql = "SELECT ID_OBJETO FROM OBJETO WHERE NOM_OBJETO = ?";

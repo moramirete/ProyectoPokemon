@@ -56,7 +56,7 @@ public class MovimientoBD {
             st.setInt(2, mov.getId_movimiento());
             st.setInt(3, mov.getPp_actual());
             st.setInt(4, 1); //Al ser el primer movimiento, 100x100 al principio esta en la 1 posicion
-            st.setInt(4, pokemon.getId_pokemon());
+            st.setInt(5, pokemon.getId_pokemon());
             
             st.executeUpdate();
             st.close();
