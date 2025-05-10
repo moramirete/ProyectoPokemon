@@ -215,15 +215,23 @@ public class PokemonBD {
     }
     
     private static int generarIdUnico(Connection conexion) throws SQLException {
+        int nuevoId = 0;
+
+        // Obtener el ID máximo actual en la tabla POKEMON
         String query = "SELECT MAX(ID_POKEMON) AS MAX_ID FROM POKEMON";
         PreparedStatement statement = conexion.prepareStatement(query);
-        ResultSet resultado = statement.executeQuery();
+        ResultSet resultSet = statement.executeQuery();
 
-        if (resultado.next()) {
-            return resultado.getInt("MAX_ID") + 1; 
+        if (resultSet.next()) {
+            nuevoId = resultSet.getInt("MAX_ID") + 1; // Incrementar el ID máximo en 1
         } else {
-            return 1; 
+            nuevoId = 1; // Si no hay registros, empezar desde 1
         }
+
+        resultSet.close();
+        statement.close();
+
+        return nuevoId;
     }
     
     public static ArrayList<Pokemon> obtenerEquipo(int idEntrenador){
