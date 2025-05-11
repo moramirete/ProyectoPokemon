@@ -314,6 +314,7 @@ public class PokemonBD {
 			if (resultadoPokedex.next()) {
 				// Construct the full path with the file protocol
 				String ruta = "/imagenes/" + resultadoPokedex.getString("SPRITES_FRONTAL");
+				System.out.println(ruta);
 				return ruta;
 			} else {
 				throw new SQLException("No image found for NUM_POKEDEX: " + p.getNum_pokedex());
@@ -323,6 +324,70 @@ public class PokemonBD {
 			return "Error: no se ha encontrado bien la ruta del pokemon";
 		}
 	}
+	
+	public static String obtenerRutaImagenFondo(Pokemon p) {
+		try (Connection con = BDConecction.getConnection()) {
+			String queryPokedex = "SELECT TIPO1 FROM POKEDEX WHERE NUM_POKEDEX = ?";
+			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
+			statementPokedex.setInt(1, p.getNum_pokedex());
+			ResultSet resultadoPokedex = statementPokedex.executeQuery();
+
+			if (resultadoPokedex.next()) {
+				// Construct the full path with the file protocol
+				String ruta = "/imagenes/fondoEstadistica/fondo" + resultadoPokedex.getString("TIPO1") + ".png";
+				System.out.println(ruta);
+				return ruta;
+			} else {
+				throw new SQLException("No image found for NUM_POKEDEX: " + p.getNum_pokedex());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Error: no se ha encontrado bien la ruta del pokemon";
+		}
+	}
+	
+	public static String obtenerRutaImagenTipo1(Pokemon p) {
+		try (Connection con = BDConecction.getConnection()) {
+			String queryPokedex = "SELECT TIPO1 FROM POKEDEX WHERE NUM_POKEDEX = ?";
+			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
+			statementPokedex.setInt(1, p.getNum_pokedex());
+			ResultSet resultadoPokedex = statementPokedex.executeQuery();
+
+			if (resultadoPokedex.next()) {
+				// Construct the full path with the file protocol
+				String ruta = "/imagenes/fondoEstadistica/tipo" + resultadoPokedex.getString("TIPO1") + ".png";
+				System.out.println(ruta);
+				return ruta;
+			} else {
+				throw new SQLException("No image found for NUM_POKEDEX: " + p.getNum_pokedex());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Error: no se ha encontrado bien la ruta del pokemon";
+		}
+	}
+	
+	public static String obtenerRutaImagenTipo2(Pokemon p) {
+		try (Connection con = BDConecction.getConnection()) {
+			String queryPokedex = "SELECT TIPO2 FROM POKEDEX WHERE NUM_POKEDEX = ?";
+			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
+			statementPokedex.setInt(1, p.getNum_pokedex());
+			ResultSet resultadoPokedex = statementPokedex.executeQuery();
+
+			if (resultadoPokedex.next()) {
+				// Construct the full path with the file protocol
+				String ruta = "/imagenes/fondoEstadistica/tipo" + resultadoPokedex.getString("TIPO2") + ".png";
+				System.out.println(ruta);
+				return ruta;
+			} else {
+				throw new SQLException("No image found for NUM_POKEDEX: " + p.getNum_pokedex());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Error: no se ha encontrado bien la ruta del pokemon";
+		}
+	}
+
 
 	public static boolean cambiarNombre(Pokemon p, Optional<String> nombre) {
 		try (Connection con = BDConecction.getConnection()) {
@@ -499,5 +564,7 @@ public class PokemonBD {
 
 		return pokemon;
 	}
+	
+	
 
 }

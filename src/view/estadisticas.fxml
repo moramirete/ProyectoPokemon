@@ -53,10 +53,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="439.0">
                      <children>
-                        <ImageView fx:id="imgFondo" fitHeight="581.0" fitWidth="966.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/fondos/PLANTA.png" />
-                           </image></ImageView>
+                        <ImageView fx:id="imgFondo" fitHeight="581.0" fitWidth="966.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="165.0" layoutY="57.0" prefHeight="89.0" prefWidth="265.0" />
                         <TextField disable="true" layoutX="37.0" layoutY="208.0" prefHeight="207.0" prefWidth="391.0" />
                         <TextField disable="true" layoutX="21.0" layoutY="8.0" prefHeight="178.0" prefWidth="142.0" />
@@ -261,10 +258,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="imgFondo1" fitHeight="700.0" fitWidth="1153.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/fondos/DRAGON.png" />
-                           </image></ImageView>
+                        <ImageView fx:id="imgFondo1" fitHeight="700.0" fitWidth="1153.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="167.0" layoutY="66.0" prefHeight="88.0" prefWidth="276.0" />
                         <TextField disable="true" layoutX="36.0" layoutY="212.0" prefHeight="50.0" prefWidth="386.0" />
                         <TextField disable="true" layoutX="22.0" layoutY="14.0" prefHeight="176.0" prefWidth="142.0" />

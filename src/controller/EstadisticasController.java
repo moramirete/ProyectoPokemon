@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import bd.MochilaBD;
 import bd.ObjetoBD;
 import bd.PokemonBD;
@@ -213,8 +215,24 @@ public class EstadisticasController {
 		if (pokemon != null) {
 			
 			//Primera Pantalla - Informacion
+			String fondo = PokemonBD.obtenerRutaImagenFondo(pokemon);
+			Image imgfondo = new Image(fondo);
+			imgFondo.setImage(imgfondo);
+			
 			txtNombre.setText(pokemon.getNombre_pokemon());
 			txtNivel.setText(String.valueOf(pokemon.getNivel()));
+			
+			String tipo1 = PokemonBD.obtenerRutaImagenTipo1(pokemon);
+			Image imgtipo1 = new Image(tipo1);
+			imgTipo1.setImage(imgtipo1);
+			
+			if (pokemon.getTipo2() == null || pokemon.getTipo2().isEmpty()) {
+	            imgTipo2.setImage(null);
+	        } else {
+	        	String tipo2 = PokemonBD.obtenerRutaImagenTipo2(pokemon);
+				Image imgtipo2 = new Image(tipo2);
+				imgTipo2.setImage(imgtipo2);
+	        }
 			
 			txtNumPokedex.setText(String.valueOf(pokemon.getNum_pokedex()));
 			String rutaImagen = PokemonBD.obtenerRutaImagen(pokemon);
@@ -232,8 +250,24 @@ public class EstadisticasController {
 			txtFertilidad.setText(String.valueOf(pokemon.getFertilidad()));
 			
 			//Segunda Pantalla - Movimientos
+			String fondo2 = PokemonBD.obtenerRutaImagenFondo(pokemon);
+			Image imgfondo2 = new Image(fondo);
+			imgFondo2.setImage(imgfondo);
+			
 			txtNombre1.setText(pokemon.getNombre_pokemon());
 			txtNivel1.setText(String.valueOf(pokemon.getNivel()));
+			
+			String tipo11 = PokemonBD.obtenerRutaImagenTipo1(pokemon);
+			Image imgtipo11 = new Image(tipo11);
+			imgTipo11.setImage(imgtipo11);
+			
+			if (pokemon.getTipo2() == null || pokemon.getTipo2().isEmpty()) {
+	            imgTipo2.setImage(null);
+	        } else {
+	        	String tipo22 = PokemonBD.obtenerRutaImagenTipo2(pokemon);
+				Image imgtipo22 = new Image(tipo22);
+				imgTipo21.setImage(imgtipo22);
+	        }
 			
 			txtNumPokedex1.setText(String.valueOf(pokemon.getNum_pokedex()));
 			String rutaImagen1 = PokemonBD.obtenerRutaImagen(pokemon);
@@ -246,8 +280,24 @@ public class EstadisticasController {
 			
 			
 			//Tercera Pantalla - Objetos
+			String fondo1 = PokemonBD.obtenerRutaImagenFondo(pokemon);
+			Image imgfondo1 = new Image(fondo);
+			imgFondo1.setImage(imgfondo);
+			
 			txtNombre11.setText(pokemon.getNombre_pokemon());
 			txtNivel11.setText(String.valueOf(pokemon.getNivel()));
+			
+			String tipo111 = PokemonBD.obtenerRutaImagenTipo1(pokemon);
+			Image imgtipo111 = new Image(tipo111);
+			imgTipo111.setImage(imgtipo111);
+			
+			if (pokemon.getTipo2() == null || pokemon.getTipo2().isEmpty()) {
+	            imgTipo2.setImage(null);
+	        } else {
+	        	String tipo222 = PokemonBD.obtenerRutaImagenTipo2(pokemon);
+				Image imgtipo222 = new Image(tipo222);
+				imgTipo211.setImage(imgtipo222);
+	        }
 			
 			txtNumPokedex11.setText(String.valueOf(pokemon.getNum_pokedex()));
 			String rutaImagen11 = PokemonBD.obtenerRutaImagen(pokemon);
@@ -291,31 +341,51 @@ public class EstadisticasController {
 	@FXML
 	void cambiarMov1(ActionEvent event) {
 
+		
+		
 	}
 
 	@FXML
 	void cambiarMov2(ActionEvent event) {
 
+		
+		
 	}
 
 	@FXML
 	void cambiarMov3(ActionEvent event) {
 
+		
+		
 	}
 
 	@FXML
 	void cambiarMov4(ActionEvent event) {
 
+		
+		
 	}
 
 	@FXML
 	void cambiarObj(ActionEvent event) {
 
+		ObjetoEnMochila objetoSeleccionado = tablaObjeto.getSelectionModel().getSelectedItem();
+		
+		if (objetoSeleccionado == null) {
+			JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún Objeto.", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
+		
+		
 	}
 
 	@FXML
 	void quitarObjeto(ActionEvent event) {
 
+		
+		
 	}
 
 	@FXML
@@ -323,7 +393,18 @@ public class EstadisticasController {
 		
 		// Construir la ruta del archivo de sonido
 	    String numPokedex = String.valueOf(pokemon.getNum_pokedex());
-	    String rutaSonido = "multimedia/sonidos/Pokemon/" + numPokedex + ".wav";
+	    
+	    String numPokedexEditado;
+	    
+	    if (pokemon.getNum_pokedex() < 10) {
+	        numPokedexEditado = "00" + numPokedex;
+	    } else if (pokemon.getNum_pokedex() < 100) {
+	        numPokedexEditado = "0" + numPokedex;
+	    } else {
+	        numPokedexEditado = numPokedex;
+	    }
+	    
+	    String rutaSonido = "multimedia/sonidos/Pokemon/" + numPokedexEditado + ".wav";
 
 	    File archivoSonido = new File(rutaSonido);
 
