@@ -23,7 +23,7 @@ public class PokemonBD {
 		try {
 			Random rd = new Random();
 
-			String queryPokedex = "SELECT * FROM POKEDEX ORDER BY RAND() LIMIT 1";
+			String queryPokedex = "SELECT * FROM POKEDEX WHERE NIVEL_EVOLUCION = 1 ORDER BY RAND() LIMIT 1;";
 			PreparedStatement statementPokedex = conexion.prepareStatement(queryPokedex);
 			ResultSet resultadoPokedex = statementPokedex.executeQuery();
 
@@ -102,36 +102,53 @@ public class PokemonBD {
 			Random rd = new Random();
 
 			String queryPokedex = "SELECT * FROM POKEDEX ORDER BY RAND() LIMIT 1";
-			PreparedStatement statementPokedex = conexion.prepareStatement(queryPokedex);
-			ResultSet resultadoPokedex = statementPokedex.executeQuery();
+			PreparedStatement st = conexion.prepareStatement(queryPokedex);
+			ResultSet rs = st.executeQuery();
 
-			if (!resultadoPokedex.next()) {
+			if (!rs.next()) {
 				throw new SQLException("No se encontró ningún Pokémon en la tabla POKEDEX.");
 			}
-
+			
 			int nuevoIdPokemon = generarIdUnico(conexion);
-
-			int vitalidad = 15 + rd.nextInt(16);
-			int ataque = 5 + rd.nextInt(6);
-			int defensa = 5 + rd.nextInt(6);
-			int ataqueEspecial = 5 + rd.nextInt(6);
-			int defensaEspecial = 5 + rd.nextInt(6);
-			int velocidad = 5 + rd.nextInt(11);
-			int fertilidad = 1 + rd.nextInt(5);
-			char sexo = rd.nextBoolean() ? 'M' : 'F';
-
-			if (sexo != 'M' && sexo != 'F') {
-				throw new IllegalArgumentException("Valor inválido para SEXO: " + sexo);
-			}
-
 			String estado = "NORMAL";
+			char sexo = rd.nextBoolean() ? 'M' : 'F';
+			int fertilidad = 1 + rd.nextInt(5);
+			
+			int vitalidad, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad, nivel;
 
-			System.out.println("Sexo que se ha generado:" + sexo);
+			if (rs.getInt("NIVEL_EVOLUCION") == 1) {
+			vitalidad = 15 + rd.nextInt(16);
+			ataque = 5 + rd.nextInt(6);
+			defensa = 5 + rd.nextInt(6);
+			ataqueEspecial = 5 + rd.nextInt(6);
+			defensaEspecial = 5 + rd.nextInt(6);
+			velocidad = 5 + rd.nextInt(11);
+			nivel = 1;
+			} 
+			else if(rs.getInt("NIVEL_EVOLUCION") == 2) {	
+			vitalidad = 39 + rd.nextInt(1, 120);
+			ataque = 29 + rd.nextInt(1, 120);
+			defensa = 29 + rd.nextInt(1, 120);
+			ataqueEspecial = 29 + rd.nextInt(1, 120);
+			defensaEspecial = 29 + rd.nextInt(1, 120);
+			velocidad = 29 + rd.nextInt(1, 120);
+			nivel = 25;
+			} 
+			else {
+			vitalidad = 63 + rd.nextInt(1, 120);
+			ataque = 53 + rd.nextInt(1, 120);
+			defensa = 53 + rd.nextInt(1, 120);
+			ataqueEspecial = 53 + rd.nextInt(1, 120);
+			defensaEspecial = 53 + rd.nextInt(1, 120);
+			velocidad = 53 + rd.nextInt(1, 120);
+			nivel = 50;
+			}
+	
 
-			nuevoPokemon = new Pokemon(nuevoIdPokemon, idEntrenador, resultadoPokedex.getInt("NUM_POKEDEX"), 0,
-					resultadoPokedex.getString("TIPO1"), resultadoPokedex.getString("TIPO2"), vitalidad, ataque,
-					defensa, ataqueEspecial, defensaEspecial, velocidad, 1, fertilidad, 3,
-					resultadoPokedex.getString("NOM_POKEMON"), estado, sexo, vitalidad);
+			nuevoPokemon = new Pokemon(nuevoIdPokemon, idEntrenador, rs.getInt("NUM_POKEDEX"), 0,
+					rs.getString("TIPO1"), rs.getString("TIPO2"), vitalidad, ataque,
+					defensa, ataqueEspecial, defensaEspecial, velocidad, nivel, fertilidad, 3,
+					rs.getString("NOM_POKEMON"), estado, sexo, vitalidad);
 
 		} catch (SQLException e) {
 			System.err.println("Error al generar el Pokemon principal: " + e.getMessage());
