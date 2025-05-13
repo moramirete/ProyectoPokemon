@@ -114,6 +114,9 @@ public class EquipoController {
 	private Button btnSalir;
 
     @FXML
+    private Button btnEstadisticas;
+
+    @FXML
     private Button btnPokemonPrincipal;
 
 	@FXML
@@ -245,6 +248,28 @@ public class EquipoController {
 	        e.printStackTrace();
 	    }
 	}
+	
+
+    @FXML
+    void abrirEstadisticas(ActionEvent event) {
+	    try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/verEstadisticasEquipo.fxml"));
+	        Parent root = loader.load();
+
+	        VerEstadisticasEquipoController cambiarPok = loader.getController();
+	        Stage nuevaStage = new Stage();
+	        Scene scene = new Scene(root);
+
+	        cambiarPok.init(entrenador, nuevaStage, this); // Pasar el EquipoController actual
+
+	        nuevaStage.setTitle("Pokémon Super Nenes - Ver Estadisticas Equipo");
+	        nuevaStage.setScene(scene);
+	        nuevaStage.show();
+	    } catch (IOException e) {
+	        System.out.println("Fallo en el archivo FXML.");
+	        e.printStackTrace();
+	    }	
+    }
 
 	public void show() {
 		stage.show();

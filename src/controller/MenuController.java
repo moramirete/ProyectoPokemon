@@ -139,28 +139,38 @@ public class MenuController {
 	 */
 	@FXML
 	void abrirCombate(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/combate.fxml"));
-			Parent root = loader.load();
-
-			CombateController combateController = loader.getController();
-			Scene scene = new Scene(root);
-			Stage stage = new Stage();
-
-			stage.setTitle("Pokémon Super Nenes - Combate");
-			stage.setScene(scene);
-			stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
-			combateController.init(entrenador, stage, this);
-
-			stage.show();
-			this.stage.close();
-
-			System.out.println("Entrando a combate");
-
-		} catch (IOException e) {
-			System.out.println("Falla en la carga del archivo FXML.");
-			e.printStackTrace();
+		
+		if(entrenador.getEquipo().size() == 1) {
+			JOptionPane.showMessageDialog(null,"Para combatir, primero tienes que tener en tu equipo al menos a 2 pokemons", "Equipo incompleto",JOptionPane.WARNING_MESSAGE);
 		}
+		
+		else {
+			
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/combate.fxml"));
+				Parent root = loader.load();
+
+				CombateController combateController = loader.getController();
+				Scene scene = new Scene(root);
+				Stage stage = new Stage();
+
+				stage.setTitle("Pokémon Super Nenes - Combate");
+				stage.setScene(scene);
+				stage.getIcons().add(new Image("/imagenes/lossupernenes.png"));
+				combateController.init(entrenador, stage, this);
+
+				stage.show();
+				this.stage.close();
+
+				System.out.println("Entrando a combate");
+
+			} catch (IOException e) {
+				System.out.println("Falla en la carga del archivo FXML.");
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
 
 	/**
