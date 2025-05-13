@@ -176,7 +176,7 @@ public class EquipoController {
 
 	        nombres[i].setText(p.getNombre_pokemon());
 	        niveles[i].setText("Nivel: " + p.getNivel());
-	        actualizarBarraVida(barras[i], etiquetasVida[i], p.getVitalidad(), p.getVitalidadMax());
+	        actualizarBarraVida(barras[i], etiquetasVida[i], p.getVitalidad(), p.getVitalidadOBJ());
 	    }
 	}
 

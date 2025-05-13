@@ -143,31 +143,6 @@ public class CapturaController {
 			lblPokemon.setText("Error al conectar con la Base de Datos");
 		}
 
-		/*
-		 * final String[] pokemon = new String[151]; for(int i = 0; i < 151; i++) {
-		 * pokemon[i] = (i + 1) + ".png";
-		 * 
-		 * }
-		 * 
-		 * int index = new Random().nextInt(pokemon.length); String archivo =
-		 * pokemon[index];
-		 * 
-		 * String ruta = "multimedia/imagenes/delanteras/" +archivo;
-		 * 
-		 * File file = new File(ruta);
-		 * 
-		 * if (!file.exists()) { System.out.println(" No se a encontrado la imagen: " +
-		 * archivo); lblPokemon.setText("No se pudo cargar " + archivo);
-		 * lblPokemon.setGraphic(null); return; }
-		 * 
-		 * Image imagen = new Image(file.toURI().toString()); ImageView imageView = new
-		 * ImageView(imagen); imageView.setFitWidth(120); imageView.setFitHeight(120);
-		 * imageView.setPreserveRatio(true);
-		 * 
-		 * String nombre = archivo.replace(".png",""); lblPokemon.setText("");
-		 * lblPokemon.setGraphic(imageView);
-		 */
-
 	}
 
 	@FXML

@@ -239,7 +239,7 @@ public class EstadisticasController {
 			Image imagen = new Image(rutaImagen);
 			imgPokemon.setImage(imagen);
 			
-			txtVitalidad.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadMax()));
+			txtVitalidad.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadOBJ()));
 			actualizarBarraVida(pbVitalidad, pokemon.getVitalidad(), pokemon.getVitalidadMax());
 			
 			txtAtaque.setText(String.valueOf(pokemon.getAtaque()));
@@ -274,7 +274,7 @@ public class EstadisticasController {
 			Image imagen1 = new Image(rutaImagen1);
 			imgPokemon1.setImage(imagen);
 			
-			txtVitalidad1.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadMax()));
+			txtVitalidad1.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadOBJ()));
 			actualizarBarraVida(pbVitalidad1, pokemon.getVitalidad(), pokemon.getVitalidadMax());
 			
 			
@@ -304,7 +304,7 @@ public class EstadisticasController {
 			Image imagen11 = new Image(rutaImagen1);
 			imgPokemon11.setImage(imagen);
 			
-			txtVitalidad11.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadMax()));
+			txtVitalidad11.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadOBJ()));
 			actualizarBarraVida(pbVitalidad11, pokemon.getVitalidad(), pokemon.getVitalidadMax());
 			
 			txtObjetoEquipado.setText(ObjetoBD.obtenerNombreObjetoPorId(pokemon.getId_objeto()));
@@ -368,7 +368,7 @@ public class EstadisticasController {
 
 	@FXML
 	void cambiarObj(ActionEvent event) {
-
+		
 		ObjetoEnMochila objetoSeleccionado = tablaObjeto.getSelectionModel().getSelectedItem();
 		
 		if (objetoSeleccionado == null) {
@@ -376,14 +376,21 @@ public class EstadisticasController {
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
-		
+	
+		ObjetoBD.equiparObjeto(pokemon, ObjetoBD.obtenerIdObjetoPorNombre(objetoSeleccionado.getNombreObjeto()));
 		
 	}
 
 	@FXML
 	void quitarObjeto(ActionEvent event) {
-
+		
+		if(pokemon.getId_objeto() == 0) {
+			JOptionPane.showMessageDialog(null, "A ver, si no tienes ningun objeto, ¿que quieres quitar?.", "Emm....",
+					JOptionPane.INFORMATION_MESSAGE);
+		}else {
+			ObjetoBD.quitarObjeto(pokemon);
+			txtObjetoEquipado.setText(ObjetoBD.obtenerNombreObjetoPorId(pokemon.getId_objeto()));
+		}
 		
 		
 	}

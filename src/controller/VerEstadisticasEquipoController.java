@@ -1,12 +1,18 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import bd.PokemonBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -76,6 +82,35 @@ public class VerEstadisticasEquipoController {
     @FXML
     private void abrirVerEstadisticas() {
     	
+    	Pokemon pokSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+
+		if (pokSeleccionado == null) {
+			JOptionPane.showMessageDialog(null, "Error: Primero selecciona el Pokémon de la caja");
+			return;
+		}
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/estadisticas.fxml"));
+			Parent root = loader.load();
+
+			EstadisticasController estadisticasController = loader.getController();
+
+			Stage nuevaStage = new Stage();
+
+			estadisticasController.init(entrenador, nuevaStage, null, pokSeleccionado);
+
+			// Mostrar la nueva escena
+			Scene scene = new Scene(root);
+			nuevaStage.setScene(scene);
+			nuevaStage.setTitle("Estadísticas de " + pokSeleccionado.getNombre_pokemon());
+			nuevaStage.show();
+
+		} catch (IOException e) {
+			System.err.println("Error al cargar la ventana de estadísticas.");
+			e.printStackTrace();
+		}
+	
     }
 
 }

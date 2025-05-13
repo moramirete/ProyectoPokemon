@@ -4,16 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-
-import model.Entrenador;
-import model.Objeto;
-import model.ObjetoEnMochila;
 import model.Pokemon;
 
 public class PokemonBD {
@@ -54,10 +47,13 @@ public class PokemonBD {
 			nuevoPokemon = new Pokemon(nuevoIdPokemon, idEntrenador, resultadoPokedex.getInt("NUM_POKEDEX"), 0,
 					resultadoPokedex.getString("TIPO1"), resultadoPokedex.getString("TIPO2"), vitalidad, ataque,
 					defensa, ataqueEspecial, defensaEspecial, velocidad, 1, fertilidad, 1, nombrePokemon, estado, sexo,
-					vitalidad);
+					vitalidad, vitalidad, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad);
 
-			String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2, VITALIDADMAX) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, "
+					+ "ID_OBJETO, NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, "
+					+ "VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, EQUIPO, TIPO1, TIPO2, VITALIDADMAX, "
+					+ "VITALIDAD_OBJ, ATAQUE_OBJ, DEFENSA_OBJ, AT_ESPECIAL_OBJ, DEF_ESPECIAL_OBJ, VELOCIDAD_OBJ) "
+			        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement st = conexion.prepareStatement(queryInsertPokemon);
 
 			st.setInt(1, nuevoIdPokemon);
@@ -79,7 +75,13 @@ public class PokemonBD {
 			st.setString(17, resultadoPokedex.getString("TIPO1"));
 			st.setString(18, resultadoPokedex.getString("TIPO2"));
 			st.setInt(19, vitalidad);
-
+			st.setInt(20, vitalidad); 
+			st.setInt(21, ataque);  
+			st.setInt(22, defensa); 
+			st.setInt(23, ataqueEspecial); 
+			st.setInt(24, defensaEspecial); 
+			st.setInt(25, velocidad); 
+			
 			st.executeUpdate();
 			st.close();
 
@@ -142,13 +144,13 @@ public class PokemonBD {
 			defensaEspecial = 53 + rd.nextInt(1, 120);
 			velocidad = 53 + rd.nextInt(1, 120);
 			nivel = 50;
-			}
-	
+			};
 
 			nuevoPokemon = new Pokemon(nuevoIdPokemon, idEntrenador, rs.getInt("NUM_POKEDEX"), 0,
 					rs.getString("TIPO1"), rs.getString("TIPO2"), vitalidad, ataque,
 					defensa, ataqueEspecial, defensaEspecial, velocidad, nivel, fertilidad, 3,
-					rs.getString("NOM_POKEMON"), estado, sexo, vitalidad);
+					rs.getString("NOM_POKEMON"), estado, sexo, vitalidad, vitalidad, ataque, defensa, ataqueEspecial, 
+					defensaEspecial, velocidad);
 
 		} catch (SQLException e) {
 			System.err.println("Error al generar el Pokemon principal: " + e.getMessage());
@@ -162,10 +164,11 @@ public class PokemonBD {
 	public static void guardarPokemonCaptura(Pokemon pok, Connection conexion) {
 		try {
 
-			String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, NOM_POKEMON, "
-					+ "VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, SEXO, ESTADO, "
-					+ "EQUIPO, TIPO1, TIPO2, VITALIDADMAX) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, "
+					+ "NOM_POKEMON, VITALIDAD, ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, NIVEL, FERTILIDAD, "
+					+ "SEXO, ESTADO, EQUIPO, TIPO1, TIPO2, VITALIDADMAX, VITALIDAD_OBJ, ATAQUE_OBJ, DEFENSA_OBJ, AT_ESPECIAL_OBJ, "
+					+ "DEF_ESPECIAL_OBJ, VELOCIDAD_OBJ) "
+			        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement st = conexion.prepareStatement(queryInsertPokemon);
 
 			st.setInt(1, pok.getId_pokemon());
@@ -187,6 +190,12 @@ public class PokemonBD {
 			st.setString(17, pok.getTipo1());
 			st.setString(18, pok.getTipo2());
 			st.setInt(19, pok.getVitalidad());
+			st.setInt(20, pok.getVitalidad());
+			st.setInt(21, pok.getAtaque());
+			st.setInt(22, pok.getDefensa());
+			st.setInt(23, pok.getAtaque_especial());
+			st.setInt(24,  pok.getDefensa_especial());
+			st.setInt(25, pok.getVelocidad()); 
 
 			st.executeUpdate();
 			st.close();
@@ -234,7 +243,8 @@ public class PokemonBD {
 						rs.getInt("ATAQUE"), rs.getInt("DEFENSA"), rs.getInt("AT_ESPECIAL"), rs.getInt("DEF_ESPECIAL"),
 						rs.getInt("VELOCIDAD"), rs.getInt("NIVEL"), rs.getInt("FERTILIDAD"), rs.getInt("EQUIPO"),
 						rs.getString("NOM_POKEMON"), rs.getString("ESTADO"), rs.getString("SEXO").charAt(0),
-						rs.getInt("VITALIDADMAX")));
+						rs.getInt("VITALIDADMAX"), rs.getInt("VITALIDAD_OBJ"), rs.getInt("ATAQUE_OBJ"), rs.getInt("DEFENSA_OBJ"), 
+						rs.getInt("AT_ESPECIAL_OBJ"), rs.getInt("DEF_ESPECIAL_OBJ"), rs.getInt("VELOCIDAD_OBJ")));
 			}
 			;
 
@@ -264,7 +274,8 @@ public class PokemonBD {
 						rs.getInt("ATAQUE"), rs.getInt("DEFENSA"), rs.getInt("AT_ESPECIAL"), rs.getInt("DEF_ESPECIAL"),
 						rs.getInt("VELOCIDAD"), rs.getInt("NIVEL"), rs.getInt("FERTILIDAD"), rs.getInt("EQUIPO"),
 						rs.getString("NOM_POKEMON"), rs.getString("ESTADO"), rs.getString("SEXO").charAt(0),
-						rs.getInt("VITALIDADMAX")));
+						rs.getInt("VITALIDADMAX"), rs.getInt("VITALIDAD_OBJ"), rs.getInt("ATAQUE_OBJ"), rs.getInt("DEFENSA_OBJ"), 
+						rs.getInt("AT_ESPECIAL_OBJ"), rs.getInt("DEF_ESPECIAL_OBJ"), rs.getInt("VELOCIDAD_OBJ")));
 			}
 			;
 
@@ -294,7 +305,8 @@ public class PokemonBD {
 						rs.getInt("ATAQUE"), rs.getInt("DEFENSA"), rs.getInt("AT_ESPECIAL"), rs.getInt("DEF_ESPECIAL"),
 						rs.getInt("VELOCIDAD"), rs.getInt("NIVEL"), rs.getInt("FERTILIDAD"), rs.getInt("EQUIPO"),
 						rs.getString("NOM_POKEMON"), rs.getString("ESTADO"), rs.getString("SEXO").charAt(0),
-						rs.getInt("VITALIDADMAX")));
+						rs.getInt("VITALIDADMAX"), rs.getInt("VITALIDAD_OBJ"), rs.getInt("ATAQUE_OBJ"), rs.getInt("DEFENSA_OBJ"), 
+						rs.getInt("AT_ESPECIAL_OBJ"), rs.getInt("DEF_ESPECIAL_OBJ"), rs.getInt("VELOCIDAD_OBJ")));
 			}
 			;
 
@@ -467,16 +479,14 @@ public class PokemonBD {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				p = new Pokemon(rs.getInt("ID_POKEMON"), rs.getInt("ID_ENTRENADOR"), rs.getInt("NUM_POKEDEX"),
+				p = (new Pokemon(rs.getInt("ID_POKEMON"), rs.getInt("ID_ENTRENADOR"), rs.getInt("NUM_POKEDEX"),
 						rs.getInt("ID_OBJETO"), rs.getString("TIPO1"), rs.getString("TIPO2"), rs.getInt("VITALIDAD"),
 						rs.getInt("ATAQUE"), rs.getInt("DEFENSA"), rs.getInt("AT_ESPECIAL"), rs.getInt("DEF_ESPECIAL"),
 						rs.getInt("VELOCIDAD"), rs.getInt("NIVEL"), rs.getInt("FERTILIDAD"), rs.getInt("EQUIPO"),
 						rs.getString("NOM_POKEMON"), rs.getString("ESTADO"), rs.getString("SEXO").charAt(0),
-						rs.getInt("VITALIDADMAX"));
+						rs.getInt("VITALIDADMAX"), rs.getInt("VITALIDAD_OBJ"), rs.getInt("ATAQUE_OBJ"), rs.getInt("DEFENSA_OBJ"), 
+						rs.getInt("AT_ESPECIAL_OBJ"), rs.getInt("DEF_ESPECIAL_OBJ"), rs.getInt("VELOCIDAD_OBJ")));
 			}
-			;
-
-			System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -564,12 +574,13 @@ public class PokemonBD {
 			ResultSet rs = statement.executeQuery();
 
 			if (rs.next()) {
-				pokemon = new Pokemon(rs.getInt("ID_POKEMON"), rs.getInt("ID_ENTRENADOR"), rs.getInt("NUM_POKEDEX"),
+				pokemon = (new Pokemon(rs.getInt("ID_POKEMON"), rs.getInt("ID_ENTRENADOR"), rs.getInt("NUM_POKEDEX"),
 						rs.getInt("ID_OBJETO"), rs.getString("TIPO1"), rs.getString("TIPO2"), rs.getInt("VITALIDAD"),
 						rs.getInt("ATAQUE"), rs.getInt("DEFENSA"), rs.getInt("AT_ESPECIAL"), rs.getInt("DEF_ESPECIAL"),
 						rs.getInt("VELOCIDAD"), rs.getInt("NIVEL"), rs.getInt("FERTILIDAD"), rs.getInt("EQUIPO"),
 						rs.getString("NOM_POKEMON"), rs.getString("ESTADO"), rs.getString("SEXO").charAt(0),
-						rs.getInt("VITALIDADMAX"));
+						rs.getInt("VITALIDADMAX"), rs.getInt("VITALIDAD_OBJ"), rs.getInt("ATAQUE_OBJ"), rs.getInt("DEFENSA_OBJ"), 
+						rs.getInt("AT_ESPECIAL_OBJ"), rs.getInt("DEF_ESPECIAL_OBJ"), rs.getInt("VELOCIDAD_OBJ")));
 			}
 
 			rs.close();
