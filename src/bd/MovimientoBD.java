@@ -47,16 +47,16 @@ public class MovimientoBD {
             		
             		);
             
-            String queryInsertMov = "INSERT INTO movimiento_pokemon (ID_ENTRENADOR , ID_MOVIMIENTO, PP_ACTUALES, POSICION, ID_POKEMON)" + 
+            String queryInsertMov = "INSERT INTO movimiento_pokemon (ID_ENTRENADOR , ID_MOVIMIENTO, ID_POKEMON, PP_ACTUALES, POSICION)" + 
             						"VALUES (?, ?, ?, ?, ?)";
             
             PreparedStatement st = con.prepareStatement(queryInsertMov);
             
             st.setInt(1, entrenador.getIdEntrenador());
             st.setInt(2, mov.getId_movimiento());
-            st.setInt(3, mov.getPp_actual());
-            st.setInt(4, 1); //Al ser el primer movimiento, 100x100 al principio esta en la 1 posicion
-            st.setInt(5, pokemon.getId_pokemon());
+            st.setInt(3, pokemon.getId_pokemon());
+            st.setInt(4, mov.getPp_actual());
+            st.setInt(5, 1); //Al ser el primer movimiento, 100x100 al principio esta en la 1 posicion
             
             st.executeUpdate();
             st.close();
