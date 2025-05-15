@@ -28,13 +28,19 @@ public class Pokemon {
 	private char sexo;
 	private LinkedList<Movimiento> movPrincipales = new LinkedList<Movimiento>();
 	private LinkedList<Movimiento> movSecundarios = new LinkedList<Movimiento>();
+	private int vitalidadOBJ;
+	private int ataqueOBJ;
+	private int defensaOBJ;
+	private int ataque_especialOBJ;
+	private int defensa_especialOBJ;
+	private int velocidadOBJ;
 	
 	
 	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2, 
 			int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad, 
 			int nivel, int fertilidad,int equipo, String nombre_pokemon, String estado, char sexo, int vitalidadMax, 
-			LinkedList<Movimiento> movPrincipales, LinkedList<Movimiento> movSecundarios) {
-		
+			LinkedList<Movimiento> movPrincipales, LinkedList<Movimiento> movSecundarios,int vitalidadOBJ, int ataqueOBJ, int defensaOBJ, 
+			int ataque_especialOBJ, int defensa_especialOBJ, int velocidadOBJ) {
 		super();
 		this.id_pokemon = id_pokemon;
 		this.id_entrenador = id_entrenador;
@@ -57,13 +63,20 @@ public class Pokemon {
 		this.sexo = sexo;
 		this.movPrincipales = movPrincipales;
 		this.movSecundarios = movSecundarios;
+		this.vitalidadOBJ = vitalidadOBJ;
+		this.ataqueOBJ = ataqueOBJ;
+		this.defensaOBJ = defensaOBJ;
+		this.ataque_especialOBJ = ataque_especialOBJ;
+		this.defensa_especialOBJ = defensa_especialOBJ;
+		this.velocidadOBJ = velocidadOBJ;
 	}
 	
 	//Constructor sin las linkedList
 	
 	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2, 
 			int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, 
-			int fertilidad, int equipo, String nombre_pokemon, String estado, char sexo, int vitalidadMax) {
+			int fertilidad, int equipo, String nombre_pokemon, String estado, char sexo, int vitalidadMax, int vitalidadOBJ, int ataqueOBJ, 
+			int defensaOBJ, int ataque_especialOBJ, int defensa_especialOBJ, int velocidadOBJ) {
 		
 		super();
 		this.id_pokemon = id_pokemon;
@@ -85,6 +98,12 @@ public class Pokemon {
 		this.nombre_pokemon = nombre_pokemon;
 		this.estado = estado;
 		this.sexo = sexo;
+		this.vitalidadOBJ = vitalidadOBJ;
+		this.ataqueOBJ = ataqueOBJ;
+		this.defensaOBJ = defensaOBJ;
+		this.ataque_especialOBJ = ataque_especialOBJ;
+		this.defensa_especialOBJ = defensa_especialOBJ;
+		this.velocidadOBJ = velocidadOBJ;
 		this.movPrincipales = new LinkedList<Movimiento>();
 		this.movSecundarios = new LinkedList<Movimiento>();
 	}
@@ -113,8 +132,62 @@ public class Pokemon {
 		this.sexo = c.sexo;
 		this.movPrincipales = c.movPrincipales;
 		this.movSecundarios = c.movSecundarios;
+		this.vitalidadOBJ = c.vitalidadOBJ;
+		this.ataqueOBJ = c.ataqueOBJ;
+		this.defensaOBJ = c.defensaOBJ;
+		this.ataque_especialOBJ = c.ataque_especialOBJ;
+		this.defensa_especialOBJ = c.defensa_especialOBJ;
+		this.velocidadOBJ = c.velocidadOBJ;
 	}
 	
+	public int getVitalidadOBJ() {
+		return vitalidadOBJ;
+	}
+
+	public void setVitalidadOBJ(int vitalidadOBJ) {
+		this.vitalidadOBJ = vitalidadOBJ;
+	}
+
+	public int getAtaqueOBJ() {
+		return ataqueOBJ;
+	}
+
+	public void setAtaqueOBJ(int ataqueOBJ) {
+		this.ataqueOBJ = ataqueOBJ;
+	}
+
+	public int getDefensaOBJ() {
+		return defensaOBJ;
+	}
+
+	public void setDefensaOBJ(int defensaOBJ) {
+		this.defensaOBJ = defensaOBJ;
+	}
+
+	public int getAtaque_especialOBJ() {
+		return ataque_especialOBJ;
+	}
+
+	public void setAtaque_especialOBJ(int ataque_especialOBJ) {
+		this.ataque_especialOBJ = ataque_especialOBJ;
+	}
+
+	public int getDefensa_especialOBJ() {
+		return defensa_especialOBJ;
+	}
+
+	public void setDefensa_especialOBJ(int defensa_especialOBJ) {
+		this.defensa_especialOBJ = defensa_especialOBJ;
+	}
+
+	public int getVelocidadOBJ() {
+		return velocidadOBJ;
+	}
+
+	public void setVelocidadOBJ(int velocidadOBJ) {
+		this.velocidadOBJ = velocidadOBJ;
+	}
+
 	public LinkedList<Movimiento> getMovPrincipales() {
 		return movPrincipales;
 	}

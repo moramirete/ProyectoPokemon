@@ -33,27 +33,28 @@
 -->
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="393.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <ImageView fitHeight="489.0" fitWidth="867.0" layoutX="-51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondo%20crianza.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imgIncubadora" fitHeight="159.0" fitWidth="170.0" layoutX="303.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/imagenincubadora.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnSalir" layoutX="687.0" layoutY="412.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="50.0" prefWidth="105.0" text="SALIR" />
-         </children>
-    </AnchorPane>
-  </children>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VerEstadisticasEquipoController">
+   <children>
+      <TableView fx:id="tabPokemon" layoutX="-3.0" layoutY="-4.0" prefHeight="276.0" prefWidth="430.0">
+         <columns>
+            <TableColumn fx:id="colNombre" prefWidth="133.0" text="Nombre" />
+            <TableColumn fx:id="colNivel" prefWidth="41.0" text="Nivel" />
+            <TableColumn fx:id="colTipo" prefWidth="132.0" text="Tipo" />
+            <TableColumn fx:id="colTipo2" prefWidth="123.0" text="Tipo 2" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnVolver" layoutX="229.0" layoutY="325.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
+      <Label fx:id="txtPokemonCaja" alignment="CENTER" layoutX="-24.0" layoutY="282.0" prefHeight="25.0" prefWidth="475.0" text="De que pokemon de tu equipo quieres obtener las estadisticas">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnEstadisticas" layoutX="76.0" layoutY="325.0" mnemonicParsing="false" onAction="#abrirVerEstadisticas" prefHeight="26.0" prefWidth="122.0" text="Ver estadisticas" />
+   </children>
+</AnchorPane>
