@@ -242,11 +242,11 @@ public class EstadisticasController {
 			txtVitalidad.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadOBJ()));
 			actualizarBarraVida(pbVitalidad, pokemon.getVitalidad(), pokemon.getVitalidadMax());
 			
-			txtAtaque.setText(String.valueOf(pokemon.getAtaque()));
-			txtDefensa.setText(String.valueOf(pokemon.getDefensa()));
-			txtAtaqueEspecial.setText(String.valueOf(pokemon.getAtaque_especial()));
-			txtDefensaEspecial.setText(String.valueOf(pokemon.getDefensa_especial()));
-			txtVelocidad.setText(String.valueOf(pokemon.getVelocidad()));
+			txtAtaque.setText(String.valueOf(pokemon.getAtaqueOBJ()));
+			txtDefensa.setText(String.valueOf(pokemon.getDefensaOBJ()));
+			txtAtaqueEspecial.setText(String.valueOf(pokemon.getAtaque_especialOBJ()));
+			txtDefensaEspecial.setText(String.valueOf(pokemon.getDefensa_especialOBJ()));
+			txtVelocidad.setText(String.valueOf(pokemon.getVelocidadOBJ()));
 			txtFertilidad.setText(String.valueOf(pokemon.getFertilidad()));
 			
 			//Segunda Pantalla - Movimientos
@@ -369,36 +369,42 @@ public class EstadisticasController {
 	@FXML
 	void cambiarObj(ActionEvent event) {
 		
-		ObjetoEnMochila objetoSeleccionado = tablaObjeto.getSelectionModel().getSelectedItem();
-		
-		if (objetoSeleccionado == null) {
-			JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún Objeto.", "Error",
-					JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-	
-		ObjetoBD.equiparObjeto(pokemon, ObjetoBD.obtenerIdObjetoPorNombre(objetoSeleccionado.getNombreObjeto()));
+	    ObjetoEnMochila objetoSeleccionado = tablaObjeto.getSelectionModel().getSelectedItem();
+
+	    if (objetoSeleccionado == null) {
+	        JOptionPane.showMessageDialog(null, "Selecciona un objeto para equipar.", "Error", JOptionPane.WARNING_MESSAGE);
+	    } else {
+	        ObjetoBD.equiparObjeto(pokemon, ObjetoBD.obtenerIdObjetoPorNombre(objetoSeleccionado.getNombreObjeto()));
+
+	        Pokemon pokemonActualizado = PokemonBD.obtenerPokemonPorId(pokemon.getId_pokemon());
+	        if (pokemonActualizado != null) {
+	            this.pokemon = pokemonActualizado;
+	        }
+
+	        inicializarEstadisticas();
+	    }
 		
 	}
 
 	@FXML
 	void quitarObjeto(ActionEvent event) {
-		
-		if(pokemon.getId_objeto() == 0) {
-			JOptionPane.showMessageDialog(null, "A ver, si no tienes ningun objeto, ¿que quieres quitar?.", "Emm....",
-					JOptionPane.INFORMATION_MESSAGE);
-		}else {
-			ObjetoBD.quitarObjeto(pokemon);
-			txtObjetoEquipado.setText(ObjetoBD.obtenerNombreObjetoPorId(pokemon.getId_objeto()));
-		}
-		
-		
+	    if (pokemon.getId_objeto() == 0) {
+	        JOptionPane.showMessageDialog(null, "El Pokémon no tiene ningún objeto equipado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+	    } else {
+	        ObjetoBD.quitarObjeto(pokemon, entrenador.getIdEntrenador());
+
+	        Pokemon pokemonActualizado = PokemonBD.obtenerPokemonPorId(pokemon.getId_pokemon());
+	        if (pokemonActualizado != null) {
+	            this.pokemon = pokemonActualizado; // Actualizar la referencia del Pokémon
+	        }
+
+	        inicializarEstadisticas();
+	    }
 	}
 
 	@FXML
 	void reproducirGrito(ActionEvent event) {
 		
-		// Construir la ruta del archivo de sonido
 	    String numPokedex = String.valueOf(pokemon.getNum_pokedex());
 	    
 	    String numPokedexEditado;
@@ -421,11 +427,9 @@ public class EstadisticasController {
 	    }
 
 	    try {
-	        // Crear el objeto Media y MediaPlayer
 	        Media media = new Media(archivoSonido.toURI().toString());
 	        MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-	        // Reproducir el sonido
 	        mediaPlayer.play();
 	        System.out.println("Reproduciendo grito del Pokémon: " + pokemon.getNombre_pokemon());
 	    } catch (Exception e) {

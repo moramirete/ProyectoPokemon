@@ -564,12 +564,12 @@ public class PokemonBD {
 		}
 	}
 
-	public static Pokemon obtenerPokemonPorId(int idPokemon, Connection conexion) {
+	public static Pokemon obtenerPokemonPorId(int idPokemon) {
 		Pokemon pokemon = null;
 
-		try {
+		try (Connection con = BDConecction.getConnection()) {
 			String query = "SELECT * FROM POKEMON WHERE ID_POKEMON = ?";
-			PreparedStatement statement = conexion.prepareStatement(query);
+			PreparedStatement statement = con.prepareStatement(query);
 			statement.setInt(1, idPokemon);
 			ResultSet rs = statement.executeQuery();
 

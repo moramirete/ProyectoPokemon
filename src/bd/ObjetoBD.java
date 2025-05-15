@@ -84,27 +84,44 @@ public class ObjetoBD {
 	    return idObjeto;
 	}
 	
-	public static String quitarObjeto(Pokemon pok) {
-		String nombreObjeto = null;
- 
-		try (Connection con = BDConecction.getConnection()){
-			// Consulta para obtener el nombre del objeto por su ID
-	        String query = "UPDATE POKEMON SET ID_OBJETO = 0, VITALIDAD_OBJ = VITALIDAD, ATAQUE_OBJ = ATAQUE, "
-                    + "DEFENSA_OBJ = DEFENSA, AT_ESPECIAL_OBJ = AT_ESPECIAL, DEF_ESPECIAL_OBJ = DEF_ESPECIAL, "
-                    + "VELOCIDAD_OBJ = VELOCIDAD WHERE ID_POKEMON = ?;";
-			PreparedStatement statement = con.prepareStatement(query);
-			statement.setInt(1, pok.getId_pokemon());
-			statement.close();
-		} catch (SQLException e) {
-			System.err.println("Error al obtener el nombre del objeto: " + e.getMessage());
-			e.printStackTrace();
-		}
+	public static void quitarObjeto(Pokemon pokemon, int idEntrenador) {
+	    try (Connection con = BDConecction.getConnection()) {
+	        con.setAutoCommit(false); // Iniciar una transacción
 
-		return nombreObjeto;
+	        // 1. Obtener el ID del objeto que se va a quitar
+	        int idObjeto = pokemon.getId_objeto();
+
+	        // 2. Quitar el objeto del Pokémon
+	        String queryQuitarObjeto = "UPDATE POKEMON SET ID_OBJETO = 0, VITALIDAD_OBJ = VITALIDADMAX, ATAQUE_OBJ = ATAQUE, "
+	                + "DEFENSA_OBJ = DEFENSA, AT_ESPECIAL_OBJ = AT_ESPECIAL, DEF_ESPECIAL_OBJ = DEF_ESPECIAL, "
+	                + "VELOCIDAD_OBJ = VELOCIDAD WHERE ID_POKEMON = ?";
+	        PreparedStatement statementQuitarObjeto = con.prepareStatement(queryQuitarObjeto);
+	        statementQuitarObjeto.setInt(1, pokemon.getId_pokemon());
+	        statementQuitarObjeto.executeUpdate();
+
+	        // 3. Sumar el objeto a la mochila
+	        String querySumarObjeto = "INSERT INTO MOCHILA (ID_ENTRENADOR, ID_OBJETO, CANTIDAD) "
+	                + "VALUES (?, ?, 1) "
+	                + "ON DUPLICATE KEY UPDATE CANTIDAD = CANTIDAD + 1";
+	        PreparedStatement statementSumarObjeto = con.prepareStatement(querySumarObjeto);
+	        statementSumarObjeto.setInt(1, idEntrenador);
+	        statementSumarObjeto.setInt(2, idObjeto);
+	        statementSumarObjeto.executeUpdate();
+
+	        // Confirmar la transacción
+	        con.commit();
+
+	        System.out.println("El objeto se quitó del Pokémon y se añadió a la mochila.");
+	    } catch (SQLException e) {
+	        System.err.println("Error al quitar el objeto del Pokémon: " + e.getMessage());
+	        e.printStackTrace();
+	    }
 	}
 
 	public static void equiparObjeto(Pokemon pokemon, int nuevoIdObjeto) {
 	    try (Connection con = BDConecction.getConnection()) {
+	        con.setAutoCommit(false); // Iniciar una transacción
+
 	        // Paso 1: Obtener el ID del objeto actual del Pokémon
 	        String queryGetObjetoActual = "SELECT ID_OBJETO FROM POKEMON WHERE ID_POKEMON = ?";
 	        PreparedStatement stGetObjetoActual = con.prepareStatement(queryGetObjetoActual);
@@ -130,7 +147,20 @@ public class ObjetoBD {
 	            stAddToMochila.close();
 	        }
 
-	        // Paso 3: Obtener los porcentajes del nuevo objeto
+	        // Paso 3: Restar el nuevo objeto de la mochila
+	        String queryRestarDeMochila = "UPDATE MOCHILA SET CANTIDAD = CANTIDAD - 1 " +
+	                                      "WHERE ID_ENTRENADOR = ? AND ID_OBJETO = ? AND CANTIDAD > 0";
+	        PreparedStatement stRestarDeMochila = con.prepareStatement(queryRestarDeMochila);
+	        stRestarDeMochila.setInt(1, pokemon.getId_entrenador());
+	        stRestarDeMochila.setInt(2, nuevoIdObjeto);
+	        int rowsUpdated = stRestarDeMochila.executeUpdate();
+	        stRestarDeMochila.close();
+
+	        if (rowsUpdated == 0) {
+	            throw new SQLException("No hay suficientes objetos en la mochila para equipar.");
+	        }
+
+	        // Paso 4: Obtener los porcentajes del nuevo objeto
 	        String queryGetObjetoStats = "SELECT ATAQUE, DEFENSA, AT_ESPECIAL, DEF_ESPECIAL, VELOCIDAD, VITALIDAD " +
 	                                     "FROM OBJETO WHERE ID_OBJETO = ?";
 	        PreparedStatement stGetObjetoStats = con.prepareStatement(queryGetObjetoStats);
@@ -149,7 +179,7 @@ public class ObjetoBD {
 	        rsObjeto.close();
 	        stGetObjetoStats.close();
 
-	        // Paso 4: Calcular el nuevo porcentaje de vida actual respecto a la vitalidad máxima
+	        // Paso 5: Calcular el nuevo porcentaje de vida actual respecto a la vitalidad máxima
 	        String queryGetVitalidad = "SELECT VITALIDAD, VITALIDADMAX FROM POKEMON WHERE ID_POKEMON = ?";
 	        PreparedStatement stGetVitalidad = con.prepareStatement(queryGetVitalidad);
 	        stGetVitalidad.setInt(1, pokemon.getId_pokemon());
@@ -167,11 +197,11 @@ public class ObjetoBD {
 	        rsVitalidad.close();
 	        stGetVitalidad.close();
 
-	        // Paso 5: Calcular los nuevos valores de VITALIDAD_OBJ y VITALIDAD
+	        // Paso 6: Calcular los nuevos valores de VITALIDAD_OBJ y VITALIDAD
 	        int nuevaVitalidadMax = vitalidadMaxima + (vitalidadMaxima * vitalidadPorc / 100);
 	        int nuevaVitalidad = (int) Math.round(nuevaVitalidadMax * porcentajeVida);
 
-	        // Paso 6: Actualizar la ID del objeto y las estadísticas en la base de datos
+	        // Paso 7: Actualizar la ID del objeto y las estadísticas en la base de datos
 	        String queryUpdateStats = "UPDATE POKEMON SET " +
 	                                  "ID_OBJETO = ?, " +
 	                                  "VITALIDAD_OBJ = ?, " +
@@ -194,6 +224,8 @@ public class ObjetoBD {
 	        stUpdateStats.setInt(9, pokemon.getId_pokemon());
 	        stUpdateStats.executeUpdate();
 	        stUpdateStats.close();
+
+	        con.commit(); // Confirmar la transacción
 
 	    } catch (SQLException e) {
 	        System.err.println("Error al equipar el objeto: " + e.getMessage());
