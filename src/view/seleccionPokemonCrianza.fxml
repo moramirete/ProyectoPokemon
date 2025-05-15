@@ -33,26 +33,25 @@
 -->
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="393.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
+<VBox prefHeight="401.0" prefWidth="321.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SeleccionPokemonCrianzaController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="489.0" fitWidth="867.0" layoutX="-51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondo%20crianza.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imgIncubadora" fitHeight="159.0" fitWidth="170.0" layoutX="303.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/imagenincubadora.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnSalir" layoutX="687.0" layoutY="412.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="50.0" prefWidth="105.0" text="SALIR" />
+            <TableView fx:id="tabCrianza" layoutY="-1.0" prefHeight="330.0" prefWidth="321.0">
+              <columns>
+                <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+                <TableColumn fx:id="colNivel" prefWidth="75.0" text="Nivel" />
+                  <TableColumn fx:id="colSexo" prefWidth="75.0" text="Sexo" />
+                  <TableColumn fx:id="colFertilidad" minWidth="100.0" prefWidth="75.0" text="fertilidad" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnVolver" layoutX="209.0" layoutY="349.0" mnemonicParsing="false" onAction="#salirTabla" prefHeight="25.0" prefWidth="84.0" text="Volver" />
+            <Button fx:id="btnSeleccionar" layoutX="14.0" layoutY="349.0" mnemonicParsing="false" onAction="#seleccionPokemon" prefHeight="25.0" prefWidth="160.0" text="Seleccionar este pokemon" />
          </children>
     </AnchorPane>
   </children>
