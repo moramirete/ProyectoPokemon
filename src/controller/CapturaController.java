@@ -32,7 +32,7 @@ public class CapturaController {
 	private Stage stage;
 	private MenuController menuController;
 	private Pokemon pokemonCreado;
-	
+
 	private int pokebolas = 0;
 	private final int ID_POKEBOLA = 8;
 
@@ -58,7 +58,7 @@ public class CapturaController {
 		this.menuController = menuController;
 		this.stage = stage;
 		this.entrenador = ent;
-		
+
 		cargarPokebolas();
 	}
 
@@ -66,32 +66,32 @@ public class CapturaController {
 		try (Connection conexion = BDConecction.getConnection()) {
 			ArrayList<Mochila> mochila = MochilaBD.obtenerMochila(entrenador.getIdEntrenador());
 			for (Mochila objeto : mochila) {
-				if(objeto.getIdObjeto() == ID_POKEBOLA) {
+				if (objeto.getIdObjeto() == ID_POKEBOLA) {
 					pokebolas = objeto.getCantidad();
 					break;
 				}
 			}
 			actualizarLblPokebolas();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void actualizarLblPokebolas() {
 		lblPokebolas.setText(String.valueOf(pokebolas));
 		lblPokebolas.setStyle("-fx-font-size: 32px; -fx-text-fill: #ff0000;");
 	}
-	
+
 	private void actualizarPokebolasBD() {
-		try (Connection conexion = BDConecction.getConnection()){
+		try (Connection conexion = BDConecction.getConnection()) {
 			MochilaBD.actualizarCantidad(entrenador.getIdEntrenador(), ID_POKEBOLA, pokebolas);
-		
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@FXML
 	void cerrarCaptura(ActionEvent event) {
 		System.out.println("Se ha accionado el boton de salir");
@@ -148,65 +148,72 @@ public class CapturaController {
 	@FXML
 	void capturarPokemon(ActionEvent event) {
 		System.out.println("Se ha accionado el boton de capturar");
-		
 
 		if (pokebolas <= 0) {
-			JOptionPane.showMessageDialog(null,"Te has quedado sin Pokeballs", "Sin Pokeballs", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Te has quedado sin Pokeballs", "Sin Pokeballs",
+					JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		
+
 		BDConecction con = new BDConecction();
 
 		Connection conexion = con.getConnection();
-		
-		
+
 		if (pokemonCreado != null) {
 
 			Random rd = new Random();
-			int prob = rd.nextInt(3);	
-			
+			int prob = rd.nextInt(3);
+
 			if (prob == 0) {
 				JOptionPane.showMessageDialog(null, "El pokemon se ha salido de la bola", "Fallaste", 1);
 			} else {
-				
-				int respuesta = JOptionPane.showConfirmDialog(null, 
-						"¿Deseas ponerle un mote a tu pokemon?", 
+
+				int respuesta = JOptionPane.showConfirmDialog(null, "¿Deseas ponerle un mote a tu pokemon?",
 						"Cambio de nombre", JOptionPane.YES_NO_OPTION);
-				
-				if(respuesta == JOptionPane.YES_OPTION) {
-				
-				TextInputDialog dialogo = new TextInputDialog(pokemonCreado.getNombre_pokemon());
-				dialogo.setTitle("Captura Exitosa");
-				dialogo.setHeaderText("Has capturado un " + pokemonCreado.getNombre_pokemon());
-				dialogo.setTitle("¿Deseas cambiarle el nombre a tu pokemon?");
-				Optional<String> nuevoNombre = dialogo.showAndWait();
-				
-				
-				nuevoNombre.ifPresent(nombre -> pokemonCreado.setNombre_pokemon(nombre));
+
+				if (respuesta == JOptionPane.YES_OPTION) {
+
+					TextInputDialog dialogo = new TextInputDialog(pokemonCreado.getNombre_pokemon());
+					dialogo.setTitle("Captura Exitosa");
+					dialogo.setHeaderText("Has capturado un " + pokemonCreado.getNombre_pokemon());
+					dialogo.setTitle("¿Deseas cambiarle el nombre a tu pokemon?");
+					Optional<String> nuevoNombre = dialogo.showAndWait();
+
+					nuevoNombre.ifPresent(nombre -> pokemonCreado.setNombre_pokemon(nombre));
 				}
-				
-				
-				try (Connection conexion1 = BDConecction.getConnection()){
+
+				try (Connection conexion1 = BDConecction.getConnection()) {
 					PokemonBD.guardarPokemonCaptura(pokemonCreado, conexion1);
 					MovimientoBD.otorgarPrimerMovimiento(conexion, entrenador, pokemonCreado);
+
+					if (pokemonCreado.getNivel() == 25) {
+						MovimientoBD.asignarMovimientosAleatorios(conexion, pokemonCreado.getId_pokemon(),
+								pokemonCreado.getTipo1(), pokemonCreado.getTipo2(), 6, entrenador.getIdEntrenador());
+					} else if (pokemonCreado.getNivel() == 50) {
+						MovimientoBD.asignarMovimientosAleatorios(conexion, pokemonCreado.getId_pokemon(),
+								pokemonCreado.getTipo1(), pokemonCreado.getTipo2(), 15, entrenador.getIdEntrenador());
+					}
+
 					System.out.println("Pokemon guardado en la BBDD");
 					lblPokemon.setText("Has capturado un : " + pokemonCreado.getNombre_pokemon());
-					JOptionPane.showMessageDialog(null,"El pokemon ha sido capturado correctamente, esta situado en la caja", "Capturado", 1);
+					JOptionPane.showMessageDialog(null,
+							"El pokemon ha sido capturado correctamente, esta situado en la caja", "Capturado", 1);
 					lblPokemon.setGraphic(null);
 					pokemonCreado = null;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-			
+
 			pokebolas--;
 			actualizarPokebolasBD();
 			actualizarLblPokebolas();
-			
+
 			if (pokebolas == 0) {
-				JOptionPane.showMessageDialog(null,"Te has quedado sin pokebolas", "Sin pokebolas",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Te has quedado sin pokebolas", "Sin pokebolas",
+						JOptionPane.WARNING_MESSAGE);
 			}
-			
+
 		} else {
 			lblPokemon.setText("Primero tienes que generar un Pokemon.");
 		}
