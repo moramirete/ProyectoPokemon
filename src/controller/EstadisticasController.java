@@ -233,6 +233,10 @@ public class EstadisticasController {
 			Image imgfondo = new Image(fondo);
 			imgFondo.setImage(imgfondo);
 			
+			String genero = PokemonBD.obtenerRutaImagenGenero(pokemon);
+			Image imggenero = new Image(genero);
+			imgGenero.setImage(imggenero);
+			
 			txtNombre.setText(pokemon.getNombre_pokemon());
 			txtNivel.setText(String.valueOf(pokemon.getNivel()));
 			
@@ -264,9 +268,8 @@ public class EstadisticasController {
 			txtFertilidad.setText(String.valueOf(pokemon.getFertilidad()));
 			
 			//Segunda Pantalla - Movimientos
-			String fondo2 = PokemonBD.obtenerRutaImagenFondo(pokemon);
-			Image imgfondo2 = new Image(fondo);
 			imgFondo2.setImage(imgfondo);
+			imgGenero1.setImage(imggenero);
 			
 			txtNombre1.setText(pokemon.getNombre_pokemon());
 			txtNivel1.setText(String.valueOf(pokemon.getNivel()));
@@ -295,10 +298,8 @@ public class EstadisticasController {
 			cargarMovimientosCaja();
 			
 			//Tercera Pantalla - Objetos
-			String fondo1 = PokemonBD.obtenerRutaImagenFondo(pokemon);
-			Image imgfondo1 = new Image(fondo);
 			imgFondo1.setImage(imgfondo);
-			
+			imgGenero2.setImage(imggenero);
 			txtNombre11.setText(pokemon.getNombre_pokemon());
 			txtNivel11.setText(String.valueOf(pokemon.getNivel()));
 			

@@ -375,6 +375,27 @@ public class PokemonBD {
 		}
 	}
 	
+	public static String obtenerRutaImagenGenero(Pokemon p) {
+		try (Connection con = BDConecction.getConnection()) {
+			String queryPokedex = "SELECT SEXO FROM POKEMON WHERE NUM_POKEDEX = ?";
+			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
+			statementPokedex.setInt(1, p.getNum_pokedex());
+			ResultSet resultadoPokedex = statementPokedex.executeQuery();
+
+			if (resultadoPokedex.next()) {
+				// Construct the full path with the file protocol
+				String ruta = "/imagenes/generos/" + resultadoPokedex.getString("SEXO") + ".png";
+				System.out.println(ruta);
+				return ruta;
+			} else {
+				throw new SQLException("No image found for NUM_POKEDEX: " + p.getNum_pokedex());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Error: no se ha encontrado bien la ruta del pokemon";
+		}
+	}
+	
 	public static String obtenerRutaImagenTipo1(Pokemon p) {
 		try (Connection con = BDConecction.getConnection()) {
 			String queryPokedex = "SELECT TIPO1 FROM POKEDEX WHERE NUM_POKEDEX = ?";
