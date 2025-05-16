@@ -147,6 +147,21 @@ public class CrianzaController {
     @FXML
     void seleccionarPokemon2(ActionEvent event) {
         pokemonPadre2 = tabCaja.getSelectionModel().getSelectedItem();
+        
+        if (tabCaja.getItems().isEmpty()) {
+        	JOptionPane.showMessageDialog(null, "No hay Pokemons compatibles", "Error Crianza",
+					JOptionPane.ERROR_MESSAGE);
+            btnAbrir.setVisible(false);
+            imgHuevo.setVisible(false);
+            imgPokemon1.setImage(null);
+            imgPokemon2.setImage(null);
+            pokemonPadre1 = null;
+            pokemonPadre2 = null;
+            tabCaja.setVisible(true);
+            cargarTablaCaja();
+            btnSeleccionarPokemon.setVisible(true);
+        }
+        
         if (pokemonPadre2 == null) {
             JOptionPane.showMessageDialog(null, "Selecciona el segundo Pokémon compatible.");
             return;
