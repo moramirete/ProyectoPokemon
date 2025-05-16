@@ -138,15 +138,6 @@ public class CrianzaController {
 
         ObservableList<Pokemon> listaCompatibles = FXCollections.observableArrayList(compatibles);
         tabCaja.setItems(listaCompatibles);
-
-        // Cambia el botón para seleccionar el segundo Pokémon
-        btnSeleccionarPokemon.setVisible(false);
-        btnSeleccionarPokemon2.setVisible(true);
-    }
-    
-    @FXML
-    void seleccionarPokemon2(ActionEvent event) {
-        pokemonPadre2 = tabCaja.getSelectionModel().getSelectedItem();
         
         if (tabCaja.getItems().isEmpty()) {
         	JOptionPane.showMessageDialog(null, "No hay Pokemons compatibles", "Error Crianza",
@@ -160,7 +151,17 @@ public class CrianzaController {
             tabCaja.setVisible(true);
             cargarTablaCaja();
             btnSeleccionarPokemon.setVisible(true);
+            return;
         }
+
+        // Cambia el botón para seleccionar el segundo Pokémon
+        btnSeleccionarPokemon.setVisible(false);
+        btnSeleccionarPokemon2.setVisible(true);
+    }
+    
+    @FXML
+    void seleccionarPokemon2(ActionEvent event) {
+        pokemonPadre2 = tabCaja.getSelectionModel().getSelectedItem();
         
         if (pokemonPadre2 == null) {
             JOptionPane.showMessageDialog(null, "Selecciona el segundo Pokémon compatible.");
