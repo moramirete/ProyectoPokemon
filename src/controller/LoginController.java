@@ -88,23 +88,24 @@ public class LoginController {
 	}
 	
 	private void registrarUsuarioSinConfirmar(Connection conexion, Entrenador entrenador) {
-		try {
-			EntrenadorBD.crearEntrenador(conexion, entrenador);
-			
-			entrenador.setPokPrincipal(PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion));
-			entrenador.getEquipo().add(entrenador.getPokPrincipal());
+	    try {
+	        EntrenadorBD.crearEntrenador(conexion, entrenador);
+	        
+	        entrenador.setPokPrincipal(PokemonBD.generarPokemonPrincipal(entrenador.getIdEntrenador(), conexion));
+	        entrenador.getEquipo().add(entrenador.getPokPrincipal());
 
-			Pokemon pokemon = new Pokemon(entrenador.getPokPrincipal());
-			pokemon.getMovPrincipales().add(MovimientoBD.otorgarPrimerMovimiento(conexion, entrenador, pokemon));
+	        // Usar el constructor de copia
+	        Pokemon pokemon = new Pokemon(entrenador.getPokPrincipal());
+	        pokemon.getMovPrincipales().add(MovimientoBD.otorgarPrimerMovimiento(conexion, entrenador, pokemon));
 
-			entrenador.setMochila(MochilaBD.crearMochilaInicial(entrenador.getIdEntrenador()));
+	        entrenador.setMochila(MochilaBD.crearMochilaInicial(entrenador.getIdEntrenador()));
 
-			abrirPantallaMenu(entrenador);
-			System.out.println("Usuario registrado automáticamente y accediendo al menú");
-		} catch (SQLException e) {
-			System.out.println("Error al registrar usuario automáticamente.");
-			e.printStackTrace();
-		}
+	        abrirPantallaMenu(entrenador);
+	        System.out.println("Usuario registrado automáticamente y accediendo al menú");
+	    } catch (SQLException e) {
+	        System.out.println("Error al registrar usuario automáticamente.");
+	        e.printStackTrace();
+	    }
 	}
 
 	/**

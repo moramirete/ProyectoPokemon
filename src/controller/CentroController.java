@@ -78,8 +78,8 @@ public class CentroController {
 					setGraphic(null);
 				} else {
 					Pokemon pokemon = getTableView().getItems().get(getIndex());
-					int vidaActual = pokemon.getVitalidad();
-					int vidaMaxima = pokemon.getVitalidadMax();
+					int vidaActual = pokemon.getVitalidadOBJ();
+					int vidaMaxima = pokemon.getVitalidadMaxOBJ();
 
 					actualizarColorBarraVida(progressBar, label, vidaActual, vidaMaxima);
 
@@ -119,8 +119,8 @@ public class CentroController {
 		ObservableList<Pokemon> lista = FXCollections.observableArrayList(equipo);
 
 		for (Pokemon pokemon : lista) {
-			System.out.println("Pokemon: " + pokemon.getNombre_pokemon() + ", Vitalidad: " + pokemon.getVitalidad()
-					+ ", Vitalidad Max: " + pokemon.getVitalidadMax());
+			System.out.println("Pokemon: " + pokemon.getNombre_pokemon() + ", Vitalidad: " + pokemon.getVitalidadOBJ()
+					+ ", Vitalidad Max: " + pokemon.getVitalidadMaxOBJ());
 		}
 
 		tableCentro.setItems(lista);
@@ -136,7 +136,7 @@ public class CentroController {
 			return;
 		}
 
-		if (pokSeleccionado.getVitalidad() == pokSeleccionado.getVitalidadMax()) {
+		if (pokSeleccionado.getVitalidadOBJ() == pokSeleccionado.getVitalidadMaxOBJ()) {
 			JOptionPane.showMessageDialog(null, "El pokemon ya tiene la vida maxima", "Error", 0);
 			return;
 		}
@@ -145,7 +145,7 @@ public class CentroController {
 		if (PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon())) {
 
 			// Actualizar la vitalidad del Pokémon en la lista observable
-			pokSeleccionado.setVitalidad(pokSeleccionado.getVitalidadMax());
+			pokSeleccionado.setVitalidadOBJ(pokSeleccionado.getVitalidadMaxOBJ());
 
 			// Refrescar la tabla para reflejar los cambios y lanzar el mensaje
 			tableCentro.refresh();
