@@ -45,6 +45,9 @@ public class EntrenamientoController {
 	private ProgressBar hpPokemon;
 	@FXML
 	private ProgressBar hpPokemonRival;
+	
+	@FXML
+    private ProgressBar expPokemon;
 
 	private Pokemon miPokemon;
 	private Pokemon pokemonRival;
