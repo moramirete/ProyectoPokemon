@@ -1,11 +1,16 @@
 package controller;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import bd.BDConecction;
 import bd.MochilaBD;
 import bd.ObjetoBD;
 import bd.PokemonBD;
@@ -102,6 +107,15 @@ public class EstadisticasController {
 
 	@FXML
 	private ImageView imgFondo2;
+	
+    @FXML
+    private ImageView imgGenero;
+
+    @FXML
+    private ImageView imgGenero1;
+
+    @FXML
+    private ImageView imgGenero2;
 
 	@FXML
 	private ImageView imgPokemon;
@@ -277,7 +291,8 @@ public class EstadisticasController {
 			txtVitalidad1.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadOBJ()));
 			actualizarBarraVida(pbVitalidad1, pokemon.getVitalidad(), pokemon.getVitalidadMax());
 			
-			
+			cargarMovimientosPrincipales();
+			cargarMovimientosCaja();
 			
 			//Tercera Pantalla - Objetos
 			String fondo1 = PokemonBD.obtenerRutaImagenFondo(pokemon);
@@ -340,30 +355,158 @@ public class EstadisticasController {
 
 	@FXML
 	void cambiarMov1(ActionEvent event) {
-
-		
-		
+	    cambiarMovimiento(1);
 	}
 
 	@FXML
 	void cambiarMov2(ActionEvent event) {
-
-		
-		
+	    cambiarMovimiento(2);
 	}
 
 	@FXML
 	void cambiarMov3(ActionEvent event) {
-
-		
-		
+	    cambiarMovimiento(3);
 	}
 
 	@FXML
 	void cambiarMov4(ActionEvent event) {
+	    cambiarMovimiento(4);
+	}
+	
+	private void cambiarMovimiento(int posicionPrincipal) {
+	    // Obtener el movimiento seleccionado de la tabla
+	    Movimiento movimientoSeleccionado = tablaMovimiento.getSelectionModel().getSelectedItem();
+	    if (movimientoSeleccionado == null) {
+	        JOptionPane.showMessageDialog(null, "Selecciona un movimiento de la caja.", "Error", JOptionPane.WARNING_MESSAGE);
+	        return;
+	    }
 
-		
-		
+	    try (Connection con = BDConecction.getConnection()) {
+	        // Mover el movimiento actual de la posición principal a la caja
+	        String queryActualizarCaja = "UPDATE movimiento_pokemon SET POSICION = 5 WHERE ID_ENTRENADOR = ? AND ID_POKEMON = ? AND POSICION = ?";
+	        try (PreparedStatement st = con.prepareStatement(queryActualizarCaja)) {
+	            st.setInt(1, entrenador.getIdEntrenador());
+	            st.setInt(2, pokemon.getId_pokemon());
+	            st.setInt(3, posicionPrincipal);
+	            st.executeUpdate();
+	        }
+
+	        // Mover el movimiento seleccionado de la caja a la posición principal
+	        String queryActualizarPrincipal = "UPDATE movimiento_pokemon SET POSICION = ? WHERE ID_ENTRENADOR = ? AND ID_POKEMON = ? AND ID_MOVIMIENTO = ?";
+	        try (PreparedStatement st = con.prepareStatement(queryActualizarPrincipal)) {
+	            st.setInt(1, posicionPrincipal);
+	            st.setInt(2, entrenador.getIdEntrenador());
+	            st.setInt(3, pokemon.getId_pokemon());
+	            st.setInt(4, movimientoSeleccionado.getId_movimiento());
+	            st.executeUpdate();
+	        }
+
+	        // Recargar la vista
+	        inicializarEstadisticas();
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(null, "Error al cambiar el movimiento: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	        e.printStackTrace();
+	    }
+	}
+	
+	private void cargarMovimientosPrincipales() {
+	    try (Connection con = BDConecction.getConnection()) {
+	        String queryPrincipales = """
+	            SELECT mp.POSICION, m.NOM_MOVIMIENTO
+	            FROM movimiento_pokemon mp
+	            JOIN movimiento m ON mp.ID_MOVIMIENTO = m.ID_MOVIMIENTO
+	            WHERE mp.ID_ENTRENADOR = ? AND mp.ID_POKEMON = ? AND mp.POSICION BETWEEN 1 AND 4
+	            ORDER BY mp.POSICION
+	        """;
+
+	        try (PreparedStatement st = con.prepareStatement(queryPrincipales)) {
+	            st.setInt(1, entrenador.getIdEntrenador());
+	            st.setInt(2, pokemon.getId_pokemon());
+
+	            ResultSet rs = st.executeQuery();
+
+	            // Limpiar los campos de texto antes de cargar nuevos datos
+	            txtMovimiento1.setText("");
+	            txtMovimiento2.setText("");
+	            txtMovimiento3.setText("");
+	            txtMovimiento4.setText("");
+
+	            while (rs.next()) {
+	                int posicion = rs.getInt("POSICION");
+	                String nombreMovimiento = rs.getString("NOM_MOVIMIENTO");
+
+	                // Asignar el nombre del movimiento al campo de texto correspondiente
+	                switch (posicion) {
+	                    case 1:
+	                        txtMovimiento1.setText(nombreMovimiento);
+	                        break;
+	                    case 2:
+	                        txtMovimiento2.setText(nombreMovimiento);
+	                        break;
+	                    case 3:
+	                        txtMovimiento3.setText(nombreMovimiento);
+	                        break;
+	                    case 4:
+	                        txtMovimiento4.setText(nombreMovimiento);
+	                        break;
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(null, "Error al cargar los movimientos principales: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	        e.printStackTrace();
+	    }
+	}
+	
+	private void cargarMovimientosCaja() {
+	    try (Connection con = BDConecction.getConnection()) {
+	        String queryCaja = """
+	            SELECT mp.POSICION, m.ID_MOVIMIENTO, m.NOM_MOVIMIENTO, m.TIPO, m.TIPO_MOV
+	            FROM movimiento_pokemon mp
+	            JOIN movimiento m ON mp.ID_MOVIMIENTO = m.ID_MOVIMIENTO
+	            WHERE mp.ID_ENTRENADOR = ? AND mp.ID_POKEMON = ? AND mp.POSICION = 5
+	        """;
+
+	        try (PreparedStatement st = con.prepareStatement(queryCaja)) {
+	            st.setInt(1, entrenador.getIdEntrenador());
+	            st.setInt(2, pokemon.getId_pokemon());
+
+	            ResultSet rs = st.executeQuery();
+	            ObservableList<Movimiento> movimientosCaja = FXCollections.observableArrayList();
+	            while (rs.next()) {
+	                Movimiento movimiento = new Movimiento(
+	                    rs.getInt("ID_MOVIMIENTO"),
+	                    rs.getString("NOM_MOVIMIENTO"),
+	                    pokemon.getId_pokemon(),
+	                    null, // Descripción no necesaria aquí
+	                    0,    // Precisión no necesaria aquí
+	                    0,    // PP máximo no necesario aquí
+	                    0,    // PP actual no necesario aquí
+	                    rs.getString("TIPO"),
+	                    rs.getString("TIPO_MOV"), // Tipo de movimiento
+	                    0,    // Potencia no necesaria aquí
+	                    null, // Estado no necesario aquí
+	                    0,    // Turnos no necesarios aquí
+	                    0,    // Mejora no necesaria aquí
+	                    0,    // Número de movimiento no necesario aquí
+	                    0,    // Cantidad de mejora no necesaria aquí
+	                    rs.getInt("POSICION")
+	                );
+	                movimientosCaja.add(movimiento);
+	            }
+
+	            // Configurar las columnas de la tabla
+	            colNombreMov.setCellValueFactory(new PropertyValueFactory<>("nom_movimiento"));
+	            colTipoMov.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+	            colTipoMovMov.setCellValueFactory(new PropertyValueFactory<>("tipo_mov"));
+
+	            // Asignar los movimientos de la caja a la tabla
+	            tablaMovimiento.setItems(movimientosCaja);
+	        }
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(null, "Error al cargar los movimientos de la caja: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	        e.printStackTrace();
+	    }
 	}
 
 	@FXML
@@ -395,7 +538,7 @@ public class EstadisticasController {
 
 	        Pokemon pokemonActualizado = PokemonBD.obtenerPokemonPorId(pokemon.getId_pokemon());
 	        if (pokemonActualizado != null) {
-	            this.pokemon = pokemonActualizado; // Actualizar la referencia del Pokémon
+	            this.pokemon = pokemonActualizado; 
 	        }
 
 	        inicializarEstadisticas();

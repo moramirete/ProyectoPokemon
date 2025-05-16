@@ -162,6 +162,7 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
+                        <ImageView fx:id="imgGenero" fitHeight="33.0" fitWidth="32.0" layoutX="132.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
             </content>
@@ -250,6 +251,7 @@
                         <Button fx:id="btnCambiarMov3" layoutX="20.0" layoutY="253.0" mnemonicParsing="false" onAction="#cambiarMov3" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
                         <Button fx:id="btnCambiarMov2" layoutX="409.0" layoutY="215.0" mnemonicParsing="false" onAction="#cambiarMov2" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
                         <Button fx:id="btnCambiarMov4" layoutX="409.0" layoutY="253.0" mnemonicParsing="false" onAction="#cambiarMov4" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
+                        <ImageView fx:id="imgGenero1" fitHeight="33.0" fitWidth="32.0" layoutX="133.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
             </content>
@@ -319,6 +321,7 @@
                           </columns>
                         </TableView>
                         <Button fx:id="btnQuitarObjeto" layoutX="379.0" layoutY="224.0" mnemonicParsing="false" onAction="#quitarObjeto" prefHeight="25.0" prefWidth="34.0" text="X" />
+                        <ImageView fx:id="imgGenero2" fitHeight="33.0" fitWidth="32.0" layoutX="131.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
               </content>
