@@ -45,9 +45,9 @@ public class EntrenamientoController {
 	private ProgressBar hpPokemon;
 	@FXML
 	private ProgressBar hpPokemonRival;
-	
+
 	@FXML
-    private ProgressBar expPokemon;
+	private ProgressBar expPokemon;
 
 	private Pokemon miPokemon;
 	private Pokemon pokemonRival;
@@ -62,10 +62,24 @@ public class EntrenamientoController {
 		this.menuController = menuController;
 
 		// Cargamos el Pokémon principal del entrenador y un rival fijo (id=2)
-		miPokemon = PokemonBD.obtenerPokemonPrincipal(entrenador.getIdEntrenador());
+		miPokemon = PokemonBD.obtenerPokemonPorIdConMovimientos(PokemonBD.obtenerPokemonPrincipal(entrenador.getIdEntrenador()).getId_pokemon());
 		pokemonRival = PokemonBD.generarPokemonRivalAleatorio();
 
 		cargarDatos();
+	}
+
+	/**
+	 * Carga los movimientos del Pokémon en los botones
+	 */
+	private void cargarMovimientos() {
+
+		List<Movimiento> movimientos = miPokemon.getMovPrincipales();
+
+		// Usamos operador ternario para evitar errores si hay menos de 4 movimientos
+		btnMov1.setText(movimientos.size() > 0 ? movimientos.get(0).getNom_movimiento() : "Vacío");
+		btnMov2.setText(movimientos.size() > 1 ? movimientos.get(1).getNom_movimiento() : "Vacío");
+		btnMov3.setText(movimientos.size() > 2 ? movimientos.get(2).getNom_movimiento() : "Vacío");
+		btnMov4.setText(movimientos.size() > 3 ? movimientos.get(3).getNom_movimiento() : "Vacío");
 	}
 
 	/**
@@ -93,30 +107,16 @@ public class EntrenamientoController {
 	}
 
 	/**
-	 * Carga los movimientos del Pokémon en los botones
-	 */
-	private void cargarMovimientos() {
-		
-		List<Movimiento> movimientos = miPokemon.getMovPrincipales();
-
-		// Usamos operador ternario para evitar errores si hay menos de 4 movimientos
-		btnMov1.setText(movimientos.size() > 0 ? movimientos.get(0).getNom_movimiento() : "Vacío");
-		btnMov2.setText(movimientos.size() > 1 ? movimientos.get(1).getNom_movimiento() : "Vacío");
-		btnMov3.setText(movimientos.size() > 2 ? movimientos.get(2).getNom_movimiento() : "Vacío");
-		btnMov4.setText(movimientos.size() > 3 ? movimientos.get(3).getNom_movimiento() : "Vacío");
-	}
-
-	/**
 	 * Actualiza el progreso de las barras de vida de ambos Pokémon
 	 */
 	private void actualizarHP() {
-		double progresoMiPoke = (miPokemon.getVitalidadMaxOBJ() != 0) 
-		    ? (miPokemon.getVitalidadOBJ() * 1.0 / miPokemon.getVitalidadMaxOBJ()) 
-		    : 0.0;
+		double progresoMiPoke = (miPokemon.getVitalidadMaxOBJ() != 0)
+				? (miPokemon.getVitalidadOBJ() * 1.0 / miPokemon.getVitalidadMaxOBJ())
+				: 0.0;
 
-		double progresoRival = (pokemonRival.getVitalidadMaxOBJ() != 0) 
-		    ? (pokemonRival.getVitalidadOBJ() * 1.0 / pokemonRival.getVitalidadMaxOBJ()) 
-		    : 0.0;
+		double progresoRival = (pokemonRival.getVitalidadMaxOBJ() != 0)
+				? (pokemonRival.getVitalidadOBJ() * 1.0 / pokemonRival.getVitalidadMaxOBJ())
+				: 0.0;
 
 		hpPokemon.setProgress(progresoMiPoke);
 		hpPokemonRival.setProgress(progresoRival);
@@ -162,7 +162,7 @@ public class EntrenamientoController {
 		pokemonRival.setVitalidad(Math.max(0, pokemonRival.getVitalidad() - danio));
 		actualizarHP(); // Actualizamos barras
 
-		//mostramos mensaje de victoria
+		// mostramos mensaje de victoria
 		if (pokemonRival.getVitalidad() <= 0) {
 			mostrarAlerta("¡Has ganado el entrenamiento!");
 		}
@@ -173,36 +173,37 @@ public class EntrenamientoController {
 	 */
 	@FXML
 	public void cambiarPoke(ActionEvent event) {
-	    try {
-	    	// Cargamos el FXML de cambiar Pokémon
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPokemonCombate.fxml"));
-	        Parent root = loader.load();
+		try {
+			// Cargamos el FXML de cambiar Pokémon
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPokemonCombate.fxml"));
+			Parent root = loader.load();
 
-	        // Obtenemos el controlador y le pasamos datos necesarios
-	        cambiarPokemonCombateController controlador = loader.getController();
-	        controlador.init(entrenador, miPokemon, this);
+			// Obtenemos el controlador y le pasamos datos necesarios
+			cambiarPokemonCombateController controlador = loader.getController();
+			controlador.init(entrenador, miPokemon, this);
 
-	     // Creamos una nueva ventana para cambiar Pokémon
-	        Stage nuevaVentana = new Stage();
-	        nuevaVentana.setTitle("Cambiar Pokémon del equipo");
-	        nuevaVentana.setScene(new Scene(root));
-	        nuevaVentana.initOwner(this.stage);
-	        nuevaVentana.show();
+			// Creamos una nueva ventana para cambiar Pokémon
+			Stage nuevaVentana = new Stage();
+			nuevaVentana.setTitle("Cambiar Pokémon del equipo");
+			nuevaVentana.setScene(new Scene(root));
+			nuevaVentana.initOwner(this.stage);
+			nuevaVentana.show();
 
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        mostrarAlerta("Error al abrir la ventana de cambio de Pokémon.");
-	    }
+		} catch (IOException e) {
+			e.printStackTrace();
+			mostrarAlerta("Error al abrir la ventana de cambio de Pokémon.");
+		}
 	}
 
-	 /**
-     * Recarga los datos con el nuevo Pokémon seleccionado tras cambiar
-     * @param idNuevo ID del nuevo Pokémon principal
-     */
+	/**
+	 * Recarga los datos con el nuevo Pokémon seleccionado tras cambiar
+	 * 
+	 * @param idNuevo ID del nuevo Pokémon principal
+	 */
 	public void recargarConNuevoPokemon(int idNuevo) {
-	    miPokemon = PokemonBD.obtenerPokemonPorIdConMovimientos(idNuevo);
-	    // vuelve a mostrar imagen, vida y movimientos
-	    cargarDatos();
+		miPokemon = PokemonBD.obtenerPokemonPorIdConMovimientos(idNuevo);
+		// vuelve a mostrar imagen, vida y movimientos
+		cargarDatos();
 	}
 
 	/**
