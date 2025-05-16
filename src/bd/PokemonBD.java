@@ -624,5 +624,44 @@ public class PokemonBD {
 	    return pokemon;
 	}
 	
+	 public static void insertarPokemonHijo(Pokemon hijo) {
+	        try(Connection con = BDConecction.getConnection()) {
+	            String query = "INSERT INTO pokemons (id_entrenador, num_pokedex, tipo1, tipo2, ataque, defensa, atEspecial, defEspecial, velocidad, nivel, nomPokemon, sexo, fertilidades) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	            PreparedStatement ps = con.prepareStatement(query);
+	            
+	            ps.setInt(1, hijo.getId_entrenador());
+	            ps.setInt(2, hijo.getNum_pokedex());
+	            ps.setString(3, hijo.getTipo1());
+	            ps.setString(4, hijo.getTipo2());
+	            ps.setInt(5, hijo.getAtaque());
+	            ps.setInt(6, hijo.getDefensa());
+	            ps.setInt(7, hijo.getAtaque_especial());
+	            ps.setInt(8, hijo.getAtaque_especial());
+	            ps.setInt(9, hijo.getVelocidad());
+	            ps.setInt(10, hijo.getNivel());
+	            ps.setInt(11, hijo.getId_pokemon());
+	            ps.setString(12, String.valueOf(hijo.getSexo()));
+	            ps.setInt(13, hijo.getFertilidad());
+	            
+	            ps.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    // Método para actualizar la fertilidad de un Pokémon
+	    public static void actualizarFertilidades(Pokemon pokemon) {
+	        try (Connection con = BDConecction.getConnection()) {
+	        	 String query = "UPDATE pokemons SET fertilidades = ? WHERE id = ?";
+	             PreparedStatement ps = con.prepareStatement(query);
+	            
+	             ps.setInt(1, pokemon.getFertilidad());
+	             ps.setInt(2, pokemon.getId_pokemon());
+	            
+	            ps.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 
 }
