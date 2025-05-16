@@ -78,7 +78,7 @@ public class MovimientoBD {
 
 	    try {
 	        String sql = """
-	            SELECT m.* 
+	            SELECT m.*, mp.POSICION
 	            FROM MOVIMIENTO m
 	            JOIN MOVIMIENTO_POKEMON mp ON m.ID_MOVIMIENTO = mp.ID_MOVIMIENTO
 	            WHERE mp.ID_POKEMON = ?
