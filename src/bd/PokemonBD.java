@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import model.Pokemon;
@@ -25,7 +26,6 @@ public class PokemonBD {
 	        }
 
 	        int nuevoIdPokemon = generarIdUnico(conexion);
-
 	        int vitalidad = 15 + rd.nextInt(16);
 	        int ataque = 5 + rd.nextInt(6);
 	        int defensa = 5 + rd.nextInt(6);
@@ -331,24 +331,27 @@ public class PokemonBD {
 	}
 
 	public static String obtenerRutaImagen(Pokemon p) {
-		try (Connection con = BDConecction.getConnection()) {
-			String queryPokedex = "SELECT SPRITES_FRONTAL FROM POKEDEX WHERE NUM_POKEDEX = ?";
-			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
-			statementPokedex.setInt(1, p.getNum_pokedex());
-			ResultSet resultadoPokedex = statementPokedex.executeQuery();
+	    if (p == null || p.getNum_pokedex() <= 0) {
+	        System.err.println("Pokémon no válido o NUM_POKEDEX = 0");
+	        return "/imagenes/default.png";
+	    }
 
-			if (resultadoPokedex.next()) {
-				// Construct the full path with the file protocol
-				String ruta = "/imagenes/" + resultadoPokedex.getString("SPRITES_FRONTAL");
-				System.out.println(ruta);
-				return ruta;
-			} else {
-				throw new SQLException("No image found for NUM_POKEDEX: " + p.getNum_pokedex());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Error: no se ha encontrado bien la ruta del pokemon";
-		}
+	    try (Connection con = BDConecction.getConnection()) {
+	        String query = "SELECT SPRITES_FRONTAL FROM POKEDEX WHERE NUM_POKEDEX = ?";
+	        PreparedStatement st = con.prepareStatement(query);
+	        st.setInt(1, p.getNum_pokedex());
+	        ResultSet rs = st.executeQuery();
+
+	        if (rs.next()) {
+	            String ruta = "/imagenes/" + rs.getString("SPRITES_FRONTAL");
+	            return PokemonBD.class.getResource(ruta) != null ? ruta : "/imagenes/default.png";
+	        } else {
+	            return "/imagenes/default.png";
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "/imagenes/default.png";
+	    }
 	}
 	
 	public static String obtenerRutaImagenFondo(Pokemon p) {
@@ -613,12 +616,106 @@ public class PokemonBD {
 	
 	public static Pokemon obtenerPokemonPorIdConMovimientos(int idPokemon) {
 	    Pokemon pokemon = obtenerPokemonPorId(idPokemon);
+	    
+	    if (pokemon == null) {
+	        System.err.println("❌ No se encontró el Pokémon con ID: " + idPokemon);
+	        return null;
+	    }
+	    
 	    try (Connection con = BDConecction.getConnection()) {
 	        pokemon.setMovPrincipales(MovimientoBD.obtenerMovimientosPorPokemon(idPokemon, con));
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 	    return pokemon;
+	}
+	
+	public static List<Integer> obtenerTodosIdsPokemon() {
+	    List<Integer> ids = new ArrayList<>();
+
+	    try (Connection con = BDConecction.getConnection()) {
+	        String query = "SELECT ID_POKEMON FROM POKEMON";
+	        PreparedStatement ps = con.prepareStatement(query);
+	        ResultSet rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            ids.add(rs.getInt("ID_POKEMON"));
+	        }
+
+	        rs.close();
+	        ps.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return ids;
+	}
+	
+	public static Pokemon generarPokemonRivalAleatorio() {
+	    Pokemon nuevoPokemon = null;
+
+	    try (Connection con = BDConecction.getConnection()) {
+	        Random rd = new Random();
+
+	        String queryPokedex = "SELECT * FROM POKEDEX ORDER BY RAND() LIMIT 1";
+	        PreparedStatement stmt = con.prepareStatement(queryPokedex);
+	        ResultSet rs = stmt.executeQuery();
+
+	        if (!rs.next()) {
+	            throw new SQLException("No se encontró ningún Pokémon en la tabla POKEDEX.");
+	        }
+
+	        // Generar stats aleatorios similares a los de un Pokémon nivel 1
+	        int vitalidad = 15 + rd.nextInt(16);
+	        int ataque = 5 + rd.nextInt(6);
+	        int defensa = 5 + rd.nextInt(6);
+	        int ataqueEspecial = 5 + rd.nextInt(6);
+	        int defensaEspecial = 5 + rd.nextInt(6);
+	        int velocidad = 5 + rd.nextInt(11);
+	        int fertilidad = 1 + rd.nextInt(5);
+	        char sexo = rd.nextBoolean() ? 'M' : 'F';
+	        String estado = "NORMAL";
+	        String nombrePokemon = rs.getString("NOM_POKEMON");
+
+	        // Creamos un Pokémon temporal con id 0 y sin entrenador (o con valores dummy)
+	        nuevoPokemon = new Pokemon(
+	            0, // idPokemon temporal (no existe en BD)
+	            0, // idEntrenador temporal
+	            rs.getInt("NUM_POKEDEX"),
+	            0, // idObjeto
+	            rs.getString("TIPO1"),
+	            rs.getString("TIPO2"),
+	            vitalidad,
+	            ataque,
+	            defensa,
+	            ataqueEspecial,
+	            defensaEspecial,
+	            velocidad,
+	            1, // nivel 1 para el rival
+	            fertilidad,
+	            0, // equipo 0 o especial para rival
+	            nombrePokemon,
+	            estado,
+	            sexo,
+	            vitalidad, // Vitalidad max
+	            vitalidad,
+	            vitalidad,
+	            ataque,
+	            defensa,
+	            ataqueEspecial,
+	            defensaEspecial,
+	            velocidad,
+	            0 // experiencia
+	        );
+
+	        rs.close();
+	        stmt.close();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return nuevoPokemon;
 	}
 	
 }

@@ -42,7 +42,7 @@ public class MovimientoBD {
                 	resultadoPlacaje.getInt("POTENCIA"),
                 	resultadoPlacaje.getString("ESTADO"),
                 	resultadoPlacaje.getInt("TURNOS"),
-                	resultadoPlacaje.getInt("MEJORA"),
+                	resultadoPlacaje.getString("MEJORA"),
                 	resultadoPlacaje.getInt("NUM_MOV"),
                 	resultadoPlacaje.getInt("CANT_MEJORA"),
             		resultadoPlacaje.getInt(1)
@@ -103,7 +103,7 @@ public class MovimientoBD {
 	                rs.getInt("POTENCIA"),
 	                rs.getString("ESTADO"),
 	                rs.getInt("TURNOS"),
-	                rs.getInt("MEJORA"),
+	                rs.getString("MEJORA"),
 	                rs.getInt("NUM_MOV"),
 	                rs.getInt("CANT_MEJORA"),
 					rs.getInt("POSICION")

@@ -63,7 +63,7 @@ public class EntrenamientoController {
 
 		// Cargamos el Pokémon principal del entrenador y un rival fijo (id=2)
 		miPokemon = PokemonBD.obtenerPokemonPrincipal(entrenador.getIdEntrenador());
-		pokemonRival = PokemonBD.obtenerPokemonPorIdConMovimientos(2);
+		pokemonRival = PokemonBD.generarPokemonRivalAleatorio();
 
 		cargarDatos();
 	}
@@ -110,8 +110,16 @@ public class EntrenamientoController {
 	 * Actualiza el progreso de las barras de vida de ambos Pokémon
 	 */
 	private void actualizarHP() {
-		hpPokemon.setProgress(miPokemon.getVitalidadOBJ() / miPokemon.getVitalidadMaxOBJ());
-		hpPokemonRival.setProgress(pokemonRival.getVitalidadOBJ() / pokemonRival.getVitalidadMaxOBJ());
+		double progresoMiPoke = (miPokemon.getVitalidadMaxOBJ() != 0) 
+		    ? (miPokemon.getVitalidadOBJ() * 1.0 / miPokemon.getVitalidadMaxOBJ()) 
+		    : 0.0;
+
+		double progresoRival = (pokemonRival.getVitalidadMaxOBJ() != 0) 
+		    ? (pokemonRival.getVitalidadOBJ() * 1.0 / pokemonRival.getVitalidadMaxOBJ()) 
+		    : 0.0;
+
+		hpPokemon.setProgress(progresoMiPoke);
+		hpPokemonRival.setProgress(progresoRival);
 	}
 
 	// Métodos que se llaman al pulsar cada botón de movimiento

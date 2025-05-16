@@ -488,7 +488,7 @@ public class EstadisticasController {
 	                    0,    // Potencia no necesaria aquí
 	                    null, // Estado no necesario aquí
 	                    0,    // Turnos no necesarios aquí
-	                    0,    // Mejora no necesaria aquí
+	                    "",    // Mejora no necesaria aquí
 	                    0,    // Número de movimiento no necesario aquí
 	                    0,    // Cantidad de mejora no necesaria aquí
 	                    rs.getInt("POSICION")

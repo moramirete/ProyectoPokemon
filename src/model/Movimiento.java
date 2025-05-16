@@ -13,14 +13,14 @@ public class Movimiento {
     private int potencia;
     private String estado;
     private int turnos;
-    private int mejora;
+    private String mejora;
     private int num_mov;
     private int cant_mejora;
     private int posicion; // Valor de posición del movimiento
 
     // Constructor con todos los parámetros
     public Movimiento(int id_movimiento, String nom_movimiento, int id_pokemon, String descripcion, int precision, int pp_max, int pp_actual,
-                      String tipo, String tipo_mov, int potencia, String estado, int turnos, int mejora, int num_mov,
+                      String tipo, String tipo_mov, int potencia, String estado, int turnos, String mejora, int num_mov,
                       int cant_mejora, int posicion) {
         this.id_movimiento = id_movimiento;
         this.nom_movimiento = nom_movimiento;
@@ -56,7 +56,7 @@ public class Movimiento {
 		this.potencia = 0;
 		this.estado = "";
 		this.turnos = 0;
-		this.mejora = 0;
+		this.mejora = "";
 		this.num_mov = 0;
 		this.cant_mejora = 0;
 		this.posicion= 0;
@@ -204,13 +204,13 @@ public class Movimiento {
 
 
 
-	public int getMejora() {
+	public String getMejora() {
 		return mejora;
 	}
 
 
 
-	public void setMejora(int mejora) {
+	public void setMejora(String mejora) {
 		this.mejora = mejora;
 	}
 
