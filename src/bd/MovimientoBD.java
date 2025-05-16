@@ -44,8 +44,8 @@ public class MovimientoBD {
                 	resultadoPlacaje.getInt("TURNOS"),
                 	resultadoPlacaje.getInt("MEJORA"),
                 	resultadoPlacaje.getInt("NUM_MOV"),
-                	resultadoPlacaje.getInt("CANT_MEJORA")
-            		
+                	resultadoPlacaje.getInt("CANT_MEJORA"),
+            		resultadoPlacaje.getInt(1)
             		);
             
             String queryInsertMov = "INSERT INTO movimiento_pokemon (ID_ENTRENADOR , ID_MOVIMIENTO, ID_POKEMON, PP_ACTUALES, POSICION)" + 
@@ -105,7 +105,8 @@ public class MovimientoBD {
 	                rs.getInt("TURNOS"),
 	                rs.getInt("MEJORA"),
 	                rs.getInt("NUM_MOV"),
-	                rs.getInt("CANT_MEJORA")
+	                rs.getInt("CANT_MEJORA"),
+					rs.getInt("POSICION")
 	            );
 
 	            movimientos.add(mov);

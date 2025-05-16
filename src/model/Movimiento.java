@@ -1,48 +1,44 @@
 package model;
 
 public class Movimiento {
+    private int id_movimiento;
+    private String nom_movimiento;
+    private int id_pokemon;
+    private String descripcion;
+    private int precision;
+    private int pp_max;
+    private int pp_actual;
+    private String tipo;
+    private String tipo_mov;
+    private int potencia;
+    private String estado;
+    private int turnos;
+    private int mejora;
+    private int num_mov;
+    private int cant_mejora;
+    private int posicion; // Valor de posición del movimiento
 
-	//Atributos
-	
-	private int id_movimiento;
-	private String nom_movimiento;
-	private int id_pokemon;
-	private String descripcion;
-	private int precision;
-	private int pp_max;
-	private int pp_actual;
-	private String tipo;
-	private String tipo_mov;
-	private int potencia;
-	private String estado;
-	private int turnos;
-	private int mejora;
-	private int num_mov;
-	private int cant_mejora;
-	
-	
-	
-	//CONTRUCTOR CON TODOS LOS PARAMETROS
-	public Movimiento(int id_movimiento, String nom_movimiento, int id_pokemon, String descripcion, int precision, int pp_max, int pp_actual,
-			String tipo, String tipo_mov, int potencia, String estado, int turnos, int mejora, int num_mov,
-			int cant_mejora) {
-		super();
-		this.id_movimiento = id_movimiento;
-		this.nom_movimiento = nom_movimiento;
-		this.id_pokemon = id_pokemon;
-		this.descripcion = descripcion;
-		this.precision = precision;
-		this.pp_max = pp_max;
-		this.pp_actual = pp_actual;
-		this.tipo = tipo;
-		this.tipo_mov = tipo_mov;
-		this.potencia = potencia;
-		this.estado = estado;
-		this.turnos = turnos;
-		this.mejora = mejora;
-		this.num_mov = num_mov;
-		this.cant_mejora = cant_mejora;
-	}
+    // Constructor con todos los parámetros
+    public Movimiento(int id_movimiento, String nom_movimiento, int id_pokemon, String descripcion, int precision, int pp_max, int pp_actual,
+                      String tipo, String tipo_mov, int potencia, String estado, int turnos, int mejora, int num_mov,
+                      int cant_mejora, int posicion) {
+        this.id_movimiento = id_movimiento;
+        this.nom_movimiento = nom_movimiento;
+        this.id_pokemon = id_pokemon;
+        this.descripcion = descripcion;
+        this.precision = precision;
+        this.pp_max = pp_max;
+        this.pp_actual = pp_actual;
+        this.tipo = tipo;
+        this.tipo_mov = tipo_mov;
+        this.potencia = potencia;
+        this.estado = estado;
+        this.turnos = turnos;
+        this.mejora = mejora;
+        this.num_mov = num_mov;
+        this.cant_mejora = cant_mejora;
+        this.posicion = posicion;
+    }
 
 	//CONTRUCTOR SIN PARAMETROS
 
@@ -63,9 +59,18 @@ public class Movimiento {
 		this.mejora = 0;
 		this.num_mov = 0;
 		this.cant_mejora = 0;
+		this.posicion= 0;
 	}
 
 
+    public int getPosicion() {
+        return posicion;
+    }
+
+    // Getters y Setters
+    public int setPosicion() {
+        return posicion;
+    }
 
 	public int getId_movimiento() {
 		return id_movimiento;
