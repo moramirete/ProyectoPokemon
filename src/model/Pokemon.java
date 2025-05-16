@@ -4,141 +4,87 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Pokemon {
+    // Atributos
+    private int id_pokemon;
+    private int id_entrenador;
+    private int num_pokedex;
+    private int id_objeto;
+    private String tipo1;
+    private String tipo2;
+    private int vitalidad;
+    private int vitalidadMax;
+    private int vitalidadMaxOBJ; // Nuevo atributo
+    private int ataque;
+    private int defensa;
+    private int ataque_especial;
+    private int defensa_especial;
+    private int velocidad;
+    private int nivel;
+    private int fertilidad;
+    private int equipo;
+    private String nombre_pokemon;
+    private String estado;
+    private char sexo;
+    private LinkedList<Movimiento> movPrincipales = new LinkedList<>();
+    private LinkedList<Movimiento> movSecundarios = new LinkedList<>();
+    private int vitalidadOBJ;
+    private int ataqueOBJ;
+    private int defensaOBJ;
+    private int ataque_especialOBJ;
+    private int defensa_especialOBJ;
+    private int velocidadOBJ;
+    private int experiencia;
 
-	
-	//Atributos 
-	private int id_pokemon;
-	private int id_entrenador;
-	private int num_pokedex;
-	private int id_objeto;
-	private String tipo1;
-	private String tipo2;
-	private int vitalidad;
-	private int vitalidadMax;
-	private int ataque;
-	private int defensa;
-	private int ataque_especial;
-	private int defensa_especial;
-	private int velocidad;
-	private int nivel;
-	private int fertilidad;
-	private int equipo;
-	private String nombre_pokemon;
-	private String estado;
-	private char sexo;
-	private LinkedList<Movimiento> movPrincipales = new LinkedList<Movimiento>();
-	private LinkedList<Movimiento> movSecundarios = new LinkedList<Movimiento>();
-	private int vitalidadOBJ;
-	private int ataqueOBJ;
-	private int defensaOBJ;
-	private int ataque_especialOBJ;
-	private int defensa_especialOBJ;
-	private int velocidadOBJ;
-	
-	
-	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2, 
-			int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad, 
-			int nivel, int fertilidad,int equipo, String nombre_pokemon, String estado, char sexo, int vitalidadMax, 
-			LinkedList<Movimiento> movPrincipales, LinkedList<Movimiento> movSecundarios,int vitalidadOBJ, int ataqueOBJ, int defensaOBJ, 
-			int ataque_especialOBJ, int defensa_especialOBJ, int velocidadOBJ) {
-		super();
-		this.id_pokemon = id_pokemon;
-		this.id_entrenador = id_entrenador;
-		this.num_pokedex = num_pokedex;
-		this.id_objeto = id_objeto;
-		this.tipo1 = tipo1;
-		this.tipo2 = tipo2;
-		this.vitalidad = vitalidad;
-		this.vitalidadMax = vitalidadMax;
-		this.ataque = ataque;
-		this.defensa = defensa;
-		this.ataque_especial = ataque_especial;
-		this.defensa_especial = defensa_especial;
-		this.velocidad = velocidad;
-		this.nivel = nivel;
-		this.fertilidad = fertilidad;
-		this.equipo = equipo;
-		this.nombre_pokemon = nombre_pokemon;
-		this.estado = estado;
-		this.sexo = sexo;
-		this.movPrincipales = movPrincipales;
-		this.movSecundarios = movSecundarios;
-		this.vitalidadOBJ = vitalidadOBJ;
-		this.ataqueOBJ = ataqueOBJ;
-		this.defensaOBJ = defensaOBJ;
-		this.ataque_especialOBJ = ataque_especialOBJ;
-		this.defensa_especialOBJ = defensa_especialOBJ;
-		this.velocidadOBJ = velocidadOBJ;
-	}
-	
-	//Constructor sin las linkedList
-	
-	public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2, 
-			int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad, int nivel, 
-			int fertilidad, int equipo, String nombre_pokemon, String estado, char sexo, int vitalidadMax, int vitalidadOBJ, int ataqueOBJ, 
-			int defensaOBJ, int ataque_especialOBJ, int defensa_especialOBJ, int velocidadOBJ) {
-		
-		super();
-		this.id_pokemon = id_pokemon;
-		this.id_entrenador = id_entrenador;
-		this.num_pokedex = num_pokedex;
-		this.id_objeto = id_objeto;
-		this.tipo1 = tipo1;
-		this.tipo2 = tipo2;
-		this.vitalidad = vitalidad;
-		this.vitalidadMax = vitalidadMax;
-		this.ataque = ataque;
-		this.defensa = defensa;
-		this.ataque_especial = ataque_especial;
-		this.defensa_especial = defensa_especial;
-		this.velocidad = velocidad;
-		this.nivel = nivel;
-		this.fertilidad = fertilidad;
-		this.equipo = equipo;
-		this.nombre_pokemon = nombre_pokemon;
-		this.estado = estado;
-		this.sexo = sexo;
-		this.vitalidadOBJ = vitalidadOBJ;
-		this.ataqueOBJ = ataqueOBJ;
-		this.defensaOBJ = defensaOBJ;
-		this.ataque_especialOBJ = ataque_especialOBJ;
-		this.defensa_especialOBJ = defensa_especialOBJ;
-		this.velocidadOBJ = velocidadOBJ;
-		this.movPrincipales = new LinkedList<Movimiento>();
-		this.movSecundarios = new LinkedList<Movimiento>();
-	}
-	
-	//Copia
-	
-	public Pokemon(Pokemon c) {
-		
-		super();
-		this.id_pokemon = c.id_pokemon;
-		this.id_entrenador = c.id_entrenador;
-		this.num_pokedex = c.num_pokedex;
-		this.id_objeto = c.id_objeto;
-		this.vitalidad = c.vitalidad;
-		this.vitalidadMax = c.vitalidadMax;
-		this.ataque = c.ataque;
-		this.defensa = c.defensa;
-		this.ataque_especial = c.ataque_especial;
-		this.defensa_especial = c.defensa_especial;
-		this.velocidad = c.velocidad;
-		this.nivel = c.nivel;
-		this.fertilidad = c.fertilidad;
-		this.equipo = c.equipo;
-		this.nombre_pokemon = c.nombre_pokemon;
-		this.estado = c.estado;
-		this.sexo = c.sexo;
-		this.movPrincipales = c.movPrincipales;
-		this.movSecundarios = c.movSecundarios;
-		this.vitalidadOBJ = c.vitalidadOBJ;
-		this.ataqueOBJ = c.ataqueOBJ;
-		this.defensaOBJ = c.defensaOBJ;
-		this.ataque_especialOBJ = c.ataque_especialOBJ;
-		this.defensa_especialOBJ = c.defensa_especialOBJ;
-		this.velocidadOBJ = c.velocidadOBJ;
-	}
+    // Constructor
+    public Pokemon(int id_pokemon, int id_entrenador, int num_pokedex, int id_objeto, String tipo1, String tipo2,
+                   int vitalidad, int ataque, int defensa, int ataque_especial, int defensa_especial, int velocidad,
+                   int nivel, int fertilidad, int equipo, String nombre_pokemon, String estado, char sexo,
+                   int vitalidadMax, int vitalidadMaxOBJ, int vitalidadOBJ, int ataqueOBJ, int defensaOBJ,
+                   int ataque_especialOBJ, int defensa_especialOBJ, int velocidadOBJ, int experiencia) {
+        this.id_pokemon = id_pokemon;
+        this.id_entrenador = id_entrenador;
+        this.num_pokedex = num_pokedex;
+        this.id_objeto = id_objeto;
+        this.tipo1 = tipo1;
+        this.tipo2 = tipo2;
+        this.vitalidad = vitalidad;
+        this.vitalidadMax = vitalidadMax;
+        this.vitalidadMaxOBJ = vitalidadMaxOBJ; // Inicializar el nuevo atributo
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.ataque_especial = ataque_especial;
+        this.defensa_especial = defensa_especial;
+        this.velocidad = velocidad;
+        this.nivel = nivel;
+        this.fertilidad = fertilidad;
+        this.equipo = equipo;
+        this.nombre_pokemon = nombre_pokemon;
+        this.estado = estado;
+        this.sexo = sexo;
+        this.vitalidadOBJ = vitalidadOBJ;
+        this.ataqueOBJ = ataqueOBJ;
+        this.defensaOBJ = defensaOBJ;
+        this.ataque_especialOBJ = ataque_especialOBJ;
+        this.defensa_especialOBJ = defensa_especialOBJ;
+        this.velocidadOBJ = velocidadOBJ;
+        this.experiencia = experiencia;
+    }
+
+    public int getExperiencia() {
+    	return experiencia;
+    }
+    
+    public void setExperiencia(int experiencia) {
+    	this.experiencia = experiencia;
+    }
+    
+    public int getVitalidadMaxOBJ() {
+        return vitalidadMaxOBJ;
+    }
+
+    public void setVitalidadMaxOBJ(int vitalidadMaxOBJ) {
+        this.vitalidadMaxOBJ = vitalidadMaxOBJ;
+    }
 	
 	public int getVitalidadOBJ() {
 		return vitalidadOBJ;
