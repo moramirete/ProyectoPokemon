@@ -122,4 +122,60 @@ public class MovimientoBD {
 	    return movimientos;
 	}
 	
+	public static void asignarMovimientosAleatorios(Connection conexion, int idPokemon, String tipo1, String tipo2, int cantidadMovimientos, int idEntrenador) throws SQLException {
+	    // Consulta para obtener movimientos aleatorios del tipo del Pokémon
+	    String queryMovimientos = """
+	        SELECT ID_MOVIMIENTO, NOM_MOVIMIENTO, TIPO, PP_MAX
+	        FROM MOVIMIENTO
+	        WHERE TIPO_MOV IN (?, ?) -- Los tipos del Pokémon
+	        AND ID_MOVIMIENTO NOT IN (
+	            SELECT ID_MOVIMIENTO
+	            FROM MOVIMIENTO_POKEMON
+	            WHERE ID_POKEMON = ?
+	            AND ID_ENTRENADOR = ?
+	        )
+	        ORDER BY RAND()
+	        LIMIT ?
+	    """;
+
+	    try (PreparedStatement st = conexion.prepareStatement(queryMovimientos)) {
+	        st.setString(1, tipo1);
+	        st.setString(2, tipo2 != null ? tipo2 : tipo1); // Si no hay TIPO2, usar TIPO1
+	        st.setInt(3, idPokemon);
+	        st.setInt(4, idEntrenador);
+	        st.setInt(5, cantidadMovimientos);
+
+	        ResultSet rs = st.executeQuery();
+	        
+	        int posicion = 2;
+
+	        while (rs.next()) {
+	            // Determinar la posición del movimiento
+	            if (posicion > 4) {
+	                posicion = 5; // Los movimientos adicionales van a la posición 5 (caja)
+	            }
+
+	            // Insertar el movimiento en la tabla MOVIMIENTO_POKEMON
+	            String insertMovimiento = """
+	                INSERT INTO MOVIMIENTO_POKEMON (ID_ENTRENADOR, ID_MOVIMIENTO, ID_POKEMON, PP_ACTUALES, POSICION)
+	                VALUES (?, ?, ?, ?, ?)
+	            """;
+
+	            try (PreparedStatement insertSt = conexion.prepareStatement(insertMovimiento)) {
+	                insertSt.setInt(1, idEntrenador);
+	                insertSt.setInt(2, rs.getInt("ID_MOVIMIENTO"));
+	                insertSt.setInt(3, idPokemon);
+	                insertSt.setInt(4, rs.getInt("PP_MAX")); // Asignar PP máximos
+	                insertSt.setInt(5, posicion); // Asignar la posición
+	                insertSt.executeUpdate();
+	            }
+
+	            // Incrementar la posición para los primeros 3 movimientos
+	            if (posicion < 5) {
+	                posicion++;
+	            }
+	        }
+	    }
+	}
+	
 }
