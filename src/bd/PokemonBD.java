@@ -593,6 +593,15 @@ public class PokemonBD {
 		return pokemon;
 	}
 	
+	public static Pokemon obtenerPokemonPorIdConMovimientos(int idPokemon) {
+	    Pokemon pokemon = obtenerPokemonPorId(idPokemon);
+	    try (Connection con = BDConecction.getConnection()) {
+	        pokemon.setMovPrincipales(MovimientoBD.obtenerMovimientosPorPokemon(idPokemon, con));
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return pokemon;
+	}
 	
 
 }

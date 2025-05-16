@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import model.Entrenador;
 import model.Movimiento;
@@ -70,6 +71,54 @@ public class MovimientoBD {
 		
 		return mov;
 		
+	}
+	
+	public static LinkedList<Movimiento> obtenerMovimientosPorPokemon(int idPokemon, Connection con) {
+	    LinkedList<Movimiento> movimientos = new LinkedList<>();
+
+	    try {
+	        String sql = """
+	            SELECT m.* 
+	            FROM MOVIMIENTO m
+	            JOIN MOVIMIENTO_POKEMON mp ON m.ID_MOVIMIENTO = mp.ID_MOVIMIENTO
+	            WHERE mp.ID_POKEMON = ?
+	            ORDER BY mp.POSICION ASC
+	            """;
+
+	        PreparedStatement stmt = con.prepareStatement(sql);
+	        stmt.setInt(1, idPokemon);
+	        ResultSet rs = stmt.executeQuery();
+
+	        while (rs.next()) {
+	            Movimiento mov = new Movimiento(
+	                rs.getInt("ID_MOVIMIENTO"),
+	                rs.getString("NOM_MOVIMIENTO"),
+	                idPokemon,
+	                rs.getString("DESCRIPCION"),
+	                rs.getInt("PRECI"),
+	                rs.getInt("PP_MAX"),
+	                rs.getInt("PP_MAX"),
+	                rs.getString("TIPO"),
+	                rs.getString("TIPO_MOV"),
+	                rs.getInt("POTENCIA"),
+	                rs.getString("ESTADO"),
+	                rs.getInt("TURNOS"),
+	                rs.getInt("MEJORA"),
+	                rs.getInt("NUM_MOV"),
+	                rs.getInt("CANT_MEJORA")
+	            );
+
+	            movimientos.add(mov);
+	        }
+
+	        rs.close();
+	        stmt.close();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return movimientos;
 	}
 	
 }
