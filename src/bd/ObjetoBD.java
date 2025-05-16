@@ -92,8 +92,8 @@ public class ObjetoBD {
 	        int idObjeto = pokemon.getId_objeto();
 
 	        // 2. Quitar el objeto del Pokémon
-	        String queryQuitarObjeto = "UPDATE POKEMON SET ID_OBJETO = 0, VITALIDAD_OBJ = VITALIDADMAX, ATAQUE_OBJ = ATAQUE, "
-	                + "DEFENSA_OBJ = DEFENSA, AT_ESPECIAL_OBJ = AT_ESPECIAL, DEF_ESPECIAL_OBJ = DEF_ESPECIAL, "
+	        String queryQuitarObjeto = "UPDATE POKEMON SET ID_OBJETO = 0, VITALIDAD_OBJ = VITALIDAD, VITALIDADMAX = VITALIDADMAX_OBJ,"
+	        		+ " ATAQUE_OBJ = ATAQUE, DEFENSA_OBJ = DEFENSA, AT_ESPECIAL_OBJ = AT_ESPECIAL, DEF_ESPECIAL_OBJ = DEF_ESPECIAL, "
 	                + "VELOCIDAD_OBJ = VELOCIDAD WHERE ID_POKEMON = ?";
 	        PreparedStatement statementQuitarObjeto = con.prepareStatement(queryQuitarObjeto);
 	        statementQuitarObjeto.setInt(1, pokemon.getId_pokemon());
@@ -205,7 +205,7 @@ public class ObjetoBD {
 	        String queryUpdateStats = "UPDATE POKEMON SET " +
 	                                  "ID_OBJETO = ?, " +
 	                                  "VITALIDAD_OBJ = ?, " +
-	                                  "VITALIDAD = ?, " +
+	                                  "VITALIDADMAX_OBJ = ?, " +
 	                                  "ATAQUE_OBJ = ATAQUE + (ATAQUE * ? / 100), " +
 	                                  "DEFENSA_OBJ = DEFENSA + (DEFENSA * ? / 100), " +
 	                                  "AT_ESPECIAL_OBJ = AT_ESPECIAL + (AT_ESPECIAL * ? / 100), " +
@@ -214,8 +214,8 @@ public class ObjetoBD {
 	                                  "WHERE ID_POKEMON = ?";
 	        PreparedStatement stUpdateStats = con.prepareStatement(queryUpdateStats);
 	        stUpdateStats.setInt(1, nuevoIdObjeto); // ID del nuevo objeto
-	        stUpdateStats.setInt(2, nuevaVitalidadMax); // Nueva vitalidad máxima con objeto
-	        stUpdateStats.setInt(3, nuevaVitalidad); // Nueva vitalidad actual
+	        stUpdateStats.setInt(2, nuevaVitalidad); // Nueva vitalidad máxima con objeto
+	        stUpdateStats.setInt(3, nuevaVitalidadMax); // Nueva vitalidad actual
 	        stUpdateStats.setInt(4, ataquePorc);    // Porcentaje de ATAQUE_OBJ
 	        stUpdateStats.setInt(5, defensaPorc);   // Porcentaje de DEFENSA_OBJ
 	        stUpdateStats.setInt(6, atEspecialPorc); // Porcentaje de AT_ESPECIAL_OBJ

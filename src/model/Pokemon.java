@@ -69,6 +69,37 @@ public class Pokemon {
         this.velocidadOBJ = velocidadOBJ;
         this.experiencia = experiencia;
     }
+    
+    public Pokemon(Pokemon c) {
+        this.id_pokemon = c.id_pokemon;
+        this.id_entrenador = c.id_entrenador;
+        this.num_pokedex = c.num_pokedex;
+        this.id_objeto = c.id_objeto;
+        this.tipo1 = c.tipo1;
+        this.tipo2 = c.tipo2;
+        this.vitalidad = c.vitalidad;
+        this.ataque = c.ataque;
+        this.defensa = c.defensa;
+        this.ataque_especial = c.ataque_especial;
+        this.defensa_especial = c.defensa_especial;
+        this.velocidad = c.velocidad;
+        this.nivel = c.nivel;
+        this.fertilidad = c.fertilidad;
+        this.equipo = c.equipo;
+        this.nombre_pokemon = c.nombre_pokemon;
+        this.estado = c.estado;
+        this.sexo = c.sexo;
+        this.vitalidadMax = c.vitalidadMax;
+        this.vitalidadMaxOBJ = c.vitalidadMaxOBJ;
+        this.vitalidadOBJ = c.vitalidadOBJ;
+        this.ataqueOBJ = c.ataqueOBJ;
+        this.defensaOBJ = c.defensaOBJ;
+        this.ataque_especialOBJ = c.ataque_especialOBJ;
+        this.defensa_especialOBJ = c.defensa_especialOBJ;
+        this.velocidadOBJ = c.velocidadOBJ;
+        this.movPrincipales = new LinkedList<>(c.movPrincipales); // Copia de movimientos principales
+        this.movSecundarios = new LinkedList<>(c.movSecundarios); // Copia de movimientos secundarios
+    }
 
     public int getExperiencia() {
     	return experiencia;

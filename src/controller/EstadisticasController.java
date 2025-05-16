@@ -257,8 +257,8 @@ public class EstadisticasController {
 			Image imagen = new Image(rutaImagen);
 			imgPokemon.setImage(imagen);
 			
-			txtVitalidad.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadOBJ()));
-			actualizarBarraVida(pbVitalidad, pokemon.getVitalidad(), pokemon.getVitalidadMax());
+			txtVitalidad.setText(String.valueOf(pokemon.getVitalidadOBJ()) + "/" +  String.valueOf(pokemon.getVitalidadMaxOBJ()));
+			actualizarBarraVida(pbVitalidad, pokemon.getVitalidadOBJ(), pokemon.getVitalidadMaxOBJ());
 			
 			txtAtaque.setText(String.valueOf(pokemon.getAtaqueOBJ()));
 			txtDefensa.setText(String.valueOf(pokemon.getDefensaOBJ()));
@@ -291,8 +291,8 @@ public class EstadisticasController {
 			Image imagen1 = new Image(rutaImagen1);
 			imgPokemon1.setImage(imagen);
 			
-			txtVitalidad1.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadOBJ()));
-			actualizarBarraVida(pbVitalidad1, pokemon.getVitalidad(), pokemon.getVitalidadMax());
+			txtVitalidad1.setText(String.valueOf(pokemon.getVitalidadOBJ()) + "/" +  String.valueOf(pokemon.getVitalidadMaxOBJ()));
+			actualizarBarraVida(pbVitalidad1, pokemon.getVitalidadOBJ(), pokemon.getVitalidadMaxOBJ());
 			
 			cargarMovimientosPrincipales();
 			cargarMovimientosCaja();
@@ -320,8 +320,8 @@ public class EstadisticasController {
 			Image imagen11 = new Image(rutaImagen1);
 			imgPokemon11.setImage(imagen);
 			
-			txtVitalidad11.setText(String.valueOf(pokemon.getVitalidad()) + "/" +  String.valueOf(pokemon.getVitalidadOBJ()));
-			actualizarBarraVida(pbVitalidad11, pokemon.getVitalidad(), pokemon.getVitalidadMax());
+			txtVitalidad11.setText(String.valueOf(pokemon.getVitalidadOBJ()) + "/" +  String.valueOf(pokemon.getVitalidadMaxOBJ()));
+			actualizarBarraVida(pbVitalidad11, pokemon.getVitalidadOBJ(), pokemon.getVitalidadMaxOBJ());
 			
 			txtObjetoEquipado.setText(ObjetoBD.obtenerNombreObjetoPorId(pokemon.getId_objeto()));
 			

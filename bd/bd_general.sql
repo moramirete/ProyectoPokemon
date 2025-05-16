@@ -458,7 +458,7 @@ INSERT INTO OBJETO( ID_OBJETO , NOM_OBJETO , ATAQUE , DEFENSA ,AT_ESPECIAL , DEF
 (001, 'Pesa', 20 , 20 , 0 , 0 , -20 , 0 , 0 , 200),
 (002, 'Pluma', 0 , -20 , 0 , -20 , 30 , 0 , 0 , 500),
 (003, 'Chaleco', -15 , 20 , 0 , 20 , -15 , 0 , 0 , 1000),
-(004, 'Bastón', 0 , 0 , 0 , 0 , -15 , 0 , 20 , 750),
+(004, 'Bastón', 0 , 0 , 0 , 20 , -15 , 0 , 20 , 750),
 (005, 'Pilas', 0 , 0 , 0 , -30 , 0 , 0 , 50 , 100),
 (006, 'Eter', 0 , 0 , 0 , 0 , 0 , 0 , 40 , 300),
 (007, 'Anillo unico', 10 , 0 , 0 , 0 , 0 , 0 , 0 , 5000),
@@ -513,6 +513,7 @@ UPDATE OBJETO SET DESCRIPCION = CONCAT(
   'Un bastón mágico que canaliza energía vital hacia el cuerpo del Pokémon, aumentando su resistencia general. A cambio, su movilidad se ve afectada.', 
   CHAR(10), CHAR(10),
   'Estamina +20%', CHAR(10),
+  'Defensa +20%', CHAR(10),
   'Velocidad -15%'
 ) WHERE ID_OBJETO = 4;
 

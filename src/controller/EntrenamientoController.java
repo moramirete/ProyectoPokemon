@@ -110,8 +110,8 @@ public class EntrenamientoController {
 	 * Actualiza el progreso de las barras de vida de ambos Pokémon
 	 */
 	private void actualizarHP() {
-		hpPokemon.setProgress(miPokemon.getVitalidad() / 100.0);
-		hpPokemonRival.setProgress(pokemonRival.getVitalidad() / 100.0);
+		hpPokemon.setProgress(miPokemon.getVitalidadOBJ() / miPokemon.getVitalidadMaxOBJ());
+		hpPokemonRival.setProgress(pokemonRival.getVitalidadOBJ() / pokemonRival.getVitalidadMaxOBJ());
 	}
 
 	// Métodos que se llaman al pulsar cada botón de movimiento
