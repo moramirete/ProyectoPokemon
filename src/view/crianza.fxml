@@ -33,27 +33,42 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="393.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <ImageView fitHeight="489.0" fitWidth="867.0" layoutX="-51.0" pickOnBounds="true" preserveRatio="true">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="791.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+      <children>
+            <ImageView fitHeight="410.0" fitWidth="728.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/fondo%20crianza.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imgIncubadora" fitHeight="159.0" fitWidth="170.0" layoutX="303.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+            <TableView fx:id="tabCaja" layoutX="262.0" layoutY="44.0" prefHeight="258.0" prefWidth="232.0">
+              <columns>
+                <TableColumn fx:id="colNombre" prefWidth="75.0" text="NOMBRE" />
+                <TableColumn fx:id="colSexo" prefWidth="75.0" text="SEXO" />
+                  <TableColumn fx:id="colFertilidad" prefWidth="75.0" text="FERTILIDAD" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnCerrarCrianza" layoutX="548.0" layoutY="334.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="53.0" prefWidth="141.0" text="SALIR" />
+            <Button fx:id="btnSeleccionarPokemon" layoutX="14.0" layoutY="334.0" mnemonicParsing="false" onAction="#seleccionarPokemon" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 1ER POKEMON" />
+            <Button fx:id="btnEstadisticas" layoutX="287.0" layoutY="334.0" mnemonicParsing="false" onAction="#verEstadisticas" prefHeight="53.0" prefWidth="181.0" text="MÁS INFORMACION" />
+            <ImageView fx:id="imgPokemon1" fitHeight="168.0" fitWidth="200.0" layoutX="14.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgPokemon2" fitHeight="168.0" fitWidth="200.0" layoutX="519.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgHuevo" fitHeight="150.0" fitWidth="200.0" layoutX="303.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/imagenincubadora.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnSalir" layoutX="687.0" layoutY="412.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="50.0" prefWidth="105.0" text="SALIR" />
-         </children>
+            <Button fx:id="btnAbrir" layoutX="307.0" layoutY="234.0" mnemonicParsing="false" onAction="#abrirHuevo" prefHeight="53.0" prefWidth="141.0" text="ABRIR" visible="false" />
+            <Button fx:id="btnSeleccionarPokemon2" layoutX="14.0" layoutY="334.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 2DO POKEMON" visible="false" />
+      </children>
     </AnchorPane>
   </children>
 </VBox>

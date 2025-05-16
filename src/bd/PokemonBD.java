@@ -314,6 +314,101 @@ public class PokemonBD {
 
 		return equipo;
 	}
+	
+	public static ArrayList<Pokemon> obtenerTodosLosPokemons(int idEntrenador) {
+		ArrayList<Pokemon> equipo = new ArrayList<>();
+
+		try (Connection con = BDConecction.getConnection()) {
+			String sql = "SELECT * \r\n" + "FROM POKEMON p \r\n"
+					+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
+					+ "WHERE e.ID_ENTRENADOR = ? AND FERTILIDAD > 0";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, idEntrenador);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				equipo.add(new Pokemon(rs.getInt("ID_POKEMON"), rs.getInt("ID_ENTRENADOR"), rs.getInt("NUM_POKEDEX"),
+						rs.getInt("ID_OBJETO"), rs.getString("TIPO1"), rs.getString("TIPO2"), rs.getInt("VITALIDAD"),
+						rs.getInt("ATAQUE"), rs.getInt("DEFENSA"), rs.getInt("AT_ESPECIAL"), rs.getInt("DEF_ESPECIAL"),
+						rs.getInt("VELOCIDAD"), rs.getInt("NIVEL"), rs.getInt("FERTILIDAD"), rs.getInt("EQUIPO"),
+						rs.getString("NOM_POKEMON"), rs.getString("ESTADO"), rs.getString("SEXO").charAt(0),
+						rs.getInt("VITALIDADMAX"), rs.getInt("VITALIDADMAX_OBJ"), rs.getInt("VITALIDAD_OBJ"), rs.getInt("ATAQUE_OBJ"), rs.getInt("DEFENSA_OBJ"), 
+						rs.getInt("AT_ESPECIAL_OBJ"), rs.getInt("DEF_ESPECIAL_OBJ"), rs.getInt("VELOCIDAD_OBJ"), rs.getInt("EXPERIENCIA")));
+			}
+			;
+
+			System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return equipo;
+	}
+	
+	public static ArrayList<Pokemon> obtenerMasculinos(int idEntrenador, Pokemon pokemon1) {
+		ArrayList<Pokemon> equipo = new ArrayList<>();
+
+		try (Connection con = BDConecction.getConnection()) {
+			String sql = "SELECT * \r\n" + "FROM POKEMON p \r\n"
+					+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
+					+ "WHERE e.ID_ENTRENADOR = ? AND p.SEXO = 'M' AND p.NUM_POKEDEX = ? AND FERTILIDAD > 0";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, idEntrenador);
+			stmt.setInt(2, pokemon1.getNum_pokedex());
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				equipo.add(new Pokemon(rs.getInt("ID_POKEMON"), rs.getInt("ID_ENTRENADOR"), rs.getInt("NUM_POKEDEX"),
+						rs.getInt("ID_OBJETO"), rs.getString("TIPO1"), rs.getString("TIPO2"), rs.getInt("VITALIDAD"),
+						rs.getInt("ATAQUE"), rs.getInt("DEFENSA"), rs.getInt("AT_ESPECIAL"), rs.getInt("DEF_ESPECIAL"),
+						rs.getInt("VELOCIDAD"), rs.getInt("NIVEL"), rs.getInt("FERTILIDAD"), rs.getInt("EQUIPO"),
+						rs.getString("NOM_POKEMON"), rs.getString("ESTADO"), rs.getString("SEXO").charAt(0),
+						rs.getInt("VITALIDADMAX"), rs.getInt("VITALIDADMAX_OBJ"), rs.getInt("VITALIDAD_OBJ"), rs.getInt("ATAQUE_OBJ"), rs.getInt("DEFENSA_OBJ"), 
+						rs.getInt("AT_ESPECIAL_OBJ"), rs.getInt("DEF_ESPECIAL_OBJ"), rs.getInt("VELOCIDAD_OBJ"), rs.getInt("EXPERIENCIA")));
+			}
+			;
+
+			System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return equipo;
+	}
+	
+	public static ArrayList<Pokemon> obtenerFemeninos(int idEntrenador, Pokemon pokemon1) {
+		ArrayList<Pokemon> equipo = new ArrayList<>();
+
+		try (Connection con = BDConecction.getConnection()) {
+			String sql = "SELECT * \r\n" + "FROM POKEMON p \r\n"
+					+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
+					+ "WHERE e.ID_ENTRENADOR = ? AND p.SEXO = 'F' AND p.NUM_POKEDEX = ? AND FERTILIDAD > 0";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, idEntrenador);
+			stmt.setInt(2, pokemon1.getNum_pokedex());
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				equipo.add(new Pokemon(rs.getInt("ID_POKEMON"), rs.getInt("ID_ENTRENADOR"), rs.getInt("NUM_POKEDEX"),
+						rs.getInt("ID_OBJETO"), rs.getString("TIPO1"), rs.getString("TIPO2"), rs.getInt("VITALIDAD"),
+						rs.getInt("ATAQUE"), rs.getInt("DEFENSA"), rs.getInt("AT_ESPECIAL"), rs.getInt("DEF_ESPECIAL"),
+						rs.getInt("VELOCIDAD"), rs.getInt("NIVEL"), rs.getInt("FERTILIDAD"), rs.getInt("EQUIPO"),
+						rs.getString("NOM_POKEMON"), rs.getString("ESTADO"), rs.getString("SEXO").charAt(0),
+						rs.getInt("VITALIDADMAX"), rs.getInt("VITALIDADMAX_OBJ"), rs.getInt("VITALIDAD_OBJ"), rs.getInt("ATAQUE_OBJ"), rs.getInt("DEFENSA_OBJ"), 
+						rs.getInt("AT_ESPECIAL_OBJ"), rs.getInt("DEF_ESPECIAL_OBJ"), rs.getInt("VELOCIDAD_OBJ"), rs.getInt("EXPERIENCIA")));
+			}
+			;
+
+			System.out.println("Se ha realizado el metodo obtenerEquipo a la perfeccion");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return equipo;
+	}
 
 	public static boolean curarPokemon(int idEntrenador, int idPokemon) {
 		try (Connection con = BDConecction.getConnection()) {
@@ -621,4 +716,55 @@ public class PokemonBD {
 	    return pokemon;
 	}
 	
+	public static Pokemon criarPokemonHijo(Pokemon p1, Pokemon p2) throws SQLException {
+	    // El hijo hereda el mejor valor de cada característica
+	    int vitalidad = Math.max(p1.getVitalidadMaxOBJ(), p2.getVitalidadMaxOBJ());
+	    int ataque = Math.max(p1.getAtaqueOBJ(), p2.getAtaqueOBJ());
+	    int defensa = Math.max(p1.getDefensaOBJ(), p2.getDefensaOBJ());
+	    int ataqueEspecial = Math.max(p1.getAtaque_especialOBJ(), p2.getAtaque_especialOBJ());
+	    int defensaEspecial = Math.max(p1.getDefensa_especialOBJ(), p2.getDefensa_especialOBJ());
+	    int velocidad = Math.max(p1.getVelocidadOBJ(), p2.getVelocidadOBJ());
+	    char sexo = new Random().nextBoolean() ? 'M' : 'F';
+	    
+	    Pokemon hijo = new Pokemon(
+	        // Ajusta los parámetros según tu constructor
+	        0, 
+	        p1.getId_entrenador(),
+	        p1.getNum_pokedex(),
+	        0, // ID_OBJETO
+	        p1.getTipo1(),
+	        p1.getTipo2(),
+	        vitalidad,
+	        ataque,
+	        defensa,
+	        ataqueEspecial,
+	        defensaEspecial,
+	        velocidad,
+	        1, // nivel
+	        5, // fertilidad inicial
+	        3, // equipo (caja)
+	        p1.getNombre_pokemon(),
+	        "NORMAL",
+	        sexo,
+	        vitalidad, vitalidad, vitalidad, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad, 0
+	    );
+	    
+	    int nuevoId = generarIdUnico(BDConecction.getConnection());
+	    hijo.setId_pokemon(nuevoId);
+	    // Aquí puedes llamar a tu método para otorgar el primer movimiento
+	    // hijo.otorgarPrimerMovimiento("Placaje");
+	    return hijo;
+	}
+	
+	public static void restarFertilidad(Pokemon pokemon, Connection con) {
+	    try {
+	        String sql = "UPDATE POKEMON SET FERTILIDAD = ? WHERE ID_POKEMON = ?";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setInt(1, pokemon.getFertilidad());
+	        ps.setInt(2, pokemon.getId_pokemon());
+	        ps.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
 }
