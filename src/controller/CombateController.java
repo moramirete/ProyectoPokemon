@@ -303,7 +303,7 @@ public class CombateController {
 		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
 		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
 		turnoJugador(pokEquipo, pokRival, movimientos.get(1));
-
+		actualizarBotonesConMovimientos();
 	}
 
 	@FXML
@@ -312,7 +312,7 @@ public class CombateController {
 		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
 		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
 		turnoJugador(pokEquipo, pokRival, movimientos.get(2));
-
+		actualizarBotonesConMovimientos();
 	}
 
 	@FXML
@@ -321,7 +321,7 @@ public class CombateController {
 		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
 		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
 		turnoJugador(pokEquipo, pokRival, movimientos.get(3));
-
+		actualizarBotonesConMovimientos();
 	}
 
 	private void cambiarPokemonRival() {
