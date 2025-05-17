@@ -218,8 +218,6 @@ public class EquipoController {
 
 			stage.show();
 
-			this.stage.close();
-
 		} catch (IOException e) {
 			System.out.println("Fallo en el archivo FXML.");
 			e.printStackTrace();

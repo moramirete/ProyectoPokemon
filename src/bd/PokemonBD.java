@@ -924,7 +924,8 @@ public class PokemonBD {
         try (Connection conn = BDConecction.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, numPokedex + 1); // Consultar el siguiente número de la Pokédex
+        	int numPokedexEvo = numPokedex + 1;
+            stmt.setInt(1, numPokedexEvo); // Consultar el siguiente número de la Pokédex
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -940,6 +941,18 @@ public class PokemonBD {
         }
 
         return numPokedex; // Si no evoluciona, devuelve el mismo número de Pokédex
+    }
+    
+    public static void actualizarVida(Pokemon pokemon) {
+        String sql = "UPDATE POKEMON SET VITALIDAD_OBJ = ? WHERE ID_POKEMON = ?";
+        try (Connection conexion = BDConecction.getConnection();
+             PreparedStatement pstmt = conexion.prepareStatement(sql)) {
+            pstmt.setInt(1, pokemon.getVitalidadOBJ());
+            pstmt.setInt(2, pokemon.getId_pokemon());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar la vida del Pokémon: " + e.getMessage());
+        }
     }
 	
 }

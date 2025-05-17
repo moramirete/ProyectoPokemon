@@ -238,17 +238,18 @@ public class MovimientoBD {
 		return pokemonMov;
 	}
 
-	public static void actualizarPP(int idPokemon, int idMovimiento, int nuevoPP) {
-		try (Connection con = BDConecction.getConnection();
-				PreparedStatement stmt = con.prepareStatement(
-						"UPDATE MOVIMIENTO_POKEMON SET PP_ACTUALES = ? WHERE ID_POKEMON = ? AND ID_MOVIMIENTO = ?")) {
-			stmt.setInt(1, nuevoPP);
-			stmt.setInt(2, idPokemon);
-			stmt.setInt(3, idMovimiento);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public static void actualizarPPMovimiento(int idEntrenador, int idPokemon, int idMovimiento, int nuevosPP) {
+	    String sql = "UPDATE MOVIMIENTO_POKEMON SET PP_ACTUALES = ? WHERE ID_ENTRENADOR = ? AND ID_POKEMON = ? AND ID_MOVIMIENTO = ?";
+	    try (Connection conexion = BDConecction.getConnection();
+	         PreparedStatement pstmt = conexion.prepareStatement(sql)) {
+	        pstmt.setInt(1, nuevosPP);
+	        pstmt.setInt(2, idEntrenador);
+	        pstmt.setInt(3, idPokemon);
+	        pstmt.setInt(4, idMovimiento);
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        System.err.println("Error al actualizar los PP del movimiento: " + e.getMessage());
+	    }
 	}
 
 }

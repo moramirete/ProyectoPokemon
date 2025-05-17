@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import bd.MovimientoBD;
 import bd.PokemonBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -350,6 +351,8 @@ public class CombateController {
 
 		int daño = calcularDaño(rival, jugador, movimiento);
 		jugador.setVitalidadOBJ(jugador.getVitalidadOBJ() - daño);
+		
+		PokemonBD.actualizarVida(pokEquipo);
 
 		actualizarBarraVida(pbPokemonVida, pokEquipo.getVitalidadOBJ(), pokEquipo.getVitalidadMaxOBJ());
 		actualizarBarraVida(pbPokemonRival, pokRival.getVitalidadOBJ(), pokRival.getVitalidadMaxOBJ());
@@ -387,7 +390,13 @@ public class CombateController {
 			return;
 		}
 
-		movimiento.setPp_actual(movimiento.getPp_actual() - 1);
+		int idEntrenador = pokEquipo.getId_entrenador();
+		int idPokemon = pokEquipo.getId_pokemon();
+		int idMovimiento = movimiento.getId_movimiento();
+		int ppActuales = movimiento.getPp_actual() - 1; // o como lo estés gestionando
+
+		movimiento.setPp_actual(ppActuales); // Actualiza en el objeto (opcional)
+		MovimientoBD.actualizarPPMovimiento(idEntrenador, idPokemon, idMovimiento, ppActuales);
 
 		int daño = calcularDaño(jugador, rival, movimiento);
 		rival.setVitalidadOBJ(rival.getVitalidadOBJ() - daño);
@@ -401,6 +410,7 @@ public class CombateController {
 
 		if (pokRival.getVitalidadOBJ() <= 0) {
 			otorgarExperiencia(pokEquipo, pokRival);
+			subirNivel(pokEquipo);
 			cambiarPokemonRival();
 			return;
 		}
@@ -605,9 +615,17 @@ public class CombateController {
 
 	private void finalizarCombate(boolean jugadorGana) {
 		mostrarAlerta(jugadorGana ? "¡Has ganado el combate!" : "¡Has perdido!");
-		// Cerrar la ventana o redirigir al menú
-		stage.close();
 
+		if(jugadorGana == true) {
+			
+			mostrarAlerta("¡Has ganado el combate!");
+			
+		}else {
+			
+			mostrarAlerta("¡Has perdido el combate!");
+			
+		}
+		
 		combate.exportarTurnos("log_combate.txt");
 
 	}
@@ -659,6 +677,7 @@ public class CombateController {
 	void huir(ActionEvent event) {
 		registrarTurno(entrenador.getUsuario() + " huyó del combate.");
 		finalizarCombate(false);
+		menuController.show();
 		stage.close();
 	}
 
