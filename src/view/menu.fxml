@@ -51,7 +51,7 @@
                   <VBox VBox.vgrow="ALWAYS" />
                   <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefWidth="1000.0">
                      <children>
-                        <ImageView fx:id="imagenFondo" fitHeight="1000.0" fitWidth="1000.0" layoutX="18.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imagenFondo" fitHeight="1000.0" fitWidth="1000.0" layoutX="7.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../multimedia/imagenes/fondos/fondomenu.jpg" />
                            </image>
