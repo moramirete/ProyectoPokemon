@@ -1,89 +1,9 @@
-Combate 20250517211121566:
+Combate 20250518004928451:
 Turno 1:
-Entrenador: ¡Empiezas tú!
+Entrenador: ¡El rival empieza!
 Rival: 
 
 Turno 2:
-Entrenador: Usaste Patada Baja e hiciste 2 de daño.
-Rival: 
-
-Turno 3:
-Entrenador: El rival usó Patada Salto Alta e hizo 19 de daño.
-Rival: 
-
-Turno 4:
-Entrenador: Usaste Patada Salto e hiciste 15 de daño.
-Rival: 
-
-Turno 5:
-Entrenador: El rival usó Contraataque e hizo 2 de daño.
-Rival: 
-
-Turno 6:
-Entrenador: Usaste Patada Salto e hiciste 15 de daño.
-Rival: 
-
-Turno 7:
-Entrenador: El rival usó Patada Baja e hizo 2 de daño.
-Rival: 
-
-Turno 8:
-Entrenador: Usaste Golpe Karate e hiciste 8 de daño.
-Rival: 
-
-Turno 9:
-Entrenador: El rival usó Patada Salto e hizo 15 de daño.
-Rival: 
-
-Turno 10:
-Entrenador: Usaste Patada Salto Alta e hiciste 19 de daño.
-Rival: 
-
-Turno 11:
-Entrenador: El rival usó Placaje e hizo 7 de daño.
-Rival: 
-
-Turno 12:
-Entrenador: Usaste Patada Salto e hiciste 15 de daño.
-Rival: 
-
-Turno 13:
-Entrenador: El rival cambió a PIDGEOTTO.
-Rival: 
-
-Turno 14:
-Entrenador: Usaste Golpe Karate e hiciste 82 de daño.
-Rival: 
-
-Turno 15:
-Entrenador: El rival cambió a EEVEE.
-Rival: 
-
-Turno 16:
-Entrenador: Usaste Golpe Karate e hiciste 14 de daño.
-Rival: 
-
-Turno 17:
-Entrenador: El rival usó Patada Baja e hizo 2 de daño.
-Rival: 
-
-Turno 18:
-Entrenador: Usaste Patada Salto e hiciste 26 de daño.
-Rival: 
-
-Turno 19:
-Entrenador: El rival usó Patada Baja e hizo 2 de daño.
-Rival: 
-
-Turno 20:
-Entrenador: Usaste Patada Salto Alta e hiciste 33 de daño.
-Rival: 
-
-Turno 21:
-Entrenador: El rival usó Patada Salto Alta e hizo 33 de daño.
-Rival: 
-
-Turno 22:
-Entrenador: Usaste Patada Salto Alta e hiciste 33 de daño.
+Entrenador: z huyó del combate.
 Rival: 
 

@@ -107,22 +107,35 @@ public class MovimientoBD {
 		LinkedList<Movimiento> movimientos = new LinkedList<>();
 
 		try {
-			String sql = "					SELECT m.*, mp.POSICION\r\n"
-					+ "					FROM MOVIMIENTO m\r\n"
-					+ "					JOIN MOVIMIENTO_POKEMON mp ON m.ID_MOVIMIENTO = mp.ID_MOVIMIENTO\r\n"
-					+ "					WHERE mp.ID_POKEMON = ?\r\n"
-					+ "					ORDER BY mp.POSICION ASC";
+			String sql = "SELECT m.*, mp.POSICION, mp.PP_ACTUALES " +
+		             "FROM MOVIMIENTO m " +
+		             "JOIN MOVIMIENTO_POKEMON mp ON m.ID_MOVIMIENTO = mp.ID_MOVIMIENTO " +
+		             "WHERE mp.ID_POKEMON = ? " +
+		             "ORDER BY mp.POSICION ASC";
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, idPokemon);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Movimiento mov = new Movimiento(rs.getInt("ID_MOVIMIENTO"), rs.getString("NOM_MOVIMIENTO"), idPokemon,
-						rs.getString("DESCRIPCION"), rs.getInt("PRECI"), rs.getInt("PP_MAX"), rs.getInt("PP_MAX"),
-						rs.getString("TIPO"), rs.getString("TIPO_MOV"), rs.getInt("POTENCIA"), rs.getString("ESTADO"),
-						rs.getInt("TURNOS"), rs.getString("MEJORA"), rs.getInt("NUM_MOV"), rs.getInt("CANT_MEJORA"),
-						rs.getInt("POSICION"));
+				Movimiento mov = new Movimiento(
+					    rs.getInt("ID_MOVIMIENTO"),
+					    rs.getString("NOM_MOVIMIENTO"),
+					    idPokemon,
+					    rs.getString("DESCRIPCION"),
+					    rs.getInt("PRECI"),
+					    rs.getInt("PP_MAX"),
+					    rs.getInt("PP_ACTUALES"),
+					    rs.getString("TIPO"),
+					    rs.getString("TIPO_MOV"),
+					    rs.getInt("POTENCIA"),
+					    rs.getString("ESTADO"),
+					    rs.getInt("TURNOS"),
+					    rs.getString("MEJORA"),
+					    rs.getInt("NUM_MOV"),
+					    rs.getInt("CANT_MEJORA"),
+					    rs.getInt("POSICION")
+					);
 
 				movimientos.add(mov);
 			}
@@ -221,7 +234,7 @@ public class MovimientoBD {
 
 						Movimiento mov = new Movimiento(rs.getInt("ID_MOVIMIENTO"), rs.getString("NOM_MOVIMIENTO"),
 								pokemon.getId_pokemon(), rs.getString("DESCRIPCION"), rs.getInt("PRECI"),
-								rs.getInt("PP_MAX"), rs.getInt("PP_MAX"), rs.getString("TIPO"),
+								rs.getInt("PP_MAX"), rs.getInt("PP_ACTUALES"), rs.getString("TIPO"),
 								rs.getString("TIPO_MOV"), rs.getInt("POTENCIA"), rs.getString("ESTADO"),
 								rs.getInt("TURNOS"), rs.getString("MEJORA"), rs.getInt("NUM_MOV"),
 								rs.getInt("CANT_MEJORA"), numMov + 1);

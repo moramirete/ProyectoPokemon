@@ -141,11 +141,15 @@ public class CentroController {
 			return;
 		}
 
-		// Intentar curar el Pokémon en la base de datos
-		if (PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon())) {
+		 boolean vidaCurada = PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon());
 
-			// Actualizar la vitalidad del Pokémon en la lista observable
-			pokSeleccionado.setVitalidadOBJ(pokSeleccionado.getVitalidadMaxOBJ());
+		   
+		    boolean ppRecuperados = PokemonBD.recuperarPPMovimientos(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon());
+
+		    if (vidaCurada && ppRecuperados) {
+		       
+		        pokSeleccionado.setVitalidadOBJ(pokSeleccionado.getVitalidadMaxOBJ());
+		        pokSeleccionado.recuperarTodosLosPP();
 
 			// Refrescar la tabla para reflejar los cambios y lanzar el mensaje
 			tableCentro.refresh();

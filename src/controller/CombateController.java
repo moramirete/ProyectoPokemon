@@ -293,7 +293,7 @@ public class CombateController {
 		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
 		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
 		turnoJugador(pokEquipo, pokRival, movimientos.get(0));
-
+		actualizarBotonesConMovimientos();
 	}
 
 	@FXML
@@ -416,6 +416,19 @@ public class CombateController {
 		}
 
 		turnoRival(jugador, rival);
+	}
+	
+	private void actualizarBotonesConMovimientos() {
+	    List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
+
+	    if (movimientos.size() > 0)
+	        btnMov1.setText(movimientos.get(0).getNom_movimiento() + " (" + movimientos.get(0).getPp_actual() + "/" + movimientos.get(0).getPp_max() + ")");
+	    if (movimientos.size() > 1)
+	        btnMov2.setText(movimientos.get(1).getNom_movimiento() + " (" + movimientos.get(1).getPp_actual() + "/" + movimientos.get(1).getPp_max() + ")");
+	    if (movimientos.size() > 2)
+	        btnMov3.setText(movimientos.get(2).getNom_movimiento() + " (" + movimientos.get(2).getPp_actual() + "/" + movimientos.get(2).getPp_max() + ")");
+	    if (movimientos.size() > 3)
+	        btnMov4.setText(movimientos.get(3).getNom_movimiento() + " (" + movimientos.get(3).getPp_actual() + "/" + movimientos.get(3).getPp_max() + ")");
 	}
 
 	private int calcularDaño(Pokemon atacante, Pokemon defensor, Movimiento movimiento) {

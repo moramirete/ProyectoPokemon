@@ -324,6 +324,10 @@ public class Pokemon {
 		this.vitalidadMax = vitalidadMax;
 	}
 	
-
+	public void recuperarTodosLosPP() {
+	    for (Movimiento mov : this.getMovPrincipales()) {
+	        mov.setPp_actual(mov.getPp_max());
+	    }
+	}
 	
 }
