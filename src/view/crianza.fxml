@@ -38,37 +38,46 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="791.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
-      <children>
-            <ImageView fitHeight="410.0" fitWidth="728.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondo%20crianza.png" />
-               </image>
-            </ImageView>
-            <TableView fx:id="tabCaja" layoutX="262.0" layoutY="44.0" prefHeight="258.0" prefWidth="232.0">
-              <columns>
-                <TableColumn fx:id="colNombre" prefWidth="75.0" text="NOMBRE" />
-                <TableColumn fx:id="colSexo" prefWidth="75.0" text="SEXO" />
-                  <TableColumn fx:id="colFertilidad" prefWidth="75.0" text="FERTILIDAD" />
-              </columns>
-            </TableView>
-            <Button fx:id="btnCerrarCrianza" layoutX="548.0" layoutY="334.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="53.0" prefWidth="141.0" text="SALIR" />
-            <Button fx:id="btnSeleccionarPokemon" layoutX="14.0" layoutY="334.0" mnemonicParsing="false" onAction="#seleccionarPokemon" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 1ER POKEMON" />
-            <Button fx:id="btnEstadisticas" layoutX="287.0" layoutY="334.0" mnemonicParsing="false" onAction="#verEstadisticas" prefHeight="53.0" prefWidth="181.0" text="MÁS INFORMACION" />
-            <ImageView fx:id="imgPokemon1" fitHeight="168.0" fitWidth="200.0" layoutX="14.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgPokemon2" fitHeight="168.0" fitWidth="200.0" layoutX="519.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgHuevo" fitHeight="150.0" fitWidth="200.0" layoutX="303.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/imagenincubadora.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnAbrir" layoutX="307.0" layoutY="234.0" mnemonicParsing="false" onAction="#abrirHuevo" prefHeight="53.0" prefWidth="141.0" text="ABRIR" visible="false" />
-            <Button fx:id="btnSeleccionarPokemon2" layoutX="14.0" layoutY="334.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 2DO POKEMON" visible="false" />
-      </children>
-    </AnchorPane>
-  </children>
+<VBox prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
+   <children>
+      <HBox VBox.vgrow="ALWAYS">
+         <children>
+            <HBox HBox.hgrow="ALWAYS" />
+            <VBox maxWidth="450.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox VBox.vgrow="ALWAYS" />
+                  <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefWidth="1000.0">
+                     <children>
+                        <TableView fx:id="tabCaja" layoutX="357.0" layoutY="71.0" prefHeight="292.0" prefWidth="227.0">
+                           <columns>
+                              <TableColumn fx:id="colNombre" prefWidth="75.0" text="NOMBRE" />
+                              <TableColumn fx:id="colSexo" prefWidth="75.0" text="SEXO" />
+                              <TableColumn fx:id="colFertilidad" prefWidth="75.0" text="FERTILIDAD" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="btnCerrarCrianza" layoutX="745.0" layoutY="526.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="53.0" prefWidth="141.0" text="SALIR" />
+                        <Button fx:id="btnSeleccionarPokemon" layoutX="24.0" layoutY="526.0" mnemonicParsing="false" onAction="#seleccionarPokemon" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 1ER POKEMON" />
+                        <Button fx:id="btnEstadisticas" layoutX="379.0" layoutY="526.0" mnemonicParsing="false" onAction="#verEstadisticas" prefHeight="53.0" prefWidth="181.0" text="MÁS INFORMACION" />
+                        <ImageView fx:id="imgPokemon1" fitHeight="168.0" fitWidth="200.0" layoutX="-86.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgPokemon2" fitHeight="168.0" fitWidth="200.0" layoutX="886.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgHuevo" fitHeight="150.0" fitWidth="200.0" layoutX="395.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/imagenincubadora.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnAbrir" layoutX="399.0" layoutY="292.0" mnemonicParsing="false" onAction="#abrirHuevo" prefHeight="53.0" prefWidth="141.0" text="ABRIR" visible="false" />
+                        <Button fx:id="btnSeleccionarPokemon2" layoutX="24.0" layoutY="526.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 2DO POKEMON" visible="false" />
+                     </children>
+                  </AnchorPane>
+                  <VBox VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox maxHeight="100.0" VBox.vgrow="ALWAYS" />
+   </children>
 </VBox>
