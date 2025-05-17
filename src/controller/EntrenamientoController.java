@@ -218,10 +218,27 @@ public class EntrenamientoController {
 	    // Refrescar los textos de los botones para mostrar PP actualizados
 	    cargarMovimientos();
 
-	    // Comprobar si se ha terminado el combate
+	    // Comprobar si se ha terminado el combate si es asi crear nuevo pokemon para otro combate
 	    if (nuevaVidaRival <= 0) {
-	        mostrarAlerta("¡Has ganado el entrenamiento!");
-	        combate.exportarTurnos("combate" + combate.getNumeroCombate() + "_log.txt");
+	    	
+	        // Mensaje de que el Pokémon rival ha sido derrotado
+	        String mensajeDerrota = pokemonRival.getNombre_pokemon() + " ha sido derrotado.";
+
+	        // Generar nuevo Pokémon 
+	        pokemonRival = PokemonBD.generarPokemonRivalAleatorio(miPokemon);
+
+	        // Registrar entrada del nuevo Pokémon
+	        String mensajeNuevo = "¡Aparece un nuevo Pokémon rival: " + pokemonRival.getNombre_pokemon() + "!";
+
+	        // Crear turno que refleje el cambio
+	        Turno turnoCambio = new Turno(combate.getNumeroCombate(), numeroTurno++, mensajeDerrota, mensajeNuevo);
+	        combate.agregarTurno(turnoCambio);
+
+	        // Actualizar imagen, vida y datos del nuevo Pokémon rival
+	        cargarDatos();
+
+	        // Mostrar alerta
+	        mostrarAlerta("¡Has derrotado a un Pokémon! Aparece " + pokemonRival.getNombre_pokemon() + ".");
 	    }
 	}
 
