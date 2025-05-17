@@ -799,7 +799,7 @@ public class PokemonBD {
 	    return ids;
 	}
 	
-	public static Pokemon generarPokemonRivalAleatorio() {
+	public static Pokemon generarPokemonRivalAleatorio(Pokemon pokemon) {
 	    Pokemon nuevoPokemon = null;
 
 	    try (Connection con = BDConecction.getConnection()) {
@@ -814,13 +814,12 @@ public class PokemonBD {
 	        }
 
 	        // Generar stats aleatorios similares a los de un Pokémon nivel 1
-	        int vitalidad = 15 + rd.nextInt(16);
-	        int ataque = 5 + rd.nextInt(6);
-	        int defensa = 5 + rd.nextInt(6);
-	        int ataqueEspecial = 5 + rd.nextInt(6);
-	        int defensaEspecial = 5 + rd.nextInt(6);
-	        int velocidad = 5 + rd.nextInt(11);
-	        int fertilidad = 1 + rd.nextInt(5);
+	        int vitalidad = pokemon.getVitalidad() + rd.nextInt(16);
+	        int ataque = pokemon.getAtaque() + rd.nextInt(6);
+	        int defensa = pokemon.getDefensa() + rd.nextInt(6);
+	        int ataqueEspecial = pokemon.getAtaque_especial() + rd.nextInt(6);
+	        int defensaEspecial = pokemon.getDefensa_especial() + rd.nextInt(6);
+	        int velocidad = pokemon.getVelocidad() + rd.nextInt(11);
 	        char sexo = rd.nextBoolean() ? 'M' : 'F';
 	        String estado = "NORMAL";
 	        String nombrePokemon = rs.getString("NOM_POKEMON");
@@ -839,8 +838,8 @@ public class PokemonBD {
 	            ataqueEspecial,
 	            defensaEspecial,
 	            velocidad,
-	            1, // nivel 1 para el rival
-	            fertilidad,
+	            pokemon.getNivel() + rd.nextInt(3), // nivel igual o superior para el rival
+	            0, // da igual la fertilidad
 	            0, // equipo 0 o especial para rival
 	            nombrePokemon,
 	            estado,

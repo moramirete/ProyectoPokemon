@@ -41,24 +41,24 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EntrenamientoController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="429.0" prefWidth="662.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="imgFondo" fitHeight="443.0" fitWidth="692.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgFondo" fitHeight="676.0" fitWidth="1004.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../multimedia/imagenes/fondos/entrenamiento_fondo.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnSalir" layoutX="566.0" layoutY="382.0" mnemonicParsing="false" onAction="#salir" prefHeight="36.0" prefWidth="74.0" text="SALIR" />
-            <ImageView fx:id="imgPokeRival" fitHeight="113.0" fitWidth="123.0" layoutX="461.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgPokemon" fitHeight="113.0" fitWidth="123.0" layoutX="53.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="btnPokemon" layoutX="461.0" layoutY="382.0" mnemonicParsing="false" onAction="#cambiarPoke" prefHeight="36.0" prefWidth="74.0" text="POKEMON" />
-            <Button fx:id="btnMov1" layoutX="40.0" layoutY="346.0" mnemonicParsing="false" onAction="#hacerMov1" prefHeight="36.0" prefWidth="74.0" />
-            <Button fx:id="btnMov2" layoutX="159.0" layoutY="346.0" mnemonicParsing="false" onAction="#hacerMov2" prefHeight="36.0" prefWidth="74.0" />
-            <Button fx:id="btnMov3" layoutX="40.0" layoutY="393.0" mnemonicParsing="false" onAction="#hacerMov3" prefHeight="36.0" prefWidth="74.0" />
-            <Button fx:id="btnMov4" layoutX="159.0" layoutY="393.0" mnemonicParsing="false" onAction="#hacerMov4" prefHeight="36.0" prefWidth="74.0" />
-            <ProgressBar fx:id="hpPokemon" layoutX="53.0" layoutY="194.0" prefHeight="18.0" prefWidth="123.0" progress="0.0" />
-            <ProgressBar fx:id="hpPokemonRival" layoutX="461.0" layoutY="194.0" prefHeight="18.0" prefWidth="123.0" progress="0.0" />
-            <ProgressBar fx:id="expPokemon" layoutX="53.0" layoutY="211.0" prefHeight="4.0" prefWidth="123.0" progress="0.0" />
+            <Button fx:id="btnSalir" layoutX="820.0" layoutY="518.0" mnemonicParsing="false" onAction="#salir" prefHeight="61.0" prefWidth="151.0" text="SALIR" />
+            <ImageView fx:id="imgPokeRival" fitHeight="176.0" fitWidth="171.0" layoutX="698.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgPokemon" fitHeight="176.0" fitWidth="171.0" layoutX="99.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnPokemon" layoutX="896.0" layoutY="482.0" mnemonicParsing="false" onAction="#cambiarPoke" prefHeight="36.0" prefWidth="74.0" text="POKEMON" />
+            <Button fx:id="btnMov1" layoutX="322.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov1" prefHeight="46.0" prefWidth="159.0" />
+            <Button fx:id="btnMov2" layoutX="520.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov2" prefHeight="46.0" prefWidth="159.0" />
+            <Button fx:id="btnMov3" layoutX="322.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov3" prefHeight="46.0" prefWidth="159.0" />
+            <Button fx:id="btnMov4" layoutX="520.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov4" prefHeight="46.0" prefWidth="159.0" />
+            <ProgressBar fx:id="hpPokemon" layoutX="91.0" layoutY="228.0" prefHeight="25.0" prefWidth="187.0" progress="0.0" />
+            <ProgressBar fx:id="hpPokemonRival" layoutX="697.0" layoutY="229.0" prefHeight="25.0" prefWidth="199.0" progress="0.0" />
+            <ProgressBar fx:id="expPokemon" layoutX="91.0" layoutY="249.0" prefHeight="6.0" prefWidth="187.0" progress="0.0" />
          </children>
     </AnchorPane>
   </children>

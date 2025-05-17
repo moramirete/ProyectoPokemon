@@ -62,8 +62,9 @@ public class EntrenamientoController {
 		this.menuController = menuController;
 
 		// Cargamos el Pokémon principal del entrenador y un rival fijo (id=2)
-		miPokemon = PokemonBD.obtenerPokemonPorIdConMovimientos(PokemonBD.obtenerPokemonPrincipal(entrenador.getIdEntrenador()).getId_pokemon());
-		pokemonRival = PokemonBD.generarPokemonRivalAleatorio();
+		miPokemon = PokemonBD.obtenerPokemonPorIdConMovimientos(
+				PokemonBD.obtenerPokemonPrincipal(entrenador.getIdEntrenador()).getId_pokemon());
+		pokemonRival = PokemonBD.generarPokemonRivalAleatorio(miPokemon);
 
 		cargarDatos();
 	}
@@ -76,10 +77,29 @@ public class EntrenamientoController {
 		List<Movimiento> movimientos = miPokemon.getMovPrincipales();
 
 		// Usamos operador ternario para evitar errores si hay menos de 4 movimientos
-		btnMov1.setText(movimientos.size() > 0 ? movimientos.get(0).getNom_movimiento() : "Vacío");
-		btnMov2.setText(movimientos.size() > 1 ? movimientos.get(1).getNom_movimiento() : "Vacío");
-		btnMov3.setText(movimientos.size() > 2 ? movimientos.get(2).getNom_movimiento() : "Vacío");
-		btnMov4.setText(movimientos.size() > 3 ? movimientos.get(3).getNom_movimiento() : "Vacío");
+		btnMov1.setText(movimientos.get(0).getNom_movimiento() + " " + movimientos.get(0).getPp_actual()
+				+ "/" + movimientos.get(0).getPp_max());
+		
+		if (movimientos.size() > 1) {
+			btnMov2.setText(movimientos.get(1).getNom_movimiento() + " " + movimientos.get(1).getPp_actual()
+					+ "/" + movimientos.get(1).getPp_max());
+		} else {
+			btnMov2.setVisible(false);
+		}
+
+		if (movimientos.size() > 2) {
+			btnMov3.setText(movimientos.get(2).getNom_movimiento() + movimientos.get(2).getPp_actual()
+					+ movimientos.get(2).getPp_max());
+		} else {
+			btnMov3.setVisible(false);
+		}
+
+		if (movimientos.size() > 3) {
+			btnMov4.setText(movimientos.get(3).getNom_movimiento() + movimientos.get(3).getPp_actual()
+					+ movimientos.get(3).getPp_max());
+		} else {
+			btnMov4.setVisible(false);
+		}
 	}
 
 	/**
@@ -173,26 +193,23 @@ public class EntrenamientoController {
 	 */
 	@FXML
 	public void cambiarPoke(ActionEvent event) {
-		try {
-			// Cargamos el FXML de cambiar Pokémon
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPokemonCombate.fxml"));
-			Parent root = loader.load();
-
-			// Obtenemos el controlador y le pasamos datos necesarios
-			cambiarPokemonCombateController controlador = loader.getController();
-			controlador.init(entrenador, miPokemon, this);
-
-			// Creamos una nueva ventana para cambiar Pokémon
-			Stage nuevaVentana = new Stage();
-			nuevaVentana.setTitle("Cambiar Pokémon del equipo");
-			nuevaVentana.setScene(new Scene(root));
-			nuevaVentana.initOwner(this.stage);
-			nuevaVentana.show();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			mostrarAlerta("Error al abrir la ventana de cambio de Pokémon.");
-		}
+		/*
+		 * try { // Cargamos el FXML de cambiar Pokémon FXMLLoader loader = new
+		 * FXMLLoader(getClass().getResource("../view/cambiarPokemonCombate.fxml"));
+		 * Parent root = loader.load();
+		 * 
+		 * // Obtenemos el controlador y le pasamos datos necesarios
+		 * cambiarPokemonCombateController controlador = loader.getController();
+		 * controlador.init(entrenador, miPokemon, this);
+		 * 
+		 * // Creamos una nueva ventana para cambiar Pokémon Stage nuevaVentana = new
+		 * Stage(); nuevaVentana.setTitle("Cambiar Pokémon del equipo");
+		 * nuevaVentana.setScene(new Scene(root)); nuevaVentana.initOwner(this.stage);
+		 * nuevaVentana.show();
+		 * 
+		 * } catch (IOException e) { e.printStackTrace();
+		 * mostrarAlerta("Error al abrir la ventana de cambio de Pokémon."); }
+		 */
 	}
 
 	/**
