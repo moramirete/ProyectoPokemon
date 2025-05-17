@@ -125,6 +125,7 @@ public class CombateController {
 
 		combate = new Combate(); // Inicializa el combate
 		iniciarCombate(); // Inicia el combate
+		
 	}
 
 	public void cargarDatos(Pokemon equipo, Pokemon rival) {
@@ -302,7 +303,7 @@ public class CombateController {
 		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
 		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
 		turnoJugador(pokEquipo, pokRival, movimientos.get(1));
-
+		actualizarBotonesConMovimientos();
 	}
 
 	@FXML
@@ -311,7 +312,7 @@ public class CombateController {
 		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
 		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
 		turnoJugador(pokEquipo, pokRival, movimientos.get(2));
-
+		actualizarBotonesConMovimientos();
 	}
 
 	@FXML
@@ -320,7 +321,7 @@ public class CombateController {
 		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
 		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
 		turnoJugador(pokEquipo, pokRival, movimientos.get(3));
-
+		actualizarBotonesConMovimientos();
 	}
 
 	private void cambiarPokemonRival() {
@@ -350,7 +351,7 @@ public class CombateController {
 		}
 
 		int daño = calcularDaño(rival, jugador, movimiento);
-		jugador.setVitalidadOBJ(jugador.getVitalidadOBJ() - daño);
+		pokEquipo.setVitalidadOBJ(pokEquipo.getVitalidadOBJ() - daño);
 		
 		PokemonBD.actualizarVida(pokEquipo);
 
@@ -399,7 +400,7 @@ public class CombateController {
 		MovimientoBD.actualizarPPMovimiento(idEntrenador, idPokemon, idMovimiento, ppActuales);
 
 		int daño = calcularDaño(jugador, rival, movimiento);
-		rival.setVitalidadOBJ(rival.getVitalidadOBJ() - daño);
+		rival.setVitalidadOBJ(pokRival.getVitalidadOBJ() - daño);
 
 		actualizarBarraVida(pbPokemonVida, pokEquipo.getVitalidadOBJ(), pokEquipo.getVitalidadMaxOBJ());
 		actualizarBarraVida(pbPokemonRival, pokRival.getVitalidadOBJ(), pokRival.getVitalidadMaxOBJ());

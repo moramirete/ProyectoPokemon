@@ -193,7 +193,7 @@ public class EntrenamientoController {
 	    // Reducir PP en 1
 	    int nuevoPP = ppActual - 1;
 	    mov.setPp_actual(nuevoPP);
-	    MovimientoBD.actualizarPPMovimiento(miPokemon.getId_pokemon(), mov.getId_movimiento(), nuevoPP, ppActual);
+	    MovimientoBD.actualizarPPMovimiento(miPokemon.getId_entrenador(), miPokemon.getId_pokemon(), mov.getId_movimiento(), nuevoPP);
 
 	    // Calcular el daño que hará
 	    int danio = mov.getPotencia() != 0 ? mov.getPotencia() : 10;

@@ -420,8 +420,8 @@ public class PokemonBD {
 	public static boolean curarPokemon(int idEntrenador, int idPokemon) {
 		try (Connection con = BDConecction.getConnection()) {
 
-			String sql = "UPDATE POKEMON SET VITALIDAD = VITALIDADMAX AND VITALIDAD_OBJ = VITALIDADMAX_OBJ "
-					+ "WHERE ID_ENTRENADOR = ? AND ID_POKEMON = ?";
+			String sql = "UPDATE POKEMON SET VITALIDAD = VITALIDADMAX, VITALIDAD_OBJ = VITALIDADMAX_OBJ WHERE ID_ENTRENADOR = ? AND ID_POKEMON = ?";
+
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, idEntrenador);
 			stmt.setInt(2, idPokemon);
