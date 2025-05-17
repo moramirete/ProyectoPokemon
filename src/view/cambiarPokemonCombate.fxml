@@ -25,5 +25,6 @@
          </font>
       </Label>
       <Button fx:id="btnCambiarPor" layoutX="24.0" layoutY="331.0" mnemonicParsing="false" onAction="#cambiarPor" prefHeight="26.0" prefWidth="122.0" text="Cambiar" />
+      <Button fx:id="btnCambiarPor1" layoutX="24.0" layoutY="331.0" mnemonicParsing="false" onAction="#cambiarPorCombate" prefHeight="26.0" prefWidth="122.0" text="Cambiar" />
    </children>
 </AnchorPane>
