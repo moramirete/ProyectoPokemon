@@ -1,9 +1,13 @@
-Combate 20250518004928451:
+Combate 20250518010743318:
 Turno 1:
 Entrenador: ¡El rival empieza!
 Rival: 
 
 Turno 2:
-Entrenador: z huyó del combate.
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 3:
+Entrenador: a huyó del combate.
 Rival: 
 
