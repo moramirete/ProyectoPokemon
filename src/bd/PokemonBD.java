@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+
+import model.Movimiento;
 import model.Pokemon;
 
 public class PokemonBD {
@@ -831,14 +834,13 @@ public class PokemonBD {
 	        Random rd = new Random();
 
 	        String queryPokedex = "SELECT * FROM POKEDEX ORDER BY RAND() LIMIT 1";
-	        PreparedStatement stmt = con.prepareStatement(queryPokedex);
-	        ResultSet rs = stmt.executeQuery();
+	        PreparedStatement ps = con.prepareStatement(queryPokedex);
+	        ResultSet rs = ps.executeQuery();
 
 	        if (!rs.next()) {
 	            throw new SQLException("No se encontró ningún Pokémon en la tabla POKEDEX.");
 	        }
 
-	        // Generar stats aleatorios similares a los de un Pokémon nivel 1
 	        int vitalidad = pokemon.getVitalidad() + rd.nextInt(16);
 	        int ataque = pokemon.getAtaque() + rd.nextInt(6);
 	        int defensa = pokemon.getDefensa() + rd.nextInt(6);
@@ -848,40 +850,37 @@ public class PokemonBD {
 	        char sexo = rd.nextBoolean() ? 'M' : 'F';
 	        String estado = "NORMAL";
 	        String nombrePokemon = rs.getString("NOM_POKEMON");
+	        int nivel = pokemon.getNivel() + rd.nextInt(3);
 
-	        // Creamos un Pokémon temporal con id 0 y sin entrenador (o con valores dummy)
 	        nuevoPokemon = new Pokemon(
-	            0, // idPokemon temporal (no existe en BD)
-	            0, // idEntrenador temporal
-	            rs.getInt("NUM_POKEDEX"),
-	            0, // idObjeto
-	            rs.getString("TIPO1"),
-	            rs.getString("TIPO2"),
-	            vitalidad,
-	            ataque,
-	            defensa,
-	            ataqueEspecial,
-	            defensaEspecial,
-	            velocidad,
-	            pokemon.getNivel() + rd.nextInt(3), // nivel igual o superior para el rival
-	            0, // da igual la fertilidad
-	            0, // equipo 0 o especial para rival
-	            nombrePokemon,
-	            estado,
-	            sexo,
-	            vitalidad, // Vitalidad max
-	            vitalidad,
-	            vitalidad,
-	            ataque,
-	            defensa,
-	            ataqueEspecial,
-	            defensaEspecial,
-	            velocidad,
-	            0 // experiencia
+	            0, 0, rs.getInt("NUM_POKEDEX"), 0,
+	            rs.getString("TIPO1"), rs.getString("TIPO2"),
+	            vitalidad, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad,
+	            nivel, 0, 0, nombrePokemon, estado, sexo,
+	            vitalidad, vitalidad, vitalidad, ataque, defensa, ataqueEspecial, defensaEspecial, velocidad, 0
 	        );
 
+	        // Asignar movimientos según el nivel
+	        LinkedList<Movimiento> movimientos = new LinkedList<>();
+	        
+	        int movimientosCreados = 0;
+
+	        int numMovimientos = 1;
+	        if (nivel >= 3 && nivel <= 5) numMovimientos = 2;
+	        else if (nivel >= 6 && nivel <= 8) numMovimientos = 3;
+	        else if (nivel >= 9) numMovimientos = 4;
+
+	        // Obtener movimientos aleatorios distintos de Placaje
+	        while (movimientosCreados < numMovimientos) {
+	        	movimientos.add(MovimientoBD.asignarMovimientosAleatoriosRival(nuevoPokemon, movimientosCreados));	
+	        	++movimientosCreados;
+	        }
+
+	        // Asignar movimientos al Pokémon rival (ajusta según tu modelo)
+	        nuevoPokemon.setMovPrincipales(movimientos);
+
 	        rs.close();
-	        stmt.close();
+	        ps.close();
 
 	    } catch (SQLException e) {
 	        e.printStackTrace();

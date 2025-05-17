@@ -412,13 +412,13 @@ public class EstadisticasController {
 	
 	private void cargarMovimientosPrincipales() {
 	    try (Connection con = BDConecction.getConnection()) {
-	        String queryPrincipales = """
-	            SELECT mp.POSICION, m.NOM_MOVIMIENTO
-	            FROM movimiento_pokemon mp
-	            JOIN movimiento m ON mp.ID_MOVIMIENTO = m.ID_MOVIMIENTO
-	            WHERE mp.ID_ENTRENADOR = ? AND mp.ID_POKEMON = ? AND mp.POSICION BETWEEN 1 AND 4
-	            ORDER BY mp.POSICION
-	        """;
+	        String queryPrincipales = "SELECT mp.POSICION, m.NOM_MOVIMIENTO\r\n"
+	        		+ "	            FROM movimiento_pokemon mp\r\n"
+	        		+ "	            JOIN movimiento m ON mp.ID_MOVIMIENTO = m.ID_MOVIMIENTO\r\n"
+	        		+ "	            WHERE mp.ID_ENTRENADOR = ? AND mp.ID_POKEMON = ? AND mp.POSICION BETWEEN 1 AND 4\r\n"
+	        		+ "	            ORDER BY mp.POSICION;"
+	            ;
+	        
 
 	        try (PreparedStatement st = con.prepareStatement(queryPrincipales)) {
 	            st.setInt(1, entrenador.getIdEntrenador());
@@ -461,12 +461,11 @@ public class EstadisticasController {
 	
 	private void cargarMovimientosCaja() {
 	    try (Connection con = BDConecction.getConnection()) {
-	        String queryCaja = """
-	            SELECT mp.POSICION, m.ID_MOVIMIENTO, m.NOM_MOVIMIENTO, m.TIPO, m.TIPO_MOV
-	            FROM movimiento_pokemon mp
-	            JOIN movimiento m ON mp.ID_MOVIMIENTO = m.ID_MOVIMIENTO
-	            WHERE mp.ID_ENTRENADOR = ? AND mp.ID_POKEMON = ? AND mp.POSICION = 5
-	        """;
+	        String queryCaja = "	            SELECT mp.POSICION, m.ID_MOVIMIENTO, m.NOM_MOVIMIENTO, m.TIPO, m.TIPO_MOV\r\n"
+	        		+ "	            FROM movimiento_pokemon mp\r\n"
+	        		+ "	            JOIN movimiento m ON mp.ID_MOVIMIENTO = m.ID_MOVIMIENTO\r\n"
+	        		+ "	            WHERE mp.ID_ENTRENADOR = ? AND mp.ID_POKEMON = ? AND mp.POSICION = 5;"
+	        		;
 
 	        try (PreparedStatement st = con.prepareStatement(queryCaja)) {
 	            st.setInt(1, entrenador.getIdEntrenador());

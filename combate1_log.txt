@@ -1,5 +1,0 @@
-Combate 1:
-Turno 1:
-Entrenador: SEADRA usa Martillazo.
-Rival: PERSIAN no hace nada (acción simulada).
-

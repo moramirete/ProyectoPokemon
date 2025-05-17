@@ -87,7 +87,7 @@ public class CombateController {
 
 	@FXML
 	private ProgressBar pbPokemonVida;
-	
+
 	@FXML
 	private TextArea logCombate;
 
@@ -120,59 +120,10 @@ public class CombateController {
 			System.out.println("El equipo rival está vacío.");
 			return;
 		}
-
-		imprimirEquipos();
-
 		cargarDatos(pokEquipo, pokRival);
-		
-	    imprimirEquipos();
-	    cargarDatos(pokEquipo, pokRival);
 
-	    combate = new Combate(); // Inicializa el combate
-	    iniciarCombate(); // Inicia el combate
-	}
-	
-	public void iniciarCombate() {
-	    if (combate == null) {
-	        combate = new Combate(); // Asegúrate de inicializar el objeto combate
-	    }
-
-	    if (combate.getTurnos() == null) {
-	        combate.setTurnos(new ArrayList<>()); // Inicializa la lista turnos si es null
-	    }
-
-	    boolean jugadorEmpieza = determinarQuienEmpieza(pokEquipo, pokRival);
-
-	    if (jugadorEmpieza) {
-	        registrarTurno("¡Empiezas tú!");
-	        actualizarLogCombate("¡Empiezas tú!");
-	    } else {
-	        registrarTurno("¡El rival empieza!");
-	        actualizarLogCombate("¡El rival empieza!");
-	        turnoRival(pokRival, pokEquipo); // El rival toma el primer turno
-	    }
-	}
-
-	private void imprimirEquipos() {
-		System.out.println("Equipo del Usuario:");
-		if (equipo != null && !equipo.isEmpty()) {
-			for (Pokemon pokemon : equipo) {
-				System.out.println("Nombre: " + pokemon.getNombre_pokemon() + ", Nivel: " + pokemon.getNivel()
-						+ ", Vitalidad: " + pokemon.getVitalidadOBJ() + "/" + pokemon.getVitalidadMaxOBJ());
-			}
-		} else {
-			System.out.println("El equipo del usuario está vacío.");
-		}
-
-		System.out.println("\nEquipo Rival:");
-		if (rival != null && !rival.isEmpty()) {
-			for (Pokemon pokemon : rival) {
-				System.out.println("Nombre: " + pokemon.getNombre_pokemon() + ", Nivel: " + pokemon.getNivel()
-						+ ", Vitalidad: " + pokemon.getVitalidadOBJ() + "/" + pokemon.getVitalidadMaxOBJ());
-			}
-		} else {
-			System.out.println("El equipo rival está vacío.");
-		}
+		combate = new Combate(); // Inicializa el combate
+		iniciarCombate(); // Inicia el combate
 	}
 
 	public void cargarDatos(Pokemon equipo, Pokemon rival) {
@@ -197,7 +148,7 @@ public class CombateController {
 		// Cargar txt
 
 		lblNivel.setText(String.valueOf(equipo.getNivel()));
-		lblNivelRival.setText(String.valueOf(equipo.getNivel()));
+		lblNivelRival.setText(String.valueOf(rival.getNivel()));
 		lblNombrePoke.setText(equipo.getNombre_pokemon());
 		lblNombrePokeRival.setText(rival.getNombre_pokemon());
 		lblVitalidad.setText(String.valueOf(equipo.getVitalidadOBJ()));
@@ -255,6 +206,55 @@ public class CombateController {
 		barra.setStyle("-fx-accent: " + color + ";");
 	}
 
+	private boolean determinarQuienEmpieza(Pokemon jugador, Pokemon rival) {
+		return jugador.getVelocidadOBJ() >= rival.getVelocidadOBJ();
+	}
+
+	public void iniciarCombate() {
+		if (combate == null) {
+			combate = new Combate(); // Asegúrate de inicializar el objeto combate
+		}
+
+		if (combate.getTurnos() == null) {
+			combate.setTurnos(new ArrayList<>()); // Inicializa la lista turnos si es null
+		}
+
+		boolean jugadorEmpieza = determinarQuienEmpieza(pokEquipo, pokRival);
+
+		if (jugadorEmpieza) {
+			registrarTurno("¡Empiezas tú!");
+			actualizarLogCombate("¡Empiezas tú!");
+		} else {
+			registrarTurno("¡El rival empieza!");
+			actualizarLogCombate("¡El rival empieza!");
+			turnoRival(pokRival, pokEquipo); // El rival toma el primer turno
+		}
+	}
+
+	private Movimiento elegirMovimientoAleatorio(Pokemon pokemon) {
+		List<Movimiento> movimientos = pokemon.getMovPrincipales();
+		if (movimientos == null || movimientos.isEmpty()) {
+			return null; // No hay movimientos disponibles
+		}
+
+		Random rd = new Random();
+		return movimientos.get(rd.nextInt(movimientos.size()));
+	}
+
+	@FXML
+	void descansar(ActionEvent event) {
+
+		int vitalidadRecuperada = pokEquipo.getVitalidadMaxOBJ() / 10; // Recupera el 10% de la vitalidad máxima
+		pokEquipo.setVitalidadOBJ(
+				Math.min(pokEquipo.getVitalidadOBJ() + vitalidadRecuperada, pokEquipo.getVitalidadMaxOBJ()));
+
+		actualizarBarraVida(pbPokemonVida, pokEquipo.getVitalidadOBJ(), pokEquipo.getVitalidadMaxOBJ());
+		lblVitalidad.setText(String.valueOf(pokEquipo.getVitalidadOBJ()));
+
+		registrarTurno(pokEquipo.getNombre_pokemon() + " descansó y recuperó " + vitalidadRecuperada + " PS.");
+
+	}
+
 	@FXML
 	void cambiarPokemon(ActionEvent event) {
 
@@ -284,25 +284,6 @@ public class CombateController {
 		if (nuevoPrincipal != null) {
 			cargarDatos(nuevoPrincipal, pokRival);
 		}
-	}
-
-	private void mostrarAlerta(String mensaje) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setTitle("Entrenamiento");
-		alert.setHeaderText(null);
-		alert.setContentText(mensaje);
-		alert.showAndWait();
-	}
-
-	@FXML
-	void descansar(ActionEvent event) {
-
-		int vitalidadRecuperada = pokEquipo.getVitalidadMaxOBJ() / 10; // Recupera el 10% de la vitalidad máxima
-		pokEquipo.setVitalidadOBJ(
-				Math.min(pokEquipo.getVitalidadOBJ() + vitalidadRecuperada, pokEquipo.getVitalidadMaxOBJ()));
-
-		registrarTurno(pokEquipo.getNombre_pokemon() + " descansó y recuperó " + vitalidadRecuperada + " PS.");
-
 	}
 
 	@FXML
@@ -341,31 +322,18 @@ public class CombateController {
 
 	}
 
-	private boolean determinarQuienEmpieza(Pokemon jugador, Pokemon rival) {
-		return jugador.getVelocidadOBJ() >= rival.getVelocidadOBJ();
-	}
-	
 	private void cambiarPokemonRival() {
-	    for (Pokemon pokemon : rival) {
-	        if (pokemon.getVitalidadOBJ() > 0) {
-	            registrarTurno("El rival cambió a " + pokemon.getNombre_pokemon() + ".");
-	            cargarDatos(equipo.get(0), pokemon); // Actualiza los datos del combate
-	            return;
-	        }
-	    }
+		for (Pokemon pokemon : rival) {
+			if (pokemon.getVitalidadOBJ() > 0) {
+				registrarTurno("El rival cambió a " + pokemon.getNombre_pokemon() + ".");
+				cargarDatos(pokEquipo, pokemon); // Actualiza los datos del combate
+				pokRival = pokemon;
+				return;
+			}
+		}
 
-	    // Si no hay más Pokémon disponibles, el jugador gana
-	    finalizarCombate(true);
-	}
-	
-	private Movimiento elegirMovimientoAleatorio(Pokemon pokemon) {
-	    List<Movimiento> movimientos = pokemon.getMovPrincipales();
-	    if (movimientos == null || movimientos.isEmpty()) {
-	        return null; // No hay movimientos disponibles
-	    }
-
-	    Random rd = new Random();
-	    return movimientos.get(rd.nextInt(movimientos.size()));
+		// Si no hay más Pokémon disponibles, el jugador gana
+		finalizarCombate(true);
 	}
 
 	private void turnoRival(Pokemon rival, Pokemon jugador) {
@@ -376,12 +344,17 @@ public class CombateController {
 
 		Movimiento movimiento = elegirMovimientoAleatorio(rival);
 		if (movimiento == null) {
-			System.out.println("El rival no tiene movimientos disponibles.");
+			System.out.println("No hay movimientos disponibles.");
 			return;
 		}
 
 		int daño = calcularDaño(rival, jugador, movimiento);
-		jugador.setVitalidadOBJ(Math.max(0, jugador.getVitalidadOBJ() - daño));
+		jugador.setVitalidadOBJ(jugador.getVitalidadOBJ() - daño);
+
+		actualizarBarraVida(pbPokemonVida, pokEquipo.getVitalidadOBJ(), pokEquipo.getVitalidadMaxOBJ());
+		actualizarBarraVida(pbPokemonRival, pokRival.getVitalidadOBJ(), pokRival.getVitalidadMaxOBJ());
+
+		lblVitalidad.setText(String.valueOf(pokEquipo.getVitalidadOBJ()));
 
 		registrarTurno("El rival usó " + movimiento.getNom_movimiento() + " e hizo " + daño + " de daño.");
 	}
@@ -408,15 +381,31 @@ public class CombateController {
 			return;
 		}
 
-		if (movimiento == null) {
-			System.out.println("No se seleccionó un movimiento.");
+		if (movimiento.getPp_actual() <= 0) {
+			registrarTurno(jugador.getNombre_pokemon() + " no tiene PP suficientes para "
+					+ movimiento.getNom_movimiento() + ".");
 			return;
 		}
 
+		movimiento.setPp_actual(movimiento.getPp_actual() - 1);
+
 		int daño = calcularDaño(jugador, rival, movimiento);
-		rival.setVitalidadOBJ(Math.max(0, rival.getVitalidadOBJ() - daño));
+		rival.setVitalidadOBJ(rival.getVitalidadOBJ() - daño);
+
+		actualizarBarraVida(pbPokemonVida, pokEquipo.getVitalidadOBJ(), pokEquipo.getVitalidadMaxOBJ());
+		actualizarBarraVida(pbPokemonRival, pokRival.getVitalidadOBJ(), pokRival.getVitalidadMaxOBJ());
+
+		lblVitalidad.setText(String.valueOf(pokEquipo.getVitalidadOBJ()));
 
 		registrarTurno("Usaste " + movimiento.getNom_movimiento() + " e hiciste " + daño + " de daño.");
+
+		if (pokRival.getVitalidadOBJ() <= 0) {
+			otorgarExperiencia(pokEquipo, pokRival);
+			cambiarPokemonRival();
+			return;
+		}
+
+		turnoRival(jugador, rival);
 	}
 
 	private int calcularDaño(Pokemon atacante, Pokemon defensor, Movimiento movimiento) {
@@ -428,58 +417,15 @@ public class CombateController {
 	}
 
 	private void registrarTurno(String descripcion) {
-		
-	    if (combate.getTurnos() == null) {
-	        System.err.println("Error: La lista de turnos es null. Inicializándola.");
-	        combate.setTurnos(new ArrayList<>());
-	    }
-		
+
+		if (combate.getTurnos() == null) {
+			System.err.println("Error: La lista de turnos es null. Inicializándola.");
+			combate.setTurnos(new ArrayList<>());
+		}
+
 		Turno turno = new Turno(combate.getNumeroCombate(), combate.getTurnos().size() + 1, descripcion, "");
 		combate.agregarTurno(turno);
 		actualizarLogCombate(descripcion);
-	}
-
-
-
-	private void otorgarExperiencia(Pokemon ganador, Pokemon perdedor) {
-		int experienciaGanada = (perdedor.getNivel() * 10) / ganador.getNivel();
-		ganador.setExperiencia(ganador.getExperiencia() + experienciaGanada);
-
-		if (ganador.getExperiencia() >= ganador.getNivel() * 10) {
-			subirNivel(ganador);
-		}
-	}
-
-	private void subirNivel(Pokemon pokemon) {
-		pokemon.setNivel(pokemon.getNivel() + 1);
-		pokemon.setExperiencia(0);
-		pokemon.setAtaqueOBJ(pokemon.getAtaqueOBJ() + 2);
-		pokemon.setDefensaOBJ(pokemon.getDefensaOBJ() + 2);
-		pokemon.setVitalidadMaxOBJ(pokemon.getVitalidadMaxOBJ() + 5);
-
-		if (pokemon.getNivel() == 25 || pokemon.getNivel() == 50) {
-			evolucionarPokemon(pokemon);
-		}
-	}
-
-	private void evolucionarPokemon(Pokemon pokemon) {
-	    int nuevoNumPokedex = PokemonBD.obtenerEvolucion(pokemon.getNum_pokedex(), pokemon.getNivel());
-	    if (nuevoNumPokedex != pokemon.getNum_pokedex()) {
-	        pokemon.setNum_pokedex(nuevoNumPokedex);
-	        System.out.println(pokemon.getNombre_pokemon() + " ha evolucionado!");
-	    } else {
-	        System.out.println(pokemon.getNombre_pokemon() + " no puede evolucionar.");
-	    }
-	}
-
-	private void finalizarCombate(boolean jugadorGana) {
-		if (jugadorGana) {
-			System.out.println("¡Has ganado el combate!");
-		} else {
-			System.out.println("Has perdido el combate.");
-		}
-
-		combate.exportarTurnos("log_combate.txt");
 	}
 
 	private double calcularMultiplicadorTipo(String tipoAtaque, String tipoDefensor1, String tipoDefensor2) {
@@ -656,15 +602,64 @@ public class CombateController {
 
 		return multiplicador;
 	}
-	
+
+	private void finalizarCombate(boolean jugadorGana) {
+		mostrarAlerta(jugadorGana ? "¡Has ganado el combate!" : "¡Has perdido!");
+		// Cerrar la ventana o redirigir al menú
+		stage.close();
+
+		combate.exportarTurnos("log_combate.txt");
+
+	}
+
+	private void subirNivel(Pokemon pokemon) {
+		pokemon.setNivel(pokemon.getNivel() + 1);
+		pokemon.setExperiencia(0);
+		pokemon.setAtaqueOBJ(pokemon.getAtaqueOBJ() + 2);
+		pokemon.setDefensaOBJ(pokemon.getDefensaOBJ() + 2);
+		pokemon.setVitalidadMaxOBJ(pokemon.getVitalidadMaxOBJ() + 5);
+
+		if (pokemon.getNivel() == 25 || pokemon.getNivel() == 50) {
+			evolucionarPokemon(pokemon);
+		}
+	}
+
+	private void otorgarExperiencia(Pokemon ganador, Pokemon perdedor) {
+		int experienciaGanada = (perdedor.getNivel() * 10) / ganador.getNivel();
+		ganador.setExperiencia(ganador.getExperiencia() + experienciaGanada);
+
+		if (ganador.getExperiencia() >= ganador.getNivel() * 10) {
+			subirNivel(ganador);
+		}
+	}
+
+	private void evolucionarPokemon(Pokemon pokemon) {
+		int nuevoNumPokedex = PokemonBD.obtenerEvolucion(pokemon.getNum_pokedex(), pokemon.getNivel());
+		if (nuevoNumPokedex != pokemon.getNum_pokedex()) {
+			pokemon.setNum_pokedex(nuevoNumPokedex);
+			System.out.println(pokemon.getNombre_pokemon() + " ha evolucionado!");
+		} else {
+			System.out.println(pokemon.getNombre_pokemon() + " no puede evolucionar.");
+		}
+	}
+
 	private void actualizarLogCombate(String descripcion) {
 		logCombate.appendText(descripcion + "\n");
 	}
 
+	private void mostrarAlerta(String mensaje) {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Entrenamiento");
+		alert.setHeaderText(null);
+		alert.setContentText(mensaje);
+		alert.showAndWait();
+	}
+
 	@FXML
 	void huir(ActionEvent event) {
-		menuController.show();
-		this.stage.close();
+		registrarTurno(entrenador.getUsuario() + " huyó del combate.");
+		finalizarCombate(false);
+		stage.close();
 	}
 
 }
