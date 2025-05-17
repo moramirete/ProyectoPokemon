@@ -39,49 +39,65 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="380.0" prefWidth="644.0" VBox.vgrow="ALWAYS">
-      <children>
-            <ImageView id="imagen fondo pokemon" fx:id="Imgfondo" fitHeight="511.0" fitWidth="852.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondopikachi.jpg" />
-               </image>
-            </ImageView>
-            <ImageView id="logopokemon" fx:id="ImgLogo" fitHeight="113.0" fitWidth="264.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/pngwing.com.png" />
-               </image>
-            </ImageView>
-            <Button id="botonAceptar" fx:id="btnAceptar" layoutX="409.0" layoutY="214.0" mnemonicParsing="false" onAction="#comprobarLoguin" prefHeight="37.0" prefWidth="206.0" stylesheets="@../estilos/estiloButton.css" text="INICIAR SESION" />
-            <Button id="botonRegistrar" fx:id="btnRegistrar" layoutX="446.0" layoutY="328.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="11.0" prefWidth="132.0" stylesheets="@../estilos/estiloButton.css" text="REGISTRAR" />
-            <TextField fx:id="txtUsuario" layoutX="409.0" layoutY="111.0" prefHeight="37.0" prefWidth="206.0" />
-            <PasswordField fx:id="txtPassword" layoutX="409.0" layoutY="162.0" prefHeight="37.0" prefWidth="206.0" />
-            <ImageView fx:id="btnSalir" fitHeight="37.0" fitWidth="31.0" layoutX="773.0" layoutY="14.0" onMousePressed="#cerrarAplicacion" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/salir.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="logoEquipo" fitHeight="61.0" fitWidth="80.0" layoutX="755.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/lossupernenes.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="labelRegistro1" layoutX="461.0" layoutY="305.0" text="¿Es tu primera vez?" />
-            <ImageView fx:id="logoUsuario" fitHeight="25.0" fitWidth="31.0" layoutX="376.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/usuario.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="logoContra" fitHeight="25.0" fitWidth="25.0" layoutX="376.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/contra.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="labelRegistro2" layoutX="339.0" layoutY="370.0" text="Para registrarte primero tienes que poner los datos en los huecos" />
-      </children>
-    </AnchorPane>
-  </children>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <HBox maxHeight="100.0" VBox.vgrow="ALWAYS" />
+      <HBox VBox.vgrow="ALWAYS">
+         <children>
+            <HBox HBox.hgrow="ALWAYS" />
+            <VBox maxWidth="450.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox VBox.vgrow="ALWAYS" />
+                  <AnchorPane maxHeight="511.0" maxWidth="852.0" minHeight="511.0" minWidth="852.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ImageView id="imagen fondo pokemon" fx:id="Imgfondo" fitHeight="511.0" fitWidth="852.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondopikachi.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView id="logopokemon" fx:id="ImgLogo" fitHeight="113.0" fitWidth="264.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/pngwing.com.png" />
+                           </image>
+                        </ImageView>
+                        <Button id="botonAceptar" fx:id="btnAceptar" layoutX="409.0" layoutY="214.0" mnemonicParsing="false" onAction="#comprobarLoguin" prefHeight="37.0" prefWidth="206.0" stylesheets="@../estilos/estiloButton.css" text="INICIAR SESION" />
+                        <Button id="botonRegistrar" fx:id="btnRegistrar" layoutX="446.0" layoutY="328.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="11.0" prefWidth="132.0" stylesheets="@../estilos/estiloButton.css" text="REGISTRAR" />
+                        <TextField fx:id="txtUsuario" layoutX="409.0" layoutY="111.0" prefHeight="37.0" prefWidth="206.0" />
+                        <PasswordField fx:id="txtPassword" layoutX="409.0" layoutY="162.0" prefHeight="37.0" prefWidth="206.0" />
+                        <ImageView fx:id="btnSalir" fitHeight="37.0" fitWidth="31.0" layoutX="773.0" layoutY="14.0" onMousePressed="#cerrarAplicacion" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/salir.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="logoEquipo" fitHeight="61.0" fitWidth="80.0" layoutX="755.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/lossupernenes.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="labelRegistro1" layoutX="461.0" layoutY="305.0" text="¿Es tu primera vez?" />
+                        <ImageView fx:id="logoUsuario" fitHeight="25.0" fitWidth="31.0" layoutX="376.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/usuario.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="logoContra" fitHeight="25.0" fitWidth="25.0" layoutX="376.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/contra.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="labelRegistro2" layoutX="339.0" layoutY="370.0" text="Para registrarte primero tienes que poner los datos en los huecos" />
+                     </children>
+                  </AnchorPane>
+                  <VBox VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox maxHeight="100.0" VBox.vgrow="ALWAYS" />
+   </children>
 </VBox>
