@@ -38,30 +38,45 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EntrenamientoController">
-  <children>
-    <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" VBox.vgrow="ALWAYS">
+<VBox prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EntrenamientoController">
+   <children>
+      <HBox maxHeight="100.0" VBox.vgrow="ALWAYS" />
+      <HBox VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="imgFondo" fitHeight="676.0" fitWidth="1004.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/entrenamiento_fondo.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnSalir" layoutX="820.0" layoutY="518.0" mnemonicParsing="false" onAction="#salir" prefHeight="61.0" prefWidth="151.0" text="SALIR" />
-            <ImageView fx:id="imgPokeRival" fitHeight="176.0" fitWidth="171.0" layoutX="698.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgPokemon" fitHeight="176.0" fitWidth="171.0" layoutX="99.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="btnPokemon" layoutX="896.0" layoutY="482.0" mnemonicParsing="false" onAction="#cambiarPoke" prefHeight="36.0" prefWidth="74.0" text="POKEMON" />
-            <Button fx:id="btnMov1" layoutX="322.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov1" prefHeight="46.0" prefWidth="159.0" />
-            <Button fx:id="btnMov2" layoutX="520.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov2" prefHeight="46.0" prefWidth="159.0" />
-            <Button fx:id="btnMov3" layoutX="322.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov3" prefHeight="46.0" prefWidth="159.0" />
-            <Button fx:id="btnMov4" layoutX="520.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov4" prefHeight="46.0" prefWidth="159.0" />
-            <ProgressBar fx:id="hpPokemon" layoutX="91.0" layoutY="228.0" prefHeight="25.0" prefWidth="187.0" progress="0.0" />
-            <ProgressBar fx:id="hpPokemonRival" layoutX="697.0" layoutY="229.0" prefHeight="25.0" prefWidth="199.0" progress="0.0" />
-            <Label fx:id="lblVidaMiPoke" layoutX="286.0" layoutY="232.0" prefHeight="18.0" prefWidth="28.0" />
-            <Label fx:id="lblVidaRival" layoutX="905.0" layoutY="232.0" prefHeight="18.0" prefWidth="28.0" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <VBox maxWidth="450.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox VBox.vgrow="ALWAYS" />
+                  <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefWidth="1000.0">
+                     <children>
+                        <ImageView fx:id="imgFondo" fitHeight="676.0" fitWidth="1004.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/entrenamiento_fondo.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnSalir" layoutX="820.0" layoutY="518.0" mnemonicParsing="false" onAction="#salir" prefHeight="61.0" prefWidth="151.0" text="SALIR" />
+                        <ImageView fx:id="imgPokeRival" fitHeight="176.0" fitWidth="171.0" layoutX="698.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgPokemon" fitHeight="176.0" fitWidth="171.0" layoutX="99.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="btnPokemon" layoutX="896.0" layoutY="482.0" mnemonicParsing="false" onAction="#cambiarPoke" prefHeight="36.0" prefWidth="74.0" text="POKEMON" />
+                        <Button fx:id="btnMov1" layoutX="322.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov1" prefHeight="46.0" prefWidth="159.0" />
+                        <Button fx:id="btnMov2" layoutX="520.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov2" prefHeight="46.0" prefWidth="159.0" />
+                        <Button fx:id="btnMov3" layoutX="322.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov3" prefHeight="46.0" prefWidth="159.0" />
+                        <Button fx:id="btnMov4" layoutX="520.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov4" prefHeight="46.0" prefWidth="159.0" />
+                        <ProgressBar fx:id="hpPokemon" layoutX="91.0" layoutY="228.0" prefHeight="25.0" prefWidth="187.0" progress="0.0" />
+                        <ProgressBar fx:id="hpPokemonRival" layoutX="697.0" layoutY="229.0" prefHeight="25.0" prefWidth="199.0" progress="0.0" />
+                        <Label fx:id="lblVidaMiPoke" layoutX="286.0" layoutY="232.0" prefHeight="18.0" prefWidth="28.0" />
+                        <Label fx:id="lblVidaRival" layoutX="905.0" layoutY="232.0" prefHeight="18.0" prefWidth="28.0" />
+                     </children>
+                  </AnchorPane>
+                  <VBox VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox HBox.hgrow="ALWAYS" />
          </children>
-    </AnchorPane>
-  </children>
+      </HBox>
+      <HBox maxHeight="100.0" VBox.vgrow="ALWAYS" />
+   </children>
 </VBox>
