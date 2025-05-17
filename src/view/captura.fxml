@@ -37,40 +37,51 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CapturaController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-      
-            <ImageView fx:id="imgFondo" fitHeight="429.0" fitWidth="676.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/imagen%20pantalla%20captura.png" />
-               </image>
-            </ImageView>
-            
-        <Label fx:id="lblPokemon" alignment="CENTER" layoutX="232.0" layoutY="187.0" prefHeight="170.0" prefWidth="212.0" style="&#10;" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-        
-            <Button fx:id="btnCapturar" layoutX="484.0" layoutY="315.0" mnemonicParsing="false" onAction="#capturarPokemon" prefHeight="83.0" prefWidth="89.0" style="-fx-opacity: 0;" />
-            <Button fx:id="btnSalir" layoutX="5.0" layoutY="3.0" mnemonicParsing="false" onAction="#cerrarCaptura" prefHeight="56.0" prefWidth="97.0" text="SALIR" textFill="#3e00da">
-               <font>
-                  <Font name="Gentium Book Basic" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnGenerar" layoutX="5.0" layoutY="349.0" mnemonicParsing="false" onAction="#generarPokemon" prefHeight="56.0" prefWidth="229.0" text="GENERAR POKEMON" />
-           
-            <Label fx:id="lblPokebolas" layoutX="575.0" layoutY="333.0" prefHeight="40.0" prefWidth="89.0" text="Label" >
-     			<font>
-     				<Font size = "28.0" />
-     			</font>
-     		</Label>
-      </children>
-    </AnchorPane>
-  </children>
+<VBox prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CapturaController">
+   <children>
+      <HBox maxHeight="100.0" />
+      <HBox>
+         <children>
+            <HBox />
+            <VBox maxWidth="450.0">
+               <children>
+                  <VBox />
+                  <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="-1.0" prefWidth="1000.0">
+                     <children>
+                        <ImageView fx:id="imgFondo" fitHeight="422.0" fitWidth="676.0" layoutX="648.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/imagen%20pantalla%20captura.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lblPokemon" alignment="CENTER" layoutX="863.0" layoutY="483.0" prefHeight="170.0" prefWidth="212.0" style="&#10;" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnCapturar" layoutX="1136.0" layoutY="612.0" mnemonicParsing="false" onAction="#capturarPokemon" prefHeight="83.0" prefWidth="89.0" style="-fx-opacity: 0;" />
+                        <Button fx:id="btnSalir" layoutX="648.0" layoutY="300.0" mnemonicParsing="false" onAction="#cerrarCaptura" prefHeight="56.0" prefWidth="104.0" text="SALIR" textFill="#3e00da">
+                           <font>
+                              <Font name="Gentium Book Basic" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnGenerar" layoutX="648.0" layoutY="645.0" mnemonicParsing="false" onAction="#generarPokemon" prefHeight="56.0" prefWidth="229.0" text="GENERAR POKEMON" />
+                        <Label fx:id="lblPokebolas" layoutX="1225.0" layoutY="633.0" prefHeight="40.0" prefWidth="89.0" text="Label">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <VBox />
+               </children>
+            </VBox>
+            <HBox />
+         </children>
+      </HBox>
+      <HBox maxHeight="100.0" />
+   </children>
 </VBox>
