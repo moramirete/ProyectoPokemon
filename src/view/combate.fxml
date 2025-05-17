@@ -69,7 +69,7 @@
             <ProgressBar fx:id="pbPokemonExp" layoutX="435.0" layoutY="293.0" prefHeight="10.0" prefWidth="177.0" progress="1.0" />
             <Label fx:id="lblNombrePokeRival" alignment="CENTER" layoutX="48.0" layoutY="56.0" prefHeight="24.0" prefWidth="167.0" />
             <Label fx:id="lblNombrePoke" alignment="CENTER" layoutX="471.0" layoutY="316.0" prefHeight="18.0" prefWidth="94.0" />
-            <TextArea editable="false" layoutX="248.0" layoutY="323.0" prefHeight="97.0" prefWidth="167.0" />
+            <TextArea fx:id="logCombate" editable="false" layoutX="248.0" layoutY="323.0" prefHeight="97.0" prefWidth="167.0" />
             <Label fx:id="lblNombrePoke" alignment="CENTER" layoutX="388.0" layoutY="215.0" prefHeight="24.0" prefWidth="167.0" />
             <Label fx:id="lblNivel" alignment="CENTER" layoutX="583.0" layoutY="215.0" prefHeight="24.0" prefWidth="29.0" />
             <Label fx:id="lblNivelRival" alignment="CENTER" layoutX="248.0" layoutY="56.0" prefHeight="24.0" prefWidth="29.0" />

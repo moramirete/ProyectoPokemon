@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -22,6 +23,9 @@ public class cambiarPokemonCombateController {
 
 	@FXML
 	private Button btnCambiarPor;
+	
+    @FXML
+    private Button btnCambiarPor1;
 
 	@FXML
 	private Button btnVolver;
@@ -51,12 +55,29 @@ public class cambiarPokemonCombateController {
 	private Entrenador entrenador;
 	private Pokemon actualPrincipal;
 	private EntrenamientoController entrenamientoController;
+	private CombateController combateController;
+	private List<Pokemon> equipo;
 
 	public void init(Entrenador entrenador, Pokemon actualPrincipal, EntrenamientoController controller) {
 		this.entrenador = entrenador;
 		this.actualPrincipal = actualPrincipal;
 		this.entrenamientoController = controller;
+		
+		btnCambiarPor.setVisible(true);
+		btnCambiarPor1.setVisible(false);
 
+		cargarEquipo();
+	}
+	
+	public void init(Entrenador entrenador, Pokemon actualPrincipal, CombateController controller, List<Pokemon> equipo) {
+		this.entrenador = entrenador;
+		this.actualPrincipal = actualPrincipal;
+		this.combateController = controller;
+		this.equipo = equipo;
+
+		btnCambiarPor.setVisible(false);
+		btnCambiarPor1.setVisible(true);
+		
 		cargarEquipo();
 	}
 
@@ -94,6 +115,30 @@ public class cambiarPokemonCombateController {
 		}
 	}
 
+	@FXML
+	void cambiarPorCombate(ActionEvent event) {
+	    Pokemon seleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+
+	    if (seleccionado == null) {
+	        JOptionPane.showMessageDialog(null, "Selecciona un Pokémon.");
+	        return;
+	    }
+
+	    Pokemon anteriorPrincipal = actualPrincipal;
+	    actualPrincipal = seleccionado;
+
+	    equipo.remove(seleccionado);
+	    equipo.add(anteriorPrincipal);
+
+	    if (combateController != null) {
+	        combateController.recargarConNuevoPokemon(actualPrincipal.getId_pokemon());
+	    } else {
+	        System.out.println("El controlador de combate no está inicializado.");
+	    }
+
+	    cerrarVentana(event);
+	}
+	
 	@FXML
 	void volveratras(ActionEvent event) {
 		cerrarVentana(event);

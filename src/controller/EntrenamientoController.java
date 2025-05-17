@@ -73,7 +73,7 @@ public class EntrenamientoController {
 		miPokemon = PokemonBD.obtenerPokemonPorIdConMovimientos(
 				PokemonBD.obtenerPokemonPrincipal(entrenador.getIdEntrenador()).getId_pokemon());
 		pokemonRival = PokemonBD.generarPokemonRivalAleatorio(miPokemon);
-		combate = new Combate(1);
+		combate = new Combate();
 
 		cargarDatos();
 	}

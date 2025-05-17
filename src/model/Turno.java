@@ -1,13 +1,13 @@
 package model;
 
 public class Turno {
-	private int numCombate;
+	private String idCombate;
 	private int numTurno;
 	private String accionEntrenador;
 	private String accionRival;
 
-	public Turno(int numCombate, int numTurno, String accionEntrenador, String accionRival) {
-		this.numCombate = numCombate;
+	public Turno(String numCombate, int numTurno, String accionEntrenador, String accionRival) {
+		this.idCombate = numCombate;
 		this.numTurno = numTurno;
 		this.accionEntrenador = accionEntrenador;
 		this.accionRival = accionRival;
@@ -21,12 +21,12 @@ public class Turno {
         
     }
 
-	public int getNumCombate() {
-		return numCombate;
+	public String getNumCombate() {
+		return idCombate;
 	}
 
-	public void setNumCombate(int numCombate) {
-		this.numCombate = numCombate;
+	public void setNumCombate(String numCombate) {
+		this.idCombate = numCombate;
 	}
 
 	public int getNumTurno() {

@@ -1,26 +1,32 @@
 package controller;
 
 import javafx.scene.control.Label;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import bd.PokemonBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.Combate;
 import model.Entrenador;
+import model.Movimiento;
+import model.Pokemon;
+import model.Turno;
 
 public class CombateController {
-
-	private Entrenador entrenador;
-	private Stage stage;
-	private MenuController menuController;
-
-	public void init(Entrenador ent, Stage stage, MenuController menuController) {
-		this.menuController = menuController;
-		this.stage = stage;
-		this.entrenador = ent;
-
-	}
 
 	@FXML
 	private Button btnDescansar;
@@ -44,13 +50,10 @@ public class CombateController {
 	private Button btnPokemon;
 
 	@FXML
-	private ProgressBar hpPokemon;
-
-	@FXML
-	private ProgressBar hpPokemonRival;
-
-	@FXML
 	private ImageView imagenFondo;
+
+	@FXML
+	private ImageView imgParteAbajo;
 
 	@FXML
 	private ImageView imgPoke;
@@ -59,7 +62,10 @@ public class CombateController {
 	private ImageView imgPokeRival;
 
 	@FXML
-	private Label lblEntrenador;
+	private Label lblNivel;
+
+	@FXML
+	private Label lblNivelRival;
 
 	@FXML
 	private Label lblNombrePoke;
@@ -68,36 +74,591 @@ public class CombateController {
 	private Label lblNombrePokeRival;
 
 	@FXML
-	private Label lblRival;
+	private Label lblVitalidad;
+
+	@FXML
+	private Label lblVitalidadMax;
+
+	@FXML
+	private ProgressBar pbPokemonExp;
+
+	@FXML
+	private ProgressBar pbPokemonRival;
+
+	@FXML
+	private ProgressBar pbPokemonVida;
+	
+	@FXML
+	private TextArea logCombate;
+
+	private Entrenador entrenador;
+	private Stage stage;
+	private MenuController menuController;
+
+	private List<Pokemon> rival;
+	private List<Pokemon> equipo;
+	public Pokemon pokEquipo;
+	public Pokemon pokRival;
+	private Combate combate;
+
+	public void init(Entrenador ent, Stage stage, MenuController menuController) {
+		this.menuController = menuController;
+		this.stage = stage;
+		this.entrenador = ent;
+
+		equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
+		pokEquipo = equipo.get(0);
+		rival = PokemonBD.equipoRival(equipo);
+		pokRival = rival.get(0);
+
+		if (equipo.isEmpty()) {
+			System.out.println("El equipo del usuario está vacío.");
+			return;
+		}
+
+		if (rival.isEmpty()) {
+			System.out.println("El equipo rival está vacío.");
+			return;
+		}
+
+		imprimirEquipos();
+
+		cargarDatos(pokEquipo, pokRival);
+		
+	    imprimirEquipos();
+	    cargarDatos(pokEquipo, pokRival);
+
+	    combate = new Combate(); // Inicializa el combate
+	    iniciarCombate(); // Inicia el combate
+	}
+	
+	public void iniciarCombate() {
+	    if (combate == null) {
+	        combate = new Combate(); // Asegúrate de inicializar el objeto combate
+	    }
+
+	    if (combate.getTurnos() == null) {
+	        combate.setTurnos(new ArrayList<>()); // Inicializa la lista turnos si es null
+	    }
+
+	    boolean jugadorEmpieza = determinarQuienEmpieza(pokEquipo, pokRival);
+
+	    if (jugadorEmpieza) {
+	        registrarTurno("¡Empiezas tú!");
+	        actualizarLogCombate("¡Empiezas tú!");
+	    } else {
+	        registrarTurno("¡El rival empieza!");
+	        actualizarLogCombate("¡El rival empieza!");
+	        turnoRival(pokRival, pokEquipo); // El rival toma el primer turno
+	    }
+	}
+
+	private void imprimirEquipos() {
+		System.out.println("Equipo del Usuario:");
+		if (equipo != null && !equipo.isEmpty()) {
+			for (Pokemon pokemon : equipo) {
+				System.out.println("Nombre: " + pokemon.getNombre_pokemon() + ", Nivel: " + pokemon.getNivel()
+						+ ", Vitalidad: " + pokemon.getVitalidadOBJ() + "/" + pokemon.getVitalidadMaxOBJ());
+			}
+		} else {
+			System.out.println("El equipo del usuario está vacío.");
+		}
+
+		System.out.println("\nEquipo Rival:");
+		if (rival != null && !rival.isEmpty()) {
+			for (Pokemon pokemon : rival) {
+				System.out.println("Nombre: " + pokemon.getNombre_pokemon() + ", Nivel: " + pokemon.getNivel()
+						+ ", Vitalidad: " + pokemon.getVitalidadOBJ() + "/" + pokemon.getVitalidadMaxOBJ());
+			}
+		} else {
+			System.out.println("El equipo rival está vacío.");
+		}
+	}
+
+	public void cargarDatos(Pokemon equipo, Pokemon rival) {
+
+		// Cargar imagenes
+
+		String rutaImagen = PokemonBD.obtenerRutaImagenTrasera(equipo);
+		Image imagen = new Image(rutaImagen);
+		imgPoke.setImage(imagen);
+
+		String rutaImagen1 = PokemonBD.obtenerRutaImagen(rival);
+		Image imagen1 = new Image(rutaImagen1);
+		imgPokeRival.setImage(imagen1);
+
+		// Cargar pb
+
+		actualizarBarraVida(pbPokemonVida, equipo.getVitalidadOBJ(), equipo.getVitalidadMaxOBJ());
+		actualizarBarraVida(pbPokemonRival, rival.getVitalidadOBJ(), rival.getVitalidadMaxOBJ());
+		int limiteExperiencia = (equipo.getNivel() * 10);
+		pbPokemonExp.setProgress(equipo.getExperiencia() / limiteExperiencia);
+
+		// Cargar txt
+
+		lblNivel.setText(String.valueOf(equipo.getNivel()));
+		lblNivelRival.setText(String.valueOf(equipo.getNivel()));
+		lblNombrePoke.setText(equipo.getNombre_pokemon());
+		lblNombrePokeRival.setText(rival.getNombre_pokemon());
+		lblVitalidad.setText(String.valueOf(equipo.getVitalidadOBJ()));
+		lblVitalidadMax.setText(String.valueOf(equipo.getVitalidadMaxOBJ()));
+
+		// Cargar movimientos
+
+		equipo = PokemonBD.obtenerPokemonPorIdConMovimientos(equipo.getId_pokemon());
+
+		List<Movimiento> movimientos = equipo.getMovPrincipales();
+
+		btnMov1.setText(
+				movimientos.size() > 0
+						? movimientos.get(0).getNom_movimiento() + " " + movimientos.get(0).getPp_actual() + "/"
+								+ movimientos.get(0).getPp_max()
+						: "Movimiento 1");
+		btnMov1.setVisible(movimientos.size() > 0);
+
+		btnMov2.setText(
+				movimientos.size() > 1
+						? movimientos.get(1).getNom_movimiento() + " " + movimientos.get(1).getPp_actual() + "/"
+								+ movimientos.get(1).getPp_max()
+						: "Movimiento 2");
+		btnMov2.setVisible(movimientos.size() > 1);
+
+		btnMov3.setText(
+				movimientos.size() > 2
+						? movimientos.get(2).getNom_movimiento() + " " + movimientos.get(2).getPp_actual() + "/"
+								+ movimientos.get(2).getPp_max()
+						: "Movimiento 3");
+		btnMov3.setVisible(movimientos.size() > 2);
+
+		btnMov4.setText(
+				movimientos.size() > 3
+						? movimientos.get(3).getNom_movimiento() + " " + movimientos.get(3).getPp_actual() + "/"
+								+ movimientos.get(3).getPp_max()
+						: "Movimiento 4");
+		btnMov4.setVisible(movimientos.size() > 3);
+
+	}
+
+	public void actualizarBarraVida(ProgressBar barra, double vidaActual, double vidaMaxima) {
+		double porcentaje = vidaActual / vidaMaxima;
+		barra.setProgress(porcentaje);
+
+		String color;
+		if (porcentaje > 0.5) {
+			color = "#228B22"; // Verde
+		} else if (porcentaje > 0.2) {
+			color = "yellow"; // Amarillo
+		} else {
+			color = "red"; // Rojo
+		}
+
+		barra.setStyle("-fx-accent: " + color + ";");
+	}
 
 	@FXML
 	void cambiarPokemon(ActionEvent event) {
 
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPokemonCombate.fxml"));
+			Parent root = loader.load();
+
+			cambiarPokemonCombateController controlador = loader.getController();
+			controlador.init(entrenador, pokEquipo, this, equipo);
+
+			Stage nuevaVentana = new Stage();
+			nuevaVentana.setTitle("Cambiar Pokémon del equipo");
+			nuevaVentana.setScene(new Scene(root));
+			nuevaVentana.initOwner(this.stage);
+			nuevaVentana.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+			mostrarAlerta("Error al abrir la ventana de cambio de Pokémon.");
+		}
+
+	}
+
+	public void recargarConNuevoPokemon(int idPokemon) {
+		Pokemon nuevoPrincipal = equipo.stream().filter(pokemon -> pokemon.getId_pokemon() == idPokemon).findFirst()
+				.orElse(null);
+
+		if (nuevoPrincipal != null) {
+			cargarDatos(nuevoPrincipal, pokRival);
+		}
+	}
+
+	private void mostrarAlerta(String mensaje) {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Entrenamiento");
+		alert.setHeaderText(null);
+		alert.setContentText(mensaje);
+		alert.showAndWait();
 	}
 
 	@FXML
 	void descansar(ActionEvent event) {
+
+		int vitalidadRecuperada = pokEquipo.getVitalidadMaxOBJ() / 10; // Recupera el 10% de la vitalidad máxima
+		pokEquipo.setVitalidadOBJ(
+				Math.min(pokEquipo.getVitalidadOBJ() + vitalidadRecuperada, pokEquipo.getVitalidadMaxOBJ()));
+
+		registrarTurno(pokEquipo.getNombre_pokemon() + " descansó y recuperó " + vitalidadRecuperada + " PS.");
 
 	}
 
 	@FXML
 	void hacerMov1(ActionEvent event) {
 
+		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
+		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
+		turnoJugador(pokEquipo, pokRival, movimientos.get(0));
+
 	}
 
 	@FXML
 	void hacerMov2(ActionEvent event) {
+
+		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
+		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
+		turnoJugador(pokEquipo, pokRival, movimientos.get(1));
 
 	}
 
 	@FXML
 	void hacerMov3(ActionEvent event) {
 
+		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
+		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
+		turnoJugador(pokEquipo, pokRival, movimientos.get(2));
+
 	}
 
 	@FXML
 	void hacerMov4(ActionEvent event) {
 
+		pokEquipo = PokemonBD.obtenerPokemonPorIdConMovimientos(pokEquipo.getId_pokemon());
+		List<Movimiento> movimientos = pokEquipo.getMovPrincipales();
+		turnoJugador(pokEquipo, pokRival, movimientos.get(3));
+
+	}
+
+	private boolean determinarQuienEmpieza(Pokemon jugador, Pokemon rival) {
+		return jugador.getVelocidadOBJ() >= rival.getVelocidadOBJ();
+	}
+	
+	private void cambiarPokemonRival() {
+	    for (Pokemon pokemon : rival) {
+	        if (pokemon.getVitalidadOBJ() > 0) {
+	            registrarTurno("El rival cambió a " + pokemon.getNombre_pokemon() + ".");
+	            cargarDatos(equipo.get(0), pokemon); // Actualiza los datos del combate
+	            return;
+	        }
+	    }
+
+	    // Si no hay más Pokémon disponibles, el jugador gana
+	    finalizarCombate(true);
+	}
+	
+	private Movimiento elegirMovimientoAleatorio(Pokemon pokemon) {
+	    List<Movimiento> movimientos = pokemon.getMovPrincipales();
+	    if (movimientos == null || movimientos.isEmpty()) {
+	        return null; // No hay movimientos disponibles
+	    }
+
+	    Random rd = new Random();
+	    return movimientos.get(rd.nextInt(movimientos.size()));
+	}
+
+	private void turnoRival(Pokemon rival, Pokemon jugador) {
+		if (rival.getVitalidadOBJ() <= 0) {
+			cambiarPokemonRival();
+			return;
+		}
+
+		Movimiento movimiento = elegirMovimientoAleatorio(rival);
+		if (movimiento == null) {
+			System.out.println("El rival no tiene movimientos disponibles.");
+			return;
+		}
+
+		int daño = calcularDaño(rival, jugador, movimiento);
+		jugador.setVitalidadOBJ(Math.max(0, jugador.getVitalidadOBJ() - daño));
+
+		registrarTurno("El rival usó " + movimiento.getNom_movimiento() + " e hizo " + daño + " de daño.");
+	}
+
+	private void turnoJugador(Pokemon jugador, Pokemon rival, Movimiento movimiento) {
+		if (jugador.getVitalidadOBJ() <= 0) {
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPokemonCombate.fxml"));
+				Parent root = loader.load();
+
+				cambiarPokemonCombateController controlador = loader.getController();
+				controlador.init(entrenador, pokEquipo, this, equipo);
+
+				Stage nuevaVentana = new Stage();
+				nuevaVentana.setTitle("Cambiar Pokémon del equipo");
+				nuevaVentana.setScene(new Scene(root));
+				nuevaVentana.initOwner(this.stage);
+				nuevaVentana.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+				mostrarAlerta("Error al abrir la ventana de cambio de Pokémon.");
+			}
+			;
+			return;
+		}
+
+		if (movimiento == null) {
+			System.out.println("No se seleccionó un movimiento.");
+			return;
+		}
+
+		int daño = calcularDaño(jugador, rival, movimiento);
+		rival.setVitalidadOBJ(Math.max(0, rival.getVitalidadOBJ() - daño));
+
+		registrarTurno("Usaste " + movimiento.getNom_movimiento() + " e hiciste " + daño + " de daño.");
+	}
+
+	private int calcularDaño(Pokemon atacante, Pokemon defensor, Movimiento movimiento) {
+		double multiplicadorTipo = calcularMultiplicadorTipo(movimiento.getTipo(), defensor.getTipo1(),
+				defensor.getTipo2());
+		double dañoBase = (((2 * atacante.getNivel()) / 5.0 + 2) * movimiento.getPotencia()
+				* (atacante.getAtaqueOBJ() / (double) defensor.getDefensaOBJ()) / 250.0 + 2);
+		return (int) (dañoBase * multiplicadorTipo);
+	}
+
+	private void registrarTurno(String descripcion) {
+		
+	    if (combate.getTurnos() == null) {
+	        System.err.println("Error: La lista de turnos es null. Inicializándola.");
+	        combate.setTurnos(new ArrayList<>());
+	    }
+		
+		Turno turno = new Turno(combate.getNumeroCombate(), combate.getTurnos().size() + 1, descripcion, "");
+		combate.agregarTurno(turno);
+		actualizarLogCombate(descripcion);
+	}
+
+
+
+	private void otorgarExperiencia(Pokemon ganador, Pokemon perdedor) {
+		int experienciaGanada = (perdedor.getNivel() * 10) / ganador.getNivel();
+		ganador.setExperiencia(ganador.getExperiencia() + experienciaGanada);
+
+		if (ganador.getExperiencia() >= ganador.getNivel() * 10) {
+			subirNivel(ganador);
+		}
+	}
+
+	private void subirNivel(Pokemon pokemon) {
+		pokemon.setNivel(pokemon.getNivel() + 1);
+		pokemon.setExperiencia(0);
+		pokemon.setAtaqueOBJ(pokemon.getAtaqueOBJ() + 2);
+		pokemon.setDefensaOBJ(pokemon.getDefensaOBJ() + 2);
+		pokemon.setVitalidadMaxOBJ(pokemon.getVitalidadMaxOBJ() + 5);
+
+		if (pokemon.getNivel() == 25 || pokemon.getNivel() == 50) {
+			evolucionarPokemon(pokemon);
+		}
+	}
+
+	private void evolucionarPokemon(Pokemon pokemon) {
+	    int nuevoNumPokedex = PokemonBD.obtenerEvolucion(pokemon.getNum_pokedex(), pokemon.getNivel());
+	    if (nuevoNumPokedex != pokemon.getNum_pokedex()) {
+	        pokemon.setNum_pokedex(nuevoNumPokedex);
+	        System.out.println(pokemon.getNombre_pokemon() + " ha evolucionado!");
+	    } else {
+	        System.out.println(pokemon.getNombre_pokemon() + " no puede evolucionar.");
+	    }
+	}
+
+	private void finalizarCombate(boolean jugadorGana) {
+		if (jugadorGana) {
+			System.out.println("¡Has ganado el combate!");
+		} else {
+			System.out.println("Has perdido el combate.");
+		}
+
+		combate.exportarTurnos("log_combate.txt");
+	}
+
+	private double calcularMultiplicadorTipo(String tipoAtaque, String tipoDefensor1, String tipoDefensor2) {
+		double multiplicador = 1.0;
+
+		// Ataques que hacen el DOBLE de daño (x2)
+		if (tipoAtaque.equals("AGUA") && (tipoDefensor1.equals("FUEGO") || tipoDefensor1.equals("ROCA")
+				|| tipoDefensor1.equals("TIERRA") || tipoDefensor2.equals("FUEGO") || tipoDefensor2.equals("ROCA")
+				|| tipoDefensor2.equals("TIERRA"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("BICHO") && (tipoDefensor1.equals("PLANTA") || tipoDefensor1.equals("PSÍQUICO")
+				|| tipoDefensor1.equals("SINIESTRO") || tipoDefensor2.equals("PLANTA")
+				|| tipoDefensor2.equals("PSÍQUICO") || tipoDefensor2.equals("SINIESTRO"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("DRAGÓN") && (tipoDefensor1.equals("DRAGÓN") || tipoDefensor2.equals("DRAGÓN"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("ELÉCTRICO") && (tipoDefensor1.equals("AGUA") || tipoDefensor1.equals("VOLADOR")
+				|| tipoDefensor2.equals("AGUA") || tipoDefensor2.equals("VOLADOR"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("FANTASMA") && (tipoDefensor1.equals("FANTASMA") || tipoDefensor1.equals("PSÍQUICO")
+				|| tipoDefensor2.equals("FANTASMA") || tipoDefensor2.equals("PSÍQUICO"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("FUEGO") && (tipoDefensor1.equals("BICHO") || tipoDefensor1.equals("PLANTA")
+				|| tipoDefensor1.equals("HIELO") || tipoDefensor1.equals("ACERO") || tipoDefensor2.equals("BICHO")
+				|| tipoDefensor2.equals("PLANTA") || tipoDefensor2.equals("HIELO") || tipoDefensor2.equals("ACERO"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("HIELO") && (tipoDefensor1.equals("DRAGÓN") || tipoDefensor1.equals("PLANTA")
+				|| tipoDefensor1.equals("TIERRA") || tipoDefensor1.equals("VOLADOR") || tipoDefensor2.equals("DRAGÓN")
+				|| tipoDefensor2.equals("PLANTA") || tipoDefensor2.equals("TIERRA")
+				|| tipoDefensor2.equals("VOLADOR"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("LUCHA") && (tipoDefensor1.equals("NORMAL") || tipoDefensor1.equals("HIELO")
+				|| tipoDefensor1.equals("ROCA") || tipoDefensor1.equals("SINIESTRO") || tipoDefensor1.equals("ACERO")
+				|| tipoDefensor2.equals("NORMAL") || tipoDefensor2.equals("HIELO") || tipoDefensor2.equals("ROCA")
+				|| tipoDefensor2.equals("SINIESTRO") || tipoDefensor2.equals("ACERO"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("PLANTA") && (tipoDefensor1.equals("AGUA") || tipoDefensor1.equals("TIERRA")
+				|| tipoDefensor1.equals("ROCA") || tipoDefensor2.equals("AGUA") || tipoDefensor2.equals("TIERRA")
+				|| tipoDefensor2.equals("ROCA"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("PSÍQUICO") && (tipoDefensor1.equals("LUCHA") || tipoDefensor1.equals("VENENO")
+				|| tipoDefensor2.equals("LUCHA") || tipoDefensor2.equals("VENENO"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("ROCA") && (tipoDefensor1.equals("BICHO") || tipoDefensor1.equals("FUEGO")
+				|| tipoDefensor1.equals("HIELO") || tipoDefensor1.equals("VOLADOR") || tipoDefensor2.equals("BICHO")
+				|| tipoDefensor2.equals("FUEGO") || tipoDefensor2.equals("HIELO") || tipoDefensor2.equals("VOLADOR"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("TIERRA") && (tipoDefensor1.equals("ELÉCTRICO") || tipoDefensor1.equals("FUEGO")
+				|| tipoDefensor1.equals("ROCA") || tipoDefensor1.equals("ACERO") || tipoDefensor1.equals("VENENO")
+				|| tipoDefensor2.equals("ELÉCTRICO") || tipoDefensor2.equals("FUEGO") || tipoDefensor2.equals("ROCA")
+				|| tipoDefensor2.equals("ACERO") || tipoDefensor2.equals("VENENO"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("VENENO") && (tipoDefensor1.equals("PLANTA") || tipoDefensor1.equals("HADA")
+				|| tipoDefensor2.equals("PLANTA") || tipoDefensor2.equals("HADA"))) {
+			multiplicador *= 2.0;
+		}
+		if (tipoAtaque.equals("VOLADOR") && (tipoDefensor1.equals("BICHO") || tipoDefensor1.equals("LUCHA")
+				|| tipoDefensor1.equals("PLANTA") || tipoDefensor2.equals("BICHO") || tipoDefensor2.equals("LUCHA")
+				|| tipoDefensor2.equals("PLANTA"))) {
+			multiplicador *= 2.0;
+		}
+
+		if (tipoAtaque.equals("AGUA") && (tipoDefensor1.equals("AGUA") || tipoDefensor1.equals("PLANTA")
+				|| tipoDefensor1.equals("DRAGÓN") || tipoDefensor2.equals("AGUA") || tipoDefensor2.equals("PLANTA")
+				|| tipoDefensor2.equals("DRAGÓN"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("BICHO") && (tipoDefensor1.equals("FUEGO") || tipoDefensor1.equals("LUCHA")
+				|| tipoDefensor1.equals("VOLADOR") || tipoDefensor1.equals("FANTASMA") || tipoDefensor1.equals("HADA")
+				|| tipoDefensor1.equals("VENENO") || tipoDefensor1.equals("ACERO") || tipoDefensor2.equals("FUEGO")
+				|| tipoDefensor2.equals("LUCHA") || tipoDefensor2.equals("VOLADOR") || tipoDefensor2.equals("FANTASMA")
+				|| tipoDefensor2.equals("HADA") || tipoDefensor2.equals("VENENO") || tipoDefensor2.equals("ACERO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("DRAGÓN") && (tipoDefensor1.equals("ACERO") || tipoDefensor2.equals("ACERO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("ELÉCTRICO") && (tipoDefensor1.equals("PLANTA") || tipoDefensor1.equals("DRAGÓN")
+				|| tipoDefensor1.equals("ELÉCTRICO") || tipoDefensor2.equals("PLANTA") || tipoDefensor2.equals("DRAGÓN")
+				|| tipoDefensor2.equals("ELÉCTRICO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("FANTASMA") && (tipoDefensor1.equals("SINIESTRO") || tipoDefensor2.equals("SINIESTRO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("FUEGO") && (tipoDefensor1.equals("AGUA") || tipoDefensor1.equals("FUEGO")
+				|| tipoDefensor1.equals("ROCA") || tipoDefensor1.equals("DRAGÓN") || tipoDefensor2.equals("AGUA")
+				|| tipoDefensor2.equals("FUEGO") || tipoDefensor2.equals("ROCA") || tipoDefensor2.equals("DRAGÓN"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("HIELO") && (tipoDefensor1.equals("AGUA") || tipoDefensor1.equals("FUEGO")
+				|| tipoDefensor1.equals("HIELO") || tipoDefensor1.equals("ACERO") || tipoDefensor2.equals("AGUA")
+				|| tipoDefensor2.equals("FUEGO") || tipoDefensor2.equals("HIELO") || tipoDefensor2.equals("ACERO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("LUCHA") && (tipoDefensor1.equals("BICHO") || tipoDefensor1.equals("HADA")
+				|| tipoDefensor1.equals("PSÍQUICO") || tipoDefensor1.equals("VOLADOR") || tipoDefensor1.equals("VENENO")
+				|| tipoDefensor2.equals("BICHO") || tipoDefensor2.equals("HADA") || tipoDefensor2.equals("PSÍQUICO")
+				|| tipoDefensor2.equals("VOLADOR") || tipoDefensor2.equals("VENENO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("NORMAL") && (tipoDefensor1.equals("ROCA") || tipoDefensor1.equals("ACERO")
+				|| tipoDefensor2.equals("ROCA") || tipoDefensor2.equals("ACERO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("PLANTA") && (tipoDefensor1.equals("FUEGO") || tipoDefensor1.equals("PLANTA")
+				|| tipoDefensor1.equals("DRAGÓN") || tipoDefensor1.equals("BICHO") || tipoDefensor1.equals("VENENO")
+				|| tipoDefensor1.equals("VOLADOR") || tipoDefensor1.equals("ACERO") || tipoDefensor2.equals("FUEGO")
+				|| tipoDefensor2.equals("PLANTA") || tipoDefensor2.equals("DRAGÓN") || tipoDefensor2.equals("BICHO")
+				|| tipoDefensor2.equals("VENENO") || tipoDefensor2.equals("VOLADOR")
+				|| tipoDefensor2.equals("ACERO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("PSÍQUICO") && (tipoDefensor1.equals("ACERO") || tipoDefensor1.equals("PSÍQUICO")
+				|| tipoDefensor2.equals("ACERO") || tipoDefensor2.equals("PSÍQUICO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("ROCA") && (tipoDefensor1.equals("LUCHA") || tipoDefensor1.equals("ACERO")
+				|| tipoDefensor1.equals("TIERRA") || tipoDefensor2.equals("LUCHA") || tipoDefensor2.equals("ACERO")
+				|| tipoDefensor2.equals("TIERRA"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("TIERRA") && (tipoDefensor1.equals("PLANTA") || tipoDefensor1.equals("BICHO")
+				|| tipoDefensor2.equals("PLANTA") || tipoDefensor2.equals("BICHO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("VENENO") && (tipoDefensor1.equals("FANTASMA") || tipoDefensor1.equals("TIERRA")
+				|| tipoDefensor1.equals("ROCA") || tipoDefensor1.equals("VENENO") || tipoDefensor2.equals("FANTASMA")
+				|| tipoDefensor2.equals("TIERRA") || tipoDefensor2.equals("ROCA") || tipoDefensor2.equals("VENENO"))) {
+			multiplicador *= 0.5;
+		}
+		if (tipoAtaque.equals("VOLADOR") && (tipoDefensor1.equals("ELÉCTRICO") || tipoDefensor1.equals("ROCA")
+				|| tipoDefensor1.equals("ACERO") || tipoDefensor2.equals("ELÉCTRICO") || tipoDefensor2.equals("ROCA")
+				|| tipoDefensor2.equals("ACERO"))) {
+			multiplicador *= 0.5;
+		}
+
+		if (tipoAtaque.equals("FANTASMA") && (tipoDefensor1.equals("NORMAL") || tipoDefensor2.equals("NORMAL"))) {
+			multiplicador = 0.0;
+		}
+		if (tipoAtaque.equals("LUCHA") && (tipoDefensor1.equals("FANTASMA") || tipoDefensor2.equals("FANTASMA"))) {
+			multiplicador = 0.0;
+		}
+		if (tipoAtaque.equals("NORMAL") && (tipoDefensor1.equals("FANTASMA") || tipoDefensor2.equals("FANTASMA"))) {
+			multiplicador = 0.0;
+		}
+		if (tipoAtaque.equals("ELÉCTRICO") && (tipoDefensor1.equals("TIERRA") || tipoDefensor2.equals("TIERRA"))) {
+			multiplicador = 0.0;
+		}
+		if (tipoAtaque.equals("VENENO") && (tipoDefensor1.equals("ACERO") || tipoDefensor2.equals("ACERO"))) {
+			multiplicador = 0.0;
+		}
+		if (tipoAtaque.equals("TIERRA") && (tipoDefensor1.equals("VOLADOR") || tipoDefensor2.equals("VOLADOR"))) {
+			multiplicador = 0.0;
+		}
+		if (tipoAtaque.equals("PSÍQUICO") && (tipoDefensor1.equals("SINIESTRO") || tipoDefensor2.equals("SINIESTRO"))) {
+			multiplicador = 0.0;
+		}
+		if (tipoAtaque.equals("DRAGÓN") && (tipoDefensor1.equals("HADA") || tipoDefensor2.equals("HADA"))) {
+			multiplicador = 0.0;
+		}
+
+		return multiplicador;
+	}
+	
+	private void actualizarLogCombate(String descripcion) {
+		logCombate.appendText(descripcion + "\n");
 	}
 
 	@FXML

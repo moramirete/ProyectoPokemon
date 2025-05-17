@@ -228,7 +228,8 @@ public class PokemonBD {
 		try (Connection con = BDConecction.getConnection()) {
 			String sql = "SELECT * \r\n" + "FROM POKEMON p \r\n"
 					+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
-					+ "WHERE e.ID_ENTRENADOR = ? AND p.EQUIPO > 0 AND p.EQUIPO < 3 ";
+					+ "WHERE e.ID_ENTRENADOR = ? AND p.EQUIPO > 0 AND p.EQUIPO < 3 "
+					+ "ORDER BY EQUIPO";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, idEntrenador);
 			ResultSet rs = stmt.executeQuery();
@@ -919,6 +920,27 @@ public class PokemonBD {
         }
     }
     
-    
+    public static int obtenerEvolucion(int numPokedex, int nivelActual) {
+        String sql = "SELECT num_pokedex, nivel_evolucion FROM pokemon WHERE num_pokedex = ?";
+        try (Connection conn = BDConecction.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, numPokedex + 1); // Consultar el siguiente número de la Pokédex
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int nivelEvolucion = rs.getInt("nivel_evolucion");
+
+                // Verificar si el nivel actual cumple con los requisitos de evolución
+                if ((nivelEvolucion == 2 && nivelActual >= 25) || (nivelEvolucion == 3 && nivelActual >= 50)) {
+                    return rs.getInt("num_pokedex"); // Devuelve el nuevo número de Pokédex
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return numPokedex; // Si no evoluciona, devuelve el mismo número de Pokédex
+    }
 	
 }

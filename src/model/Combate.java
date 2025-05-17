@@ -3,17 +3,29 @@ package model;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Combate {
 	
-	private int numeroCombate;
+	private String idCombate;
     private List<Turno> turnos;
 
-    public Combate(int numeroCombate) {
-        this.numeroCombate = numeroCombate;
+    public Combate(String numeroCombate) {
+        this.idCombate = numeroCombate;
         this.turnos = new ArrayList<>();
+    }
+    
+    
+    public Combate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
+        this.idCombate = LocalDateTime.now().format(formatter); // Genera un ID basado en la fecha y hora
+    }
+
+    public String getIdCombate() {
+        return idCombate;
     }
     
     public void agregarTurno(Turno turno) {
@@ -22,7 +34,7 @@ public class Combate {
 
     public void exportarTurnos(String rutaArchivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
-            writer.write("Combate " + numeroCombate + ":\n");
+            writer.write("Combate " + idCombate + ":\n");
             for (Turno turno : turnos) {
                 writer.write(turno.toString() + "\n");
             }
@@ -31,12 +43,12 @@ public class Combate {
         }
     }
 
-	public int getNumeroCombate() {
-		return numeroCombate;
+	public String getNumeroCombate() {
+		return idCombate;
 	}
 
-	public void setNumeroCombate(int numeroCombate) {
-		this.numeroCombate = numeroCombate;
+	public void setNumeroCombate(String numeroCombate) {
+		this.idCombate = numeroCombate;
 	}
 
 	public List<Turno> getTurnos() {
