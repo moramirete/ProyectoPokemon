@@ -33,31 +33,67 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CentroController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CentroController">
+   <children>
+      <HBox maxHeight="100.0" VBox.vgrow="ALWAYS" />
+      <HBox VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="imagenFondo" fitHeight="439.0" fitWidth="688.0" layoutX="-24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondoCentro.jpg" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnSalir" layoutX="490.0" layoutY="224.0" mnemonicParsing="false" onAction="#volverMenu" prefHeight="64.0" prefWidth="137.0" text="Volver a Menu" />
-            <TableView fx:id="tableCentro" layoutX="14.0" layoutY="13.0" prefHeight="370.0" prefWidth="429.0">
-              <columns>
-                <TableColumn fx:id="colPokemon" minWidth="0.0" prefWidth="171.0" text="Pokemon" />
-                  <TableColumn fx:id="colVida" prefWidth="255.0" text="Vida" />
-              </columns>
-            </TableView>
-            <Button fx:id="btnRecuperar" layoutX="490.0" layoutY="117.0" mnemonicParsing="false" onAction="#recuperarPokemon" prefHeight="64.0" prefWidth="137.0" text="Recuperar" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <VBox maxWidth="450.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox VBox.vgrow="ALWAYS" />
+                  <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="-1.0" prefWidth="1000.0">
+                     <children>
+                        <ImageView fx:id="imagenFondo" fitHeight="611.0" fitWidth="1182.0" layoutX="-24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondoCentro.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgBocadillo" fitHeight="127.0" fitWidth="160.0" layoutX="606.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/bocadillo.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="279.0" fitWidth="166.0" layoutX="738.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/imagenEnfermera.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="638.0" layoutY="150.0" prefHeight="128.0" prefWidth="128.0" text="Este es el centro pokemon, aqui puedes curar tus pokemons." wrapText="true" />
+                        <Button fx:id="btnSalir" layoutX="663.0" layoutY="434.0" mnemonicParsing="false" onAction="#volverMenu" prefHeight="108.0" prefWidth="237.0" text="Volver a Menu">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <TableView fx:id="tableCentro" layoutX="-3.0" layoutY="22.0" prefHeight="579.0" prefWidth="600.0">
+                           <columns>
+                              <TableColumn fx:id="colPokemon" minWidth="0.0" prefWidth="300.0" text="Pokemon" />
+                              <TableColumn fx:id="colVida" prefWidth="285.0" text="Vida" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="btnRecuperar" layoutX="663.0" layoutY="57.0" mnemonicParsing="false" onAction="#recuperarPokemon" prefHeight="108.0" prefWidth="237.0" text="Recuperar">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <VBox VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox HBox.hgrow="ALWAYS" />
          </children>
-    </AnchorPane>
-  </children>
+      </HBox>
+      <HBox maxHeight="100.0" VBox.vgrow="ALWAYS" />
+   </children>
 </VBox>

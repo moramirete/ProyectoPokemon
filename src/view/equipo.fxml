@@ -39,190 +39,205 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="402.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EquipoController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EquipoController">
+   <children>
+      <HBox maxHeight="100.0" VBox.vgrow="ALWAYS" />
+      <HBox VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fx:id="imgfondo" fitHeight="404.0" fitWidth="640.0" layoutX="-1.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondoequipo.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="63.0" fitWidth="314.0" layoutX="296.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="63.0" fitWidth="314.0" layoutX="296.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="63.0" fitWidth="314.0" layoutX="296.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="63.0" fitWidth="314.0" layoutX="296.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="63.0" fitWidth="314.0" layoutX="296.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="126.0" fitWidth="212.0" layoutX="34.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/imagen%20equipo%20principal.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnSalir" contentDisplay="CENTER" layoutX="542.0" layoutY="370.0" mnemonicParsing="false" onAction="#cerrarEquipo" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: purple;" text="  Salir" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Button>
-            <Label fx:id="NombrePoke2" layoutX="363.0" layoutY="34.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="NivelPoke2" layoutX="370.0" layoutY="65.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ProgressBar fx:id="barraVida2" layoutX="448.0" layoutY="32.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;">
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
-            </ProgressBar>
-            <Label fx:id="lblVida2" layoutX="530.0" layoutY="65.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="Imgpoke2" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="NombrePoke3" layoutX="363.0" layoutY="102.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="NivelPoke3" layoutX="370.0" layoutY="133.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ProgressBar fx:id="barraVida3" layoutX="448.0" layoutY="100.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida3" layoutX="530.0" layoutY="133.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="Imgpoke3" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="NombrePoke4" layoutX="361.0" layoutY="166.0" prefHeight="18.0" prefWidth="58.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="NivelPoke4" layoutX="370.0" layoutY="200.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ProgressBar fx:id="barraVida4" layoutX="448.0" layoutY="166.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida4" layoutX="530.0" layoutY="200.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="Imgpoke4" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="NombrePoke5" layoutX="367.0" layoutY="239.0" prefHeight="18.0" prefWidth="58.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="NivelPoke5" layoutX="370.0" layoutY="278.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="Imgpoke5" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
-            <ProgressBar fx:id="barraVida5" layoutX="448.0" layoutY="239.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida5" layoutX="530.0" layoutY="271.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="Imgpoke6" fitHeight="78.0" fitWidth="96.0" layoutX="289.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="NivelPoke6" layoutX="376.0" layoutY="341.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="NombrePoke6" layoutX="361.0" layoutY="305.0" prefHeight="18.0" prefWidth="58.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ProgressBar fx:id="barraVida6" layoutX="448.0" layoutY="305.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida6" layoutX="530.0" layoutY="341.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="Imgpoke1" fitHeight="78.0" fitWidth="96.0" layoutX="29.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="NombrePoke1" layoutX="107.0" layoutY="119.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="NivelPoke1" layoutX="110.0" layoutY="133.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ProgressBar fx:id="barraVida1" layoutX="81.0" layoutY="149.0" prefHeight="18.0" prefWidth="143.0" progress="0.0" style="-fx-accent: #228B22;" />
-            <Label fx:id="lblVida1" layoutX="157.0" layoutY="177.0" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="532.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnCambiar" alignment="CENTER" contentDisplay="CENTER" layoutX="451.0" layoutY="370.0" mnemonicParsing="false" onAction="#abrirCaja" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: purple;" text="Caja" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="425.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnPokemonPrincipal" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="224.0" layoutY="79.0" mnemonicParsing="false" onAction="#abrirEdicion" prefHeight="18.0" prefWidth="24.0" style="-fx-background-color: purple;" text="↑↓" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="11.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnEstadisticas" alignment="CENTER" contentDisplay="CENTER" layoutX="310.0" layoutY="370.0" mnemonicParsing="false" onAction="#abrirEstadisticas" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color: purple;" text="Estadisticas" textFill="WHITE">
-               <font>
-                  <Font name="Consolas" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="284.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
-               </image>
-            </ImageView>
+            <HBox HBox.hgrow="ALWAYS" />
+            <VBox maxWidth="450.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox VBox.vgrow="ALWAYS" />
+                  <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="-1.0" prefWidth="1000.0">
+                     <children>
+                        <ImageView fx:id="imgfondo1" fitHeight="1000.0" fitWidth="1000.0" layoutY="2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondoequipo.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="124.0" fitWidth="460.0" layoutX="492.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="124.0" fitWidth="460.0" layoutX="492.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="124.0" fitWidth="460.0" layoutX="492.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="124.0" fitWidth="460.0" layoutX="492.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="96.0" fitWidth="466.0" layoutX="489.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondo%20equipo%20pokemon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="225.0" fitWidth="314.0" layoutX="69.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/imagen%20equipo%20principal.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnSalir1" contentDisplay="CENTER" layoutX="830.0" layoutY="574.0" mnemonicParsing="false" onAction="#cerrarEquipo" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: purple;" text="  Salir" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="NombrePoke2" layoutX="586.0" layoutY="51.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="NivelPoke2" layoutX="595.0" layoutY="110.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="barraVida2" layoutX="710.0" layoutY="56.0" prefHeight="18.0" prefWidth="225.0" progress="0.0" style="-fx-accent: #228B22;">
+                           <cursor>
+                              <Cursor fx:constant="NONE" />
+                           </cursor>
+                        </ProgressBar>
+                        <Label fx:id="lblVida2" layoutX="869.0" layoutY="110.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="Imgpoke2" fitHeight="92.0" fitWidth="116.0" layoutX="480.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="NombrePoke3" layoutX="586.0" layoutY="161.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="NivelPoke3" layoutX="595.0" layoutY="217.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="barraVida3" layoutX="710.0" layoutY="159.0" prefHeight="18.0" prefWidth="225.0" progress="0.0" style="-fx-accent: #228B22;" />
+                        <Label fx:id="lblVida3" layoutX="869.0" layoutY="217.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="Imgpoke3" fitHeight="92.0" fitWidth="116.0" layoutX="480.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="NombrePoke4" layoutX="582.0" layoutY="263.0" prefHeight="18.0" prefWidth="27.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="NivelPoke4" layoutX="595.0" layoutY="322.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="barraVida4" layoutX="710.0" layoutY="272.0" prefHeight="18.0" prefWidth="225.0" progress="0.0" style="-fx-accent: #228B22;" />
+                        <Label fx:id="lblVida4" layoutX="869.0" layoutY="322.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="Imgpoke4" fitHeight="92.0" fitWidth="116.0" layoutX="480.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="NombrePoke5" layoutX="580.0" layoutY="362.0" prefHeight="18.0" prefWidth="58.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="NivelPoke5" layoutX="595.0" layoutY="425.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="Imgpoke5" fitHeight="92.0" fitWidth="116.0" layoutX="475.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
+                        <ProgressBar fx:id="barraVida5" layoutX="712.0" layoutY="370.0" prefHeight="18.0" prefWidth="225.0" progress="0.0" style="-fx-accent: #228B22;" />
+                        <Label fx:id="lblVida5" layoutX="869.0" layoutY="425.0" prefHeight="14.0" prefWidth="14.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="Imgpoke6" fitHeight="92.0" fitWidth="116.0" layoutX="480.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="NivelPoke6" layoutX="595.0" layoutY="542.0" prefHeight="14.0" prefWidth="0.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="NombrePoke6" layoutX="583.0" layoutY="492.0" prefHeight="18.0" prefWidth="27.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="barraVida6" layoutX="714.0" layoutY="483.0" prefHeight="18.0" prefWidth="225.0" progress="0.0" style="-fx-accent: #228B22;" />
+                        <Label fx:id="lblVida61" layoutX="869.0" layoutY="542.0" prefHeight="14.0" prefWidth="8.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="Imgpoke1" fitHeight="92.0" fitWidth="116.0" layoutX="50.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="NombrePoke1" layoutX="166.0" layoutY="230.0" prefHeight="18.0" prefWidth="143.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="NivelPoke1" layoutX="166.0" layoutY="265.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="barraVida1" layoutX="155.0" layoutY="291.0" prefHeight="18.0" prefWidth="186.0" progress="0.0" style="-fx-accent: #228B22;" />
+                        <Label fx:id="lblVida1" layoutX="287.0" layoutY="329.0" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="75.0" fitWidth="65.0" layoutX="798.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnCambiar1" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="574.0" mnemonicParsing="false" onAction="#abrirCaja" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: purple;" text="Caja" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="74.0" fitWidth="65.0" layoutX="673.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnPokemonPrincipal1" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="356.0" layoutY="204.0" mnemonicParsing="false" onAction="#abrirEdicion" prefHeight="26.0" prefWidth="27.0" style="-fx-background-color: purple;" text="↑↓" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="11.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEstadisticas1" alignment="CENTER" contentDisplay="CENTER" layoutX="538.0" layoutY="573.0" mnemonicParsing="false" onAction="#abrirEstadisticas" prefHeight="49.0" prefWidth="127.0" style="-fx-background-color: purple;" text="Estadisticas" textFill="WHITE">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="77.0" fitWidth="65.0" layoutX="500.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <VBox VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox HBox.hgrow="ALWAYS" />
          </children>
-    </AnchorPane>
-  </children>
+      </HBox>
+      <HBox VBox.vgrow="ALWAYS" />
+   </children>
 </VBox>

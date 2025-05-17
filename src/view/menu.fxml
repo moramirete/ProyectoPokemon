@@ -51,39 +51,39 @@
                   <VBox VBox.vgrow="ALWAYS" />
                   <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefWidth="1000.0">
                      <children>
-                        <ImageView fx:id="imagenFondo" fitHeight="1000.0" fitWidth="1000.0" layoutX="18.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imagenFondo" fitHeight="1000.0" fitWidth="1000.0" layoutX="7.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../multimedia/imagenes/fondos/fondomenu.jpg" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnEquipo" layoutX="63.0" layoutY="147.0" mnemonicParsing="false" onAction="#abrirEquipo" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Equipo" />
-                        <Button fx:id="btnCaptura" layoutX="63.0" layoutY="211.0" mnemonicParsing="false" onAction="#abrirCaptura" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Captura" />
-                        <Button fx:id="btnCombate" layoutX="63.0" layoutY="279.0" mnemonicParsing="false" onAction="#abrirCombate" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Combate" />
-                        <Button fx:id="btnCrianza" layoutX="247.0" layoutY="279.0" mnemonicParsing="false" onAction="#abrirCrianza" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Crianza" />
-                        <Button fx:id="btnCentroPokemon" layoutX="247.0" layoutY="147.0" mnemonicParsing="false" onAction="#abrirCentro" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Centro Pokemon" />
-                        <Button fx:id="btnEntrenamiento" layoutX="247.0" layoutY="211.0" mnemonicParsing="false" onAction="#abrirEntrenamiento" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Entrenamiento" />
-                        <Button fx:id="btnSalir" layoutX="64.0" layoutY="430.0" mnemonicParsing="false" onAction="#cerrarMenu" prefHeight="38.0" prefWidth="339.0" stylesheets="@../estilos/estiloButton.css" text="Salir" />
-                        <ImageView fx:id="imgBocadillo" fitHeight="141.0" fitWidth="267.0" layoutX="418.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="btnEquipo" layoutX="63.0" layoutY="147.0" mnemonicParsing="false" onAction="#abrirEquipo" prefHeight="61.0" prefWidth="177.0" stylesheets="@../estilos/estiloButton.css" text="Equipo" />
+                        <Button fx:id="btnCaptura" layoutX="63.0" layoutY="223.0" mnemonicParsing="false" onAction="#abrirCaptura" prefHeight="61.0" prefWidth="177.0" stylesheets="@../estilos/estiloButton.css" text="Captura" />
+                        <Button fx:id="btnCombate" layoutX="63.0" layoutY="300.0" mnemonicParsing="false" onAction="#abrirCombate" prefHeight="61.0" prefWidth="177.0" stylesheets="@../estilos/estiloButton.css" text="Combate" />
+                        <Button fx:id="btnCrianza" layoutX="247.0" layoutY="300.0" mnemonicParsing="false" onAction="#abrirCrianza" prefHeight="61.0" prefWidth="177.0" stylesheets="@../estilos/estiloButton.css" text="Crianza" />
+                        <Button fx:id="btnCentroPokemon" layoutX="247.0" layoutY="146.0" mnemonicParsing="false" onAction="#abrirCentro" prefHeight="61.0" prefWidth="177.0" stylesheets="@../estilos/estiloButton.css" text="Centro Pokemon" />
+                        <Button fx:id="btnEntrenamiento" layoutX="247.0" layoutY="223.0" mnemonicParsing="false" onAction="#abrirEntrenamiento" prefHeight="61.0" prefWidth="177.0" stylesheets="@../estilos/estiloButton.css" text="Entrenamiento" />
+                        <Button fx:id="btnSalir" layoutX="65.0" layoutY="454.0" mnemonicParsing="false" onAction="#cerrarMenu" prefHeight="61.0" prefWidth="360.0" stylesheets="@../estilos/estiloButton.css" text="Salir" />
+                        <ImageView fx:id="imgBocadillo" fitHeight="141.0" fitWidth="270.0" layoutX="501.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../multimedia/imagenes/fondos/bocadillo.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="plantillaUsuario" layoutX="461.0" layoutY="148.0" prefHeight="38.0" prefWidth="67.0" text="Bienvenido" />
-                        <Label fx:id="plantillaPokeDolares" layoutX="461.0" layoutY="173.0" prefHeight="38.0" prefWidth="92.0" text="PokeDolares: " />
-                        <ImageView fx:id="imagenLogo" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                        <Label fx:id="plantillaUsuario" layoutX="528.0" layoutY="149.0" prefHeight="38.0" prefWidth="67.0" text="Bienvenido" />
+                        <Label fx:id="plantillaPokeDolares" layoutX="528.0" layoutY="174.0" prefHeight="38.0" prefWidth="92.0" text="PokeDolares: " />
+                        <ImageView fx:id="imagenLogo" fitHeight="122.0" fitWidth="321.0" layoutX="84.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../multimedia/imagenes/fondos/pngwing.com.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="lblJugador" layoutX="528.0" layoutY="159.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
-                        <Label fx:id="lblPokedollares" layoutX="537.0" layoutY="184.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
-                        <ImageView fx:id="btnSalir1" fitHeight="37.0" fitWidth="31.0" layoutX="971.0" layoutY="40.0" onMousePressed="#cerrarAplicacion" pickOnBounds="true" preserveRatio="true">
+                        <Label fx:id="lblJugador" layoutX="601.0" layoutY="159.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
+                        <Label fx:id="lblPokedollares" layoutX="601.0" layoutY="185.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
+                        <ImageView fx:id="btnSalir1" fitHeight="61.0" fitWidth="67.0" layoutX="919.0" layoutY="-15.0" onMousePressed="#cerrarAplicacion" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../multimedia/imagenes/fondos/salir.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnMochila" layoutX="63.0" layoutY="347.0" mnemonicParsing="false" onAction="#abrirMochila" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Mochila" />
-                        <Button fx:id="btnTienda" layoutX="247.0" layoutY="347.0" mnemonicParsing="false" onAction="#abrirTienda" prefHeight="38.0" prefWidth="152.0" stylesheets="@../estilos/estiloButton.css" text="Tienda" />
+                        <Button fx:id="btnMochila" layoutX="63.0" layoutY="378.0" mnemonicParsing="false" onAction="#abrirMochila" prefHeight="61.0" prefWidth="177.0" stylesheets="@../estilos/estiloButton.css" text="Mochila" />
+                        <Button fx:id="btnTienda" layoutX="247.0" layoutY="378.0" mnemonicParsing="false" onAction="#abrirTienda" prefHeight="61.0" prefWidth="177.0" stylesheets="@../estilos/estiloButton.css" text="Tienda" />
                      </children>
                   </AnchorPane>
                   <VBox VBox.vgrow="ALWAYS" />
