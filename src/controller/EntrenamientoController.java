@@ -178,11 +178,22 @@ public class EntrenamientoController {
 	private void usarMovimiento(int index) {
 	    // Obtener la lista de movimientos del Pokémon del jugador
 	    List<Movimiento> movimientos = miPokemon.getMovPrincipales();
-	    if (index >= movimientos.size())
-	        return;
+	    if (index >= movimientos.size()) return;
 
 	    // Seleccionar el movimiento elegido
 	    Movimiento mov = movimientos.get(index);
+
+	    // Verificar si tiene PP disponibles
+	    int ppActual = mov.getPp_actual();
+	    if (ppActual <= 0) {
+	        mostrarAlerta("¡" + mov.getNom_movimiento() + " no tiene PP disponibles!");
+	        return;
+	    }
+
+	    // Reducir PP en 1
+	    int nuevoPP = ppActual - 1;
+	    mov.setPp_actual(nuevoPP);
+	    MovimientoBD.actualizarPP(miPokemon.getId_pokemon(), mov.getId_movimiento(), nuevoPP);
 
 	    // Calcular el daño que hará
 	    int danio = mov.getPotencia() != 0 ? mov.getPotencia() : 10;
@@ -194,17 +205,20 @@ public class EntrenamientoController {
 	    // Actualizar las barras de vida en pantalla
 	    actualizarHP();
 
-	    // Mostrarlo en consola
+	    // Mostrar en consola
 	    System.out.println(miPokemon.getNombre_pokemon() + " usa " + mov.getNom_movimiento());
 
 	    // Crear turno y agregarlo al combate
 	    String accionEntrenador = miPokemon.getNombre_pokemon() + " usa " + mov.getNom_movimiento() + ".";
-	    String accionRival = pokemonRival.getNombre_pokemon() + " no hace nada (acción simulada)."; // Simulado
+	    String accionRival = pokemonRival.getNombre_pokemon() + " no hace nada (acción simulada).";
 	    Turno turno = new Turno(combate.getNumeroCombate(), numeroTurno, accionEntrenador, accionRival);
 	    combate.agregarTurno(turno);
 	    numeroTurno++;
 
-	    // Comprueba si el combate ha terminado
+	    // Refrescar los textos de los botones para mostrar PP actualizados
+	    cargarMovimientos();
+
+	    // Comprobar si se ha terminado el combate
 	    if (nuevaVidaRival <= 0) {
 	        mostrarAlerta("¡Has ganado el entrenamiento!");
 	        combate.exportarTurnos("combate" + combate.getNumeroCombate() + "_log.txt");

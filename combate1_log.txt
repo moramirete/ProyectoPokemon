@@ -1,9 +1,5 @@
 Combate 1:
 Turno 1:
-Entrenador: SEADRA usa Placaje.
-Rival: ELECTABUZZ no hace nada (acción simulada).
-
-Turno 2:
-Entrenador: SEADRA usa Clamp.
-Rival: ELECTABUZZ no hace nada (acción simulada).
+Entrenador: SEADRA usa Martillazo.
+Rival: PERSIAN no hace nada (acción simulada).
 

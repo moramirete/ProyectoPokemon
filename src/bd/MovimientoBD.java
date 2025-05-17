@@ -178,4 +178,17 @@ public class MovimientoBD {
 	    }
 	}
 	
+	public static void actualizarPP(int idPokemon, int idMovimiento, int nuevoPP) {
+	    try (Connection con = BDConecction.getConnection();
+	         PreparedStatement stmt = con.prepareStatement(
+	             "UPDATE MOVIMIENTO_POKEMON SET PP_ACTUALES = ? WHERE ID_POKEMON = ? AND ID_MOVIMIENTO = ?")) {
+	        stmt.setInt(1, nuevoPP);
+	        stmt.setInt(2, idPokemon);
+	        stmt.setInt(3, idMovimiento);
+	        stmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 }
