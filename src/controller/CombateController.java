@@ -125,6 +125,7 @@ public class CombateController {
 
 		combate = new Combate(); // Inicializa el combate
 		iniciarCombate(); // Inicia el combate
+		
 	}
 
 	public void cargarDatos(Pokemon equipo, Pokemon rival) {
