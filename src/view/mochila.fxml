@@ -9,50 +9,70 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MochilaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MochilaController">
    <children>
-      <ImageView fitHeight="386.0" fitWidth="715.0" layoutX="-15.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../multimedia/imagenes/fondos/fondoMochila2.png" />
-         </image>
-      </ImageView>
-      <TableView fx:id="tblListaMochila" layoutX="24.0" layoutY="14.0" prefHeight="294.0" prefWidth="256.0">
-        <columns>
-          <TableColumn fx:id="clmCantidad" prefWidth="95.19991683959961" text="Cantidad" />
-          <TableColumn fx:id="clmObjeto" minWidth="0.79998779296875" prefWidth="161.60011291503906" text="Objeto" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnVender" layoutX="202.0" layoutY="335.0" mnemonicParsing="false" onAction="#vender" prefHeight="41.0" prefWidth="98.0" text="Vender" />
-      <Button fx:id="btnTienda" layoutX="315.0" layoutY="335.0" mnemonicParsing="false" onAction="#accederTienda" prefHeight="41.0" prefWidth="98.0" text="Tienda" />
-      <Button fx:id="btnSalir" layoutX="432.0" layoutY="335.0" mnemonicParsing="false" onAction="#salir" prefHeight="41.0" prefWidth="98.0" text="Salir" />
-      <TextArea fx:id="txtDescripcion" editable="false" layoutX="323.0" layoutY="73.0" prefHeight="235.0" prefWidth="213.0" wrapText="true">
-         <font>
-            <Font name="Consolas" size="10.0" />
-         </font>
-      </TextArea>
-      <Label fx:id="lblDescripcion" alignment="TOP_LEFT" layoutX="330.0" layoutY="80.0" prefHeight="221.0" prefWidth="200.0" textAlignment="JUSTIFY" visible="false" wrapText="true">
-         <font>
-            <Font name="Consolas" size="9.0" />
-         </font>
-      </Label>
-      <ImageView fx:id="imgObjeto" fitHeight="101.0" fitWidth="106.0" layoutX="414.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="txtTituloDescripcion" layoutX="323.0" layoutY="47.0" prefHeight="26.0" prefWidth="90.0" text="Descripción">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtPokedolares" layoutX="434.0" layoutY="11.0" prefHeight="26.0" prefWidth="93.0" />
-      <Label fx:id="lblPokedolares" alignment="CENTER" layoutX="437.0" layoutY="14.0" prefHeight="20.0" prefWidth="86.0" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="522.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../multimedia/imagenes/fondos/moneda.png" />
-         </image>
-      </ImageView>
+      <HBox maxHeight="100.0" />
+      <HBox>
+         <children>
+            <HBox />
+            <VBox maxWidth="450.0">
+               <children>
+                  <VBox />
+                  <AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefWidth="1000.0">
+                     <children>
+                        <ImageView fitHeight="386.0" fitWidth="715.0" layoutX="657.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/fondoMochila2.png" />
+                           </image>
+                        </ImageView>
+                        <TableView fx:id="tblListaMochila" layoutX="692.0" layoutY="380.0" prefHeight="294.0" prefWidth="256.0">
+                           <columns>
+                              <TableColumn fx:id="clmCantidad" prefWidth="95.19991683959961" text="Cantidad" />
+                              <TableColumn fx:id="clmObjeto" minWidth="0.79998779296875" prefWidth="161.60011291503906" text="Objeto" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="btnVender" layoutX="865.0" layoutY="698.0" mnemonicParsing="false" onAction="#vender" prefHeight="41.0" prefWidth="98.0" text="Vender" />
+                        <Button fx:id="btnTienda" layoutX="1015.0" layoutY="698.0" mnemonicParsing="false" onAction="#accederTienda" prefHeight="41.0" prefWidth="98.0" text="Tienda" />
+                        <Button fx:id="btnSalir" layoutX="1164.0" layoutY="698.0" mnemonicParsing="false" onAction="#salir" prefHeight="41.0" prefWidth="98.0" text="Salir" />
+                        <TextArea fx:id="txtDescripcion" editable="false" layoutX="1064.0" layoutY="453.0" prefHeight="235.0" prefWidth="213.0" wrapText="true">
+                           <font>
+                              <Font name="Consolas" size="10.0" />
+                           </font>
+                        </TextArea>
+                        <Label fx:id="lblDescripcion" alignment="TOP_LEFT" layoutX="330.0" layoutY="80.0" prefHeight="221.0" prefWidth="200.0" textAlignment="JUSTIFY" visible="false" wrapText="true">
+                           <font>
+                              <Font name="Consolas" size="9.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imgObjeto" fitHeight="101.0" fitWidth="106.0" layoutX="1166.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField fx:id="txtTituloDescripcion" layoutX="1067.0" layoutY="427.0" prefHeight="26.0" prefWidth="90.0" text="Descripción">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtPokedolares" layoutX="1166.0" layoutY="384.0" prefHeight="26.0" prefWidth="93.0" />
+                        <Label fx:id="lblPokedolares" alignment="CENTER" layoutX="1170.0" layoutY="387.0" prefHeight="20.0" prefWidth="86.0" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="1276.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../multimedia/imagenes/fondos/moneda.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <VBox />
+               </children>
+            </VBox>
+            <HBox />
+         </children>
+      </HBox>
+      <HBox maxHeight="100.0" />
    </children>
-</AnchorPane>
+</VBox>
