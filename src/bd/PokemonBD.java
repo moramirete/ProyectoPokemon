@@ -438,7 +438,31 @@ public class PokemonBD {
 	        ResultSet rs = st.executeQuery();
 
 	        if (rs.next()) {
-	            String ruta = "/imagenes/" + rs.getString("SPRITES_FRONTAL");
+	            String ruta = "/imagenes/gifDelantero/" + rs.getString("SPRITES_FRONTAL");
+	            return PokemonBD.class.getResource(ruta) != null ? ruta : "/imagenes/default.png";
+	        } else {
+	            return "/imagenes/default.png";
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "/imagenes/default.png";
+	    }
+	}
+	
+	public static String obtenerRutaImagenTrasera(Pokemon p) {
+	    if (p == null || p.getNum_pokedex() <= 0) {
+	        System.err.println("Pokémon no válido o NUM_POKEDEX = 0");
+	        return "/imagenes/default.png";
+	    }
+
+	    try (Connection con = BDConecction.getConnection()) {
+	        String query = "SELECT SPRITES_TRASEROS FROM POKEDEX WHERE NUM_POKEDEX = ?";
+	        PreparedStatement st = con.prepareStatement(query);
+	        st.setInt(1, p.getNum_pokedex());
+	        ResultSet rs = st.executeQuery();
+
+	        if (rs.next()) {
+	            String ruta = "/imagenes/gifTrasero/" + rs.getString("SPRITES_TRASEROS");
 	            return PokemonBD.class.getResource(ruta) != null ? ruta : "/imagenes/default.png";
 	        } else {
 	            return "/imagenes/default.png";
@@ -864,4 +888,37 @@ public class PokemonBD {
 
 	    return nuevoPokemon;
 	}
+	
+	public static List<Pokemon> equipoRival(List<Pokemon> equipo) {
+	    List<Pokemon> equipoRival = new ArrayList<>();
+	    int i = 0;
+
+	    while (i < equipo.size()) { // Asegúrate de no exceder el tamaño de la lista
+	        Pokemon pokemonRival = generarPokemonRivalAleatorio(equipo.get(i));
+	        equipoRival.add(pokemonRival);
+	        i++;
+	    }
+
+	    return equipoRival;
+	}
+    
+    public static void actualizarPokemonExperiencia(Pokemon pokemon) {
+        String sql = "UPDATE pokemon SET nivel = ?, experiencia = ? WHERE id = ?";
+
+        try (Connection conn = BDConecction.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, pokemon.getNivel());
+            stmt.setInt(2, pokemon.getExperiencia());
+            stmt.setInt(3, pokemon.getId_pokemon());
+
+            stmt.executeUpdate();
+            System.out.println("Datos del Pokémon actualizados en la base de datos.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+	
 }
