@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,9 @@ import controller.cambiarPokemonCombateController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
+import model.Combate;
+import model.Turno;
 
 public class EntrenamientoController {
 
@@ -46,14 +50,18 @@ public class EntrenamientoController {
 	@FXML
 	private ProgressBar hpPokemonRival;
 
-	@FXML
-	private ProgressBar expPokemon;
+	@FXML private Label lblVidaMiPoke;
+	
+    @FXML private Label lblVidaRival;
 
 	private Pokemon miPokemon;
 	private Pokemon pokemonRival;
 	private Entrenador entrenador;
 	private Stage stage;
 	private MenuController menuController;
+	
+	private Combate combate;
+	private int numeroTurno = 1;
 
 	@FXML
 	public void init(Entrenador entrenador, Stage stage, MenuController menuController) {
@@ -65,6 +73,7 @@ public class EntrenamientoController {
 		miPokemon = PokemonBD.obtenerPokemonPorIdConMovimientos(
 				PokemonBD.obtenerPokemonPrincipal(entrenador.getIdEntrenador()).getId_pokemon());
 		pokemonRival = PokemonBD.generarPokemonRivalAleatorio(miPokemon);
+		combate = new Combate(1);
 
 		cargarDatos();
 	}
@@ -88,15 +97,15 @@ public class EntrenamientoController {
 		}
 
 		if (movimientos.size() > 2) {
-			btnMov3.setText(movimientos.get(2).getNom_movimiento() + movimientos.get(2).getPp_actual()
-					+ movimientos.get(2).getPp_max());
+			btnMov3.setText(movimientos.get(2).getNom_movimiento() + " " + movimientos.get(2).getPp_actual() 
+					+ "/" + movimientos.get(2).getPp_max());
 		} else {
 			btnMov3.setVisible(false);
 		}
 
 		if (movimientos.size() > 3) {
-			btnMov4.setText(movimientos.get(3).getNom_movimiento() + movimientos.get(3).getPp_actual()
-					+ movimientos.get(3).getPp_max());
+			btnMov4.setText(movimientos.get(3).getNom_movimiento() + " " + movimientos.get(3).getPp_actual()
+					+ "/" + movimientos.get(3).getPp_max());
 		} else {
 			btnMov4.setVisible(false);
 		}
@@ -130,16 +139,14 @@ public class EntrenamientoController {
 	 * Actualiza el progreso de las barras de vida de ambos Pokémon
 	 */
 	private void actualizarHP() {
-		double progresoMiPoke = (miPokemon.getVitalidadMaxOBJ() != 0)
-				? (miPokemon.getVitalidadOBJ() * 1.0 / miPokemon.getVitalidadMaxOBJ())
-				: 0.0;
+		double vidaMiPoke = (double) miPokemon.getVitalidad() / miPokemon.getVitalidadMaxOBJ();
+        double vidaRival = (double) pokemonRival.getVitalidad() / pokemonRival.getVitalidadMaxOBJ();
 
-		double progresoRival = (pokemonRival.getVitalidadMaxOBJ() != 0)
-				? (pokemonRival.getVitalidadOBJ() * 1.0 / pokemonRival.getVitalidadMaxOBJ())
-				: 0.0;
+        hpPokemon.setProgress(vidaMiPoke);
+        hpPokemonRival.setProgress(vidaRival);
 
-		hpPokemon.setProgress(progresoMiPoke);
-		hpPokemonRival.setProgress(progresoRival);
+        lblVidaMiPoke.setText(miPokemon.getVitalidad() + " / " + miPokemon.getVitalidadMaxOBJ());
+        lblVidaRival.setText(pokemonRival.getVitalidad() + " / " + pokemonRival.getVitalidadMaxOBJ());
 	}
 
 	// Métodos que se llaman al pulsar cada botón de movimiento
@@ -169,23 +176,39 @@ public class EntrenamientoController {
 	 * @param index índice del movimiento seleccionado
 	 */
 	private void usarMovimiento(int index) {
-		List<Movimiento> movimientos = miPokemon.getMovPrincipales();
-		if (index >= movimientos.size())
-			return; // Si no existe ese movimiento, no hacer nada
+	    // Obtener la lista de movimientos del Pokémon del jugador
+	    List<Movimiento> movimientos = miPokemon.getMovPrincipales();
+	    if (index >= movimientos.size())
+	        return;
 
-		Movimiento mov = movimientos.get(index);
+	    // Seleccionar el movimiento elegido
+	    Movimiento mov = movimientos.get(index);
 
-		// Si el movimiento no tiene potencia, damos daño base 10
-		int danio = mov.getPotencia() != 0 ? mov.getPotencia() : 10;
+	    // Calcular el daño que hará
+	    int danio = mov.getPotencia() != 0 ? mov.getPotencia() : 10;
 
-		// Restamos vida al Pokémon rival sin que baje de 0
-		pokemonRival.setVitalidad(Math.max(0, pokemonRival.getVitalidad() - danio));
-		actualizarHP(); // Actualizamos barras
+	    // Aplicar el daño al rival
+	    int nuevaVidaRival = Math.max(0, pokemonRival.getVitalidad() - danio);
+	    pokemonRival.setVitalidad(nuevaVidaRival);
 
-		// mostramos mensaje de victoria
-		if (pokemonRival.getVitalidad() <= 0) {
-			mostrarAlerta("¡Has ganado el entrenamiento!");
-		}
+	    // Actualizar las barras de vida en pantalla
+	    actualizarHP();
+
+	    // Mostrarlo en consola
+	    System.out.println(miPokemon.getNombre_pokemon() + " usa " + mov.getNom_movimiento());
+
+	    // Crear turno y agregarlo al combate
+	    String accionEntrenador = miPokemon.getNombre_pokemon() + " usa " + mov.getNom_movimiento() + ".";
+	    String accionRival = pokemonRival.getNombre_pokemon() + " no hace nada (acción simulada)."; // Simulado
+	    Turno turno = new Turno(combate.getNumeroCombate(), numeroTurno, accionEntrenador, accionRival);
+	    combate.agregarTurno(turno);
+	    numeroTurno++;
+
+	    // Comprueba si el combate ha terminado
+	    if (nuevaVidaRival <= 0) {
+	        mostrarAlerta("¡Has ganado el entrenamiento!");
+	        combate.exportarTurnos("combate" + combate.getNumeroCombate() + "_log.txt");
+	    }
 	}
 
 	/**
@@ -235,7 +258,7 @@ public class EntrenamientoController {
 	}
 
 	/**
-	 * Método auxiliar para mostrar alertas informativas al usuario
+	 * Método auxiliar para mostrar alertas informativas
 	 * 
 	 * @param mensaje texto a mostrar en la alerta
 	 */
