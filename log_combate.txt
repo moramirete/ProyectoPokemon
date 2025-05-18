@@ -695,3 +695,361 @@ Turno 4:
 Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
 Rival: BLASTOISE usó Ácido e hizo 5 de daño.
 
+
+Combate 20250518055414197:
+Turno 1:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: DRAGONITE usó Absorber e hizo 3 de daño.
+
+Turno 2:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: DRAGONITE usó Paralizador e hizo 2 de daño.
+
+Turno 3:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: DRAGONITE usó Tóxico e hizo 2 de daño.
+
+Turno 4:
+Entrenador: VENUSAUR uso Paralizador e hizo 2 de daño.
+Rival: DRAGONITE usó Danza Pétalo e hizo 13 de daño.
+
+Turno 5:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: DRAGONITE usó Hoja Afilada e hizo 7 de daño.
+
+Turno 6:
+Entrenador: VENUSAUR descanso y recupero la cantidad de PS de 7
+Rival: DRAGONITE usó Ataque Aéreo e hizo 16 de daño.
+
+Turno 7:
+Entrenador: BLASTOISE uso Pistola Agua e hizo 6 de daño.
+Rival: DRAGONITE usó Hidrobomba e hizo 13 de daño.
+
+Turno 8:
+Entrenador: BLASTOISE uso Rayo Burbuja e hizo 8 de daño.
+Rival: DRAGONITE usó Clamp e hizo 5 de daño.
+
+Turno 9:
+Entrenador: BLASTOISE uso Pistola Agua e hizo 6 de daño.
+Rival: DRAGONITE usó Surf e hizo 11 de daño.
+
+Turno 10:
+Entrenador: BLASTOISE uso Burbuja e hizo 6 de daño.
+Rival: DRAGONITE usó Placaje e hizo 6 de daño.
+
+Turno 11:
+Entrenador: BLASTOISE uso Placaje e hizo 6 de daño.
+Rival: DRAGONITE usó Hidrobomba e hizo 13 de daño.
+
+Turno 12:
+Entrenador: BLASTOISE uso Pistola Agua e hizo 6 de daño.
+Rival: DRAGONITE usó Pistola Agua e hizo 6 de daño.
+
+Turno 13:
+Entrenador: BLASTOISE uso Rayo Burbuja e hizo 8 de daño.
+Rival: DRAGONITE usó Burbuja e hizo 6 de daño.
+
+Turno 14:
+Entrenador: BLASTOISE uso Rayo Burbuja e hizo 8 de daño.
+Rival: DRAGONITE usó Martillazo e hizo 12 de daño.
+
+Turno 15:
+Entrenador: BLASTOISE uso Rayo Burbuja e hizo 8 de daño.
+Rival: DRAGONITE usó Cascada e hizo 10 de daño.
+
+Turno 16:
+Entrenador: BLASTOISE uso Rayo Burbuja e hizo 8 de daño.
+Rival: DRAGONITE cambio el puesto al pokemon a JIGGLYPUFF
+
+Turno 17:
+Entrenador: BLASTOISE uso Rayo Burbuja e hizo 118 de daño.
+Rival: JIGGLYPUFF cambio el puesto al pokemon a VILEPLUME
+
+Turno 18:
+Entrenador: BLASTOISE uso Rayo Burbuja e hizo 10 de daño.
+Rival: VILEPLUME usó Placaje e hizo 7 de daño.
+
+Turno 19:
+Entrenador: NIDOKING uso Tóxico e hizo 2 de daño.
+Rival: VILEPLUME usó Gas Venenoso e hizo 2 de daño.
+
+Turno 20:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: VILEPLUME usó Tóxico e hizo 2 de daño.
+
+Turno 21:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: VILEPLUME usó Residuos e hizo 6 de daño.
+
+Turno 22:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Tóxico e hizo 2 de daño.
+
+Turno 23:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Hueso Palo e hizo 6 de daño.
+
+Turno 24:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Placaje e hizo 4 de daño.
+
+Turno 25:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Armadura Ácida e hizo 2 de daño.
+
+Turno 26:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Residuos e hizo 6 de daño.
+
+Turno 27:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Excavar e hizo 7 de daño.
+
+Turno 28:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Picotazo Veneno e hizo 2 de daño.
+
+Turno 29:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Polución e hizo 3 de daño.
+
+Turno 30:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Residuos e hizo 6 de daño.
+
+Turno 31:
+Entrenador: NIDOKING uso Huesomerang e hizo 5 de daño.
+Rival: VILEPLUME usó Gas Venenoso e hizo 2 de daño.
+
+Turno 32:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: VILEPLUME usó Excavar e hizo 7 de daño.
+
+Turno 33:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: VILEPLUME usó Placaje e hizo 4 de daño.
+
+Turno 34:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: VILEPLUME usó Huesomerang e hizo 5 de daño.
+
+Turno 35:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: VILEPLUME usó Hueso Palo e hizo 6 de daño.
+
+Turno 36:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: VILEPLUME usó Terremoto e hizo 8 de daño.
+
+Turno 37:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: VILEPLUME usó Huesomerang e hizo 5 de daño.
+
+Turno 38:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: VILEPLUME cambio el puesto al pokemon a BEEDRILL
+
+Turno 39:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: BEEDRILL usó Terremoto e hizo 7 de daño.
+
+Turno 40:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: BEEDRILL usó Polución e hizo 3 de daño.
+
+Turno 41:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Picotazo Veneno e hizo 2 de daño.
+
+Turno 42:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: BEEDRILL usó Residuos e hizo 5 de daño.
+
+Turno 43:
+Entrenador: NIDOKING uso Placaje e hizo 4 de daño.
+Rival: BEEDRILL usó Residuos e hizo 5 de daño.
+
+Turno 44:
+Entrenador: ARCANINE uso Giro Fuego e hizo 2 de daño.
+Rival: BEEDRILL usó Puño Fuego e hizo 3 de daño.
+
+Turno 45:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Puño Fuego e hizo 3 de daño.
+
+Turno 46:
+Entrenador: ARCANINE uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Giro Fuego e hizo 2 de daño.
+
+Turno 47:
+Entrenador: ARCANINE uso Llamarada e hizo 4 de daño.
+Rival: BEEDRILL usó Llamarada e hizo 4 de daño.
+
+Turno 48:
+Entrenador: ARCANINE uso Llamarada e hizo 4 de daño.
+Rival: BEEDRILL usó Llamarada e hizo 4 de daño.
+
+Turno 49:
+Entrenador: ARCANINE uso Llamarada e hizo 4 de daño.
+Rival: BEEDRILL usó Lanzallamas e hizo 3 de daño.
+
+Turno 50:
+Entrenador: ARCANINE uso Llamarada e hizo 4 de daño.
+Rival: BEEDRILL usó Puño Fuego e hizo 3 de daño.
+
+Turno 51:
+Entrenador: ARCANINE uso Llamarada e hizo 4 de daño.
+Rival: BEEDRILL usó Giro Fuego e hizo 2 de daño.
+
+Turno 52:
+Entrenador: ARCANINE uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 53:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Puño Fuego e hizo 3 de daño.
+
+Turno 54:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Puño Fuego e hizo 3 de daño.
+
+Turno 55:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Giro Fuego e hizo 2 de daño.
+
+Turno 56:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Llamarada e hizo 4 de daño.
+
+Turno 57:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 58:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Puño Fuego e hizo 3 de daño.
+
+Turno 59:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Giro Fuego e hizo 2 de daño.
+
+Turno 60:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Ascuas e hizo 2 de daño.
+
+Turno 61:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Ascuas e hizo 2 de daño.
+
+Turno 62:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 63:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 64:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 65:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 66:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 67:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 68:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 69:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 70:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 71:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 72:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 73:
+Entrenador: MEWTWO uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 74:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 75:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 76:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 77:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL usó Placaje e hizo 2 de daño.
+
+Turno 78:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: BEEDRILL cambio el puesto al pokemon a ARCANINE
+
+Turno 79:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 80:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 81:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 82:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 83:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 84:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 85:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 86:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 87:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 88:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
+Turno 89:
+Entrenador: HORSEA uso Placaje e hizo 2 de daño.
+Rival: ARCANINE usó Placaje e hizo 2 de daño.
+
