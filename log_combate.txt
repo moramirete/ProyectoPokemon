@@ -1053,3 +1053,233 @@ Turno 89:
 Entrenador: HORSEA uso Placaje e hizo 2 de daño.
 Rival: ARCANINE usó Placaje e hizo 2 de daño.
 
+
+Combate 20250518073830770:
+Turno 1:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: ALAKAZAM usó Picotazo Veneno e hizo 3 de daño.
+
+Turno 2:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: ALAKAZAM usó Megaagotar e hizo 5 de daño.
+
+Turno 3:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Megaagotar e hizo 5 de daño.
+
+Turno 4:
+Entrenador: VENUSAUR uso Paralizador e hizo 2 de daño.
+Rival: ALAKAZAM usó Picotazo Veneno e hizo 3 de daño.
+
+Turno 5:
+Entrenador: VENUSAUR uso Paralizador e hizo 2 de daño.
+Rival: ALAKAZAM usó Polución e hizo 4 de daño.
+
+Turno 6:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Placaje e hizo 5 de daño.
+
+Turno 7:
+Entrenador: VENUSAUR uso Paralizador e hizo 2 de daño.
+Rival: ALAKAZAM usó Polución e hizo 4 de daño.
+
+Turno 8:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Polución e hizo 4 de daño.
+
+Turno 9:
+Entrenador: VENUSAUR uso Paralizador e hizo 2 de daño.
+Rival: ALAKAZAM usó Paralizador e hizo 2 de daño.
+
+Turno 10:
+Entrenador: VENUSAUR uso Paralizador e hizo 2 de daño.
+Rival: ALAKAZAM usó Polvo Veneno e hizo 2 de daño.
+
+Turno 11:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Látigo Cepa e hizo 6 de daño.
+
+Turno 12:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Placaje e hizo 5 de daño.
+
+Turno 13:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Residuos e hizo 8 de daño.
+
+Turno 14:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Paralizador e hizo 2 de daño.
+
+Turno 15:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Placaje e hizo 5 de daño.
+
+Turno 16:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: ALAKAZAM usó Placaje e hizo 5 de daño.
+
+Turno 17:
+Entrenador: NIDOKING uso Huesomerang e hizo 4 de daño.
+Rival: ALAKAZAM usó Polvo Veneno e hizo 2 de daño.
+
+Turno 18:
+Entrenador: NIDOKING uso Huesomerang e hizo 4 de daño.
+Rival: ALAKAZAM cambio el puesto al pokemon a HORSEA
+
+Turno 19:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 15 de daño.
+Rival: HORSEA usó Ácido e hizo 38 de daño.
+
+Turno 20:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 15 de daño.
+Rival: HORSEA usó Polvo Veneno e hizo 2 de daño.
+
+Turno 21:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 15 de daño.
+Rival: HORSEA cambio el puesto al pokemon a BEEDRILL
+
+Turno 22:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Hueso Palo e hizo 6 de daño.
+
+Turno 23:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Hueso Palo e hizo 6 de daño.
+
+Turno 24:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Terremoto e hizo 8 de daño.
+
+Turno 25:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Residuos e hizo 6 de daño.
+
+Turno 26:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Gas Venenoso e hizo 2 de daño.
+
+Turno 27:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Fisura e hizo 2 de daño.
+
+Turno 28:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Hueso Palo e hizo 6 de daño.
+
+Turno 29:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Hueso Palo e hizo 6 de daño.
+
+Turno 30:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Polvo Veneno e hizo 2 de daño.
+
+Turno 31:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Armadura Ácida e hizo 2 de daño.
+
+Turno 32:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Huesomerang e hizo 5 de daño.
+
+Turno 33:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Tóxico e hizo 2 de daño.
+
+Turno 34:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Hueso Palo e hizo 6 de daño.
+
+Turno 35:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Residuos e hizo 6 de daño.
+
+Turno 36:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: BEEDRILL usó Gas Venenoso e hizo 2 de daño.
+
+Turno 37:
+Entrenador: BLASTOISE uso Burbuja e hizo 7 de daño.
+Rival: BEEDRILL usó Clamp e hizo 6 de daño.
+
+Turno 38:
+Entrenador: BLASTOISE uso Burbuja e hizo 7 de daño.
+Rival: BEEDRILL usó Hidrobomba e hizo 16 de daño.
+
+Turno 39:
+Entrenador: BLASTOISE uso Burbuja e hizo 7 de daño.
+Rival: BEEDRILL usó Burbuja e hizo 7 de daño.
+
+Turno 40:
+Entrenador: BLASTOISE uso Burbuja e hizo 7 de daño.
+Rival: BEEDRILL usó Hidrobomba e hizo 16 de daño.
+
+Turno 41:
+Entrenador: BLASTOISE uso Burbuja e hizo 7 de daño.
+Rival: BEEDRILL usó Rayo Burbuja e hizo 10 de daño.
+
+Turno 42:
+Entrenador: BLASTOISE uso Burbuja e hizo 7 de daño.
+Rival: BEEDRILL usó Burbuja e hizo 7 de daño.
+
+Turno 43:
+Entrenador: BLASTOISE uso Burbuja e hizo 7 de daño.
+Rival: BEEDRILL usó Hidrobomba e hizo 16 de daño.
+
+Turno 44:
+Entrenador: BLASTOISE uso Burbuja e hizo 7 de daño.
+Rival: BEEDRILL usó Surf e hizo 13 de daño.
+
+Turno 45:
+Entrenador: ARCANINE uso Lanzallamas e hizo 4 de daño.
+Rival: BEEDRILL cambio el puesto al pokemon a VILEPLUME
+
+Turno 46:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Puño Fuego e hizo 3 de daño.
+
+Turno 47:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Ascuas e hizo 2 de daño.
+
+Turno 48:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Ascuas e hizo 2 de daño.
+
+Turno 49:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Ascuas e hizo 2 de daño.
+
+Turno 50:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Placaje e hizo 2 de daño.
+
+Turno 51:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Llamarada e hizo 4 de daño.
+
+Turno 52:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Lanzallamas e hizo 3 de daño.
+
+Turno 53:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Placaje e hizo 2 de daño.
+
+Turno 54:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Placaje e hizo 2 de daño.
+
+Turno 55:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Placaje e hizo 2 de daño.
+
+Turno 56:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Ascuas e hizo 2 de daño.
+
+Turno 57:
+Entrenador: ARCANINE uso Lanzallamas e hizo 3 de daño.
+Rival: VILEPLUME usó Giro Fuego e hizo 2 de daño.
+
