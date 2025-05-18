@@ -925,7 +925,7 @@ public class PokemonBD {
 	}
 
 	public static void actualizarPokemonExperiencia(Pokemon pokemon) {
-		String sql = "UPDATE pokemon SET nivel = ?, experiencia = ? WHERE id = ?";
+		String sql = "UPDATE pokemon SET nivel = ?, experiencia = ? WHERE id_pokemon = ?";
 
 		try (Connection conn = BDConecction.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -959,27 +959,29 @@ public class PokemonBD {
 	    }
 	}
 
-	public static int obtenerEvolucion(int numPokedex, int nivelActual) {
-		String sql = "SELECT num_pokedex, nivel_evolucion FROM pokemon WHERE num_pokedex = ?";
-		try (Connection conn = BDConecction.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+	public static int obtenerEvolucion(Pokemon pokemon) {
+	    int numPokedex = pokemon.getNum_pokedex(); // Guarda el número actual
 
-			int numPokedexEvo = numPokedex + 1;
-			stmt.setInt(1, numPokedexEvo); // Consultar el siguiente número de la Pokédex
-			ResultSet rs = stmt.executeQuery();
+	    String sql = "SELECT num_pokedex, nivel_evolucion FROM pokemon WHERE num_pokedex = ?";
+	    try (Connection conn = BDConecction.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-			if (rs.next()) {
-				int nivelEvolucion = rs.getInt("nivel_evolucion");
+	        int numPokedexEvo = numPokedex + 1;  // siguiente número de la Pokédex
+	        stmt.setInt(1, numPokedexEvo);
+	        ResultSet rs = stmt.executeQuery();
 
-				// Verificar si el nivel actual cumple con los requisitos de evolución
-				if ((nivelEvolucion == 2 && nivelActual >= 25) || (nivelEvolucion == 3 && nivelActual >= 50)) {
-					return rs.getInt("num_pokedex"); // Devuelve el nuevo número de Pokédex
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	        if (rs.next()) {
+	            int nivelEvolucion = rs.getInt("nivel_evolucion");
 
-		return numPokedex; // Si no evoluciona, devuelve el mismo número de Pokédex
+	            // Verificar si el nivel actual cumple con los requisitos de evolución
+	            if ((nivelEvolucion == 2 && pokemon.getNivel() >= 25) || (nivelEvolucion == 3 && pokemon.getNivel() >= 50)) {
+	                return rs.getInt("num_pokedex"); // Devuelve el nuevo número de Pokédex
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return numPokedex; // Si no evoluciona, devuelve el mismo número de Pokédex
 	}
 
 	public static void actualizarVida(Pokemon pokemon) {
@@ -992,6 +994,29 @@ public class PokemonBD {
 		} catch (SQLException e) {
 			System.err.println("Error al actualizar la vida del Pokémon: " + e.getMessage());
 		}
+	}
+	
+	public static void actualizarNivelPokemon(Pokemon pok, int nuevoNivel) {
+
+	    String sql = "UPDATE pokemon SET nivel = ? WHERE id_pokemon = ? AND ID_ENTRENADOR = ?";
+	    
+	    try (Connection con = BDConecction.getConnection();
+				PreparedStatement ps = con.prepareStatement(sql)){
+
+	        ps.setInt(1, nuevoNivel);
+	        ps.setInt(2, pok.getId_pokemon());
+	        ps.setInt(3, pok.getId_entrenador());
+
+	        int filasActualizadas = ps.executeUpdate();
+	        if (filasActualizadas > 0) {
+	            System.out.println("Nivel actualizado correctamente.");
+	        } else {
+	            System.out.println("No se encontró el Pokémon con ese ID.");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
 	}
 
 }

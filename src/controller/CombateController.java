@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -352,6 +353,7 @@ public class CombateController {
 
 	private void turnoRival(Pokemon rival, Pokemon jugador) {
 		if (rival.getVitalidadOBJ() <= 0) {
+			otorgarExperiencia(pokEquipo, pokRival);
 			cambiarPokemonRival();
 			return;
 		}
@@ -392,8 +394,7 @@ public class CombateController {
 			} catch (IOException e) {
 				e.printStackTrace();
 				mostrarAlerta("Error al abrir la ventana de cambio de Pokémon.");
-			}
-			;
+			};
 
 			turnoRival(rival, pokEquipo);
 
@@ -670,17 +671,14 @@ public class CombateController {
 		mostrarAlerta(jugadorGana ? "¡Has ganado el combate!" : "¡Has perdido!");
 
 		if (jugadorGana == true) {
-
+			otorgarExperiencia(pokEquipo, pokRival);
 			menuController.show();
 			stage.close();
 
 		} else {
-
 			menuController.show();
 			stage.close();
 		}
-
-		// combate.exportarTurnos("log_combate.txt");
 
 	}
 
@@ -690,29 +688,34 @@ public class CombateController {
 		pokemon.setAtaqueOBJ(pokemon.getAtaqueOBJ() + 2);
 		pokemon.setDefensaOBJ(pokemon.getDefensaOBJ() + 2);
 		pokemon.setVitalidadMaxOBJ(pokemon.getVitalidadMaxOBJ() + 5);
-
+		
+		if (pokemon.getNivel() % 3 == 0) {
+			MovimientoBD.asignarMovimientoAleatorio(pokemon);
+			mostrarAlerta("Has obtenido un nuevo movimiento para el pokemon " + pokemon.getNombre_pokemon() + " miralo en estadisticas de este pokemon");
+		}
+		
 		if (pokemon.getNivel() == 25 || pokemon.getNivel() == 50) {
 			evolucionarPokemon(pokemon);
 		}
 	}
 
-	private void otorgarExperiencia(Pokemon ganador, Pokemon perdedor) {
-		int experienciaGanada = (perdedor.getNivel() * 10) / ganador.getNivel();
-		ganador.setExperiencia(ganador.getExperiencia() + experienciaGanada);
+	private void otorgarExperiencia(Pokemon pokEq, Pokemon pokRiv) {
+		int experienciaGanada = (pokRiv.getNivel() * 10) / pokEq.getNivel();
+		pokEq.setExperiencia(pokEq.getExperiencia() + experienciaGanada);
+		PokemonBD.actualizarPokemonExperiencia(pokEq);
 
-		if (ganador.getExperiencia() >= ganador.getNivel() * 10) {
-			subirNivel(ganador);
+		if (pokEq.getExperiencia() >= pokEq.getNivel() * 10) {
+			subirNivel(pokEq);
+			PokemonBD.actualizarNivelPokemon(pokEq, pokEq.getNivel());
 		}
 	}
 
 	private void evolucionarPokemon(Pokemon pokemon) {
-		int nuevoNumPokedex = PokemonBD.obtenerEvolucion(pokemon.getNum_pokedex(), pokemon.getNivel());
+		int nuevoNumPokedex = PokemonBD.obtenerEvolucion(pokemon);
 		if (nuevoNumPokedex != pokemon.getNum_pokedex()) {
 			pokemon.setNum_pokedex(nuevoNumPokedex);
-			System.out.println(pokemon.getNombre_pokemon() + " ha evolucionado!");
-		} else {
-			System.out.println(pokemon.getNombre_pokemon() + " no puede evolucionar.");
-		}
+			mostrarAlerta("El pokemon " + pokemon.getNombre_pokemon() + " ha evolucionado");
+		} 
 	}
 
 	private void actualizarLogCombate(String descripcion) {

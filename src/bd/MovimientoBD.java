@@ -203,6 +203,54 @@ public class MovimientoBD {
 			}
 		}
 	}
+	
+	public static void asignarMovimientoAleatorio(Pokemon pokemon) {
+		// Consulta para obtener movimientos aleatorios del tipo del Pokémon
+		
+		try(Connection con = BDConecction.getConnection()){
+			
+			String queryMovimientos = "	SELECT ID_MOVIMIENTO, NOM_MOVIMIENTO, TIPO, PP_MAX\r\n"
+					+ "				    FROM MOVIMIENTO\r\n"
+					+ "				    WHERE TIPO_MOV IN (?, ?) -- Los tipos del Pokémon\r\n"
+					+ "				    AND ID_MOVIMIENTO NOT IN (\r\n"
+					+ "				        SELECT ID_MOVIMIENTO\r\n"
+					+ "				        FROM MOVIMIENTO_POKEMON\r\n"
+					+ "				        WHERE ID_POKEMON = ?\r\n"
+					+ "				        AND ID_ENTRENADOR = ?\r\n"
+					+ "				    )\r\n"
+					+ "				    ORDER BY RAND()\r\n"
+					+ "				    LIMIT 1";
+
+			try (PreparedStatement st = con.prepareStatement(queryMovimientos)) {
+				st.setString(1, pokemon.getTipo1());
+				st.setString(2, pokemon.getTipo2() != null ? pokemon.getTipo2() : pokemon.getTipo1()); // Si no hay TIPO2, usar TIPO1
+				st.setInt(3, pokemon.getId_pokemon());
+				st.setInt(4, pokemon.getId_entrenador());
+
+				ResultSet rs = st.executeQuery();
+
+				while (rs.next()) {
+
+					String insertMovimiento = "INSERT INTO MOVIMIENTO_POKEMON (ID_ENTRENADOR, ID_MOVIMIENTO, "
+							+ "ID_POKEMON, PP_ACTUALES, POSICION)\r\n"
+							+ "VALUES (?, ?, ?, ?, 5)";
+
+					try (PreparedStatement insertSt = con.prepareStatement(insertMovimiento)) {
+						insertSt.setInt(1, pokemon.getId_entrenador());
+						insertSt.setInt(2, rs.getInt("ID_MOVIMIENTO"));
+						insertSt.setInt(3, pokemon.getId_pokemon());
+						insertSt.setInt(4, rs.getInt("PP_MAX")); // Asignar PP máximos
+						insertSt.executeUpdate();
+					}
+				}
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
+	}
 
 	public static Movimiento asignarMovimientosAleatoriosRival(Pokemon pokemon, int numMov) {
 
