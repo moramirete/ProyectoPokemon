@@ -10,10 +10,41 @@ import model.Entrenador;
 import model.Movimiento;
 import model.Pokemon;
 
+/**
+ * Clase de acceso a datos para la gestión de movimientos de Pokémon en la base de datos.
+ * Proporciona métodos para asignar, consultar y actualizar movimientos de Pokémon,
+ * tanto para entrenadores como para rivales.
+ * 
+ * Métodos principales:
+ * <ul>
+ *   <li>Otorgar el primer movimiento (Placaje) a un Pokémon</li>
+ *   <li>Obtener movimientos de un Pokémon</li>
+ *   <li>Asignar movimientos aleatorios según tipo</li>
+ *   <li>Asignar movimientos a Pokémon rivales</li>
+ *   <li>Actualizar los PP de un movimiento</li>
+ * </ul>
+ * 
+ * Todas las operaciones de base de datos utilizan conexiones JDBC.
+ * 
+ * @author TuNombre
+ */
+
 public class MovimientoBD {
+	
+	 /**
+     * Otorga el primer movimiento (Placaje) a un Pokémon de un entrenador y lo inserta en la base de datos.
+     * @param con Conexión a la base de datos.
+     * @param entrenador Entrenador propietario.
+     * @param pokemon Pokémon al que se le otorga el movimiento.
+     * @return El movimiento otorgado.
+     */
 
 	public static Movimiento otorgarPrimerMovimiento(Connection con, Entrenador entrenador, Pokemon pokemon) {
-
+		 /**
+	     * Otorga el primer movimiento (Placaje) a un Pokémon rival (sin insertarlo en la base de datos).
+	     * @param pokemon Pokémon rival.
+	     * @return El movimiento otorgado.
+	     */
 		Movimiento mov = null;
 
 		try {
@@ -67,7 +98,12 @@ public class MovimientoBD {
 	}
 
 	public static Movimiento otorgarPrimerMovimientoRival(Pokemon pokemon) {
-
+		/**
+	     * Obtiene la lista de movimientos de un Pokémon.
+	     * @param idPokemon ID del Pokémon.
+	     * @param con Conexión a la base de datos.
+	     * @return Lista de movimientos.
+	     */
 		Movimiento mov = null;
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -104,6 +140,16 @@ public class MovimientoBD {
 	}
 
 	public static LinkedList<Movimiento> obtenerMovimientosPorPokemon(int idPokemon, Connection con) {
+		 /**
+	     * Asigna varios movimientos aleatorios a un Pokémon según sus tipos.
+	     * @param conexion Conexión a la base de datos.
+	     * @param idPokemon ID del Pokémon.
+	     * @param tipo1 Primer tipo del Pokémon.
+	     * @param tipo2 Segundo tipo del Pokémon (puede ser null).
+	     * @param cantidadMovimientos Número de movimientos a asignar.
+	     * @param idEntrenador ID del entrenador.
+	     * @throws SQLException Si ocurre un error de base de datos.
+	     */
 		LinkedList<Movimiento> movimientos = new LinkedList<>();
 
 		try {
@@ -151,6 +197,10 @@ public class MovimientoBD {
 	}
 
 	public static void asignarMovimientosAleatorios(Connection conexion, int idPokemon, String tipo1, String tipo2,
+			/**
+		     * Asigna un movimiento aleatorio a un Pokémon según sus tipos.
+		     * @param pokemon Pokémon al que se le asigna el movimiento.
+		     */
 			int cantidadMovimientos, int idEntrenador) throws SQLException {
 		// Consulta para obtener movimientos aleatorios del tipo del Pokémon
 		String queryMovimientos = "				    SELECT ID_MOVIMIENTO, NOM_MOVIMIENTO, TIPO, PP_MAX\r\n"
@@ -205,6 +255,12 @@ public class MovimientoBD {
 	}
 	
 	public static void asignarMovimientoAleatorio(Pokemon pokemon) {
+		 /**
+	     * Asigna un movimiento aleatorio a un Pokémon rival (usado en combates).
+	     * @param pokemon Pokémon rival.
+	     * @param numMov Número de movimiento (posición).
+	     * @return Movimiento asignado.
+	     */
 		// Consulta para obtener movimientos aleatorios del tipo del Pokémon
 		
 		try(Connection con = BDConecction.getConnection()){
@@ -254,6 +310,14 @@ public class MovimientoBD {
 
 	public static Movimiento asignarMovimientosAleatoriosRival(Pokemon pokemon, int numMov) {
 
+		 /**
+	     * Actualiza los PP actuales de un movimiento de un Pokémon en la base de datos.
+	     * @param idEntrenador ID del entrenador.
+	     * @param idPokemon ID del Pokémon.
+	     * @param idMovimiento ID del movimiento.
+	     * @param nuevosPP Nuevo valor de PP.
+	     */
+		
 		Movimiento pokemonMov = null;
 
 		if (numMov == 0) {
@@ -300,6 +364,12 @@ public class MovimientoBD {
 	}
 
 	public static void actualizarPPMovimiento(int idEntrenador, int idPokemon, int idMovimiento, int nuevosPP) {
+		
+		/**
+		 *  se acualizan los PP de los movimientos en la base de datos
+		 * 
+		 * 
+		 */
 	    String sql = "UPDATE MOVIMIENTO_POKEMON SET PP_ACTUALES = ? WHERE ID_ENTRENADOR = ? AND ID_POKEMON = ? AND ID_MOVIMIENTO = ?";
 	    try (Connection conexion = BDConecction.getConnection();
 	         PreparedStatement pstmt = conexion.prepareStatement(sql)) {

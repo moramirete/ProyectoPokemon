@@ -1053,3 +1053,73 @@ Turno 89:
 Entrenador: HORSEA uso Placaje e hizo 2 de daño.
 Rival: ARCANINE usó Placaje e hizo 2 de daño.
 
+
+Combate 20250518073324565:
+Turno 1:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 2:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Hoja Afilada e hizo 3 de daño.
+
+Turno 3:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Hoja Afilada e hizo 3 de daño.
+
+Turno 4:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Hoja Afilada e hizo 3 de daño.
+
+Turno 5:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 6:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Hoja Afilada e hizo 3 de daño.
+
+Turno 7:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Hoja Afilada e hizo 3 de daño.
+
+Turno 8:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 9:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 10:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 11:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 12:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 13:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 14:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 15:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+
+Turno 16:
+Entrenador: MOLTRES descanso y recupero la cantidad de PS de 3
+Rival: TANGELA usó Hoja Afilada e hizo 3 de daño.
+
+Turno 17:
+Entrenador: MOLTRES uso Placaje e hizo 2 de daño.
+Rival: TANGELA usó Placaje e hizo 2 de daño.
+

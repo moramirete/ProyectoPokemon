@@ -37,7 +37,22 @@ import model.Pokemon;
  * Controlador para la ventana de estadísticas de un Pokémon.
  * Permite ver información, movimientos y objetos equipados, así como cambiar movimientos y reproducir el grito.
  * Además, muestra información adicional y ejemplos de funcionalidades ampliadas.
+ *
+ * <p>
+ * Métodos principales:
+ * <ul>
+ *   <li>Inicialización de la vista de estadísticas</li>
+ *   <li>Cambio y gestión de movimientos principales y de caja</li>
+ *   <li>Gestión de objetos equipados</li>
+ *   <li>Reproducción del grito del Pokémon</li>
+ *   <li>Actualización de barras de vida y tablas</li>
+ *   <li>Historial de cambios realizados</li>
+ * </ul>
+ * </p>
+ * 
+ * @author TuNombre
  */
+
 public class EstadisticasController {
 
     private Entrenador entrenador;
@@ -48,6 +63,15 @@ public class EstadisticasController {
     // Atributos de ejemplo para "rellenar" la clase
     private int vecesGritoReproducido = 0;
     private ArrayList<String> historialCambios = new ArrayList<>();
+    
+
+    /**
+     * Inicializa el controlador con los datos necesarios.
+     * @param ent Entrenador actual.
+     * @param stage Ventana asociada.
+     * @param menuController Controlador del menú principal.
+     * @param pokemon Pokémon a mostrar.
+     */
 
     public void init(Entrenador ent, Stage stage, MenuController menuController, Pokemon pokemon) {
         this.menuController = menuController;
@@ -119,7 +143,7 @@ public class EstadisticasController {
 
     /**
      * Inicializa la vista de estadísticas del Pokémon.
-     * Ahora incluye información adicional de ejemplo.
+     * Carga imágenes, datos y tablas, y muestra información adicional de ejemplo.
      */
     public void inicializarEstadisticas() {
         if (pokemon != null) {
@@ -194,13 +218,20 @@ public class EstadisticasController {
             System.out.println("Veces que se ha reproducido el grito: " + vecesGritoReproducido);
         }
     }
-
+    /**
+     * Actualiza la tabla de objetos equipables del entrenador.
+     */
     public void actualizarTablaObjetos() {
         ArrayList<ObjetoEnMochila> objetos = MochilaBD.obtenerContenidoTablaObjetos(entrenador.getIdEntrenador());
         ObservableList<ObjetoEnMochila> lista = FXCollections.observableArrayList(objetos);
         tablaObjeto.setItems(lista);
     }
-
+    /**
+     * Actualiza la barra de vida de un Pokémon.
+     * @param barra Barra de progreso.
+     * @param vidaActual Vida actual.
+     * @param vidaMaxima Vida máxima.
+     */
     public void actualizarBarraVida(ProgressBar barra, double vidaActual, double vidaMaxima) {
         double porcentaje = vidaActual / vidaMaxima;
         barra.setProgress(porcentaje);
@@ -216,22 +247,28 @@ public class EstadisticasController {
 
         barra.setStyle("-fx-accent: " + color + ";");
     }
-
+    /**
+     * Actualiza la barra de vida de un Pokémon.
+     * @param barra Barra de progreso.
+     * @param vidaActual Vida actual.
+     * @param vidaMaxima Vida máxima.
+     */
     @FXML
     void cambiarMov1(ActionEvent event) {
         cambiarMovimiento(1);
     }
 
+    
     @FXML
     void cambiarMov2(ActionEvent event) {
         cambiarMovimiento(2);
     }
-
+    
     @FXML
     void cambiarMov3(ActionEvent event) {
         cambiarMovimiento(3);
     }
-
+   
     @FXML
     void cambiarMov4(ActionEvent event) {
         cambiarMovimiento(4);
@@ -239,6 +276,7 @@ public class EstadisticasController {
 
     /**
      * Cambia el movimiento principal por uno de la caja y añade al historial.
+     * @param posicionPrincipal Posición del movimiento principal a cambiar (1-4).
      */
     private void cambiarMovimiento(int posicionPrincipal) {
         Movimiento movimientoSeleccionado = tablaMovimiento.getSelectionModel().getSelectedItem();
@@ -274,7 +312,9 @@ public class EstadisticasController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Carga los movimientos principales del Pokémon y los muestra en la vista.
+     */
     private void cargarMovimientosPrincipales() {
         try (Connection con = BDConecction.getConnection()) {
             String queryPrincipales = "SELECT mp.POSICION, m.NOM_MOVIMIENTO FROM movimiento_pokemon mp JOIN movimiento m ON mp.ID_MOVIMIENTO = m.ID_MOVIMIENTO WHERE mp.ID_ENTRENADOR = ? AND mp.ID_POKEMON = ? AND mp.POSICION BETWEEN 1 AND 4 ORDER BY mp.POSICION;";
@@ -305,7 +345,9 @@ public class EstadisticasController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Carga los movimientos de la caja del Pokémon y los muestra en la tabla.
+     */
     private void cargarMovimientosCaja() {
         try (Connection con = BDConecction.getConnection()) {
             String queryCaja = "SELECT mp.POSICION, m.ID_MOVIMIENTO, m.NOM_MOVIMIENTO, m.TIPO, m.TIPO_MOV FROM movimiento_pokemon mp JOIN movimiento m ON mp.ID_MOVIMIENTO = m.ID_MOVIMIENTO WHERE mp.ID_ENTRENADOR = ? AND mp.ID_POKEMON = ? AND mp.POSICION = 5;";
@@ -341,6 +383,12 @@ public class EstadisticasController {
         }
     }
 
+    
+    /**
+     * 
+     * metodo para cambiar el objeto del pokemon
+     * 
+     */
     @FXML
     void cambiarObj(ActionEvent event) {
         ObjetoEnMochila objetoSeleccionado = tablaObjeto.getSelectionModel().getSelectedItem();
@@ -360,6 +408,14 @@ public class EstadisticasController {
         }
     }
 
+    /**
+     * 
+     * 
+     * metodo para quitar el objeto al pokemon
+     * 
+     */
+    
+    
     @FXML
     void quitarObjeto(ActionEvent event) {
         if (pokemon.getId_objeto() == 0) {
@@ -377,6 +433,12 @@ public class EstadisticasController {
         }
     }
 
+    /**
+     * 
+     * 
+     * metodo para reproducir el rito del pokemon
+     */
+    
     @FXML
     void reproducirGrito(ActionEvent event) {
         String numPokedexEditado = String.format("%03d", pokemon.getNum_pokedex());
@@ -403,7 +465,7 @@ public class EstadisticasController {
     }
 
     /**
-     * Método de ejemplo para mostrar el historial de cambios en consola.
+     * Muestra el historial de cambios realizados en la sesión por consola.
      */
     public void mostrarHistorialCambios() {
         System.out.println("Historial de cambios realizados en la sesión:");
@@ -412,6 +474,10 @@ public class EstadisticasController {
         }
     }
 
+    /**
+     * 
+     * metodo para mostrar
+     */
     public void show() {
         stage.show();
     }

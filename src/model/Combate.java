@@ -73,26 +73,5 @@ public class Combate {
         this.turnos = turnos;
     }
 
-    // Métodos adicionales de ejemplo para "relleno"
-
-    /**
-     * Devuelve el número total de turnos exportados.
-     */
-    public int getTotalTurnosExportados() {
-        return totalTurnosExportados;
-    }
-
-    /**
-     * Devuelve la fecha y hora de inicio del combate.
-     */
-    public LocalDateTime getFechaInicio() {
-        return fechaInicio;
-    }
-
-    /**
-     * Devuelve la fecha y hora de fin del combate (si se exportó).
-     */
-    public LocalDateTime getFechaFin() {
-        return fechaFin;
-    }
+   
 }

@@ -149,33 +149,4 @@ public class Objeto {
         this.precio = precio;
     }
 
-    // Métodos adicionales de ejemplo para "relleno"
-
-    /**
-     * Incrementa el contador de veces que se ha usado este objeto.
-     */
-    public void registrarUso() {
-        vecesUsado++;
-    }
-
-    /**
-     * Devuelve el número de veces que se ha usado este objeto.
-     */
-    public int getVecesUsado() {
-        return vecesUsado;
-    }
-
-    /**
-     * Marca o desmarca este objeto como consumible.
-     */
-    public void setConsumible(boolean consumible) {
-        this.esConsumible = consumible;
-    }
-
-    /**
-     * Indica si este objeto es consumible.
-     */
-    public boolean isConsumible() {
-        return esConsumible;
-    }
 }

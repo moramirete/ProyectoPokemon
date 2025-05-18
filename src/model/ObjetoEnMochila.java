@@ -11,9 +11,7 @@ public class ObjetoEnMochila {
     private int cantidad;
     private String rutaImagen;
 
-    // Atributos adicionales para "relleno"
-    private int vecesSeleccionado = 0;
-    private boolean esFavorito = false;
+    
 
     public ObjetoEnMochila(String nombreObjeto, String descripcion, int cantidad, String rutaImagen) {
         this.nombreObjeto = nombreObjeto;
@@ -45,33 +43,5 @@ public class ObjetoEnMochila {
         this.rutaImagen = rutaImagen;
     }
 
-    // Métodos adicionales de ejemplo para "relleno"
-
-    /**
-     * Incrementa el contador de veces que se ha seleccionado este objeto.
-     */
-    public void registrarSeleccion() {
-        vecesSeleccionado++;
-    }
-
-    /**
-     * Devuelve el número de veces que se ha seleccionado este objeto.
-     */
-    public int getVecesSeleccionado() {
-        return vecesSeleccionado;
-    }
-
-    /**
-     * Marca o desmarca este objeto como favorito.
-     */
-    public void setFavorito(boolean favorito) {
-        this.esFavorito = favorito;
-    }
-
-    /**
-     * Indica si este objeto es favorito.
-     */
-    public boolean isFavorito() {
-        return esFavorito;
-    }
+    
 }

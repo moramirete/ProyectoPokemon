@@ -121,49 +121,5 @@ public class Entrenador {
         return pokedolares;
     }
 
-    // Métodos adicionales de ejemplo para "relleno"
-
-    /**
-     * Incrementa el contador de pokémons capturados y guarda el último capturado.
-     */
-    public void registrarCapturaPokemon(Pokemon pokemon) {
-        pokemonsCapturados++;
-        ultimoPokemonCapturado = pokemon.getNombre_pokemon();
-    }
-
-    /**
-     * Incrementa el contador de objetos usados y guarda el último objeto usado.
-     */
-    public void registrarUsoObjeto(Objeto objeto) {
-        objetosUsados++;
-        ultimoObjetoUsado = objeto.getNombreObjeto();
-    }
-
-    /**
-     * Devuelve el número de pokémons capturados.
-     */
-    public int getPokemonsCapturados() {
-        return pokemonsCapturados;
-    }
-
-    /**
-     * Devuelve el número de objetos usados.
-     */
-    public int getObjetosUsados() {
-        return objetosUsados;
-    }
-
-    /**
-     * Devuelve el nombre del último pokémon capturado.
-     */
-    public String getUltimoPokemonCapturado() {
-        return ultimoPokemonCapturado;
-    }
-
-    /**
-     * Devuelve el nombre del último objeto usado.
-     */
-    public String getUltimoObjetoUsado() {
-        return ultimoObjetoUsado;
-    }
+   
 }

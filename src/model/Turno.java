@@ -83,26 +83,4 @@ public class Turno {
         return accionRival == null || accionRival.isEmpty();
     }
 
-    // Métodos adicionales de ejemplo para "relleno"
-
-    /**
-     * Devuelve el timestamp de creación del turno.
-     */
-    public long getTimestampCreacion() {
-        return timestampCreacion;
-    }
-
-    /**
-     * Marca o desmarca este turno como especial.
-     */
-    public void setTurnoEspecial(boolean especial) {
-        this.esTurnoEspecial = especial;
-    }
-
-    /**
-     * Indica si este turno es especial.
-     */
-    public boolean isTurnoEspecial() {
-        return esTurnoEspecial;
-    }
 }
