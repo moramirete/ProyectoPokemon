@@ -254,6 +254,7 @@ public class PokemonBD {
 
 		return equipo;
 	}
+	
 
 	public static ArrayList<Pokemon> obtenerEquipoSinPrincipal(int idEntrenador) {
 		ArrayList<Pokemon> equipo = new ArrayList<>();
@@ -845,8 +846,17 @@ public class PokemonBD {
 		try (Connection con = BDConecction.getConnection()) {
 			Random rd = new Random();
 
-			String queryPokedex = "SELECT * FROM POKEDEX ORDER BY RAND() LIMIT 1";
+			String queryPokedex = "SELECT *\r\n"
+					+ "FROM POKEDEX\r\n"
+					+ "WHERE NIVEL_EVOLUCION = (\r\n"
+					+ "    SELECT pd.NIVEL_EVOLUCION\r\n"
+					+ "    FROM POKEMON p\r\n"
+					+ "    JOIN POKEDEX pd ON p.NUM_POKEDEX = pd.NUM_POKEDEX\r\n"
+					+ "    WHERE p.ID_POKEMON = ? AND p.ID_ENTRENADOR = ?\r\n"
+					+ ") ORDER BY RAND() LIMIT 1;";
 			PreparedStatement ps = con.prepareStatement(queryPokedex);
+			ps.setInt(1, pokemon.getId_pokemon());
+			ps.setInt(2, pokemon.getId_entrenador());
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.next()) {

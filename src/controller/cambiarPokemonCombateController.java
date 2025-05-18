@@ -82,17 +82,22 @@ public class cambiarPokemonCombateController {
 	}
 
 	private void cargarEquipo() {
+	    ArrayList<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
 
-		ArrayList<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
-		ObservableList<Pokemon> listaEquipo = FXCollections.observableArrayList(equipo);
+	    // FILTRO: solo si estamos en combate (btnCambiarPor1 está visible)
+	    if (btnCambiarPor1.isVisible()) {
+	        equipo.removeIf(p -> p.getVitalidadOBJ() <= 0 || p.getId_pokemon() == actualPrincipal.getId_pokemon());
+	    }
 
-		colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
-		colNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
-		colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
-		colTipo2.setCellValueFactory(new PropertyValueFactory<>("tipo2"));
-		colPosicion.setCellValueFactory(new PropertyValueFactory<>("equipo"));
+	    ObservableList<Pokemon> listaEquipo = FXCollections.observableArrayList(equipo);
 
-		tabPokemon.setItems(listaEquipo);
+	    colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
+	    colNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
+	    colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
+	    colTipo2.setCellValueFactory(new PropertyValueFactory<>("tipo2"));
+	    colPosicion.setCellValueFactory(new PropertyValueFactory<>("equipo"));
+
+	    tabPokemon.setItems(listaEquipo);
 	}
 
 	@FXML
