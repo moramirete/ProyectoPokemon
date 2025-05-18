@@ -2,9 +2,6 @@ package controller;
 
 import javafx.stage.Stage;
 import model.Entrenador;
-import model.Mochila;
-import model.Objeto;
-import model.ObjetoEnMochila;
 import model.Pokemon;
 import javafx.scene.control.ProgressBar;
 
@@ -12,10 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import bd.MochilaBD;
-import bd.ObjetoBD;
 import bd.PokemonBD;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,145 +19,154 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+/**
+ * Controlador para la ventana del Centro Pokémon.
+ * Permite visualizar el equipo, curar Pokémon y volver al menú principal.
+ */
 public class CentroController {
-	private Entrenador entrenador;
-	private Stage stage;
-	private MenuController menuController;
+    private Entrenador entrenador;
+    private Stage stage;
+    private MenuController menuController;
 
-	@FXML
-	private Button btnRecuperar;
+    @FXML
+    private Button btnRecuperar;
 
-	@FXML
-	private Button btnSalir;
+    @FXML
+    private Button btnSalir;
 
-	@FXML
-	private TableColumn<Pokemon, String> colPokemon;
+    @FXML
+    private TableColumn<Pokemon, String> colPokemon;
 
-	@FXML
-	private TableColumn<Pokemon, Integer> colVida;
+    @FXML
+    private TableColumn<Pokemon, Integer> colVida;
 
-	@FXML
-	private ImageView imagenFondo;
+    @FXML
+    private TableView<Pokemon> tableCentro;
 
-	@FXML
-	private TableView<Pokemon> tableCentro;
+    /**
+     * Inicializa el controlador con el entrenador, la ventana y el menú principal.
+     */
+    public void init(Entrenador ent, Stage stage, MenuController menuController) {
+        this.menuController = menuController;
+        this.stage = stage;
+        this.entrenador = ent;
 
+        cargarEquipo();
+    }
 
-	public void init(Entrenador ent, Stage stage, MenuController menuController) {
-		this.menuController = menuController;
-		this.stage = stage;
-		this.entrenador = ent;
+    /**
+     * Inicializa las columnas de la tabla y carga el equipo si el entrenador está definido.
+     */
+    public void initialize() {
+        colPokemon.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
+        colVida.setCellValueFactory(new PropertyValueFactory<>("vitalidad"));
 
-		cargarEquipo();
-	}
+        colVida.setCellFactory(tc -> new TableCell<Pokemon, Integer>() {
+            private final ProgressBar progressBar = new ProgressBar();
+            private final Label label = new Label();
 
-	public void initialize() {
-		colPokemon.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
-		colVida.setCellValueFactory(new PropertyValueFactory<>("vitalidad"));
+            @Override
+            protected void updateItem(Integer s, boolean empty) {
+                super.updateItem(s, empty);
+                if (empty || s == null) {
+                    setGraphic(null);
+                } else {
+                    Pokemon pokemon = getTableView().getItems().get(getIndex());
+                    int vidaActual = pokemon.getVitalidadOBJ();
+                    int vidaMaxima = pokemon.getVitalidadMaxOBJ();
 
-		colVida.setCellFactory(tc -> new TableCell<Pokemon, Integer>() {
-			private final ProgressBar progressBar = new ProgressBar();
-			private final Label label = new Label();
+                    actualizarColorBarraVida(progressBar, label, vidaActual, vidaMaxima);
 
-			@Override
-			protected void updateItem(Integer s, boolean empty) {
-				super.updateItem(s, empty);
-				if (empty || s == null) {
-					setGraphic(null);
-				} else {
-					Pokemon pokemon = getTableView().getItems().get(getIndex());
-					int vidaActual = pokemon.getVitalidadOBJ();
-					int vidaMaxima = pokemon.getVitalidadMaxOBJ();
+                    HBox hbox = new HBox(10, progressBar, label);
+                    hbox.setSpacing(10);
+                    setGraphic(hbox);
+                }
+            }
+        });
 
-					actualizarColorBarraVida(progressBar, label, vidaActual, vidaMaxima);
+        if (entrenador != null) {
+            cargarEquipo();
+        }
+    }
 
-					HBox hbox = new HBox(10, progressBar, label);
-					hbox.setSpacing(10);
-					setGraphic(hbox);
-				}
-			}
-		});
+    /**
+     * Actualiza el color y valor de la barra de vida.
+     */
+    private void actualizarColorBarraVida(ProgressBar barra, Label label, double vidaActual, double vidaMaxima) {
+        double porcentaje = vidaActual / vidaMaxima;
+        barra.setProgress(porcentaje);
+        barra.setPrefWidth(200);
 
-		if (entrenador != null) {
-			cargarEquipo();
-		}
-	}
+        String color;
+        if (porcentaje > 0.5) {
+            color = "#228B22";
+        } else if (porcentaje > 0.2) {
+            color = "yellow";
+        } else {
+            color = "red";
+        }
 
-	private void actualizarColorBarraVida(ProgressBar barra, Label label, double vidaActual, double vidaMaxima) {
-		double porcentaje = vidaActual / vidaMaxima;
-		barra.setProgress(porcentaje);
-		barra.setPrefWidth(200); // Establece el ancho de la barra
+        barra.setStyle("-fx-accent: " + color + ";");
+        label.setText((int) vidaActual + "/" + (int) vidaMaxima);
+    }
 
-		String color;
+    /**
+     * Carga el equipo del entrenador en la tabla.
+     */
+    private void cargarEquipo() {
+        ArrayList<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
+        ObservableList<Pokemon> lista = FXCollections.observableArrayList(equipo);
 
-		if (porcentaje > 0.5) {
-			color = "#228B22";
-		} else if (porcentaje > 0.2) {
-			color = "yellow";
-		} else {
-			color = "red";
-		}
+        for (Pokemon pokemon : lista) {
+            System.out.println("Pokemon: " + pokemon.getNombre_pokemon() + ", Vitalidad: " + pokemon.getVitalidadOBJ()
+                    + ", Vitalidad Max: " + pokemon.getVitalidadMaxOBJ());
+        }
 
-		barra.setStyle("-fx-accent: " + color + ";"); // Establece el color de la barra
-		label.setText((int) vidaActual + "/" + (int) vidaMaxima); // Muestra la vida actual y máxima
-	}
+        tableCentro.setItems(lista);
+    }
 
-	private void cargarEquipo() {
-		ArrayList<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
-		ObservableList<Pokemon> lista = FXCollections.observableArrayList(equipo);
+    /**
+     * Cura el Pokémon seleccionado y recupera sus PP.
+     */
+    @FXML
+    void recuperarPokemon(ActionEvent event) {
+        Pokemon pokSeleccionado = tableCentro.getSelectionModel().getSelectedItem();
 
-		for (Pokemon pokemon : lista) {
-			System.out.println("Pokemon: " + pokemon.getNombre_pokemon() + ", Vitalidad: " + pokemon.getVitalidadOBJ()
-					+ ", Vitalidad Max: " + pokemon.getVitalidadMaxOBJ());
-		}
+        if (pokSeleccionado == null) {
+            JOptionPane.showMessageDialog(null, "Selecciona primero un pokemon", "Error", 0);
+            return;
+        }
 
-		tableCentro.setItems(lista);
-	}
+        if (pokSeleccionado.getVitalidadOBJ() == pokSeleccionado.getVitalidadMaxOBJ()) {
+            JOptionPane.showMessageDialog(null, "El pokemon ya tiene la vida maxima", "Error", 0);
+            return;
+        }
 
-	@FXML
-	void recuperarPokemon(ActionEvent event) {
-		// Obtener el objeto seleccionado en la tienda
-		Pokemon pokSeleccionado = tableCentro.getSelectionModel().getSelectedItem();
+        boolean vidaCurada = PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon());
+        boolean ppRecuperados = PokemonBD.recuperarPPMovimientos(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon());
 
-		if (pokSeleccionado == null) {
-			JOptionPane.showMessageDialog(null, "Selecciona primero un pokemon", "Error", 0);
-			return;
-		}
+        if (vidaCurada && ppRecuperados) {
+            pokSeleccionado.setVitalidadOBJ(pokSeleccionado.getVitalidadMaxOBJ());
+            pokSeleccionado.recuperarTodosLosPP();
 
-		if (pokSeleccionado.getVitalidadOBJ() == pokSeleccionado.getVitalidadMaxOBJ()) {
-			JOptionPane.showMessageDialog(null, "El pokemon ya tiene la vida maxima", "Error", 0);
-			return;
-		}
+            tableCentro.refresh();
+            JOptionPane.showMessageDialog(null,
+                    "El pokemon " + pokSeleccionado.getNombre_pokemon() + " se ha curado correctamente", "Curación", 1);
 
-		 boolean vidaCurada = PokemonBD.curarPokemon(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon());
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo curar al pokemon", "Error", 0);
+        }
+    }
 
-		   
-		    boolean ppRecuperados = PokemonBD.recuperarPPMovimientos(entrenador.getIdEntrenador(), pokSeleccionado.getId_pokemon());
-
-		    if (vidaCurada && ppRecuperados) {
-		       
-		        pokSeleccionado.setVitalidadOBJ(pokSeleccionado.getVitalidadMaxOBJ());
-		        pokSeleccionado.recuperarTodosLosPP();
-
-			// Refrescar la tabla para reflejar los cambios y lanzar el mensaje
-			tableCentro.refresh();
-			JOptionPane.showMessageDialog(null,
-					"El pokemon " + pokSeleccionado.getNombre_pokemon() + " se ha curado correctamente", "Curación", 1);
-
-		} else {
-			JOptionPane.showMessageDialog(null, "No se pudo curar al pokemon", "Error", 0);
-		}
-	}
-
-	@FXML
-	void volverMenu(ActionEvent event) {
-		menuController.show();
-		this.stage.close();
-	}
+    /**
+     * Vuelve al menú principal y cierra la ventana actual.
+     */
+    @FXML
+    void volverMenu(ActionEvent event) {
+        menuController.show();
+        this.stage.close();
+    }
 }

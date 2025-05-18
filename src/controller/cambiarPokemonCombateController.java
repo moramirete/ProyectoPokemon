@@ -19,140 +19,163 @@ import javafx.stage.Stage;
 import model.Entrenador;
 import model.Pokemon;
 
+/**
+ * Controlador para la ventana de cambio de Pokémon durante entrenamiento o combate.
+ * Permite seleccionar un Pokémon del equipo para cambiarlo por el principal.
+ */
 public class cambiarPokemonCombateController {
 
-	@FXML
-	private Button btnCambiarPor;
-	
+    @FXML
+    private Button btnCambiarPor;
+
     @FXML
     private Button btnCambiarPor1;
 
-	@FXML
-	private Button btnVolver;
+    @FXML
+    private Button btnVolver;
 
-	@FXML
-	private TableColumn<Pokemon, Integer> colNivel;
+    @FXML
+    private TableColumn<Pokemon, Integer> colNivel;
 
-	@FXML
-	private TableColumn<Pokemon, String> colNombre;
+    @FXML
+    private TableColumn<Pokemon, String> colNombre;
 
-	@FXML
-	private TableColumn<Pokemon, Integer> colPosicion;
+    @FXML
+    private TableColumn<Pokemon, Integer> colPosicion;
 
-	@FXML
-	private TableColumn<Pokemon, String> colTipo;
+    @FXML
+    private TableColumn<Pokemon, String> colTipo;
 
-	@FXML
-	private TableColumn<Pokemon, String> colTipo2;
+    @FXML
+    private TableColumn<Pokemon, String> colTipo2;
 
-	@FXML
-	private TableView<Pokemon> tabPokemon;
+    @FXML
+    private TableView<Pokemon> tabPokemon;
 
-	@FXML
-	private Label txtPokemonCaja;
+    @FXML
+    private Label txtPokemonCaja;
 
-	private Stage stage;
-	private Entrenador entrenador;
-	private Pokemon actualPrincipal;
-	private EntrenamientoController entrenamientoController;
-	private CombateController combateController;
-	private List<Pokemon> equipo;
+    private Stage stage;
+    private Entrenador entrenador;
+    private Pokemon actualPrincipal;
+    private EntrenamientoController entrenamientoController;
+    private CombateController combateController;
+    private List<Pokemon> equipo;
 
-	public void init(Entrenador entrenador, Pokemon actualPrincipal, EntrenamientoController controller) {
-		this.entrenador = entrenador;
-		this.actualPrincipal = actualPrincipal;
-		this.entrenamientoController = controller;
-		
-		btnCambiarPor.setVisible(true);
-		btnCambiarPor1.setVisible(false);
+    /**
+     * Inicializa el controlador para el contexto de entrenamiento.
+     */
+    public void init(Entrenador entrenador, Pokemon actualPrincipal, EntrenamientoController controller) {
+        this.entrenador = entrenador;
+        this.actualPrincipal = actualPrincipal;
+        this.entrenamientoController = controller;
 
-		cargarEquipo();
-	}
-	
-	public void init(Entrenador entrenador, Pokemon actualPrincipal, CombateController controller, List<Pokemon> equipo) {
-		this.entrenador = entrenador;
-		this.actualPrincipal = actualPrincipal;
-		this.combateController = controller;
-		this.equipo = equipo;
+        btnCambiarPor.setVisible(true);
+        btnCambiarPor1.setVisible(false);
 
-		btnCambiarPor.setVisible(false);
-		btnCambiarPor1.setVisible(true);
-		
-		cargarEquipo();
-	}
+        cargarEquipo();
+    }
 
-	private void cargarEquipo() {
-	    ArrayList<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
+    /**
+     * Inicializa el controlador para el contexto de combate.
+     */
+    public void init(Entrenador entrenador, Pokemon actualPrincipal, CombateController controller, List<Pokemon> equipo) {
+        this.entrenador = entrenador;
+        this.actualPrincipal = actualPrincipal;
+        this.combateController = controller;
+        this.equipo = equipo;
 
-	    // FILTRO: solo si estamos en combate (btnCambiarPor1 está visible)
-	    if (btnCambiarPor1.isVisible()) {
-	        equipo.removeIf(p -> p.getVitalidadOBJ() <= 0 || p.getId_pokemon() == actualPrincipal.getId_pokemon());
-	    }
+        btnCambiarPor.setVisible(false);
+        btnCambiarPor1.setVisible(true);
 
-	    ObservableList<Pokemon> listaEquipo = FXCollections.observableArrayList(equipo);
+        cargarEquipo();
+    }
 
-	    colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
-	    colNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
-	    colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
-	    colTipo2.setCellValueFactory(new PropertyValueFactory<>("tipo2"));
-	    colPosicion.setCellValueFactory(new PropertyValueFactory<>("equipo"));
+    /**
+     * Carga el equipo de Pokémon en la tabla, filtrando según el contexto.
+     */
+    private void cargarEquipo() {
+        ArrayList<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
 
-	    tabPokemon.setItems(listaEquipo);
-	}
+        // FILTRO: solo si estamos en combate (btnCambiarPor1 está visible)
+        if (btnCambiarPor1.isVisible()) {
+            equipo.removeIf(p -> p.getVitalidadOBJ() <= 0 || p.getId_pokemon() == actualPrincipal.getId_pokemon());
+        }
 
-	@FXML
-	void cambiarPor(ActionEvent event) {
-		Pokemon seleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+        ObservableList<Pokemon> listaEquipo = FXCollections.observableArrayList(equipo);
 
-		if (seleccionado == null) {
-			JOptionPane.showMessageDialog(null, "Selecciona un Pokémon.");
-			return;
-		}
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
+        colNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
+        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
+        colTipo2.setCellValueFactory(new PropertyValueFactory<>("tipo2"));
+        colPosicion.setCellValueFactory(new PropertyValueFactory<>("equipo"));
 
-		boolean cambio = PokemonBD.cambiarPrincipalConEquipo(entrenador.getIdEntrenador(), seleccionado,
-				actualPrincipal);
+        tabPokemon.setItems(listaEquipo);
+    }
 
-		if (cambio) {
-			entrenamientoController.recargarConNuevoPokemon(seleccionado.getId_pokemon());
-			cerrarVentana(event);
-		} else {
-			JOptionPane.showMessageDialog(null, "No se pudo cambiar el Pokémon.");
-		}
-	}
+    /**
+     * Cambia el Pokémon principal por el seleccionado (entrenamiento).
+     */
+    @FXML
+    void cambiarPor(ActionEvent event) {
+        Pokemon seleccionado = tabPokemon.getSelectionModel().getSelectedItem();
 
-	@FXML
-	void cambiarPorCombate(ActionEvent event) {
-	    Pokemon seleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            JOptionPane.showMessageDialog(null, "Selecciona un Pokémon.");
+            return;
+        }
 
-	    if (seleccionado == null) {
-	        JOptionPane.showMessageDialog(null, "Selecciona un Pokémon.");
-	        return;
-	    }
+        boolean cambio = PokemonBD.cambiarPrincipalConEquipo(entrenador.getIdEntrenador(), seleccionado, actualPrincipal);
 
-	    Pokemon anteriorPrincipal = actualPrincipal;
-	    actualPrincipal = seleccionado;
+        if (cambio) {
+            entrenamientoController.recargarConNuevoPokemon(seleccionado.getId_pokemon());
+            cerrarVentana(event);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo cambiar el Pokémon.");
+        }
+    }
 
-	    equipo.remove(seleccionado);
-	    equipo.add(anteriorPrincipal);
+    /**
+     * Cambia el Pokémon principal por el seleccionado (combate).
+     */
+    @FXML
+    void cambiarPorCombate(ActionEvent event) {
+        Pokemon seleccionado = tabPokemon.getSelectionModel().getSelectedItem();
 
-	    if (combateController != null) {
-	        combateController.recargarConNuevoPokemon(actualPrincipal.getId_pokemon());
-	    } else {
-	        System.out.println("El controlador de combate no está inicializado.");
-	    }
+        if (seleccionado == null) {
+            JOptionPane.showMessageDialog(null, "Selecciona un Pokémon.");
+            return;
+        }
 
-	    cerrarVentana(event);
-	}
-	
-	@FXML
-	void volveratras(ActionEvent event) {
-		cerrarVentana(event);
-	}
-	
-	@FXML
+        Pokemon anteriorPrincipal = actualPrincipal;
+        actualPrincipal = seleccionado;
+
+        equipo.remove(seleccionado);
+        equipo.add(anteriorPrincipal);
+
+        if (combateController != null) {
+            combateController.recargarConNuevoPokemon(actualPrincipal.getId_pokemon());
+        } else {
+            System.out.println("El controlador de combate no está inicializado.");
+        }
+
+        cerrarVentana(event);
+    }
+
+    /**
+     * Vuelve a la ventana anterior.
+     */
+    @FXML
+    void volveratras(ActionEvent event) {
+        cerrarVentana(event);
+    }
+
+    /**
+     * Cierra la ventana actual.
+     */
+    @FXML
     void cerrarVentana(ActionEvent event) {
-        // Cerrar la ventana emergente
-		Stage stage = (Stage) btnVolver.getScene().getWindow();
-	    stage.close();
+        Stage stage = (Stage) btnVolver.getScene().getWindow();
+        stage.close();
     }
 }

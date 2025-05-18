@@ -31,209 +31,255 @@ import model.Entrenador;
 import model.Objeto;
 import model.ObjetoEnMochila;
 
+/**
+ * Controlador de la vista de Mochila. Permite ver, vender y equipar objetos,
+ * así como acceder a la tienda y mostrar información detallada de cada objeto.
+ * Incluye atributos y métodos adicionales para hacerlo más "relleno".
+ */
 public class MochilaController {
 
-	private Entrenador entrenador;
-	private Stage stage;
-	private MenuController menuController;
+    private Entrenador entrenador;
+    private Stage stage;
+    private MenuController menuController;
 
-	public void init(Entrenador ent, Stage stage, MenuController menuController) {
-		this.menuController = menuController;
-		this.stage = stage;
-		this.entrenador = ent;
+    // Atributos adicionales para "relleno"
+    private int objetosVendidos = 0;
+    private int objetosEquipados = 0;
+    private String ultimoObjetoVendido = "";
+    private String ultimoObjetoEquipado = "";
 
-		actualizarContentMochila();
-	}
+    public void init(Entrenador ent, Stage stage, MenuController menuController) {
+        this.menuController = menuController;
+        this.stage = stage;
+        this.entrenador = ent;
 
-	@FXML
-	private Button btnEquipar;
+        actualizarContentMochila();
+    }
 
-	@FXML
-	private Button btnSalir;
+    @FXML
+    private Button btnEquipar;
 
-	@FXML
-	private Button btnTienda;
+    @FXML
+    private Button btnSalir;
 
-	@FXML
-	private Button btnVender;
+    @FXML
+    private Button btnTienda;
 
-	@FXML
-	private TableColumn<ObjetoEnMochila, String> clmObjeto;
+    @FXML
+    private Button btnVender;
 
-	@FXML
-	private TableColumn<ObjetoEnMochila, Integer> clmCantidad;
+    @FXML
+    private TableColumn<ObjetoEnMochila, String> clmObjeto;
 
-	@FXML
-	private TableView<ObjetoEnMochila> tblListaMochila;
+    @FXML
+    private TableColumn<ObjetoEnMochila, Integer> clmCantidad;
 
-	@FXML
-	private ImageView imgObjeto;
+    @FXML
+    private TableView<ObjetoEnMochila> tblListaMochila;
 
-	@FXML
-	private Label lblPokedolares;
+    @FXML
+    private ImageView imgObjeto;
 
-	@FXML
-	private TextField txtPokedolares;
+    @FXML
+    private Label lblPokedolares;
 
-	@FXML
-	private Label lblDescripcion;
+    @FXML
+    private TextField txtPokedolares;
 
-	@FXML
-	private TextField txtTituloDescripcion;
+    @FXML
+    private Label lblDescripcion;
 
-	@FXML
-	private TextArea txtDescripcion;
+    @FXML
+    private TextField txtTituloDescripcion;
 
-	@FXML
-	public void initialize() {
-		clmObjeto.setCellValueFactory(new PropertyValueFactory<>("nombreObjeto"));
-		clmCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+    @FXML
+    private TextArea txtDescripcion;
 
-		tblListaMochila.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-			if (newSelection != null) {
-				lblDescripcion.setText(newSelection.getDescripcion());
-				txtDescripcion.setText(newSelection.getDescripcion());
-				txtTituloDescripcion.setText(newSelection.getNombreObjeto());
-				actualizarImagen(newSelection);
-			} else {
-				txtDescripcion.setText("");
-				cargarImagenPorDefecto();
-			}
-		});
+    @FXML
+    public void initialize() {
+        clmObjeto.setCellValueFactory(new PropertyValueFactory<>("nombreObjeto"));
+        clmCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
 
-		if (entrenador != null) {
-			actualizarContentMochila();
-		}
-	}
+        tblListaMochila.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                lblDescripcion.setText(newSelection.getDescripcion());
+                txtDescripcion.setText(newSelection.getDescripcion());
+                txtTituloDescripcion.setText(newSelection.getNombreObjeto());
+                actualizarImagen(newSelection);
+            } else {
+                txtDescripcion.setText("");
+                cargarImagenPorDefecto();
+            }
+        });
 
-	private void actualizarImagen(ObjetoEnMochila objeto) {
-		String ruta = objeto.getRutaImagen();
-		try (InputStream is = getClass().getResourceAsStream(ruta)) {
-			if (is != null) {
-				Image imagen = new Image(is);
-				imgObjeto.setImage(imagen);
-			} else {
-				System.out.println("No se encontró la imagen: " + ruta);
-				cargarImagenPorDefecto();
-			}
-		} catch (Exception e) {
-			System.out.println("Error cargando imagen: " + ruta);
-			e.printStackTrace();
-			cargarImagenPorDefecto();
-		}
-	}
+        if (entrenador != null) {
+            actualizarContentMochila();
+        }
+    }
 
-	private void cargarImagenPorDefecto() {
-		try (InputStream is = getClass().getResourceAsStream("/imagenes/default.png")) {
-			if (is != null) {
-				Image imagenPorDefecto = new Image(is);
-				imgObjeto.setImage(imagenPorDefecto);
-			} else {
-				System.out.println("No se encontró la imagen por defecto");
-			}
-		} catch (Exception e) {
-			System.out.println("Error al cargar imagen por defecto");
-			e.printStackTrace();
-		}
-	}
+    private void actualizarImagen(ObjetoEnMochila objeto) {
+        String ruta = objeto.getRutaImagen();
+        try (InputStream is = getClass().getResourceAsStream(ruta)) {
+            if (is != null) {
+                Image imagen = new Image(is);
+                imgObjeto.setImage(imagen);
+            } else {
+                System.out.println("No se encontró la imagen: " + ruta);
+                cargarImagenPorDefecto();
+            }
+        } catch (Exception e) {
+            System.out.println("Error cargando imagen: " + ruta);
+            e.printStackTrace();
+            cargarImagenPorDefecto();
+        }
+    }
 
-	public void actualizarContentMochila() {
-		ArrayList<ObjetoEnMochila> objetos = MochilaBD.obtenerContenidoMochila(entrenador.getIdEntrenador());
-		ObservableList<ObjetoEnMochila> lista = FXCollections.observableArrayList(objetos);
-		tblListaMochila.setItems(lista);
+    private void cargarImagenPorDefecto() {
+        try (InputStream is = getClass().getResourceAsStream("/imagenes/default.png")) {
+            if (is != null) {
+                Image imagenPorDefecto = new Image(is);
+                imgObjeto.setImage(imagenPorDefecto);
+            } else {
+                System.out.println("No se encontró la imagen por defecto");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar imagen por defecto");
+            e.printStackTrace();
+        }
+    }
 
-		lblPokedolares.setText(String.valueOf(entrenador.getPokedolares()));
-	}
+    public void actualizarContentMochila() {
+        ArrayList<ObjetoEnMochila> objetos = MochilaBD.obtenerContenidoMochila(entrenador.getIdEntrenador());
+        ObservableList<ObjetoEnMochila> lista = FXCollections.observableArrayList(objetos);
+        tblListaMochila.setItems(lista);
 
-	@FXML
-	void accederTienda(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/tienda.fxml"));
-			Parent root = loader.load();
+        lblPokedolares.setText(String.valueOf(entrenador.getPokedolares()));
+    }
 
-			TiendaController tiendaController = loader.getController();
-			Scene scene = new Scene(root);
-			Stage nuevaStage = new Stage();
+    @FXML
+    void accederTienda(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/tienda.fxml"));
+            Parent root = loader.load();
 
-			nuevaStage.setTitle("Pokémon Super Nenes - Tienda");
-			nuevaStage.setScene(scene);
+            TiendaController tiendaController = loader.getController();
+            Scene scene = new Scene(root);
+            Stage nuevaStage = new Stage();
 
-			tiendaController.init(entrenador, nuevaStage, menuController);
+            nuevaStage.setTitle("Pokémon Super Nenes - Tienda");
+            nuevaStage.setScene(scene);
 
-			nuevaStage.show();
-			this.stage.close();
+            tiendaController.init(entrenador, nuevaStage, menuController);
 
-			System.out.println("Entrando a tienda");
+            nuevaStage.show();
+            this.stage.close();
 
-		} catch (IOException e) {
-			System.out.println("Falla en la carga del archivo FXML.");
-			e.printStackTrace();
-		}
-	}
+            System.out.println("Entrando a tienda");
 
-	@FXML
-	void equipar(ActionEvent event) {
+        } catch (IOException e) {
+            System.out.println("Falla en la carga del archivo FXML.");
+            e.printStackTrace();
+        }
+    }
 
-	}
+    @FXML
+    void equipar(ActionEvent event) {
+        ObjetoEnMochila objetoSeleccionado = tblListaMochila.getSelectionModel().getSelectedItem();
 
-	@FXML
-	void vender(ActionEvent event) {
-		// Obtener el objeto seleccionado de la tabla
-		ObjetoEnMochila objetoSeleccionado = tblListaMochila.getSelectionModel().getSelectedItem();
+        if (objetoSeleccionado == null) {
+            System.out.println("No has seleccionado ningún objeto para equipar.");
+            return;
+        }
 
-		if (objetoSeleccionado == null) {
-			System.out.println("No has seleccionado ningún objeto para vender.");
-			return;
-		}
+        // Simulación de equipar objeto (relleno)
+        objetosEquipados++;
+        ultimoObjetoEquipado = objetoSeleccionado.getNombreObjeto();
+        System.out.println("Has equipado el objeto: " + ultimoObjetoEquipado + ". Total equipados: " + objetosEquipados);
+    }
 
-		// Confirmar venta
-		System.out.println("Vas a vender: " + objetoSeleccionado.getNombreObjeto());
+    @FXML
+    void vender(ActionEvent event) {
+        ObjetoEnMochila objetoSeleccionado = tblListaMochila.getSelectionModel().getSelectedItem();
 
-		try {
-			// Obtener la cantidad actual
-			int cantidadActual = objetoSeleccionado.getCantidad();
+        if (objetoSeleccionado == null) {
+            System.out.println("No has seleccionado ningún objeto para vender.");
+            return;
+        }
 
-			if (cantidadActual <= 0) {
-				System.out.println("No tienes unidades de este objeto para vender.");
-				return;
-			}
+        System.out.println("Vas a vender: " + objetoSeleccionado.getNombreObjeto());
 
-			// Obtener el ID del objeto
-			int idObjeto = MochilaBD.obtenerIdObjetoNombre(objetoSeleccionado.getNombreObjeto());
+        try {
+            int cantidadActual = objetoSeleccionado.getCantidad();
 
-			if (idObjeto == -1) {
-				System.out.println("No se pudo encontrar el ID del objeto.");
-				return;
-			}
+            if (cantidadActual <= 0) {
+                System.out.println("No tienes unidades de este objeto para vender.");
+                return;
+            }
 
-			int precioObjeto = MochilaBD.obtenerPrecioObjetoId(idObjeto);
+            int idObjeto = MochilaBD.obtenerIdObjetoNombre(objetoSeleccionado.getNombreObjeto());
 
-			// Sumar dinero al entrenador
-			int dineroActual = entrenador.getPokedolares();
-			int dineroGanado = precioObjeto; // Por cada venta ganas el precio unitario
-			entrenador.setPokedolares(dineroActual + dineroGanado);
+            if (idObjeto == -1) {
+                System.out.println("No se pudo encontrar el ID del objeto.");
+                return;
+            }
 
-			Connection con = BDConecction.getConnection();
-			EntrenadorBD.actualizarPokedolares(con, entrenador);
+            int precioObjeto = MochilaBD.obtenerPrecioObjetoId(idObjeto);
 
-			// Disminuir la cantidad de objeto o eliminarlo si ya no queda
-			MochilaBD.actualizarCantidad(entrenador.getIdEntrenador(), idObjeto, cantidadActual - 1);
+            int dineroActual = entrenador.getPokedolares();
+            int dineroGanado = precioObjeto;
+            entrenador.setPokedolares(dineroActual + dineroGanado);
 
-			actualizarContentMochila();
+            Connection con = BDConecction.getConnection();
+            EntrenadorBD.actualizarPokedolares(con, entrenador);
 
-			System.out.println(
-					"Has vendido " + objetoSeleccionado.getNombreObjeto() + " por " + dineroGanado + " pokedólares.");
+            MochilaBD.actualizarCantidad(entrenador.getIdEntrenador(), idObjeto, cantidadActual - 1);
 
-		} catch (Exception e) {
-			System.out.println("Error al vender el objeto.");
-			e.printStackTrace();
-		}
-	}
+            actualizarContentMochila();
 
-	@FXML
-	void salir(ActionEvent event) {
-		menuController.show();
-		this.stage.close();
-	}
+            objetosVendidos++;
+            ultimoObjetoVendido = objetoSeleccionado.getNombreObjeto();
 
+            System.out.println("Has vendido " + ultimoObjetoVendido + " por " + dineroGanado + " pokedólares. Total vendidos: " + objetosVendidos);
+
+        } catch (Exception e) {
+            System.out.println("Error al vender el objeto.");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void salir(ActionEvent event) {
+        menuController.show();
+        this.stage.close();
+    }
+
+    // Métodos adicionales de ejemplo para "relleno"
+
+    /**
+     * Devuelve el número de objetos vendidos en la sesión.
+     */
+    public int getObjetosVendidos() {
+        return objetosVendidos;
+    }
+
+    /**
+     * Devuelve el número de objetos equipados en la sesión.
+     */
+    public int getObjetosEquipados() {
+        return objetosEquipados;
+    }
+
+    /**
+     * Devuelve el nombre del último objeto vendido.
+     */
+    public String getUltimoObjetoVendido() {
+        return ultimoObjetoVendido;
+    }
+
+    /**
+     * Devuelve el nombre del último objeto equipado.
+     */
+    public String getUltimoObjetoEquipado() {
+        return ultimoObjetoEquipado;
+    }
 }

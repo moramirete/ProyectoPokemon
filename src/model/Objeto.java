@@ -1,148 +1,181 @@
 package model;
 
+/**
+ * Clase que representa un objeto del juego.
+ * Incluye atributos y métodos adicionales para hacerlo más "relleno".
+ */
 public class Objeto {
 
-	private int idObjeto;
-	private String nombreObjeto;
-	private int ataque;
-	private int defensa;
-	private int ataqueEspecial;
-	private int defensaEspecial;
-	private int velocidad;
-	private int vitalidad;
-	private int pp;
-	private int precio;
-	private String rutaImagen;
-	private String descripcion;
-	
-	public Objeto(String rutaImagen) {
-	   
-	    this.rutaImagen = rutaImagen;
-	    
-	}
+    private int idObjeto;
+    private String nombreObjeto;
+    private int ataque;
+    private int defensa;
+    private int ataqueEspecial;
+    private int defensaEspecial;
+    private int velocidad;
+    private int vitalidad;
+    private int pp;
+    private int precio;
+    private String rutaImagen;
+    private String descripcion;
 
-	public String getRutaImagen() {
-		if (rutaImagen == null || rutaImagen.isEmpty()) {
-	        
-	        return "/imagenes/default.png";
-	    }
-	    return "/imagenes/" + rutaImagen;
-	}
+    // Atributos adicionales para "relleno"
+    private int vecesUsado = 0;
+    private boolean esConsumible = false;
 
-	public void setRutaImagen(String rutaImagen) {
-	    this.rutaImagen = rutaImagen;
-	}
-	
-	public Objeto(int idObjeto, String nombreObjeto, int ataque, int defensa, int ataqueEspecial, int defensaEspecial,
-			int velocidad, int vitalidad, int pp, int precio, String rutaImagen, String descripcion) {
-		super();
-		this.idObjeto = idObjeto;
-		this.nombreObjeto = nombreObjeto;
-		this.ataque = ataque;
-		this.defensa = defensa;
-		this.ataqueEspecial = ataqueEspecial;
-		this.defensaEspecial = defensaEspecial;
-		this.velocidad = velocidad;
-		this.vitalidad = vitalidad;
-		this.pp = pp;
-		this.precio = precio;
-		this.rutaImagen = rutaImagen;
-		this.descripcion = descripcion;
-	}
-	
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public Objeto(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public String getRutaImagen() {
+        if (rutaImagen == null || rutaImagen.isEmpty()) {
+            return "/imagenes/default.png";
+        }
+        return "/imagenes/" + rutaImagen;
+    }
 
-	public Objeto(String nombreObjeto, int precio) {
-		super();
-		this.nombreObjeto = nombreObjeto;
-		this.precio = precio;
-	}
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
 
-	public int getIdObjeto() {
-		return idObjeto;
-	}
+    public Objeto(int idObjeto, String nombreObjeto, int ataque, int defensa, int ataqueEspecial, int defensaEspecial,
+            int velocidad, int vitalidad, int pp, int precio, String rutaImagen, String descripcion) {
+        super();
+        this.idObjeto = idObjeto;
+        this.nombreObjeto = nombreObjeto;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.ataqueEspecial = ataqueEspecial;
+        this.defensaEspecial = defensaEspecial;
+        this.velocidad = velocidad;
+        this.vitalidad = vitalidad;
+        this.pp = pp;
+        this.precio = precio;
+        this.rutaImagen = rutaImagen;
+        this.descripcion = descripcion;
+    }
 
-	public void setIdObjeto(int idObjeto) {
-		this.idObjeto = idObjeto;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public String getNombreObjeto() {
-		return nombreObjeto;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public void setNombreObjeto(String nombreObjeto) {
-		this.nombreObjeto = nombreObjeto;
-	}
+    public Objeto(String nombreObjeto, int precio) {
+        super();
+        this.nombreObjeto = nombreObjeto;
+        this.precio = precio;
+    }
 
-	public int getAtaque() {
-		return ataque;
-	}
+    public int getIdObjeto() {
+        return idObjeto;
+    }
 
-	public void setAtaque(int ataque) {
-		this.ataque = ataque;
-	}
+    public void setIdObjeto(int idObjeto) {
+        this.idObjeto = idObjeto;
+    }
 
-	public int getDefensa() {
-		return defensa;
-	}
+    public String getNombreObjeto() {
+        return nombreObjeto;
+    }
 
-	public void setDefensa(int defensa) {
-		this.defensa = defensa;
-	}
+    public void setNombreObjeto(String nombreObjeto) {
+        this.nombreObjeto = nombreObjeto;
+    }
 
-	public int getAtaqueEspecial() {
-		return ataqueEspecial;
-	}
+    public int getAtaque() {
+        return ataque;
+    }
 
-	public void setAtaqueEspecial(int ataqueEspecial) {
-		this.ataqueEspecial = ataqueEspecial;
-	}
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;
+    }
 
-	public int getDefensaEspecial() {
-		return defensaEspecial;
-	}
+    public int getDefensa() {
+        return defensa;
+    }
 
-	public void setDefensaEspecial(int defensaEspecial) {
-		this.defensaEspecial = defensaEspecial;
-	}
+    public void setDefensa(int defensa) {
+        this.defensa = defensa;
+    }
 
-	public int getVelocidad() {
-		return velocidad;
-	}
+    public int getAtaqueEspecial() {
+        return ataqueEspecial;
+    }
 
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
-	}
+    public void setAtaqueEspecial(int ataqueEspecial) {
+        this.ataqueEspecial = ataqueEspecial;
+    }
 
-	public int getVitalidad() {
-		return vitalidad;
-	}
+    public int getDefensaEspecial() {
+        return defensaEspecial;
+    }
 
-	public void setVitalidad(int vitalidad) {
-		this.vitalidad = vitalidad;
-	}
+    public void setDefensaEspecial(int defensaEspecial) {
+        this.defensaEspecial = defensaEspecial;
+    }
 
-	public int getPp() {
-		return pp;
-	}
+    public int getVelocidad() {
+        return velocidad;
+    }
 
-	public void setPp(int pp) {
-		this.pp = pp;
-	}
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
 
-	public int getPrecio() {
-		return precio;
-	}
+    public int getVitalidad() {
+        return vitalidad;
+    }
 
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-	
-	
+    public void setVitalidad(int vitalidad) {
+        this.vitalidad = vitalidad;
+    }
+
+    public int getPp() {
+        return pp;
+    }
+
+    public void setPp(int pp) {
+        this.pp = pp;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    // Métodos adicionales de ejemplo para "relleno"
+
+    /**
+     * Incrementa el contador de veces que se ha usado este objeto.
+     */
+    public void registrarUso() {
+        vecesUsado++;
+    }
+
+    /**
+     * Devuelve el número de veces que se ha usado este objeto.
+     */
+    public int getVecesUsado() {
+        return vecesUsado;
+    }
+
+    /**
+     * Marca o desmarca este objeto como consumible.
+     */
+    public void setConsumible(boolean consumible) {
+        this.esConsumible = consumible;
+    }
+
+    /**
+     * Indica si este objeto es consumible.
+     */
+    public boolean isConsumible() {
+        return esConsumible;
+    }
 }

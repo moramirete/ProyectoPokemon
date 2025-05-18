@@ -32,220 +32,229 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
+/**
+ * Controlador para la gestión de la caja de Pokémon.
+ * Permite visualizar, buscar, cambiar nombre y cambiar Pokémon entre la caja y el equipo.
+ */
 public class CajaController {
 
-	private Entrenador entrenador;
-	private Stage stage;
-	private EquipoController equipoController;
+    private Entrenador entrenador;
+    private Stage stage;
+    private EquipoController equipoController;
 
-	private ArrayList<Pokemon> equipo;
-	private ArrayList<Pokemon> equipoFiltro;
+    private ArrayList<Pokemon> equipo;
+    private ArrayList<Pokemon> equipoFiltro;
 
-	@FXML
-	private Button btnCambiarNombre;
+    @FXML
+    private Button btnCambiarNombre;
 
-	@FXML
-	private Button btnCambiarPor;
+    @FXML
+    private Button btnCambiarPor;
 
-	@FXML
-	private Button btnVolver;
+    @FXML
+    private Button btnVolver;
 
-	@FXML
-	private Button btnEstadisticas;
+    @FXML
+    private Button btnEstadisticas;
 
-	@FXML
-	private TableColumn<Pokemon, String> colNombre;
+    @FXML
+    private TableColumn<Pokemon, String> colNombre;
 
-	@FXML
-	private TableColumn<Pokemon, Integer> colNivel;
+    @FXML
+    private TableColumn<Pokemon, Integer> colNivel;
 
-	@FXML
-	private TableColumn<Pokemon, String> colTipo;
+    @FXML
+    private TableColumn<Pokemon, String> colTipo;
 
-	@FXML
-	private TableColumn<Pokemon, String> colTipo2;
+    @FXML
+    private TableColumn<Pokemon, String> colTipo2;
 
-	@FXML
-	private TableView<Pokemon> tabPokemon;
+    @FXML
+    private TableView<Pokemon> tabPokemon;
 
-	@FXML
-	private TextField txtBuscador;
+    @FXML
+    private TextField txtBuscador;
 
-	public void init(Entrenador entrenador, Stage stage, EquipoController equipoController) {
-		this.entrenador = entrenador;
-		this.stage = stage;
-		this.equipoController = equipoController;
+    /**
+     * Inicializa el controlador con el entrenador, la ventana y el controlador del equipo.
+     */
+    public void init(Entrenador entrenador, Stage stage, EquipoController equipoController) {
+        this.entrenador = entrenador;
+        this.stage = stage;
+        this.equipoController = equipoController;
 
-		// Inicializa las listas después de que 'entrenador' esté configurado
-		this.equipo = PokemonBD.obtenerCaja(entrenador.getIdEntrenador());
-		this.equipoFiltro = new ArrayList<>(equipo);
+        // Inicializa las listas después de que 'entrenador' esté configurado
+        this.equipo = PokemonBD.obtenerCaja(entrenador.getIdEntrenador());
+        this.equipoFiltro = new ArrayList<>(equipo);
 
-		cargarCaja();
-	}
+        cargarCaja();
+    }
 
-	@FXML
-	void volveratras(ActionEvent event) {
-		equipoController.show();
-		this.stage.close();
-	}
+    /**
+     * Vuelve a la ventana anterior (equipo).
+     */
+    @FXML
+    void volveratras(ActionEvent event) {
+        equipoController.show();
+        this.stage.close();
+    }
 
-	private void cargarCaja() {
+    /**
+     * Carga la caja de Pokémon en la tabla.
+     */
+    private void cargarCaja() {
+        ObservableList<Pokemon> lista = FXCollections.observableArrayList(equipo);
+        ObservableList<Pokemon> listaFiltro = FXCollections.observableArrayList(equipo);
 
-		ObservableList<Pokemon> lista = FXCollections.observableArrayList(equipo);
-		ObservableList<Pokemon> listaFiltro = FXCollections.observableArrayList(equipo);
+        for (Pokemon pokemon : lista) {
+            System.out.println("Pokemon: " + pokemon.getNombre_pokemon() + ", Vitalidad: " + pokemon.getVitalidad()
+                    + ", Vitalidad Max: " + pokemon.getVitalidadMax());
+        }
 
-		for (Pokemon pokemon : lista) {
-			System.out.println("Pokemon: " + pokemon.getNombre_pokemon() + ", Vitalidad: " + pokemon.getVitalidad()
-					+ ", Vitalidad Max: " + pokemon.getVitalidadMax());
-		}
+        tabPokemon.setItems(lista);
+    }
 
-		tabPokemon.setItems(lista);
-	}
+    /**
+     * Inicializa las columnas de la tabla y carga la caja si el entrenador está definido.
+     */
+    public void initialize() {
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
+        colNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
+        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
+        colTipo2.setCellValueFactory(new PropertyValueFactory<>("tipo2"));
 
-	public void initialize() {
-		colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre_pokemon"));
-		colNivel.setCellValueFactory(new PropertyValueFactory<>("nivel"));
-		colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
-		colTipo2.setCellValueFactory(new PropertyValueFactory<>("tipo2"));
+        if (entrenador != null) {
+            cargarCaja();
+        }
+    }
 
-		if (entrenador != null) {
-			cargarCaja();
-		}
-	}
+    /**
+     * Filtra la lista de Pokémon de la caja según el texto introducido en el buscador.
+     */
+    @FXML
+    void buscarPokemon(KeyEvent event) {
+        String buscador = this.txtBuscador.getText();
 
-	@FXML
-	void buscarPokemon(KeyEvent event) {
+        if (buscador.isEmpty()) {
+            this.tabPokemon.setItems(FXCollections.observableArrayList(equipo));
+        } else {
+            this.equipoFiltro.clear();
 
-		String buscador = this.txtBuscador.getText();
+            for (Pokemon p : this.equipo) {
+                if (p.getNombre_pokemon().toUpperCase().contains(buscador.toUpperCase())) {
+                    this.equipoFiltro.add(p);
+                } else if (p.getTipo1().toUpperCase().contains(buscador.toUpperCase())) {
+                    this.equipoFiltro.add(p);
+                } else if (p.getTipo2() != null && p.getTipo2().toUpperCase().contains(buscador.toUpperCase())) {
+                    this.equipoFiltro.add(p);
+                } else if (String.valueOf(p.getNivel()).contains(buscador)) {
+                    this.equipoFiltro.add(p);
+                }
+            }
 
-		if (buscador.isEmpty()) {
-			// Convierte 'equipo' a un ObservableList antes de asignarlo
-			this.tabPokemon.setItems(FXCollections.observableArrayList(equipo));
-		} else {
-			this.equipoFiltro.clear();
+            this.tabPokemon.setItems(FXCollections.observableArrayList(equipoFiltro));
+        }
+    }
 
-			for (Pokemon p : this.equipo) {
-				if (p.getNombre_pokemon().toUpperCase().contains(buscador.toUpperCase())) {
-					this.equipoFiltro.add(p);
-				}
+    /**
+     * Permite cambiar el nombre del Pokémon seleccionado en la caja.
+     */
+    @FXML
+    void cambiarNombre(ActionEvent event) {
+        Pokemon pokSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
 
-				if (p.getTipo1().toUpperCase().contains(buscador.toUpperCase())) {
-					this.equipoFiltro.add(p);
-				}
+        if (pokSeleccionado == null) {
+            JOptionPane.showMessageDialog(null, "Error: Primero selecciona el Pokémon de la caja");
+            return;
+        }
 
-				if (p.getTipo2() != null && p.getTipo2().toUpperCase().contains(buscador.toUpperCase())) {
-					this.equipoFiltro.add(p);
-				}
+        String nombreAntiguo = pokSeleccionado.getNombre_pokemon();
 
-				if (String.valueOf(p.getNivel()).contains(buscador)) {
-					this.equipoFiltro.add(p);
-				}
+        TextInputDialog dialogo = new TextInputDialog(nombreAntiguo);
+        dialogo.setTitle("Cambio de nombre");
+        dialogo.setHeaderText("Introduce el nuevo nombre:");
+        dialogo.setContentText("Nombre: ");
 
-			}
+        Optional<String> nombreNuevo = dialogo.showAndWait();
 
-			// Convierte 'equipoFiltro' a un ObservableList antes de asignarlo
-			this.tabPokemon.setItems(FXCollections.observableArrayList(equipoFiltro));
-		}
-	}
+        if (nombreNuevo.isPresent()) {
+            boolean actualizado = PokemonBD.cambiarNombre(pokSeleccionado, nombreNuevo);
 
-	@FXML
-	void cambiarNombre(ActionEvent event) {
-		Pokemon pokSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+            if (actualizado) {
+                pokSeleccionado.setNombre_pokemon(nombreNuevo.get());
+                JOptionPane.showMessageDialog(null, "Cambio realizado correctamente al Pokémon " + nombreAntiguo,
+                        "Cambio Realizado", JOptionPane.INFORMATION_MESSAGE);
+                tabPokemon.refresh();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al actualizar el nombre en la base de datos.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
-		if (pokSeleccionado == null) {
-			JOptionPane.showMessageDialog(null, "Error: Primero selecciona el Pokémon de la caja");
-			return;
-		}
+    /**
+     * Abre la ventana para cambiar el Pokémon seleccionado por otro del equipo.
+     */
+    @FXML
+    void cambiarPor(ActionEvent event) {
+        try {
+            Pokemon pokemonSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+            if (pokemonSeleccionado == null) {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún Pokémon de la caja.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-		String nombreAntiguo = pokSeleccionado.getNombre_pokemon();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPor.fxml"));
+            Parent root = loader.load();
 
-		TextInputDialog dialogo = new TextInputDialog(nombreAntiguo);
-		dialogo.setTitle("Cambio de nombre");
-		dialogo.setHeaderText("Introduce el nuevo nombre:");
-		dialogo.setContentText("Nombre: ");
+            CambiarPorController cambiarPorController = loader.getController();
 
-		Optional<String> nombreNuevo = dialogo.showAndWait();
+            Stage nuevaStage = new Stage();
+            cambiarPorController.init(entrenador, nuevaStage, equipoController, this, pokemonSeleccionado);
 
-		if (nombreNuevo.isPresent()) {
-			boolean actualizado = PokemonBD.cambiarNombre(pokSeleccionado, nombreNuevo);
+            Scene scene = new Scene(root);
+            nuevaStage.setTitle("Cambiar Pokémon");
+            nuevaStage.setScene(scene);
+            nuevaStage.initOwner(stage);
+            nuevaStage.show();
 
-			if (actualizado) {
-				pokSeleccionado.setNombre_pokemon(nombreNuevo.get());
-				JOptionPane.showMessageDialog(null, "Cambio realizado correctamente al Pokémon " + nombreAntiguo,
-						"Cambio Realizado", JOptionPane.INFORMATION_MESSAGE);
-				tabPokemon.refresh();
-			} else {
-				JOptionPane.showMessageDialog(null, "Error al actualizar el nombre en la base de datos.", "Error",
-						JOptionPane.ERROR_MESSAGE);
-			}
-		}
-	}
+        } catch (IOException e) {
+            System.err.println("Error al cargar la ventana emergente para cambiar Pokémon.");
+            e.printStackTrace();
+        }
+    }
 
-	@FXML
-	void cambiarPor(ActionEvent event) {
-		try {
-			// Verificar que se haya seleccionado un Pokémon en la tabla
-			Pokemon pokemonSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
-			if (pokemonSeleccionado == null) {
-				JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún Pokémon de la caja.", "Error",
-						JOptionPane.ERROR_MESSAGE);
-				return;
-			}
+    /**
+     * Muestra la ventana de estadísticas del Pokémon seleccionado.
+     */
+    @FXML
+    void verEstadisticas(ActionEvent event) {
+        Pokemon pokSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
 
-			// Cargar el archivo FXML de la ventana emergente
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cambiarPor.fxml"));
-			Parent root = loader.load();
+        if (pokSeleccionado == null) {
+            JOptionPane.showMessageDialog(null, "Error: Primero selecciona el Pokémon de la caja");
+            return;
+        }
 
-			// Obtener el controlador de la ventana emergente
-			CambiarPorController cambiarPorController = loader.getController();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/estadisticas.fxml"));
+            Parent root = loader.load();
 
-			// Inicializar el controlador con los datos necesarios
-			Stage nuevaStage = new Stage();
-			cambiarPorController.init(entrenador, nuevaStage, equipoController, this, pokemonSeleccionado);
+            EstadisticasController estadisticasController = loader.getController();
 
-			// Configurar la ventana emergente
-			Scene scene = new Scene(root);
-			nuevaStage.setTitle("Cambiar Pokémon");
-			nuevaStage.setScene(scene);
-			nuevaStage.initOwner(stage);
-			nuevaStage.show();
+            Stage nuevaStage = new Stage();
 
-		} catch (IOException e) {
-			System.err.println("Error al cargar la ventana emergente para cambiar Pokémon.");
-			e.printStackTrace();
-		}
-	}
+            estadisticasController.init(entrenador, nuevaStage, null, pokSeleccionado);
 
-	@FXML
-	void verEstadisticas(ActionEvent event) {
-		Pokemon pokSeleccionado = tabPokemon.getSelectionModel().getSelectedItem();
+            Scene scene = new Scene(root);
+            nuevaStage.setScene(scene);
+            nuevaStage.setTitle("Estadísticas de " + pokSeleccionado.getNombre_pokemon());
+            nuevaStage.show();
 
-		if (pokSeleccionado == null) {
-			JOptionPane.showMessageDialog(null, "Error: Primero selecciona el Pokémon de la caja");
-			return;
-		}
-
-		try {
-
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/estadisticas.fxml"));
-			Parent root = loader.load();
-
-			EstadisticasController estadisticasController = loader.getController();
-
-			Stage nuevaStage = new Stage();
-
-			estadisticasController.init(entrenador, nuevaStage, null, pokSeleccionado);
-
-			// Mostrar la nueva escena
-			Scene scene = new Scene(root);
-			nuevaStage.setScene(scene);
-			nuevaStage.setTitle("Estadísticas de " + pokSeleccionado.getNombre_pokemon());
-			nuevaStage.show();
-
-		} catch (IOException e) {
-			System.err.println("Error al cargar la ventana de estadísticas.");
-			e.printStackTrace();
-		}
-
-	}
+        } catch (IOException e) {
+            System.err.println("Error al cargar la ventana de estadísticas.");
+            e.printStackTrace();
+        }
+    }
 }
