@@ -45,9 +45,9 @@
    <children>
       <HBox layoutX="14.0" layoutY="28.0" prefHeight="25.0" prefWidth="560.0" spacing="5.0">
          <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="70.0" text="Buscador:">
+            <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="88.0" text="Buscador:">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="Consolas Bold" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="txtBuscador" onKeyReleased="#buscarPokemon" prefHeight="25.0" prefWidth="488.0" />
@@ -62,9 +62,21 @@
             <TableColumn fx:id="colTipo2" prefWidth="160.0" text="Tipo 2" />
         </columns>
       </TableView>
-      <Button fx:id="btnVolver" layoutX="452.0" layoutY="65.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
-      <Button fx:id="btnCambiarPor" layoutX="172.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarPor" prefHeight="26.0" prefWidth="122.0" text="Cambiar por..." />
-      <Button fx:id="btnCambiarNombre" layoutX="21.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarNombre" prefHeight="26.0" prefWidth="122.0" text="Cambiar nombre" />
-      <Button fx:id="btnEstadisticas" layoutX="319.0" layoutY="65.0" mnemonicParsing="false" onAction="#verEstadisticas" prefHeight="26.0" prefWidth="122.0" text="Estadisticas" />
+      <Button fx:id="btnVolver" layoutX="452.0" layoutY="65.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnCambiarPor" layoutX="172.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarPor" prefHeight="26.0" prefWidth="122.0" text="Cambiar por...">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnCambiarNombre" layoutX="21.0" layoutY="65.0" mnemonicParsing="false" onAction="#cambiarNombre" prefHeight="26.0" prefWidth="122.0" text="Cambiar nombre">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnEstadisticas" layoutX="319.0" layoutY="65.0" mnemonicParsing="false" onAction="#verEstadisticas" prefHeight="26.0" prefWidth="122.0" text="Estadisticas">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

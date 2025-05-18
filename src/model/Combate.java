@@ -19,9 +19,11 @@ public class Combate {
     }
     
     
+    
     public Combate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
-        this.idCombate = LocalDateTime.now().format(formatter); // Genera un ID basado en la fecha y hora
+        this.idCombate = LocalDateTime.now().format(formatter);
+        this.turnos = new ArrayList<>();
     }
 
     public String getIdCombate() {
