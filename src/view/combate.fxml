@@ -86,7 +86,11 @@
                               <Font name="Consolas" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnMov2" layoutX="220.0" layoutY="426.0" mnemonicParsing="false" onAction="#hacerMov2" prefHeight="60.0" prefWidth="94.0" wrapText="true" />
+                        <Button fx:id="btnMov2" layoutX="220.0" layoutY="426.0" mnemonicParsing="false" onAction="#hacerMov2" prefHeight="60.0" prefWidth="94.0" wrapText="true">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Button>
                         <Button fx:id="btnMov3" layoutX="117.0" layoutY="494.0" mnemonicParsing="false" onAction="#hacerMov3" prefHeight="60.0" prefWidth="94.0" wrapText="true">
                            <font>
                               <Font name="Consolas" size="12.0" />
@@ -100,14 +104,46 @@
                         <ProgressBar fx:id="pbPokemonVida" layoutX="671.0" layoutY="325.0" prefHeight="24.0" prefWidth="182.0" progress="1.0" />
                         <ProgressBar fx:id="pbPokemonRival" layoutX="254.0" layoutY="134.0" prefHeight="24.0" prefWidth="176.0" progress="1.0" />
                         <ProgressBar fx:id="pbPokemonExp" layoutX="622.0" layoutY="389.0" prefHeight="9.0" prefWidth="235.0" progress="1.0" />
-                        <Label fx:id="lblNombrePokeRival" alignment="CENTER" layoutX="175.0" layoutY="98.0" prefHeight="24.0" prefWidth="167.0" />
-                        <Label fx:id="lblNombrePoke" alignment="CENTER" layoutX="611.0" layoutY="300.0" prefHeight="18.0" prefWidth="148.0" />
-                        <TextArea fx:id="logCombate" editable="false" layoutX="339.0" layoutY="430.0" prefHeight="121.0" prefWidth="310.0" />
-                        <Label fx:id="lblNombrePoke" alignment="CENTER" layoutX="388.0" layoutY="208.0" prefHeight="24.0" prefWidth="167.0" />
-                        <Label fx:id="lblNivel" alignment="CENTER" layoutX="812.0" layoutY="297.0" prefHeight="24.0" prefWidth="29.0" />
-                        <Label fx:id="lblNivelRival" alignment="CENTER" layoutX="388.0" layoutY="98.0" prefHeight="24.0" prefWidth="29.0" />
-                        <Label fx:id="lblVitalidad" alignment="CENTER" layoutX="740.0" layoutY="356.0" prefHeight="24.0" prefWidth="29.0" />
-                        <Label fx:id="lblVitalidadMax" alignment="CENTER" layoutX="812.0" layoutY="356.0" prefHeight="24.0" prefWidth="29.0" />
+                        <Label fx:id="lblNombrePokeRival" alignment="CENTER" layoutX="175.0" layoutY="98.0" prefHeight="24.0" prefWidth="167.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblNombrePoke" alignment="CENTER" layoutX="611.0" layoutY="300.0" prefHeight="18.0" prefWidth="148.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logCombate" editable="false" layoutX="339.0" layoutY="430.0" prefHeight="121.0" prefWidth="310.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </TextArea>
+                        <Label fx:id="lblNombrePoke" alignment="CENTER" layoutX="595.0" layoutY="297.0" prefHeight="24.0" prefWidth="167.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblNivel" alignment="CENTER" layoutX="812.0" layoutY="297.0" prefHeight="24.0" prefWidth="29.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblNivelRival" alignment="CENTER" layoutX="388.0" layoutY="98.0" prefHeight="24.0" prefWidth="29.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblVitalidad" alignment="CENTER" layoutX="740.0" layoutY="356.0" prefHeight="24.0" prefWidth="29.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblVitalidadMax" alignment="CENTER" layoutX="812.0" layoutY="356.0" prefHeight="24.0" prefWidth="29.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <VBox VBox.vgrow="ALWAYS" />

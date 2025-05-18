@@ -89,7 +89,7 @@
                               <Image url="@../../multimedia/imagenes/fondos/imagen%20equipo%20principal.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnSalir1" contentDisplay="CENTER" layoutX="830.0" layoutY="574.0" mnemonicParsing="false" onAction="#cerrarEquipo" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: purple;" text="  Salir" textFill="WHITE">
+                        <Button fx:id="btnSalir1" contentDisplay="CENTER" layoutX="280.0" layoutY="415.0" mnemonicParsing="false" onAction="#cerrarEquipo" prefHeight="49.0" prefWidth="110.0" style="-fx-background-color: purple;" text="  Salir" textFill="WHITE">
                            <font>
                               <Font name="Consolas" size="12.0" />
                            </font>
@@ -200,17 +200,17 @@
                               <Font name="Consolas" size="12.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="75.0" fitWidth="65.0" layoutX="798.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="75.0" fitWidth="65.0" layoutX="255.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnCambiar1" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="574.0" mnemonicParsing="false" onAction="#abrirCaja" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: purple;" text="Caja" textFill="WHITE">
+                        <Button fx:id="btnCambiar1" alignment="CENTER" contentDisplay="CENTER" layoutX="103.0" layoutY="487.0" mnemonicParsing="false" onAction="#abrirCaja" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: purple;" text="Caja" textFill="WHITE">
                            <font>
                               <Font name="Consolas" size="12.0" />
                            </font>
                         </Button>
-                        <ImageView fitHeight="74.0" fitWidth="65.0" layoutX="673.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="74.0" fitWidth="65.0" layoutX="61.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
                            </image>
@@ -220,12 +220,12 @@
                               <Font name="Consolas" size="11.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnEstadisticas1" alignment="CENTER" contentDisplay="CENTER" layoutX="538.0" layoutY="573.0" mnemonicParsing="false" onAction="#abrirEstadisticas" prefHeight="49.0" prefWidth="127.0" style="-fx-background-color: purple;" text="Estadisticas" textFill="WHITE">
+                        <Button fx:id="btnEstadisticas1" alignment="CENTER" contentDisplay="CENTER" layoutX="103.0" layoutY="415.0" mnemonicParsing="false" onAction="#abrirEstadisticas" prefHeight="49.0" prefWidth="127.0" style="-fx-background-color: purple;" text="Estadisticas" textFill="WHITE">
                            <font>
                               <Font name="Consolas" size="12.0" />
                            </font>
                         </Button>
-                        <ImageView fitHeight="77.0" fitWidth="65.0" layoutX="500.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="77.0" fitWidth="65.0" layoutX="61.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../multimedia/imagenes/fondos/iconopokeball.png" />
                            </image>
