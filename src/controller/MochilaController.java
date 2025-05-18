@@ -48,6 +48,9 @@ public class MochilaController {
     private String ultimoObjetoVendido = "";
     private String ultimoObjetoEquipado = "";
 
+    /**
+     * Inicializa el controlador con el entrenador, la ventana actual y el menú principal
+     */
     public void init(Entrenador ent, Stage stage, MenuController menuController) {
         this.menuController = menuController;
         this.stage = stage;
@@ -95,6 +98,9 @@ public class MochilaController {
     @FXML
     private TextArea txtDescripcion;
 
+    /**
+     * Configura la tabla y sus columnas, además de listeners para selección de objetos
+     */
     @FXML
     public void initialize() {
         clmObjeto.setCellValueFactory(new PropertyValueFactory<>("nombreObjeto"));
@@ -117,6 +123,9 @@ public class MochilaController {
         }
     }
 
+    /**
+     * Actualiza la imagen del objeto seleccionado en la vista
+     */
     private void actualizarImagen(ObjetoEnMochila objeto) {
         String ruta = objeto.getRutaImagen();
         try (InputStream is = getClass().getResourceAsStream(ruta)) {
@@ -133,6 +142,9 @@ public class MochilaController {
             cargarImagenPorDefecto();
         }
     }
+    /**
+     * Carga una imagen por defecto cuando no se encuentra la imagen del objeto
+     */
 
     private void cargarImagenPorDefecto() {
         try (InputStream is = getClass().getResourceAsStream("/imagenes/default.png")) {
@@ -147,7 +159,9 @@ public class MochilaController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Actualiza la tabla y la cantidad de pokédolares visibles en la interfaz
+     */
     public void actualizarContentMochila() {
         ArrayList<ObjetoEnMochila> objetos = MochilaBD.obtenerContenidoMochila(entrenador.getIdEntrenador());
         ObservableList<ObjetoEnMochila> lista = FXCollections.observableArrayList(objetos);
@@ -156,6 +170,9 @@ public class MochilaController {
         lblPokedolares.setText(String.valueOf(entrenador.getPokedolares()));
     }
 
+    /**
+     * Abre la ventana de la tienda y cierra la ventana actual
+     */
     @FXML
     void accederTienda(ActionEvent event) {
         try {
@@ -182,6 +199,10 @@ public class MochilaController {
         }
     }
 
+    /**
+     * Equipa el objeto seleccionado e incrementa el contador de objetos equipados
+    
+     */
     @FXML
     void equipar(ActionEvent event) {
         ObjetoEnMochila objetoSeleccionado = tblListaMochila.getSelectionModel().getSelectedItem();
@@ -197,6 +218,9 @@ public class MochilaController {
         System.out.println("Has equipado el objeto: " + ultimoObjetoEquipado + ". Total equipados: " + objetosEquipados);
     }
 
+    /**
+     * Vende el objeto seleccionado, actualiza cantidad y pokédolares, y registra la venta
+     */
     @FXML
     void vender(ActionEvent event) {
         ObjetoEnMochila objetoSeleccionado = tblListaMochila.getSelectionModel().getSelectedItem();
@@ -247,13 +271,14 @@ public class MochilaController {
         }
     }
 
+    /**
+     * Cierra la ventana actual y vuelve al menú principal
+     */
     @FXML
     void salir(ActionEvent event) {
         menuController.show();
         this.stage.close();
     }
-
-    // Métodos adicionales de ejemplo para "relleno"
 
     /**
      * Devuelve el número de objetos vendidos en la sesión.

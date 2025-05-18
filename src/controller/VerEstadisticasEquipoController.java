@@ -71,6 +71,9 @@ public class VerEstadisticasEquipoController {
     @FXML
     private Label txtPokemonCaja;
 
+ /*carga los datos de equipo
+  * 
+  */
     private void cargarEquipo() {
         ArrayList<Pokemon> equipo = PokemonBD.obtenerEquipo(entrenador.getIdEntrenador());
         ObservableList<Pokemon> listaEquipo = FXCollections.observableArrayList(equipo);
@@ -82,7 +85,9 @@ public class VerEstadisticasEquipoController {
 
         tabPokemon.setItems(listaEquipo);
     }
-
+/*Cierra la ventana en la que esta
+ * 
+ */
     @FXML
     void volveratras(ActionEvent event) {
         stage.close();

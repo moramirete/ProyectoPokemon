@@ -83,7 +83,7 @@ public class EntrenadorBD {
         ps.setInt(2, entrenador.getIdEntrenador());
         ps.executeUpdate();
     }
-	
+	//Obtiene entrenador por id a traves de base de datos
 	public static Entrenador obtenerEntrenadorPorId(int idEntrenador) {
 	    String sql = "SELECT ID_ENTRENADOR, USUARIO, CONTRASENA, POKEDOLARES FROM ENTRENADOR WHERE ID_ENTRENADOR = ?";
 	    
@@ -108,6 +108,7 @@ public class EntrenadorBD {
 	    return null;
 	}
 	
+	//Actualiza los pokedolares a partir de ID_ENTRENADOR
 	public static void actualizarPokedolares(Entrenador entrenador) {
 	    String sql = "UPDATE ENTRENADOR SET POKEDOLARES = ? WHERE ID_ENTRENADOR = ?";
 	    

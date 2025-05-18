@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	/**
+	 * Configura y muestra la ventana de login.
+	 */
 	 @Override
 	    public void start(Stage primaryStage) throws Exception{
 	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/login.fxml"));
