@@ -35,9 +35,18 @@
                               <TableColumn fx:id="clmObjeto" minWidth="0.79998779296875" prefWidth="161.60011291503906" text="Objeto" />
                            </columns>
                         </TableView>
-                        <Button fx:id="btnVender" layoutX="865.0" layoutY="698.0" mnemonicParsing="false" onAction="#vender" prefHeight="41.0" prefWidth="98.0" text="Vender" />
-                        <Button fx:id="btnTienda" layoutX="1015.0" layoutY="698.0" mnemonicParsing="false" onAction="#accederTienda" prefHeight="41.0" prefWidth="98.0" text="Tienda" />
-                        <Button fx:id="btnSalir" layoutX="1164.0" layoutY="698.0" mnemonicParsing="false" onAction="#salir" prefHeight="41.0" prefWidth="98.0" text="Salir" />
+                        <Button fx:id="btnVender" layoutX="865.0" layoutY="698.0" mnemonicParsing="false" onAction="#vender" prefHeight="41.0" prefWidth="98.0" text="Vender">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btnTienda" layoutX="1015.0" layoutY="698.0" mnemonicParsing="false" onAction="#accederTienda" prefHeight="41.0" prefWidth="98.0" text="Tienda">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btnSalir" layoutX="1164.0" layoutY="698.0" mnemonicParsing="false" onAction="#salir" prefHeight="41.0" prefWidth="98.0" text="Salir">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <TextArea fx:id="txtDescripcion" editable="false" layoutX="1064.0" layoutY="453.0" prefHeight="235.0" prefWidth="213.0" wrapText="true">
                            <font>
                               <Font name="Consolas" size="10.0" />
@@ -51,13 +60,13 @@
                         <ImageView fx:id="imgObjeto" fitHeight="101.0" fitWidth="106.0" layoutX="1166.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField fx:id="txtTituloDescripcion" layoutX="1067.0" layoutY="427.0" prefHeight="26.0" prefWidth="90.0" text="Descripción">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="Consolas Bold" size="12.0" />
                            </font>
                         </TextField>
                         <TextField fx:id="txtPokedolares" layoutX="1166.0" layoutY="384.0" prefHeight="26.0" prefWidth="93.0" />
                         <Label fx:id="lblPokedolares" alignment="CENTER" layoutX="1170.0" layoutY="387.0" prefHeight="20.0" prefWidth="86.0" textAlignment="CENTER">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="Consolas Bold" size="12.0" />
                            </font>
                         </Label>
                         <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="1276.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">

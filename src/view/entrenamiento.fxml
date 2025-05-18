@@ -67,8 +67,8 @@
                         <Button fx:id="btnMov4" layoutX="520.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov4" prefHeight="46.0" prefWidth="159.0" />
                         <ProgressBar fx:id="hpPokemon" layoutX="91.0" layoutY="228.0" prefHeight="25.0" prefWidth="187.0" progress="0.0" />
                         <ProgressBar fx:id="hpPokemonRival" layoutX="697.0" layoutY="229.0" prefHeight="25.0" prefWidth="199.0" progress="0.0" />
-                        <Label fx:id="lblVidaMiPoke" layoutX="286.0" layoutY="232.0" prefHeight="18.0" prefWidth="28.0" />
-                        <Label fx:id="lblVidaRival" layoutX="905.0" layoutY="232.0" prefHeight="18.0" prefWidth="28.0" />
+                        <Label fx:id="lblVidaMiPoke" layoutX="286.0" layoutY="232.0" prefHeight="18.0" prefWidth="125.0" />
+                        <Label fx:id="lblVidaRival" layoutX="905.0" layoutY="232.0" prefHeight="18.0" prefWidth="86.0" />
                      </children>
                   </AnchorPane>
                   <VBox VBox.vgrow="ALWAYS" />

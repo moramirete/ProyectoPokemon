@@ -69,10 +69,13 @@
                               <Image url="@../../multimedia/imagenes/fondos/imagenEnfermera.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="638.0" layoutY="150.0" prefHeight="128.0" prefWidth="128.0" text="Este es el centro pokemon, aqui puedes curar tus pokemons." wrapText="true" />
+                        <Label layoutX="638.0" layoutY="150.0" prefHeight="128.0" prefWidth="128.0" text="Este es el centro pokemon, aqui puedes curar tus pokemons." wrapText="true">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Label>
                         <Button fx:id="btnSalir" layoutX="663.0" layoutY="434.0" mnemonicParsing="false" onAction="#volverMenu" prefHeight="108.0" prefWidth="237.0" text="Volver a Menu">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Consolas" size="20.0" />
                            </font>
                         </Button>
                         <TableView fx:id="tableCentro" layoutX="-3.0" layoutY="22.0" prefHeight="579.0" prefWidth="600.0">
@@ -83,7 +86,7 @@
                         </TableView>
                         <Button fx:id="btnRecuperar" layoutX="663.0" layoutY="57.0" mnemonicParsing="false" onAction="#recuperarPokemon" prefHeight="108.0" prefWidth="237.0" text="Recuperar">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Consolas" size="20.0" />
                            </font>
                         </Button>
                      </children>

@@ -40,6 +40,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CrianzaController">
    <children>
@@ -58,9 +59,18 @@
                               <TableColumn fx:id="colFertilidad" prefWidth="75.0" text="FERTILIDAD" />
                            </columns>
                         </TableView>
-                        <Button fx:id="btnCerrarCrianza" layoutX="745.0" layoutY="526.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="53.0" prefWidth="141.0" text="SALIR" />
-                        <Button fx:id="btnSeleccionarPokemon" layoutX="24.0" layoutY="526.0" mnemonicParsing="false" onAction="#seleccionarPokemon" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 1ER POKEMON" />
-                        <Button fx:id="btnEstadisticas" layoutX="379.0" layoutY="526.0" mnemonicParsing="false" onAction="#verEstadisticas" prefHeight="53.0" prefWidth="181.0" text="MÁS INFORMACION" />
+                        <Button fx:id="btnCerrarCrianza" layoutX="916.0" layoutY="494.0" mnemonicParsing="false" onAction="#cerrarCrianza" prefHeight="85.0" prefWidth="141.0" text="SALIR">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btnSeleccionarPokemon" layoutX="-76.0" layoutY="494.0" mnemonicParsing="false" onAction="#seleccionarPokemon" prefHeight="85.0" prefWidth="181.0" text="SELECIONAR 1ER POKEMON">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btnEstadisticas" layoutX="379.0" layoutY="494.0" mnemonicParsing="false" onAction="#verEstadisticas" prefHeight="85.0" prefWidth="181.0" text="MÁS INFORMACION">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <ImageView fx:id="imgPokemon1" fitHeight="168.0" fitWidth="200.0" layoutX="-86.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="imgPokemon2" fitHeight="168.0" fitWidth="200.0" layoutX="886.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="imgHuevo" fitHeight="150.0" fitWidth="200.0" layoutX="395.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -68,8 +78,14 @@
                               <Image url="@../../multimedia/imagenes/fondos/imagenincubadora.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnAbrir" layoutX="399.0" layoutY="292.0" mnemonicParsing="false" onAction="#abrirHuevo" prefHeight="53.0" prefWidth="141.0" text="ABRIR" visible="false" />
-                        <Button fx:id="btnSeleccionarPokemon2" layoutX="24.0" layoutY="526.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 2DO POKEMON" visible="false" />
+                        <Button fx:id="btnAbrir" layoutX="399.0" layoutY="292.0" mnemonicParsing="false" onAction="#abrirHuevo" prefHeight="53.0" prefWidth="141.0" text="ABRIR" visible="false">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btnSeleccionarPokemon2" layoutX="24.0" layoutY="526.0" mnemonicParsing="false" onAction="#seleccionarPokemon2" prefHeight="53.0" prefWidth="181.0" text="SELECIONAR 2DO POKEMON" visible="false">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                      </children>
                   </AnchorPane>
                   <VBox VBox.vgrow="ALWAYS" />
