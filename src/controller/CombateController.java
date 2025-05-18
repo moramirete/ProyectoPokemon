@@ -284,6 +284,7 @@ public class CombateController {
 				.orElse(null);
 
 		if (nuevoPrincipal != null) {
+			pokEquipo = nuevoPrincipal;
 			cargarDatos(nuevoPrincipal, pokRival);
 		}
 	}
