@@ -13,9 +13,47 @@ import java.util.Random;
 import model.Movimiento;
 import model.Pokemon;
 
+
+/**
+ * Clase de acceso a datos para la gestión de Pokémon en la base de datos.
+ * Proporciona métodos para crear, consultar, modificar y eliminar Pokémon,
+ * así como para gestionar sus atributos, movimientos y relaciones con entrenadores.
+ * 
+ * Métodos principales:
+ * <ul>
+ *   <li>Generación de Pokémon principal y de captura</li>
+ *   <li>Guardar Pokémon capturado</li>
+ *   <li>Obtener equipos, cajas y listas de Pokémon</li>
+ *   <li>Actualizar atributos como experiencia, vitalidad, nivel, nombre, etc.</li>
+ *   <li>Gestión de cambios de equipo y principal</li>
+ *   <li>Obtención de rutas de imágenes asociadas a los Pokémon</li>
+ *   <li>Gestión de crianza y fertilidad</li>
+ *   <li>Generación de Pokémon rivales</li>
+ *   <li>Métodos utilitarios de consulta</li>
+ * </ul>
+ * 
+ * Todas las operaciones de base de datos utilizan conexiones JDBC.
+ * 
+ * @author TuNombre
+ */
+
+
 public class PokemonBD {
+	
+	/**
+     * Genera un Pokémon principal aleatorio para un entrenador y lo inserta en la base de datos.
+     * @param idEntrenador ID del entrenador.
+     * @param conexion Conexión a la base de datos.
+     * @return El Pokémon generado.
+     */
 	public static Pokemon generarPokemonPrincipal(int idEntrenador, Connection conexion) {
 		Pokemon nuevoPokemon = null;
+		/**
+	     * Genera un Pokémon de captura aleatorio para un entrenador.
+	     * @param idEntrenador ID del entrenador.
+	     * @param conexion Conexión a la base de datos.
+	     * @return El Pokémon generado.
+	     */
 
 		try {
 			Random rd = new Random();
@@ -94,7 +132,11 @@ public class PokemonBD {
 	}
 
 	public static Pokemon generarPokemonCaptura(int idEntrenador, Connection conexion) {
-
+		/**
+	     * Guarda un Pokémon capturado en la base de datos.
+	     * @param pok Pokémon a guardar.
+	     * @param conexion Conexión a la base de datos.
+	     */
 		Pokemon nuevoPokemon = null;
 
 		try {
@@ -157,6 +199,13 @@ public class PokemonBD {
 	}
 
 	public static void guardarPokemonCaptura(Pokemon pok, Connection conexion) {
+		/**
+	     * Genera un nuevo ID único para un Pokémon.
+	     * @param conexion Conexión a la base de datos.
+	     * @return Nuevo ID único.
+	     * @throws SQLException Si ocurre un error de base de datos.
+	     */
+		
 		try {
 
 			String queryInsertPokemon = "INSERT INTO POKEMON (ID_POKEMON, ID_ENTRENADOR, NUM_POKEDEX, ID_OBJETO, "
@@ -204,6 +253,13 @@ public class PokemonBD {
 	}
 
 	private static int generarIdUnico(Connection conexion) throws SQLException {
+		
+		/**
+	     * Obtiene el equipo (principal y secundarios) de un entrenador.
+	     * @param idEntrenador ID del entrenador.
+	     * @return Lista de Pokémon en el equipo.
+	     */
+		
 		int nuevoId = 0;
 
 		// Obtener el ID máximo actual en la tabla POKEMON
@@ -224,6 +280,13 @@ public class PokemonBD {
 	}
 
 	public static ArrayList<Pokemon> obtenerEquipo(int idEntrenador) {
+		
+		/**
+	     * Obtiene el equipo sin el Pokémon principal.
+	     * @param idEntrenador ID del entrenador.
+	     * @return Lista de Pokémon secundarios.
+	     */
+		
 		ArrayList<Pokemon> equipo = new ArrayList<>();
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -258,7 +321,12 @@ public class PokemonBD {
 
 	public static ArrayList<Pokemon> obtenerEquipoSinPrincipal(int idEntrenador) {
 		ArrayList<Pokemon> equipo = new ArrayList<>();
-
+		 /**
+	     * Obtiene la caja de Pokémon de un entrenador.
+	     * @param idEntrenador ID del entrenador.
+	     * @return Lista de Pokémon en la caja.
+	     */
+		
 		try (Connection con = BDConecction.getConnection()) {
 			String sql = "SELECT * \r\n" + "FROM POKEMON p \r\n"
 					+ "JOIN ENTRENADOR e ON p.ID_ENTRENADOR = e.ID_ENTRENADOR \r\n"
@@ -289,6 +357,12 @@ public class PokemonBD {
 	}
 
 	public static ArrayList<Pokemon> obtenerCaja(int idEntrenador) {
+		
+		/**
+	     * Obtiene todos los Pokémon de un entrenador con fertilidad mayor a 0.
+	     * @param idEntrenador ID del entrenador.
+	     * @return Lista de Pokémon.
+	     */
 		ArrayList<Pokemon> equipo = new ArrayList<>();
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -321,6 +395,13 @@ public class PokemonBD {
 	}
 
 	public static ArrayList<Pokemon> obtenerTodosLosPokemons(int idEntrenador) {
+		
+		/**
+	     * Obtiene todos los Pokémon masculinos de un entrenador y especie.
+	     * @param idEntrenador ID del entrenador.
+	     * @param pokemon1 Pokémon de referencia para la especie.
+	     * @return Lista de Pokémon masculinos.
+	     */
 		ArrayList<Pokemon> equipo = new ArrayList<>();
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -353,6 +434,14 @@ public class PokemonBD {
 	}
 
 	public static ArrayList<Pokemon> obtenerMasculinos(int idEntrenador, Pokemon pokemon1) {
+		
+		 /**
+	     * Obtiene todos los Pokémon femeninos de un entrenador y especie.
+	     * @param idEntrenador ID del entrenador.
+	     * @param pokemon1 Pokémon de referencia para la especie.
+	     * @return Lista de Pokémon femeninos.
+	     */
+		
 		ArrayList<Pokemon> equipo = new ArrayList<>();
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -386,6 +475,13 @@ public class PokemonBD {
 	}
 
 	public static ArrayList<Pokemon> obtenerFemeninos(int idEntrenador, Pokemon pokemon1) {
+		
+		/**
+	     * Cura un Pokémon, restaurando su vitalidad y vitalidad de objeto.
+	     * @param idEntrenador ID del entrenador.
+	     * @param idPokemon ID del Pokémon.
+	     * @return true si la operación fue exitosa.
+	     */
 		ArrayList<Pokemon> equipo = new ArrayList<>();
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -419,6 +515,14 @@ public class PokemonBD {
 	}
 
 	public static boolean curarPokemon(int idEntrenador, int idPokemon) {
+		
+		/**
+	     * Recupera los PP de todos los movimientos de un Pokémon.
+	     * @param idEntrenador ID del entrenador.
+	     * @param idPokemon ID del Pokémon.
+	     * @return true si la operación fue exitosa.
+	     */
+		
 		try (Connection con = BDConecction.getConnection()) {
 
 			String sql = "UPDATE POKEMON SET VITALIDAD = VITALIDADMAX, VITALIDAD_OBJ = VITALIDADMAX_OBJ WHERE ID_ENTRENADOR = ? AND ID_POKEMON = ?";
@@ -434,6 +538,13 @@ public class PokemonBD {
 	}
 
 	public static boolean recuperarPPMovimientos(int idEntrenador, int idPokemon) {
+		
+		 /**
+	     * Obtiene la ruta de la imagen frontal del Pokémon.
+	     * @param p Pokémon.
+	     * @return Ruta de la imagen.
+	     */
+		
 	    String sql = "UPDATE MOVIMIENTO_POKEMON mp " +
                 "SET PP_ACTUALES = ( " +
                 "    SELECT m.PP_MAX FROM MOVIMIENTO m WHERE m.ID_MOVIMIENTO = mp.ID_MOVIMIENTO" +
@@ -457,6 +568,13 @@ public class PokemonBD {
 }
 
 	public static String obtenerRutaImagen(Pokemon p) {
+		
+		/**
+	     * Obtiene la ruta de la imagen trasera del Pokémon.
+	     * @param p Pokémon.
+	     * @return Ruta de la imagen.
+	     */
+		
 		if (p == null || p.getNum_pokedex() <= 0) {
 			System.err.println("Pokémon no válido o NUM_POKEDEX = 0");
 			return "/imagenes/default.png";
@@ -481,6 +599,13 @@ public class PokemonBD {
 	}
 
 	public static String obtenerRutaImagenTrasera(Pokemon p) {
+		
+		 /**
+	     * Obtiene la ruta de la imagen de fondo según el tipo 1 del Pokémon.
+	     * @param p Pokémon.
+	     * @return Ruta de la imagen.
+	     */
+		
 		if (p == null || p.getNum_pokedex() <= 0) {
 			System.err.println("Pokémon no válido o NUM_POKEDEX = 0");
 			return "/imagenes/default.png";
@@ -505,6 +630,14 @@ public class PokemonBD {
 	}
 
 	public static String obtenerRutaImagenFondo(Pokemon p) {
+		
+		 /**
+	     * Obtiene la ruta de la imagen de género del Pokémon.
+	     * @param p Pokémon.
+	     * @return Ruta de la imagen.
+	     */
+		
+		
 		try (Connection con = BDConecction.getConnection()) {
 			String queryPokedex = "SELECT TIPO1 FROM POKEDEX WHERE NUM_POKEDEX = ?";
 			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
@@ -526,6 +659,13 @@ public class PokemonBD {
 	}
 
 	public static String obtenerRutaImagenGenero(Pokemon p) {
+		
+		 /**
+	     * Obtiene la ruta de la imagen del tipo 1 del Pokémon.
+	     * @param p Pokémon.
+	     * @return Ruta de la imagen.
+	     */
+		
 		try (Connection con = BDConecction.getConnection()) {
 			String queryPokedex = "SELECT SEXO FROM POKEMON WHERE NUM_POKEDEX = ?";
 			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
@@ -547,6 +687,13 @@ public class PokemonBD {
 	}
 
 	public static String obtenerRutaImagenTipo1(Pokemon p) {
+		
+		/**
+	     * Obtiene la ruta de la imagen del tipo 2 del Pokémon.
+	     * @param p Pokémon.
+	     * @return Ruta de la imagen.
+	     */
+		
 		try (Connection con = BDConecction.getConnection()) {
 			String queryPokedex = "SELECT TIPO1 FROM POKEDEX WHERE NUM_POKEDEX = ?";
 			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
@@ -568,6 +715,9 @@ public class PokemonBD {
 	}
 
 	public static String obtenerRutaImagenTipo2(Pokemon p) {
+		
+		
+		
 		try (Connection con = BDConecction.getConnection()) {
 			String queryPokedex = "SELECT TIPO2 FROM POKEDEX WHERE NUM_POKEDEX = ?";
 			PreparedStatement statementPokedex = con.prepareStatement(queryPokedex);
@@ -589,6 +739,15 @@ public class PokemonBD {
 	}
 
 	public static boolean cambiarNombre(Pokemon p, Optional<String> nombre) {
+		
+		/**
+	     * Cambia un Pokémon de la caja por uno del equipo.
+	     * @param idEntrenador ID del entrenador.
+	     * @param deCaja Pokémon de la caja.
+	     * @param deEquipo Pokémon del equipo.
+	     * @return true si la operación fue exitosa.
+	     */
+		
 		try (Connection con = BDConecction.getConnection()) {
 
 			String sql = "UPDATE POKEMON SET NOM_POKEMON = ? WHERE ID_POKEMON = ?";
@@ -603,6 +762,15 @@ public class PokemonBD {
 	}
 
 	public static boolean cambiarPokemonEquipo(int idEntrenador, Pokemon deCaja, Pokemon deEquipo) {
+		
+		 /**
+	     * Añade un Pokémon de la caja al equipo.
+	     * @param idEntrenador ID del entrenador.
+	     * @param deCaja Pokémon de la caja.
+	     * @return true si la operación fue exitosa.
+	     */
+		
+		
 		try (Connection con = BDConecction.getConnection()) {
 			String sqlCaja = "UPDATE POKEMON SET EQUIPO = 2 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
 			PreparedStatement stmtCaja = con.prepareStatement(sqlCaja);
@@ -624,6 +792,14 @@ public class PokemonBD {
 	}
 
 	public static boolean añadirPokemonAlEquipo(int idEntrenador, Pokemon deCaja) {
+		
+		 /**
+	     * Obtiene el Pokémon principal de un entrenador.
+	     * @param idEntrenador ID del entrenador.
+	     * @return Pokémon principal.
+	     */
+		
+		
 		try (Connection con = BDConecction.getConnection()) {
 			String sql = "UPDATE POKEMON SET EQUIPO = 2 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -637,7 +813,13 @@ public class PokemonBD {
 	}
 
 	public static Pokemon obtenerPokemonPrincipal(int idEntrenador) {
-
+		/**
+	     * Cambia el Pokémon principal por uno de la caja.
+	     * @param idEntrenador ID del entrenador.
+	     * @param deCaja Pokémon de la caja.
+	     * @param principalActual Pokémon principal actual.
+	     * @return true si la operación fue exitosa.
+	     */
 		Pokemon p = new Pokemon();
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -667,6 +849,15 @@ public class PokemonBD {
 	}
 
 	public static boolean cambiarPokemonPrincipal(int idEntrenador, Pokemon deCaja, Pokemon principalActual) {
+		 /**
+	     * Cambia el Pokémon principal por uno de la caja y el principal pasa al equipo.
+	     * @param idEntrenador ID del entrenador.
+	     * @param deCaja Pokémon de la caja.
+	     * @param principalActual Pokémon principal actual.
+	     * @return true si la operación fue exitosa.
+	     */
+		
+		
 		try (Connection con = BDConecction.getConnection()) {
 			// Cambiar el Pokémon de la caja a principal
 			String sqlCaja = "UPDATE POKEMON SET EQUIPO = 1 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
@@ -690,6 +881,14 @@ public class PokemonBD {
 	}
 
 	public static boolean cambiarPokemonPrincipalAEquipo(int idEntrenador, Pokemon deCaja, Pokemon principalActual) {
+		
+		/**
+	     * Cambia el Pokémon principal por uno del equipo.
+	     * @param idEntrenador ID del entrenador.
+	     * @param delEquipo Pokémon del equipo.
+	     * @param principalActual Pokémon principal actual.
+	     * @return true si la operación fue exitosa.
+	     */
 		try (Connection con = BDConecction.getConnection()) {
 			// Cambiar el Pokémon de la caja a principal
 			String sqlCaja = "UPDATE POKEMON SET EQUIPO = 1 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
@@ -713,6 +912,14 @@ public class PokemonBD {
 	}
 
 	public static boolean cambiarPrincipalConEquipo(int idEntrenador, Pokemon delEquipo, Pokemon principalActual) {
+		
+		/**
+	     * Obtiene un Pokémon por su ID.
+	     * @param idPokemon ID del Pokémon.
+	     * @return Pokémon encontrado o null.
+	     */
+		
+		
 		try (Connection con = BDConecction.getConnection()) {
 			// Cambiar el Pokémon del equipo a principal
 			String sqlEquipo = "UPDATE POKEMON SET EQUIPO = 1 WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
@@ -736,6 +943,12 @@ public class PokemonBD {
 	}
 
 	public static Pokemon obtenerPokemonPorId(int idPokemon) {
+		
+		/**
+	     * Obtiene un Pokémon por su ID e incluye sus movimientos principales.
+	     * @param idPokemon ID del Pokémon.
+	     * @return Pokémon encontrado o null.
+	     */
 		Pokemon pokemon = null;
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -766,6 +979,14 @@ public class PokemonBD {
 	}
 
 	public static Pokemon obtenerPokemonPorIdConMovimientos(int idPokemon) {
+		
+		/**
+	     * Crea un Pokémon hijo a partir de dos padres, heredando los mejores atributos.
+	     * @param p1 Primer Pokémon padre.
+	     * @param p2 Segundo Pokémon padre.
+	     * @return Pokémon hijo.
+	     * @throws SQLException Si ocurre un error de base de datos.
+	     */
 		Pokemon pokemon = obtenerPokemonPorId(idPokemon);
 
 		if (pokemon == null) {
@@ -782,6 +1003,11 @@ public class PokemonBD {
 	}
 
 	public static Pokemon criarPokemonHijo(Pokemon p1, Pokemon p2) throws SQLException {
+		/**
+	     * Resta la fertilidad de un Pokémon en la base de datos.
+	     * @param pokemon Pokémon.
+	     * @param con Conexión a la base de datos.
+	     */
 		// El hijo hereda el mejor valor de cada característica
 		int vitalidad = Math.max(p1.getVitalidadMaxOBJ(), p2.getVitalidadMaxOBJ());
 		int ataque = Math.max(p1.getAtaqueOBJ(), p2.getAtaqueOBJ());
@@ -808,6 +1034,11 @@ public class PokemonBD {
 	}
 
 	public static void restarFertilidad(Pokemon pokemon, Connection con) {
+
+	    /**
+	     * Obtiene todos los IDs de Pokémon registrados.
+	     * @return Lista de IDs.
+	     */
 		try {
 			String sql = "UPDATE POKEMON SET FERTILIDAD = ? WHERE ID_POKEMON = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -820,6 +1051,11 @@ public class PokemonBD {
 	}
 
 	public static List<Integer> obtenerTodosIdsPokemon() {
+		/**
+	     * Genera un Pokémon rival aleatorio basado en otro Pokémon.
+	     * @param pokemon Pokémon de referencia.
+	     * @return Pokémon rival generado.
+	     */
 		List<Integer> ids = new ArrayList<>();
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -841,6 +1077,11 @@ public class PokemonBD {
 	}
 
 	public static Pokemon generarPokemonRivalAleatorio(Pokemon pokemon) {
+		/**
+	     * Genera un equipo rival basado en un equipo dado.
+	     * @param equipo Lista de Pokémon del equipo.
+	     * @return Lista de Pokémon rivales.
+	     */
 		Pokemon nuevoPokemon = null;
 
 		try (Connection con = BDConecction.getConnection()) {
@@ -912,6 +1153,10 @@ public class PokemonBD {
 	}
 
 	public static List<Pokemon> equipoRival(List<Pokemon> equipo) {
+		 /**
+	     * Actualiza el nivel y la experiencia de un Pokémon en la base de datos.
+	     * @param pokemon Pokémon a actualizar.
+	     */
 		List<Pokemon> equipoRival = new ArrayList<>();
 		int i = 0;
 
@@ -925,6 +1170,12 @@ public class PokemonBD {
 	}
 
 	public static void actualizarPokemonExperiencia(Pokemon pokemon) {
+		/**
+	     * Actualiza la vitalidad de un Pokémon en la base de datos.
+	     * @param pokemon Pokémon.
+	     * @param nuevaVitalidad Nueva vitalidad.
+	     * @return true si la operación fue exitosa.
+	     */
 		String sql = "UPDATE pokemon SET nivel = ?, experiencia = ? WHERE id_pokemon = ?";
 
 		try (Connection conn = BDConecction.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -941,6 +1192,12 @@ public class PokemonBD {
 	}
 	
 	public static boolean actualizarVitalidad(Pokemon pokemon, int nuevaVitalidad) {
+		
+		 /**
+	     * Obtiene el número de Pokédex de la evolución si corresponde.
+	     * @param pokemon Pokémon.
+	     * @return Número de Pokédex evolucionado o el mismo si no evoluciona.
+	     */
 	    String sql = "UPDATE POKEMON SET VITALIDAD = ? WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
 	    
 	    try (Connection con = BDConecction.getConnection();
@@ -960,6 +1217,10 @@ public class PokemonBD {
 	}
 
 	public static int obtenerEvolucion(Pokemon pokemon) {
+		/**
+	     * Actualiza la vitalidad de objeto de un Pokémon en la base de datos.
+	     * @param pokemon Pokémon.
+	     */
 	    int numPokedex = pokemon.getNum_pokedex(); // Guarda el número actual
 
 	    String sql = "SELECT num_pokedex, nivel_evolucion FROM pokemon WHERE num_pokedex = ?";
@@ -985,6 +1246,11 @@ public class PokemonBD {
 	}
 
 	public static void actualizarVida(Pokemon pokemon) {
+		/**
+	     * Actualiza el nivel de un Pokémon en la base de datos.
+	     * @param pok Pokémon.
+	     * @param nuevoNivel Nuevo nivel.
+	     */
 		String sql = "UPDATE POKEMON SET VITALIDAD_OBJ = ? WHERE ID_POKEMON = ?";
 		try (Connection conexion = BDConecction.getConnection();
 				PreparedStatement pstmt = conexion.prepareStatement(sql)) {
@@ -997,6 +1263,10 @@ public class PokemonBD {
 	}
 	
 	public static void actualizarNivelPokemon(Pokemon pok, int nuevoNivel) {
+		 /**
+	     * Devuelve el número total de Pokémon registrados en la base de datos.
+	     * @return Número total de Pokémon.
+	     */
 
 	    String sql = "UPDATE pokemon SET nivel = ? WHERE id_pokemon = ? AND ID_ENTRENADOR = ?";
 	    
