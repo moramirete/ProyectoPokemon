@@ -83,5 +83,44 @@ public class EntrenadorBD {
         ps.setInt(2, entrenador.getIdEntrenador());
         ps.executeUpdate();
     }
+	
+	public static Entrenador obtenerEntrenadorPorId(int idEntrenador) {
+	    String sql = "SELECT ID_ENTRENADOR, USUARIO, CONTRASENA, POKEDOLARES FROM ENTRENADOR WHERE ID_ENTRENADOR = ?";
+	    
+	    try (Connection conexion = BDConecction.getConnection();
+	         PreparedStatement pstmt = conexion.prepareStatement(sql)) {
+	        
+	        pstmt.setInt(1, idEntrenador);
+	        
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                Entrenador entrenador = new Entrenador(rs.getString("USUARIO"), rs.getString("CONTRASENA"));
+	                entrenador.setIdEntrenador(rs.getInt("ID_ENTRENADOR"));
+	                entrenador.setPokedolares(rs.getInt("POKEDOLARES"));
+	                return entrenador;
+	            }
+	        }
+	        
+	    } catch (SQLException e) {
+	        System.err.println("Error al obtener entrenador por ID: " + e.getMessage());
+	    }
+	    
+	    return null;
+	}
+	
+	public static void actualizarPokedolares(Entrenador entrenador) {
+	    String sql = "UPDATE ENTRENADOR SET POKEDOLARES = ? WHERE ID_ENTRENADOR = ?";
+	    
+	    try (Connection conexion = BDConecction.getConnection();
+	         PreparedStatement pstmt = conexion.prepareStatement(sql)) {
+	        
+	        pstmt.setInt(1, entrenador.getPokedolares());
+	        pstmt.setInt(2, entrenador.getIdEntrenador());
+	        pstmt.executeUpdate();
+	        
+	    } catch (SQLException e) {
+	        System.err.println("Error al actualizar pokédolares del entrenador: " + e.getMessage());
+	    }
+	}
 
 }
