@@ -372,7 +372,7 @@ public class CombateController {
 
 		lblVitalidad.setText(String.valueOf(pokEquipo.getVitalidadOBJ()));
 
-		guardarAccionRival(rival.getNombre_pokemon() + " usó " + movimiento.getNom_movimiento() + " e hizo " + daño + " de daño.");
+		guardarAccionRival(pokRival.getNombre_pokemon() + " usó " + movimiento.getNom_movimiento() + " e hizo " + daño + " de daño.");
 	}
 
 	private void turnoJugador(Pokemon jugador, Pokemon rival, Movimiento movimiento) {
@@ -464,7 +464,7 @@ public class CombateController {
 		} else {
 			turnoActual.setAccionEntrenador(accion);
 		}
-		actualizarLogCombate(accion);
+		
 	}
 
 	private void guardarAccionRival(String accion) {
@@ -478,7 +478,13 @@ public class CombateController {
 
 		if (turnoActual.getAccionEntrenador() != null && !turnoActual.getAccionEntrenador().isEmpty()
 				&& turnoActual.getAccionRival() != null && !turnoActual.getAccionRival().isEmpty()) {
+//Mostramos Log de ambas acciones
+			 String textoTurno = "Turno " + contadorTurno + ":\n" +
+		                "Jugador: " + turnoActual.getAccionEntrenador() + "\n" +
+		                "Rival: " + turnoActual.getAccionRival() + "\n";
 
+		        actualizarLogCombate(textoTurno);
+			
 			guardarTurnoEnArchivo(turnoActual);
 			contadorTurno++;
 			turnoActual = null;
