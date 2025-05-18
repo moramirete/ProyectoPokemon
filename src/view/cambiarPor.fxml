@@ -50,12 +50,21 @@
             <TableColumn fx:id="colPosicion" prefWidth="65.0" text="Posicion" />
         </columns>
       </TableView>
-      <Button fx:id="btnVolver" layoutX="291.0" layoutY="321.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
-      <Button fx:id="btnCambiarPor" layoutX="14.0" layoutY="321.0" mnemonicParsing="false" onAction="#cambiarPor" prefHeight="26.0" prefWidth="122.0" text="Cambiar por..." />
-      <Button fx:id="btnAgregarEquipo" layoutX="153.0" layoutY="321.0" mnemonicParsing="false" onAction="#agregarEquipo" prefHeight="26.0" prefWidth="122.0" text="Agregar a equipo" />
+      <Button fx:id="btnVolver" layoutX="291.0" layoutY="321.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnCambiarPor" layoutX="14.0" layoutY="321.0" mnemonicParsing="false" onAction="#cambiarPor" prefHeight="26.0" prefWidth="122.0" text="Cambiar por...">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnAgregarEquipo" layoutX="153.0" layoutY="321.0" mnemonicParsing="false" onAction="#agregarEquipo" prefHeight="26.0" prefWidth="122.0" text="Agregar a equipo">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
       <Label fx:id="txtPokemonCaja" alignment="CENTER" layoutX="14.0" layoutY="283.0" prefHeight="25.0" prefWidth="396.0" text="Que quieres hacer con: ">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Consolas Bold" size="14.0" />
          </font>
       </Label>
    </children>

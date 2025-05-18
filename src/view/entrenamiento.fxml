@@ -40,6 +40,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url('file:C:/ProyectoPokemon/multimedia/imagenes/fondos/fondoPantalla.gif');" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EntrenamientoController">
    <children>
@@ -57,18 +58,39 @@
                               <Image url="@../../multimedia/imagenes/fondos/entrenamiento_fondo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnSalir" layoutX="820.0" layoutY="518.0" mnemonicParsing="false" onAction="#salir" prefHeight="61.0" prefWidth="151.0" text="SALIR" />
+                        <Button fx:id="btnSalir" layoutX="820.0" layoutY="518.0" mnemonicParsing="false" onAction="#salir" prefHeight="61.0" prefWidth="151.0" text="SALIR">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <ImageView fx:id="imgPokeRival" fitHeight="176.0" fitWidth="171.0" layoutX="698.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="imgPokemon" fitHeight="176.0" fitWidth="171.0" layoutX="99.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="btnPokemon" layoutX="896.0" layoutY="482.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="74.0" text="POKEMON" />
-                        <Button fx:id="btnMov1" layoutX="322.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov1" prefHeight="46.0" prefWidth="159.0" />
-                        <Button fx:id="btnMov2" layoutX="520.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov2" prefHeight="46.0" prefWidth="159.0" />
+                        <Button fx:id="btnPokemon" layoutX="896.0" layoutY="482.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="74.0" text="POKEMON">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btnMov1" layoutX="322.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov1" prefHeight="46.0" prefWidth="159.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btnMov2" layoutX="520.0" layoutY="459.0" mnemonicParsing="false" onAction="#hacerMov2" prefHeight="46.0" prefWidth="159.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <Button fx:id="btnMov3" layoutX="322.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov3" prefHeight="46.0" prefWidth="159.0" />
-                        <Button fx:id="btnMov4" layoutX="520.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov4" prefHeight="46.0" prefWidth="159.0" />
+                        <Button fx:id="btnMov4" layoutX="520.0" layoutY="526.0" mnemonicParsing="false" onAction="#hacerMov4" prefHeight="46.0" prefWidth="159.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <ProgressBar fx:id="hpPokemon" layoutX="91.0" layoutY="228.0" prefHeight="25.0" prefWidth="187.0" progress="0.0" />
                         <ProgressBar fx:id="hpPokemonRival" layoutX="697.0" layoutY="229.0" prefHeight="25.0" prefWidth="199.0" progress="0.0" />
-                        <Label fx:id="lblVidaMiPoke" layoutX="286.0" layoutY="232.0" prefHeight="18.0" prefWidth="125.0" />
-                        <Label fx:id="lblVidaRival" layoutX="905.0" layoutY="232.0" prefHeight="18.0" prefWidth="86.0" />
+                        <Label fx:id="lblVidaMiPoke" layoutX="286.0" layoutY="232.0" prefHeight="18.0" prefWidth="125.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="lblVidaRival" layoutX="905.0" layoutY="232.0" prefHeight="18.0" prefWidth="86.0">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Label>
                      </children>
                   </AnchorPane>
                   <VBox VBox.vgrow="ALWAYS" />

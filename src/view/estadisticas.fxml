@@ -62,7 +62,7 @@
                         <TextField disable="true" layoutX="384.0" layoutY="27.0" prefHeight="25.0" prefWidth="41.0" />
                         <Label layoutX="346.0" layoutY="26.0" text="Nv.">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
                         <Label fx:id="txtNombre" alignment="CENTER" layoutX="176.0" layoutY="25.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
@@ -81,41 +81,41 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="117.0" layoutY="224.0" prefHeight="26.0" prefWidth="58.0" text="Ataque">
+                        <Label alignment="CENTER" layoutX="117.0" layoutY="224.0" prefHeight="26.0" prefWidth="101.0" text="Ataque">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="112.0" layoutY="297.0" prefHeight="26.0" prefWidth="68.0" text="Defensa">
+                        <Label alignment="CENTER" layoutX="112.0" layoutY="297.0" prefHeight="26.0" prefWidth="103.0" text="Defensa">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="262.0" layoutY="224.0" prefHeight="26.0" prefWidth="95.0" text="Ataque Esp.">
+                        <Label alignment="CENTER" layoutX="249.0" layoutY="224.0" prefHeight="26.0" prefWidth="108.0" text="Ataque Esp.">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="262.0" layoutY="297.0" prefHeight="26.0" prefWidth="95.0" text="Defensa Esp.">
+                        <Label alignment="CENTER" layoutX="242.0" layoutY="297.0" prefHeight="26.0" prefWidth="115.0" text="Defensa Esp.">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="imgTipo1" fitHeight="25.0" fitWidth="122.0" layoutX="169.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="imgTipo2" fitHeight="25.0" fitWidth="122.0" layoutX="310.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="365.0" prefHeight="26.0" prefWidth="95.0" text="Velocidad">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="365.0" prefHeight="26.0" prefWidth="124.0" text="Velocidad">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="365.0" prefHeight="26.0" prefWidth="103.0" text="Fertilidad">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="237.0" layoutY="365.0" prefHeight="26.0" prefWidth="125.0" text="Fertilidad">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
                         <Label alignment="CENTER" layoutX="42.0" layoutY="150.0" prefHeight="26.0" prefWidth="41.0" text="N.º ">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
                         <TextField disable="true" layoutX="80.0" layoutY="150.0" prefHeight="25.0" prefWidth="55.0" />
@@ -125,7 +125,10 @@
                            </font>
                         </Label>
                         <ImageView fx:id="imgSexo" fitHeight="39.0" fitWidth="31.0" layoutX="132.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="btnReproducirGrito" layoutX="204.0" layoutY="151.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reprooducir grito" />
+                        <Button fx:id="btnReproducirGrito" layoutX="204.0" layoutY="151.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reproducir grito">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <TextField disable="true" layoutX="60.0" layoutY="224.0" prefHeight="25.0" prefWidth="41.0" />
                         <Label fx:id="txtAtaque" layoutX="65.0" layoutY="224.0" prefHeight="26.0" prefWidth="32.0" textAlignment="CENTER">
                            <font>
@@ -184,7 +187,7 @@
                         <TextField disable="true" layoutX="384.0" layoutY="33.0" prefHeight="25.0" prefWidth="41.0" />
                         <Label layoutX="346.0" layoutY="32.0" text="Nv.">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
                         <Label fx:id="txtNombre1" alignment="CENTER" layoutX="176.0" layoutY="31.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
@@ -207,7 +210,7 @@
                         <ImageView fx:id="imgTipo21" fitHeight="25.0" fitWidth="122.0" layoutX="310.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
                         <Label alignment="CENTER" layoutX="42.0" layoutY="156.0" prefHeight="26.0" prefWidth="41.0" text="N.º ">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
                         <TextField disable="true" layoutX="80.0" layoutY="156.0" prefHeight="25.0" prefWidth="55.0" />
@@ -216,7 +219,10 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnReproducirGrito2" layoutX="204.0" layoutY="157.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reprooducir grito" />
+                        <Button fx:id="btnReproducirGrito2" layoutX="204.0" layoutY="157.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reproducir grito">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <TextField disable="true" layoutX="52.0" layoutY="214.0" prefHeight="25.0" prefWidth="161.0" />
                         <Label fx:id="txtMovimiento1" alignment="CENTER" layoutX="58.0" layoutY="213.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
                            <font>
@@ -264,14 +270,14 @@
                      <children>
                         <ImageView fx:id="imgFondo1" fitHeight="700.0" fitWidth="1153.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="167.0" layoutY="66.0" prefHeight="88.0" prefWidth="276.0" />
-                        <TextField disable="true" layoutX="36.0" layoutY="212.0" prefHeight="50.0" prefWidth="386.0" />
+                        <TextField disable="true" layoutX="20.0" layoutY="212.0" prefHeight="50.0" prefWidth="415.0" />
                         <TextField disable="true" layoutX="22.0" layoutY="14.0" prefHeight="176.0" prefWidth="142.0" />
                         <ImageView fx:id="imgPokemon11" fitHeight="123.0" fitWidth="129.0" layoutX="29.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
                         <TextField disable="true" layoutX="171.0" layoutY="32.0" prefHeight="25.0" prefWidth="161.0" />
                         <TextField disable="true" layoutX="385.0" layoutY="33.0" prefHeight="25.0" prefWidth="41.0" />
                         <Label layoutX="347.0" layoutY="32.0" text="Nv.">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
                         <Label fx:id="txtNombre11" alignment="CENTER" layoutX="177.0" layoutY="31.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
@@ -294,7 +300,7 @@
                         <ImageView fx:id="imgTipo211" fitHeight="25.0" fitWidth="122.0" layoutX="311.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
                         <Label alignment="CENTER" layoutX="43.0" layoutY="156.0" prefHeight="26.0" prefWidth="41.0" text="N.º ">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
                         <TextField disable="true" layoutX="81.0" layoutY="156.0" prefHeight="25.0" prefWidth="55.0" />
@@ -303,26 +309,35 @@
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnReproducirGrito21" layoutX="205.0" layoutY="157.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reprooducir grito" />
-                        <TextField disable="true" layoutX="177.0" layoutY="224.0" prefHeight="25.0" prefWidth="161.0" />
-                        <Label fx:id="txtObjetoEquipado" alignment="CENTER" layoutX="183.0" layoutY="223.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
+                        <Button fx:id="btnReproducirGrito21" layoutX="205.0" layoutY="157.0" mnemonicParsing="false" onAction="#reproducirGrito" prefHeight="25.0" prefWidth="212.0" text="Reprooducir grito">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
+                        <TextField disable="true" layoutX="186.0" layoutY="225.0" prefHeight="25.0" prefWidth="161.0" />
+                        <Label fx:id="txtObjetoEquipado" alignment="CENTER" layoutX="192.0" layoutY="224.0" prefHeight="26.0" prefWidth="150.0" textAlignment="CENTER">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="43.0" layoutY="222.0" prefHeight="26.0" prefWidth="147.0" text="Objeto equipado:">
+                        <Label layoutX="31.0" layoutY="224.0" prefHeight="26.0" prefWidth="155.0" text="Objeto equipado:">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Consolas" size="17.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnCambiarObj" layoutX="343.0" layoutY="224.0" mnemonicParsing="false" onAction="#cambiarObj" prefHeight="25.0" prefWidth="34.0" text="↑↓" />
+                        <Button fx:id="btnCambiarObj" layoutX="355.0" layoutY="226.0" mnemonicParsing="false" onAction="#cambiarObj" prefHeight="25.0" prefWidth="34.0" text="↑↓">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <TableView fx:id="tablaObjeto" layoutX="22.0" layoutY="274.0" prefHeight="156.0" prefWidth="409.0">
                           <columns>
                             <TableColumn fx:id="colNombreObj" prefWidth="328.0" text="NOMBRE" />
                             <TableColumn fx:id="colCantidadObj" text="CANTIDAD" />
                           </columns>
                         </TableView>
-                        <Button fx:id="btnQuitarObjeto" layoutX="379.0" layoutY="224.0" mnemonicParsing="false" onAction="#quitarObjeto" prefHeight="25.0" prefWidth="34.0" text="X" />
+                        <Button fx:id="btnQuitarObjeto" layoutX="397.0" layoutY="227.0" mnemonicParsing="false" onAction="#quitarObjeto" prefHeight="24.0" prefWidth="36.0" text="X">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font></Button>
                         <TextField disable="true" layoutX="125.0" layoutY="20.0" prefHeight="48.0" prefWidth="37.0" />
                         <ImageView fx:id="imgGenero2" fitHeight="33.0" fitWidth="32.0" layoutX="128.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
                      </children>

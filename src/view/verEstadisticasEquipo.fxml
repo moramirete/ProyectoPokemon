@@ -49,12 +49,18 @@
             <TableColumn fx:id="colTipo2" prefWidth="123.0" text="Tipo 2" />
          </columns>
       </TableView>
-      <Button fx:id="btnVolver" layoutX="229.0" layoutY="325.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver" />
-      <Label fx:id="txtPokemonCaja" alignment="CENTER" layoutX="-24.0" layoutY="282.0" prefHeight="25.0" prefWidth="475.0" text="De que pokemon de tu equipo quieres obtener las estadisticas">
+      <Button fx:id="btnVolver" layoutX="229.0" layoutY="325.0" mnemonicParsing="false" onAction="#volveratras" prefHeight="26.0" prefWidth="122.0" text="Volver">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
+      <Label fx:id="txtPokemonCaja" alignment="CENTER" layoutX="81.0" layoutY="272.0" prefHeight="50.0" prefWidth="270.0" text="¿De que pokemon de tu equipo quieres obtener las estadisticas?" wrapText="true">
+         <font>
+            <Font name="Consolas Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnEstadisticas" layoutX="76.0" layoutY="325.0" mnemonicParsing="false" onAction="#abrirVerEstadisticas" prefHeight="26.0" prefWidth="122.0" text="Ver estadisticas" />
+      <Button fx:id="btnEstadisticas" layoutX="76.0" layoutY="325.0" mnemonicParsing="false" onAction="#abrirVerEstadisticas" prefHeight="26.0" prefWidth="122.0" text="Ver estadisticas">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>
