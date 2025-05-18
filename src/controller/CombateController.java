@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import bd.EntrenadorBD;
 import bd.MovimientoBD;
 import bd.PokemonBD;
 import javafx.event.ActionEvent;
@@ -667,19 +668,45 @@ public class CombateController {
 		return multiplicador;
 	}
 
-	private void finalizarCombate(boolean jugadorGana) {
-		mostrarAlerta(jugadorGana ? "¡Has ganado el combate!" : "¡Has perdido!");
+	private void finalizarCombate(boolean entrenadorGana) {
+	    try {
+	        // Obtiene el entrenador rival desde la BD usando el id_entrenador de pokRival
+	        Entrenador entrenadorRival = EntrenadorBD.obtenerEntrenadorPorId(pokRival.getId_entrenador());
 
-		if (jugadorGana == true) {
-			otorgarExperiencia(pokEquipo, pokRival);
-			menuController.show();
-			stage.close();
+	        if (entrenadorGana) {
+	            if (entrenadorRival != null) {
+	                int pokedolaresRival = entrenadorRival.getPokedolares();
+	                int recompensa = pokedolaresRival / 3;
 
-		} else {
-			menuController.show();
-			stage.close();
+	                int pokedolaresEntrenador = entrenador.getPokedolares();
+	                entrenador.setPokedolares(pokedolaresEntrenador + recompensa);
+
+	                // Actualiza pokedolares del entrenador en BD
+	                EntrenadorBD.actualizarPokedolares(entrenador);
+
+	                actualizarLogCombate("¡Has ganado! Obtienes " + recompensa + " pokédolares como recompensa.");
+	            } else {
+	                actualizarLogCombate("No se pudo obtener al entrenador rival. No recibes recompensa.");
+	            }
+	        } else {
+	            int pokedolaresEntrenador = entrenador.getPokedolares();
+	            int perdida = pokedolaresEntrenador / 3;
+
+	            entrenador.setPokedolares(pokedolaresEntrenador - perdida);
+
+	            // Actualiza pokedolares del entrenador en BD
+	            EntrenadorBD.actualizarPokedolares(entrenador);
+
+	            actualizarLogCombate("Has perdido el combate. Pierdes " + perdida + " pokédolares.");
+	        }
+
+	    } finally {
+			
 		}
 
+	    mostrarAlerta("El combate ha terminado.");
+	    menuController.show();
+	    stage.close();
 	}
 
 	private void subirNivel(Pokemon pokemon) {
