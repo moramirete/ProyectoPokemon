@@ -635,6 +635,14 @@ public class CombateController {
 			
 			mostrarAlerta("¡Has ganado el combate!");
 			
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/menu.fxml"));
+				Parent root = loader.load();
+				Stage stage = (Stage) btnMov1.getScene().getWindow();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}else {
 			
 			mostrarAlerta("¡Has perdido el combate!");
