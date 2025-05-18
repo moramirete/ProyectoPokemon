@@ -36,8 +36,6 @@ public class EntrenamientoController {
 	@FXML
 	private Button btnSalir;
 	@FXML
-	private Button btnPokemon;
-	@FXML
 	private Button btnMov1;
 	@FXML
 	private Button btnMov2;
