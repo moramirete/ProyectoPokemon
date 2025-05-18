@@ -132,7 +132,7 @@
                            </font>
                         </Label>
                         <ImageView fx:id="Imgpoke3" fitHeight="92.0" fitWidth="116.0" layoutX="480.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="NombrePoke4" layoutX="582.0" layoutY="263.0" prefHeight="18.0" prefWidth="27.0" textFill="WHITE">
+                        <Label fx:id="NombrePoke4" layoutX="582.0" layoutY="263.0" prefHeight="18.0" prefWidth="98.0" textFill="WHITE">
                            <font>
                               <Font name="Consolas" size="12.0" />
                            </font>
@@ -149,7 +149,7 @@
                            </font>
                         </Label>
                         <ImageView fx:id="Imgpoke4" fitHeight="92.0" fitWidth="116.0" layoutX="480.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="NombrePoke5" layoutX="580.0" layoutY="362.0" prefHeight="18.0" prefWidth="58.0" textFill="WHITE">
+                        <Label fx:id="NombrePoke5" layoutX="580.0" layoutY="362.0" prefHeight="18.0" prefWidth="98.0" textFill="WHITE">
                            <font>
                               <Font name="Consolas" size="12.0" />
                            </font>
@@ -161,7 +161,7 @@
                         </Label>
                         <ImageView fx:id="Imgpoke5" fitHeight="92.0" fitWidth="116.0" layoutX="475.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true" />
                         <ProgressBar fx:id="barraVida5" layoutX="712.0" layoutY="370.0" prefHeight="18.0" prefWidth="225.0" progress="0.0" style="-fx-accent: #228B22;" />
-                        <Label fx:id="lblVida5" layoutX="869.0" layoutY="425.0" prefHeight="14.0" prefWidth="14.0" textFill="WHITE">
+                        <Label fx:id="lblVida5" layoutX="837.0" layoutY="425.0" prefHeight="14.0" prefWidth="98.0" textFill="WHITE">
                            <font>
                               <Font name="Consolas" size="12.0" />
                            </font>
@@ -172,13 +172,13 @@
                               <Font name="Consolas" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="NombrePoke6" layoutX="583.0" layoutY="492.0" prefHeight="18.0" prefWidth="27.0" textFill="WHITE">
+                        <Label fx:id="NombrePoke6" layoutX="583.0" layoutY="492.0" prefHeight="18.0" prefWidth="86.0" textFill="WHITE">
                            <font>
                               <Font name="Consolas" size="12.0" />
                            </font>
                         </Label>
                         <ProgressBar fx:id="barraVida6" layoutX="714.0" layoutY="483.0" prefHeight="18.0" prefWidth="225.0" progress="0.0" style="-fx-accent: #228B22;" />
-                        <Label fx:id="lblVida61" layoutX="869.0" layoutY="542.0" prefHeight="14.0" prefWidth="8.0" textFill="WHITE">
+                        <Label fx:id="lblVida6" layoutX="869.0" layoutY="542.0" prefHeight="14.0" prefWidth="8.0" textFill="WHITE">
                            <font>
                               <Font name="Consolas" size="12.0" />
                            </font>
