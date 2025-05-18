@@ -579,3 +579,119 @@ Turno 145:
 Entrenador: z huyó del combate.
 Rival: 
 
+Combate 20250518052244801:
+Turno 1:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Residuos e hizo 8 de daño.
+
+Turno 2:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Látigo Cepa e hizo 6 de daño.
+
+Turno 3:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Ácido e hizo 5 de daño.
+
+Turno 4:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Armadura Ácida e hizo 2 de daño.
+
+Turno 5:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Drenadoras e hizo 2 de daño.
+
+Turno 6:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Polvo Veneno e hizo 2 de daño.
+
+Turno 7:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Hoja Afilada e hizo 7 de daño.
+
+Turno 8:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Residuos e hizo 8 de daño.
+
+Turno 9:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Armadura Ácida e hizo 2 de daño.
+
+Turno 10:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Paralizador e hizo 2 de daño.
+
+Turno 11:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Paralizador e hizo 2 de daño.
+
+Turno 12:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Drenadoras e hizo 2 de daño.
+
+Turno 13:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Tóxico e hizo 2 de daño.
+
+Turno 14:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Ácido e hizo 5 de daño.
+
+Turno 15:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Ácido e hizo 5 de daño.
+
+Turno 16:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Polución e hizo 4 de daño.
+
+Turno 17:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Paralizador e hizo 2 de daño.
+
+Turno 18:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: MACHAMP cambio el puesto al pokemon a ZUBAT
+
+Turno 19:
+Entrenador: VENUSAUR uso Megaagotar e hizo 43 de daño.
+Rival: ZUBAT cambio el puesto al pokemon a BUTTERFREE
+
+Combate 20250518052736282:
+Turno 1:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: VENUSAUR usó Ácido e hizo 5 de daño.
+
+Combate 20250518052748328:
+Turno 1:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: VENUSAUR usó Tóxico e hizo 2 de daño.
+
+Turno 2:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Espora e hizo 2 de daño.
+
+Turno 3:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: VENUSAUR usó Hoja Afilada e hizo 7 de daño.
+
+Turno 4:
+Entrenador: NIDOKING uso Picotazo Veneno e hizo 2 de daño.
+Rival: NIDOKING usó Tóxico e hizo 2 de daño.
+
+Combate 20250518053327673:
+Turno 1:
+Entrenador: VENUSAUR uso Megaagotar e hizo 5 de daño.
+Rival: BLASTOISE usó Espora e hizo 2 de daño.
+
+Turno 2:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: BLASTOISE usó Espora e hizo 2 de daño.
+
+Turno 3:
+Entrenador: VENUSAUR uso Látigo Cepa e hizo 6 de daño.
+Rival: BLASTOISE usó Hoja Afilada e hizo 7 de daño.
+
+Turno 4:
+Entrenador: VENUSAUR uso Ácido e hizo 5 de daño.
+Rival: BLASTOISE usó Ácido e hizo 5 de daño.
+

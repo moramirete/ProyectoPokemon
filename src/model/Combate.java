@@ -36,9 +36,9 @@ public class Combate {
 
     public void exportarTurnos(String rutaArchivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
-            writer.write("Combate " + idCombate + ":\n");
+            writer.write("Combate " + idCombate + ":\n"); // Agrega ":" después del ID
             for (Turno turno : turnos) {
-                writer.write(turno.toString() + "\n");
+                writer.write(turno.toString() + "\n\n"); // doble salto para separar turnos
             }
         } catch (IOException e) {
             e.printStackTrace();
