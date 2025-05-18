@@ -641,14 +641,14 @@ public class CombateController {
 
 		if(jugadorGana == true) {
 			
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/menu.fxml"));
-				Parent root = loader.load();
-				Stage stage = (Stage) btnMov1.getScene().getWindow();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			menuController.show();
+			stage.close();
 			
+		}else {
+			
+			
+			menuController.show();
+			stage.close();
 		}
 		
 		combate.exportarTurnos("log_combate.txt");
@@ -702,8 +702,6 @@ public class CombateController {
 	void huir(ActionEvent event) {
 		registrarTurno(entrenador.getUsuario() + " huyó del combate.");
 		finalizarCombate(false);
-		menuController.show();
-		stage.close();
 	}
 
 }
