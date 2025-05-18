@@ -1,13 +1,581 @@
-Combate 20250518010743318:
+Combate 20250518021132787:
 Turno 1:
 Entrenador: ¡El rival empieza!
 Rival: 
 
 Turno 2:
-Entrenador: El rival usó Placaje e hizo 2 de daño.
+Entrenador: El rival usó Placaje e hizo 3 de daño.
 Rival: 
 
 Turno 3:
-Entrenador: a huyó del combate.
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 4:
+Entrenador: El rival usó Puño Fuego e hizo 4 de daño.
+Rival: 
+
+Turno 5:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 6:
+Entrenador: El rival usó Ascuas e hizo 3 de daño.
+Rival: 
+
+Turno 7:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 8:
+Entrenador: El rival usó Llamarada e hizo 5 de daño.
+Rival: 
+
+Turno 9:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 10:
+Entrenador: El rival usó Giro Fuego e hizo 3 de daño.
+Rival: 
+
+Turno 11:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 12:
+Entrenador: El rival usó Llamarada e hizo 5 de daño.
+Rival: 
+
+Turno 13:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 14:
+Entrenador: El rival usó Placaje e hizo 3 de daño.
+Rival: 
+
+Turno 15:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 16:
+Entrenador: El rival usó Giro Fuego e hizo 3 de daño.
+Rival: 
+
+Turno 17:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 18:
+Entrenador: El rival usó Lanzallamas e hizo 4 de daño.
+Rival: 
+
+Turno 19:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 20:
+Entrenador: El rival usó Puño Fuego e hizo 4 de daño.
+Rival: 
+
+Turno 21:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 22:
+Entrenador: El rival usó Giro Fuego e hizo 3 de daño.
+Rival: 
+
+Turno 23:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 24:
+Entrenador: El rival usó Llamarada e hizo 5 de daño.
+Rival: 
+
+Turno 25:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 26:
+Entrenador: El rival usó Giro Fuego e hizo 3 de daño.
+Rival: 
+
+Turno 27:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 28:
+Entrenador: El rival usó Ascuas e hizo 3 de daño.
+Rival: 
+
+Turno 29:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 30:
+Entrenador: El rival usó Lanzallamas e hizo 4 de daño.
+Rival: 
+
+Turno 31:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 32:
+Entrenador: El rival usó Giro Fuego e hizo 3 de daño.
+Rival: 
+
+Turno 33:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 34:
+Entrenador: El rival usó Giro Fuego e hizo 3 de daño.
+Rival: 
+
+Turno 35:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 36:
+Entrenador: El rival usó Puño Fuego e hizo 4 de daño.
+Rival: 
+
+Turno 37:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 38:
+Entrenador: El rival usó Llamarada e hizo 5 de daño.
+Rival: 
+
+Turno 39:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 40:
+Entrenador: El rival usó Giro Fuego e hizo 3 de daño.
+Rival: 
+
+Turno 41:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 42:
+Entrenador: El rival usó Lanzallamas e hizo 4 de daño.
+Rival: 
+
+Turno 43:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 44:
+Entrenador: El rival usó Giro Fuego e hizo 3 de daño.
+Rival: 
+
+Turno 45:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 46:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 47:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 48:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 49:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 50:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 51:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 52:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 53:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 54:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 55:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 56:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 57:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 58:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 59:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 60:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 61:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 62:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 63:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 64:
+Entrenador: El rival usó Cascada e hizo 5 de daño.
+Rival: 
+
+Turno 65:
+Entrenador: Usaste Placaje e hiciste 3 de daño.
+Rival: 
+
+Turno 66:
+Entrenador: El rival cambió a RATICATE.
+Rival: 
+
+Turno 67:
+Entrenador: Usaste Placaje e hiciste 22 de daño.
+Rival: 
+
+Turno 68:
+Entrenador: El rival cambió a PIDGEOT.
+Rival: 
+
+Turno 69:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 70:
+Entrenador: El rival usó Rayo Burbuja e hizo 7 de daño.
+Rival: 
+
+Turno 71:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 72:
+Entrenador: El rival usó Cascada e hizo 8 de daño.
+Rival: 
+
+Turno 73:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 74:
+Entrenador: El rival usó Hidrobomba e hizo 11 de daño.
+Rival: 
+
+Turno 75:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 76:
+Entrenador: El rival usó Pistola Agua e hizo 5 de daño.
+Rival: 
+
+Turno 77:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 78:
+Entrenador: El rival usó Cascada e hizo 8 de daño.
+Rival: 
+
+Turno 79:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 80:
+Entrenador: El rival usó Burbuja e hizo 5 de daño.
+Rival: 
+
+Turno 81:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 82:
+Entrenador: El rival usó Cascada e hizo 8 de daño.
+Rival: 
+
+Turno 83:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 84:
+Entrenador: El rival usó Burbuja e hizo 5 de daño.
+Rival: 
+
+Turno 85:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 86:
+Entrenador: El rival usó Surf e hizo 9 de daño.
+Rival: 
+
+Turno 87:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 88:
+Entrenador: El rival usó Hidrobomba e hizo 11 de daño.
+Rival: 
+
+Turno 89:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 90:
+Entrenador: El rival usó Rayo Burbuja e hizo 7 de daño.
+Rival: 
+
+Turno 91:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 92:
+Entrenador: El rival usó Rayo Burbuja e hizo 7 de daño.
+Rival: 
+
+Turno 93:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 94:
+Entrenador: El rival usó Burbuja e hizo 5 de daño.
+Rival: 
+
+Turno 95:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 96:
+Entrenador: El rival usó Rayo Burbuja e hizo 7 de daño.
+Rival: 
+
+Turno 97:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 98:
+Entrenador: El rival usó Burbuja e hizo 5 de daño.
+Rival: 
+
+Turno 99:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 100:
+Entrenador: El rival usó Surf e hizo 9 de daño.
+Rival: 
+
+Turno 101:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 102:
+Entrenador: El rival usó Rayo Burbuja e hizo 7 de daño.
+Rival: 
+
+Turno 103:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 104:
+Entrenador: El rival usó Surf e hizo 9 de daño.
+Rival: 
+
+Turno 105:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 106:
+Entrenador: El rival usó Rayo Burbuja e hizo 7 de daño.
+Rival: 
+
+Turno 107:
+Entrenador: Usaste Placaje e hiciste 5 de daño.
+Rival: 
+
+Turno 108:
+Entrenador: El rival usó Surf e hizo 9 de daño.
+Rival: 
+
+Turno 109:
+Entrenador: Usaste Placaje e hiciste 6 de daño.
+Rival: 
+
+Turno 110:
+Entrenador: El rival usó Ataque Furia e hizo 3 de daño.
+Rival: 
+
+Turno 111:
+Entrenador: Usaste Placaje e hiciste 6 de daño.
+Rival: 
+
+Turno 112:
+Entrenador: El rival usó Autodestrucción e hizo 26 de daño.
+Rival: 
+
+Turno 113:
+Entrenador: Usaste Placaje e hiciste 6 de daño.
+Rival: 
+
+Turno 114:
+Entrenador: El rival usó Ataque Furia e hizo 3 de daño.
+Rival: 
+
+Turno 115:
+Entrenador: Usaste Placaje e hiciste 6 de daño.
+Rival: 
+
+Turno 116:
+Entrenador: El rival usó Megapatada e hizo 16 de daño.
+Rival: 
+
+Turno 117:
+Entrenador: Usaste Placaje e hiciste 6 de daño.
+Rival: 
+
+Turno 118:
+Entrenador: El rival usó Reducción e hizo 2 de daño.
+Rival: 
+
+Turno 119:
+Entrenador: Usaste Placaje e hiciste 6 de daño.
+Rival: 
+
+Turno 120:
+Entrenador: El rival usó Megapatada e hizo 16 de daño.
+Rival: 
+
+Turno 121:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 122:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 123:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 124:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 125:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 126:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 127:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 128:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 129:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 130:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 131:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 132:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 133:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 134:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 135:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 136:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 137:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 138:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 139:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 140:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 141:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 142:
+Entrenador: El rival cambió a TANGELA.
+Rival: 
+
+Turno 143:
+Entrenador: Usaste Placaje e hiciste 2 de daño.
+Rival: 
+
+Turno 144:
+Entrenador: El rival usó Placaje e hizo 2 de daño.
+Rival: 
+
+Turno 145:
+Entrenador: z huyó del combate.
 Rival: 
 
