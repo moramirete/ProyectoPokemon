@@ -247,13 +247,21 @@ public class CombateController {
 	void descansar(ActionEvent event) {
 
 		int vitalidadRecuperada = pokEquipo.getVitalidadMaxOBJ() / 10; // Recupera el 10% de la vitalidad máxima
-		pokEquipo.setVitalidadOBJ(
-				Math.min(pokEquipo.getVitalidadOBJ() + vitalidadRecuperada, pokEquipo.getVitalidadMaxOBJ()));
+	    int nuevaVitalidad = Math.min(pokEquipo.getVitalidadOBJ() + vitalidadRecuperada, pokEquipo.getVitalidadMaxOBJ());
+	    pokEquipo.setVitalidadOBJ(nuevaVitalidad);
 
+	    boolean actualizado = PokemonBD.actualizarVitalidad(pokEquipo, nuevaVitalidad);
+	    if (!actualizado) {
+	        System.out.println("Error al actualizar la vitalidad en la base de datos.");
+	    }
+
+	    
 		actualizarBarraVida(pbPokemonVida, pokEquipo.getVitalidadOBJ(), pokEquipo.getVitalidadMaxOBJ());
 		lblVitalidad.setText(String.valueOf(pokEquipo.getVitalidadOBJ()));
-
+		
 		registrarTurno(pokEquipo.getNombre_pokemon() + " descansó y recuperó " + vitalidadRecuperada + " PS.");
+		
+		turnoRival(pokRival, pokEquipo);
 
 	}
 
@@ -633,8 +641,6 @@ public class CombateController {
 
 		if(jugadorGana == true) {
 			
-			mostrarAlerta("¡Has ganado el combate!");
-			
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/menu.fxml"));
 				Parent root = loader.load();
@@ -642,10 +648,6 @@ public class CombateController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-		}else {
-			
-			mostrarAlerta("¡Has perdido el combate!");
 			
 		}
 		

@@ -243,30 +243,6 @@ public class EntrenamientoController {
 	}
 
 	/**
-	 * Método para cambiar Pokémon (no implementado)
-	 */
-	@FXML
-	public void cambiarPoke(ActionEvent event) {
-		/*
-		 * try { // Cargamos el FXML de cambiar Pokémon FXMLLoader loader = new
-		 * FXMLLoader(getClass().getResource("../view/cambiarPokemonCombate.fxml"));
-		 * Parent root = loader.load();
-		 * 
-		 * // Obtenemos el controlador y le pasamos datos necesarios
-		 * cambiarPokemonCombateController controlador = loader.getController();
-		 * controlador.init(entrenador, miPokemon, this);
-		 * 
-		 * // Creamos una nueva ventana para cambiar Pokémon Stage nuevaVentana = new
-		 * Stage(); nuevaVentana.setTitle("Cambiar Pokémon del equipo");
-		 * nuevaVentana.setScene(new Scene(root)); nuevaVentana.initOwner(this.stage);
-		 * nuevaVentana.show();
-		 * 
-		 * } catch (IOException e) { e.printStackTrace();
-		 * mostrarAlerta("Error al abrir la ventana de cambio de Pokémon."); }
-		 */
-	}
-
-	/**
 	 * Recarga los datos con el nuevo Pokémon seleccionado tras cambiar
 	 * 
 	 * @param idNuevo ID del nuevo Pokémon principal

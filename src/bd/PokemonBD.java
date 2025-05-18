@@ -939,6 +939,25 @@ public class PokemonBD {
 			e.printStackTrace();
 		}
 	}
+	
+	public static boolean actualizarVitalidad(Pokemon pokemon, int nuevaVitalidad) {
+	    String sql = "UPDATE POKEMON SET VITALIDAD = ? WHERE ID_POKEMON = ? AND ID_ENTRENADOR = ?";
+	    
+	    try (Connection con = BDConecction.getConnection();
+	         PreparedStatement pst = con.prepareStatement(sql)) {
+	        
+	        pst.setInt(1, nuevaVitalidad);
+	        pst.setInt(2, pokemon.getId_pokemon());
+	        pst.setInt(3, pokemon.getId_entrenador());
+	        
+	        int filasActualizadas = pst.executeUpdate();
+	        return filasActualizadas > 0;
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
 
 	public static int obtenerEvolucion(int numPokedex, int nivelActual) {
 		String sql = "SELECT num_pokedex, nivel_evolucion FROM pokemon WHERE num_pokedex = ?";
