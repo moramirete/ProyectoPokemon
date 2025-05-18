@@ -36,8 +36,6 @@ public class EntrenamientoController {
 	@FXML
 	private Button btnSalir;
 	@FXML
-	private Button btnPokemon;
-	@FXML
 	private Button btnMov1;
 	@FXML
 	private Button btnMov2;
@@ -176,70 +174,82 @@ public class EntrenamientoController {
 	 * @param index índice del movimiento seleccionado
 	 */
 	private void usarMovimiento(int index) {
-	    // Obtener la lista de movimientos del Pokémon del jugador
 	    List<Movimiento> movimientos = miPokemon.getMovPrincipales();
 	    if (index >= movimientos.size()) return;
 
-	    // Seleccionar el movimiento elegido
 	    Movimiento mov = movimientos.get(index);
 
-	    // Verificar si tiene PP disponibles
-	    int ppActual = mov.getPp_actual();
-	    if (ppActual <= 0) {
+	    if (mov.getPp_actual() <= 0) {
 	        mostrarAlerta("¡" + mov.getNom_movimiento() + " no tiene PP disponibles!");
 	        return;
 	    }
 
-	    // Reducir PP en 1
-	    int nuevoPP = ppActual - 1;
-	    mov.setPp_actual(nuevoPP);
-	    MovimientoBD.actualizarPPMovimiento(miPokemon.getId_entrenador(), miPokemon.getId_pokemon(), mov.getId_movimiento(), nuevoPP);
+	    // Reducir PP en 1 y actualizar en BD
+	    mov.setPp_actual(mov.getPp_actual() - 1);
+	    MovimientoBD.actualizarPPMovimiento(miPokemon.getId_entrenador(), miPokemon.getId_pokemon(), mov.getId_movimiento(), mov.getPp_actual());
 
-	    // Calcular el daño que hará
-	    int danio = mov.getPotencia() != 0 ? mov.getPotencia() : 10;
-
-	    // Aplicar el daño al rival
-	    int nuevaVidaRival = Math.max(0, pokemonRival.getVitalidad() - danio);
+	    // Daño que hace el jugador al rival
+	    int danioJugador = mov.getPotencia() != 0 ? mov.getPotencia() : 10;
+	    int nuevaVidaRival = Math.max(0, pokemonRival.getVitalidad() - danioJugador);
 	    pokemonRival.setVitalidad(nuevaVidaRival);
 
-	    // Actualizar las barras de vida en pantalla
-	    actualizarHP();
-
-	    // Mostrar en consola
 	    System.out.println(miPokemon.getNombre_pokemon() + " usa " + mov.getNom_movimiento());
 
-	    // Crear turno y agregarlo al combate
+	    // --- Turno rival atacando ---
+	    Movimiento movRival = elegirMovimientoRival();
+	    int danioRival = movRival.getPotencia() != 0 ? movRival.getPotencia() : 10;
+	    int nuevaVidaJugador = Math.max(0, miPokemon.getVitalidad() - danioRival);
+	    miPokemon.setVitalidad(nuevaVidaJugador);
+
+	    System.out.println(pokemonRival.getNombre_pokemon() + " usa " + movRival.getNom_movimiento());
+
+	    // Guardar turnos de ambos ataques en combate
 	    String accionEntrenador = miPokemon.getNombre_pokemon() + " usa " + mov.getNom_movimiento() + ".";
-	    String accionRival = pokemonRival.getNombre_pokemon() + " no hace nada (acción simulada).";
+	    String accionRival = pokemonRival.getNombre_pokemon() + " usa " + movRival.getNom_movimiento() + ".";
 	    Turno turno = new Turno(combate.getNumeroCombate(), numeroTurno, accionEntrenador, accionRival);
 	    combate.agregarTurno(turno);
 	    numeroTurno++;
 
-	    // Refrescar los textos de los botones para mostrar PP actualizados
+	    // Actualizar barras de vida
+	    actualizarHP();
+
 	    cargarMovimientos();
 
-	    // Comprobar si se ha terminado el combate si es asi crear nuevo pokemon para otro combate
+	    // Comprobar si alguno ha sido derrotado
 	    if (nuevaVidaRival <= 0) {
-	    	
-	        // Mensaje de que el Pokémon rival ha sido derrotado
-	        String mensajeDerrota = pokemonRival.getNombre_pokemon() + " ha sido derrotado.";
-
-	        // Generar nuevo Pokémon 
+	        mostrarAlerta("¡Has derrotado a " + pokemonRival.getNombre_pokemon() + "!");
 	        pokemonRival = PokemonBD.generarPokemonRivalAleatorio(miPokemon);
-
-	        // Registrar entrada del nuevo Pokémon
-	        String mensajeNuevo = "¡Aparece un nuevo Pokémon rival: " + pokemonRival.getNombre_pokemon() + "!";
-
-	        // Crear turno que refleje el cambio
-	        Turno turnoCambio = new Turno(combate.getNumeroCombate(), numeroTurno++, mensajeDerrota, mensajeNuevo);
-	        combate.agregarTurno(turnoCambio);
-
-	        // Actualizar imagen, vida y datos del nuevo Pokémon rival
 	        cargarDatos();
-
-	        // Mostrar alerta
-	        mostrarAlerta("¡Has derrotado a un Pokémon! Aparece " + pokemonRival.getNombre_pokemon() + ".");
 	    }
+
+	    if (nuevaVidaJugador <= 0) {
+	        mostrarAlerta("¡Tu Pokémon ha sido derrotado!");
+	        // Aquí puedes implementar la lógica de qué pasa cuando pierdes
+	    }
+	}
+
+	/**
+	 * Método para elegir un movimiento válido del rival (aleatorio y con PP)
+	 */
+	private Movimiento elegirMovimientoRival() {
+	    List<Movimiento> movimientosRival = pokemonRival.getMovPrincipales();
+
+	    // Filtrar movimientos con PP > 0
+	    movimientosRival.removeIf(mov -> mov.getPp_actual() <= 0);
+
+	    if (movimientosRival.isEmpty()) {
+	        // Si no tiene movimientos con PP, crear uno por defecto
+	        return new Movimiento(numeroTurno, "Ataque débil", 10, null, Integer.MAX_VALUE, numeroTurno, numeroTurno, null, null, numeroTurno, null, numeroTurno, null, numeroTurno, numeroTurno, numeroTurno); 
+	    }
+
+	    int index = (int) (Math.random() * movimientosRival.size());
+	    Movimiento movElegido = movimientosRival.get(index);
+
+	    // Reducir PP del movimiento rival usado
+	    movElegido.setPp_actual(movElegido.getPp_actual() - 1);
+	    MovimientoBD.actualizarPPMovimiento(pokemonRival.getId_entrenador(), pokemonRival.getId_pokemon(), movElegido.getId_movimiento(), movElegido.getPp_actual());
+
+	    return movElegido;
 	}
 
 	/**
