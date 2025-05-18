@@ -738,7 +738,7 @@ public class CombateController {
 				BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
 
 			if (turno.getNumTurno() == 1) {
-				bufferedWriter.write("Combate " + turno.getNumCombate() + ":" + "\n");
+				bufferedWriter.write("\n" + "Combate " + turno.getNumCombate() + ":" + "\n");
 			}
 
 			bufferedWriter.write(turno.toString());
