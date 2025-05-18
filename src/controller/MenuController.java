@@ -29,11 +29,6 @@ public class MenuController {
     private Stage stage;
     private LoginController loginController;
 
-    // Atributos adicionales para "relleno"
-    private int vecesMenuAbierto = 0;
-    private String mensajeBienvenida = "¡Bienvenido al menú principal de Pokémon Super Nenes!";
-    private String ultimaSeccionAbierta = "";
-
     @FXML
     private Button btnCaptura;
     @FXML
@@ -71,7 +66,13 @@ public class MenuController {
     private Label plantillaPokeDolares;
     @FXML
     private Label plantillaUsuario;
-
+    
+    /**
+     * Método que se ejecuta al pulsar el botón de Captura.
+     * Carga la pantalla de captura de Pokémon y cierra la ventana del menú actual.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     void abrirCaptura(ActionEvent event) {
         try {
@@ -90,7 +91,6 @@ public class MenuController {
             stage.show();
             this.stage.close();
 
-            ultimaSeccionAbierta = "Captura";
             System.out.println("Entrando a captura");
 
         } catch (IOException e) {
@@ -99,6 +99,13 @@ public class MenuController {
         }
     }
 
+    
+    /**
+     * Método que se ejecuta al pulsar el botón de Centro Pokémon.
+     * Carga la pantalla del Centro Pokémon y cierra la ventana del menú actual.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     void abrirCentro(ActionEvent event) {
         try {
@@ -117,7 +124,6 @@ public class MenuController {
             stage.show();
             this.stage.close();
 
-            ultimaSeccionAbierta = "Centro Pokémon";
             System.out.println("Entrando a centro");
 
         } catch (IOException e) {
@@ -126,6 +132,15 @@ public class MenuController {
         }
     }
 
+    
+    /**
+     * Método que se ejecuta al pulsar el botón de Combate.
+     * Verifica si el equipo tiene al menos 2 pokémons para poder combatir.
+     * Si cumple la condición, carga la pantalla de Combate y cierra la ventana actual.
+     * En caso contrario, muestra un mensaje de advertencia al usuario.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     void abrirCombate(ActionEvent event) {
         if (entrenador.getEquipo().size() == 1) {
@@ -149,7 +164,6 @@ public class MenuController {
                 stage.show();
                 this.stage.close();
 
-                ultimaSeccionAbierta = "Combate";
                 System.out.println("Entrando a combate");
 
             } catch (IOException e) {
@@ -159,6 +173,14 @@ public class MenuController {
         }
     }
 
+    
+    /**
+     * Método que se ejecuta al pulsar el botón de Crianza.
+     * Carga la pantalla de Crianza, inicializa el controlador con el entrenador, la ventana
+     * y el menú actual, muestra la ventana y cierra la actual.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     void abrirCrianza(ActionEvent event) {
         try {
@@ -177,7 +199,6 @@ public class MenuController {
             stage.show();
             this.stage.close();
 
-            ultimaSeccionAbierta = "Crianza";
             System.out.println("Entrando a crianza");
 
         } catch (IOException e) {
@@ -186,6 +207,13 @@ public class MenuController {
         }
     }
 
+    /**
+     * Método que se ejecuta al pulsar el botón de Entrenamiento.
+     * Carga la pantalla de Entrenamiento, inicializa el controlador con el entrenador, la ventana
+     * y el menú actual, muestra la ventana y cierra la actual.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     void abrirEntrenamiento(ActionEvent event) {
         try {
@@ -204,7 +232,6 @@ public class MenuController {
             stage.show();
             this.stage.close();
 
-            ultimaSeccionAbierta = "Entrenamiento";
             System.out.println("Entrando a entrenamiento");
 
         } catch (IOException e) {
@@ -213,6 +240,13 @@ public class MenuController {
         }
     }
 
+    /**
+     * Método que se ejecuta al pulsar el botón de Equipo.
+     * Carga la pantalla de Equipo, inicializa el controlador con el entrenador, la ventana
+     * y el menú actual, muestra la ventana y cierra la actual.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     void abrirEquipo(ActionEvent event) {
         try {
@@ -231,7 +265,6 @@ public class MenuController {
             stage.show();
             this.stage.close();
 
-            ultimaSeccionAbierta = "Equipo";
             System.out.println("Entrando a equipo");
 
         } catch (IOException e) {
@@ -240,6 +273,14 @@ public class MenuController {
         }
     }
 
+    
+    /**
+     * Método que se ejecuta al pulsar el botón de Mochila.
+     * Carga la pantalla de Mochila, inicializa el controlador con el entrenador, la ventana
+     * y el menú actual, muestra la ventana y cierra la actual.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     void abrirMochila(ActionEvent event) {
         try {
@@ -258,7 +299,6 @@ public class MenuController {
             stage.show();
             this.stage.close();
 
-            ultimaSeccionAbierta = "Mochila";
             System.out.println("Entrando a mochila");
 
         } catch (IOException e) {
@@ -267,6 +307,13 @@ public class MenuController {
         }
     }
 
+    /**
+     * Método que se ejecuta al pulsar el botón de Tienda.
+     * Carga la pantalla de Tienda, inicializa el controlador con el entrenador, la ventana
+     * y el menú actual, muestra la ventana y cierra la actual.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     void abrirTienda(ActionEvent event) {
         try {
@@ -285,7 +332,6 @@ public class MenuController {
             stage.show();
             this.stage.close();
 
-            ultimaSeccionAbierta = "Tienda";
             System.out.println("Entrando a tienda");
 
         } catch (IOException e) {
@@ -294,6 +340,12 @@ public class MenuController {
         }
     }
 
+    /**
+     * Método que se ejecuta al pulsar el botón de Salir en el menú.
+     * Cierra la ventana actual del menú y muestra la ventana de login.
+     * 
+     * @param event El evento generado al pulsar el botón.
+     */
     @FXML
     public void cerrarMenu(ActionEvent event) {
         loginController.show();
@@ -302,6 +354,14 @@ public class MenuController {
         System.out.println("Abriendo login");
     }
 
+    /**
+     * Inicializa el controlador del menú con los datos del entrenador, la ventana (stage) y el controlador de login.
+     * Configura etiquetas y bindings para mostrar la información del usuario y pokedólares.
+     * 
+     * @param ent Objeto Entrenador con los datos del usuario actual.
+     * @param stage Ventana (Stage) donde se muestra el menú.
+     * @param loginController Controlador de la ventana de login para poder mostrarla al cerrar sesión.
+     */
     public void init(Entrenador ent, Stage stage, LoginController loginController) {
         this.loginController = loginController;
         this.stage = stage;
@@ -310,10 +370,16 @@ public class MenuController {
         lblJugador.setText(entrenador.getUsuario());
         lblPokedollares.textProperty().bind(entrenador.pokedolaresProperty().asString());
 
-        vecesMenuAbierto++;
-        System.out.println(mensajeBienvenida + " (Menú abierto " + vecesMenuAbierto + " veces)");
     }
-
+ 
+    /**
+     * Maneja el evento de cerrar la aplicación cuando el usuario hace clic en el botón de salida.
+     * Muestra un cuadro de diálogo de confirmación preguntando al usuario si realmente desea cerrar la aplicación.
+     * Si el usuario confirma, se cierra la ventana principal (Stage) y termina la aplicación.
+     * Si el usuario cancela, no se realiza ninguna acción.
+     *
+     * @param event El evento de tipo MouseEvent que desencadena el cierre.
+     */
     @FXML
     public void cerrarAplicacion(MouseEvent event) {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres cerrar el proyectoPokemon?");
@@ -328,30 +394,11 @@ public class MenuController {
         }
     }
 
+    /**
+     * Muestra la ventana del menú principal.
+     * Llama al método show() del Stage asociado para hacer visible la interfaz.
+     */
     public void show() {
         stage.show();
-    }
-
-    // Métodos adicionales de ejemplo para "relleno"
-
-    /**
-     * Devuelve el número de veces que se ha abierto el menú.
-     */
-    public int getVecesMenuAbierto() {
-        return vecesMenuAbierto;
-    }
-
-    /**
-     * Devuelve la última sección abierta desde el menú.
-     */
-    public String getUltimaSeccionAbierta() {
-        return ultimaSeccionAbierta;
-    }
-
-    /**
-     * Cambia el mensaje de bienvenida mostrado en consola.
-     */
-    public void setMensajeBienvenida(String mensaje) {
-        this.mensajeBienvenida = mensaje;
     }
 }

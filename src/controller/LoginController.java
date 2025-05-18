@@ -61,11 +61,6 @@ public class LoginController {
     @FXML
     private TextField txtUsuario;
 
-    // Atributos adicionales para "rellenar" la clase
-    private int intentosFallidos = 0;
-    private String ultimoUsuarioIntentado = "";
-    private String mensajeBienvenida = "¡Bienvenido a Pokémon Super Nenes!";
-
     public void setStage(Stage primaryStage) {
         stage = primaryStage;
     }
@@ -149,25 +144,15 @@ public class LoginController {
                         txtPassword.setText("");
                     }
                 } else {
-                    boolean accesoCorrecto = false;
                     while (rs.next()) {
                         if (rs.getString(1).equals(pass)) {
                             System.out.println("Usuario encontrado");
                             EntrenadorBD.obtenerIDPokedolaresEntre(conexion, entrenador);
                             abrirPantallaMenu(entrenador);
                             System.out.println("Abriendo menu");
-                            accesoCorrecto = true;
-                            mostrarMensajeBienvenida(usuario);
                         } else {
-                            intentosFallidos++;
-                            ultimoUsuarioIntentado = usuario;
+                           
                             JOptionPane.showMessageDialog(null, "Error: Contraseña incorrecta");
-                            System.out.println("Intento fallido #" + intentosFallidos + " para usuario: " + usuario);
-                        }
-                    }
-                    if (!accesoCorrecto) {
-                        if (intentosFallidos >= 3) {
-                            JOptionPane.showMessageDialog(null, "Has superado el número de intentos permitidos. ¿Olvidaste tu contraseña?");
                         }
                     }
                 }
@@ -228,7 +213,6 @@ public class LoginController {
 
                         abrirPantallaMenu(entrenador);
                         System.out.println("Entrando a menu");
-                        mostrarMensajeBienvenida(usuario);
 
                     } else {
                         System.out.println("Se ha elegido la opcion de no");
@@ -278,43 +262,13 @@ public class LoginController {
     }
 
     /**
-     * Muestra un mensaje de bienvenida personalizado.
-     */
-    private void mostrarMensajeBienvenida(String usuario) {
-        JOptionPane.showMessageDialog(null, mensajeBienvenida + "\n¡Hola, " + usuario + "!");
-    }
-
-    /**
      * Muestra la ventana del login vaciando los bloques de texto en Usuario y Contraseña.
      */
     public void show() {
         stage.show();
         txtUsuario.setText("");
         txtPassword.setText("");
-        intentosFallidos = 0;
-        ultimoUsuarioIntentado = "";
     }
 
-    // Métodos de ejemplo para "rellenar" la clase
 
-    /**
-     * Devuelve el número de intentos fallidos de login.
-     */
-    public int getIntentosFallidos() {
-        return intentosFallidos;
-    }
-
-    /**
-     * Devuelve el último usuario que intentó iniciar sesión.
-     */
-    public String getUltimoUsuarioIntentado() {
-        return ultimoUsuarioIntentado;
-    }
-
-    /**
-     * Cambia el mensaje de bienvenida.
-     */
-    public void setMensajeBienvenida(String mensaje) {
-        this.mensajeBienvenida = mensaje;
-    }
 }
